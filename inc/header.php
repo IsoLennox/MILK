@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>AppName </title>
 </head>
-<!-- CTEC227: PHP2
+<!-- CTEC227: PHP2html
 TEAM MILK: 
 Matt Browne
 Isobel Lennox
