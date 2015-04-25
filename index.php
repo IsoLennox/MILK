@@ -15,4 +15,6 @@
         <p>Clients:
         current status of recent claims made, recent items added, widget to add more items, graph showing item types
         </p>
+        
+        <p><img src="http://lorempixel.com/150/150/animals" alt=""></p>
 <?php include("inc/footer.php"); ?>
