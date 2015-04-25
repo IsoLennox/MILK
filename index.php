@@ -1,6 +1,5 @@
 <?php include("inc/header.php"); ?>
 <!-- MASTER-->
- 
 
 <!--if client: show client home page, else: show employee home page.-->
 
