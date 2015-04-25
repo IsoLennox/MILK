@@ -15,4 +15,9 @@
         <p>Clients:
         current status of recent claims made, recent items added, widget to add more items, graph showing item types
         </p>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ipsum sed molestias optio iure sint inventore molestiae et a rerum illo eligendi, at veniam facilis commodi quis iusto velit temporibus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ipsum sed molestias optio iure sint inventore molestiae et a rerum illo eligendi, at veniam facilis commodi quis iusto velit temporibus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ipsum sed molestias optio iure sint inventore molestiae et a rerum illo eligendi, at veniam facilis commodi quis iusto velit temporibus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ipsum sed molestias optio iure sint inventore molestiae et a rerum illo eligendi, at veniam facilis commodi quis iusto velit temporibus.</p>
 <?php include("inc/footer.php"); ?>
