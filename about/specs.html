@@ -91,11 +91,15 @@
     <p><strong>Users</strong><br/> ‘Users’ references both policyholders and employees as a unit of someone in general using this app. 
  Data - Any information a policy holder submits to the app.</p>
  
+    <p><strong>Data</strong><br/>Any information a policy holder submits to the app.</p>
+    
+    <p><strong>The Company</strong><br/>Greenwell Bank, Greenwell insurance company, all other companies under the Greenwell umbrella</p>
+ 
  
 <h3 id="over">Overview</h3>
    <h5 id="sys">System Overview</h5>
-    <p>This app will allow for users to upload pictures of an item they are declaring, as well as images of receipts establishing the item’s value, the manufacturer's nameplate, etc. Manual entry of data will be used to complete the information fields with photos supporting the documentation. Once an inventory is established, users will be able to submit claims by selecting which items from their established inventory were damaged in the loss event.  Benefits to the user of this app include having a record of their possessions and the ease of which claims can be submitted.  Those benefits, coupled with the driving of traffic to the service when policies are purchased, will produce a high level of participation in the inventory service by your policyholders.</p>
-<p>The benefits to the company go well beyond providing a service to your policy holders.  Among them is the ability to establish a value on the items you insure prior to a loss, expediting the claim processing end of things and building goodwill with customers for the expeditious claims handling.  More important to the insurance division however are having a declared value on these policies, the ability to quantify outstanding liability amounts, search and manipulate the data and apply demographic filters once a full database tie-in is implemented.  In essence, the data collected from all of this liability declaration, when used in conjunction with policyholder info you already have, will allow for comprehensive understanding of the levels of liability of a given demographic, a given category of consumer goods, and much more.</p>
+    <p>This app will allow for users to upload pictures of an item they are declaring, as well as images of receipts establishing the item’s value, the manufacturer's nameplate, etc. Manual entry of data will be used to complete the information fields with photos supporting the documentation. All of this information will be collectively referred to as data for the rest of this specification.  Once an inventory is established, users will be able to submit claims by selecting which items from their established inventory were damaged in the loss event.  Benefits to the user of this app include having a record of their possessions and the ease of which claims can be submitted.  Those benefits, coupled with the driving of traffic to the service when policies are purchased, will produce a high level of participation in the inventory service by the company’s policyholders.</p>
+<p>The benefits to the company go well beyond providing a service to your policy holders.  Among them is the ability to establish a value on the items you insure prior to a loss, expediting the claim processing end of things and building goodwill with customers for the expeditious claims handling.  More importantly to the insurance division are having a declared value on these policies, the ability to quantify outstanding liability amounts, search and manipulate the data and apply demographic filters once a full database tie-in is implemented.  In essence, the data collected from all of this liability declaration, when used in conjunction with policyholder info the company already posses, will allow for comprehensive understanding of the levels of liability of a given demographic, a given category of consumer goods, and much more.</p>
 
 
 
@@ -180,36 +184,226 @@ This way, he can easily sort through his items if he should need to quickly loca
 
 <h3 id="pers">User Personas and Scenarios</h3>
 
-<div class="personas">
-<img src="http://lorempixel.com/150/150/people" alt="">
-Randy: Lives in an Apartment
-Randy is a 40 year old male. Until recently, he was married and living in the suburbs, but that all changed when he found his wife in a compromising situation. Now Randy is starting over. He just moved into a one bedroom “bachelor pad”. It’s sparsely furnished. Most items have been bought on Craigslist. But there is one thing that Randy values above all his other property: his entertainment system. From the 70-inch plasma television, to the Bose surround sound system he has put a lot of money into so that Friday nights may be lonely, but he can still be entertained.
-Randy decided to invest in rental insurance from Greenwell Bank and Insurance Company. For him, the inventory system has worked really well. He peacefully falls asleep each night, knowing that if his upstairs neighbor’s waterbed bursts he won’t be without his highly valued entertainment center.
-After securing a rental insurance policy with Greenwell Bank and Insurance Company, he went through his apartment, filling in all the info he could WITH APPNAME on his belongings and taking pictures of the property and receipts that correspond with them. Now Randy has peace of mind that the rental insurance policy is protecting his property.</div>
-<div class="personas">
-The Welshes: First Time Home Buyers
-Regina and Isaac met in college and got married shortly after graduating with their bachelors degree in business. For them, it was easy to find jobs. The harder part was finding a house into which they could invest their new income. But it finally happened- they found a lovely 3 bedroom, 2.5 bath home in a suburb located only 15 minutes away from their workplaces. The house sale was finalized the day before their honeymoon trip to Maui. When they came back, freshly tanned and thoroughly relaxed, they were stunned to find a pile of presents from their wedding stacked up in their living room.
-Having lived in a dorm for the past four years, and this being their first home, Regina and Isaac are so excited to be in their spacious suburban home. However, after receiving so many nice gifts, they decided it would be in their best interest to catalogue their valuable items, using the Greenwell Bank and Insurance Company system. For the young couple, it was quite fun to assemble the list of their valuables, using the application provided by Greenwell Bank and Insurance Company.
-    If they ever do have to make a claim, they simply log into the system under their user profiles and file a claim by selecting which items were damaged, how they were damaged or lost or stolen, etc. They rest well now, knowing that they are protected from mayhem like the guy in those other insurance commercials.</div>
+ 
+<table style="width:100%">
+  <tr>
+    <th>Randy<br/><em>Policyholder</em></th>
+    <th rowspan="2">Details<br/>
+        <ul> 
+            <li>40 year old male</li>
+            <li>Rental insurance customer for 6 months</li>
+            <li>Recently divorced</li>
+            <li>Lives in a 1 bedroom apartment</li>
+            <li>Works at the local zoo</li>
+            <li>Drives a 1999 Ford Tempo</li>
+            <li>Watches Dance Moms religiously</li>
 
-<div class="personas">
-Super User Employee
-Sally Stone has permissions to do anything on the site, seeing as she is the designated Super User Employee at Greenwell Bank and Insurance Company.
-When a new employee joins the company, she is able to create their account, and assign them a role to be able to start working with the app right away. If there is no role with the proper permissions for the new employee, Sally is also able to create a new role to define the proper permissions for this new employee.
-Since Sally is the super user, she can take on any role of the other employees. If Bruce the claims adjuster is out sick, she will be able to do the same work that Bruce would do, unlike Sampson, who can only view claims and not approve them.
-    </div>
-<div class="personas">
-Claims Adjuster Employee
-Bruce is a very eager new employee at Greenwell Bank and Insurance Company. He was finally hired after being called in for two separate interviews. He has prior experience from another insurance company, but he his old job involved attempting to accurately calculate his clients valuables based on the word of the client, some improperly scanned and thoroughly wrinkled proofs of purchase and a lot of bickering over the actual value of their 20 year old television that “still worked as good as new.”
-    Now, Bruce thoroughly enjoys his job as a Claims Adjuster. His favorite story to share with family and friends from his first 3 months at Greenwell Bank and Insurance Company, involves an iguana, a saltwater fish tank and a resulting fire that managed to only burn half of his clients full-sized bed. He enjoys getting to help people each day and takes great pride in how well his company takes care of his clients. using this app.. this is how he uses it...</div>
+        </ul>
+    </th>
+  </tr>
+  <tr>
+    <td><img src="img/randy.gif" alt="Randy"></td>
+     
+  </tr>
+  <tr >
+    <td colspan="3" class="table-head">Scenario: Lives in an Apartment</td> 
+  </tr>
+    <tr >
+    <td colspan="3">Things don’t always happen the way we planned. Randy knows this very well. Nine
+months ago, he found his wife in a compromising situation in their suburban home.
+The divorce happened quickly after that, but Randy is still trying to adjust to the new
+changes that come with living alone.
+He started over in a sparsely furnished “bachelor pad”. Sadly, he chose an
+inexperienced divorce attorney and lost almost everything. He works long days and
+looks forward to relaxing with his most valued possession: his home entertainment
+system. He saved for months to buy a 70 inch plasma television, complete with
+Bose surround sound system. Everything else in his apartment was purchased on
+Craigslist and holds little value in his eyes.
+Randy loves having a rental insurance policy through the Greenwell Bank and
+Insurance company. The inventory system has worked really well for what he
+needed for peace of mind. After all, Friday nights aren’t quite as lonely with his
+television to keep him company.</td> 
+  </tr>
+</table>
+ 
+ 
+ <table style="width:100%">
+  <tr>
+    <th>The Welshes<br/><em>Policyholders</em></th>
+    <th rowspan="2">Details<br/>
+        <ul>
+            
+            <li>Recently married</li>
+            <li>Purchased their first home</li>
+            <li>Met at the Melting Pot</li>
+            <li>Honeymooned in Wyoming</li>
+            <li>Can’t agree on politics</li>
+            <li>Rented a bounce house for their wedding</li>
+        </ul>
+    </th>
+  </tr>
+  <tr>
+    <td>
+    <img src="img/regina.gif" alt="Regina"/>
+    <img src="img/isaac.gif" alt="Isaac"/>
+    </td>
+     
+  </tr>
+  <tr >
+    <td colspan="3" class="table-head">Scenario: First Time Home Buyers</td> 
+  </tr>
+    <tr >
+    <td colspan="3"> 
+Regina and Isaac met in college and got married shortly after graduating with their
+bachelors degree in business. For them, it was easy to find jobs. The harder part
+was finding a house into which they could invest their new income. But it finally
+happened-- they found a lovely 3 bedroom, 2.5 bath home in a suburb located only
+15 minutes away from their workplaces.
+Having lived in a dorm for the past four years, and this being their first home,
+Regina and Isaac are so excited to be in their spacious suburban home. However,
+after receiving so many nice gifts, they decided it would be in their best interest to
+catalogue their valuable items, using the Greenwell Bank and Insurance Company
+system. For the young couple, it was quite fun to assemble the list of their
+valuables, using APPNAME.
+If they ever do have to make a claim, they simply log into the system under their
+user profiles and file a claim by selecting which items were damaged, how they
+were damaged or lost or stolen, etc. They rest well now, knowing that they are
+protected from mayhem like the guy in those other insurance commercials.</td> 
+  </tr>
+</table>
+ 
+  <table style="width:100%">
+  <tr>
+    <th>Sally Stone<br/><em>Super User Employee</em></th>
+    <th rowspan="2">Details<br/>
+        <ul>
+            <li>Employee for 5 years</li>
 
-<div class="personas">
-The Jeffreys: Victims of an Arsonist
-Jim and Gerald Jeffrey have lived in the same little bungalow on the Oregon Coast for the last twenty years. Although they owned their home by the sea outright, they wisely invested in home-owners insurance, hoping that they would never need it. Sadly, a local teen found out that they would be on vacation for the first week in May of 2013. For unknown reasons, he chose their bungalow to douse in gasoline, drop a match and watch burn to the ground. He was arrested, but being a teenager from a family of few means, the Jeffreys can only pursue criminal charges. They have to depend on the Greenwell Bank and Insurance Company’s thorough inventory system to evaluate the total cost of their tragic loss and cut them a check to buy their next beach-side home.
-Losing the house is devastating, but the couple find some solace in the fact that they are being adequately compensated by their home-owners insurance. After all, they’ve been paying into the policy for 20 years. It’s about time that they benefit from those monthly payments. Now that the Fire Chief Inspector ruled the fire arson, clearing the Jeffrey’s of suspicion of foul play, they are being taken care of and look forward to picking up the pieces and starting over in a home just as beautiful as their last.
+            <li>Owns 2 cats, 1 dog and a turtle</li>
+            <li>Doesn’t eat yogurt</li>
+            <li>Didn’t like Breaking Bad</li>
+            <li>Has a crush on Vin Deisel</li>
+            <li>Walks 6 miles every day</li>
+            <li>Makes sarcastic greeting cards</li>
 
-    Add comments about thorough inventory and value of loss, based upon properly using the app at the time of the insurance purchase to document value.</div>
+        </ul>
+    </th>
+  </tr>
+  <tr>
+    <td><img src="img/sally.gif" alt="Sally"></td>
+     
+  </tr>
+  <tr >
+    <td colspan="3" class="table-head">Scenario: Manager in Greenwell Bank's insurance Dept.</td> 
+  </tr>
+    <tr >
+    <td colspan="3">
+Super User Employee Sally Stone has permissions to do anything within
+APPNAME, because she is the designated Super User Employee at Greenwell
+Bank and Insurance Company. When a new employee joins the company, she is
+able to create their account, and assign them a role to be able to start working with
+the app right away.
+If there is no role with the proper permissions for the new employee, Sally is also
+able to create a new role to define the proper permissions for this new employee.
+Since Sally is the Super User, she can take on any role of the other employees. If
+Bruce the claims adjuster is out sick, she will be able to do the same work that
+Bruce would do, unlike Sampson, who can only view claims and not approve them.</td> 
+  </tr>
+</table>
 
+   <table style="width:100%">
+  <tr>
+    <th>Bruce<br/><em>Claims Adjuster Employee</em></th>
+    <th rowspan="2">Details<br/>
+        <ul> 
+<li>Graduated high school at age 16</li>
+<li>Doesn’t own a personal computer</li>
+<li>Learning fine culinary skills</li>
+<li>Eats 3 apples every day</li>
+<li>Only dates red heads</li>
+<li>Counts cards at blackjack casinos</li>
+<li>Thinks composting is over rated</li>
+
+        </ul>
+    </th>
+  </tr>
+  <tr>
+    <td><img src="img/bruce.gif" alt="Bruce"></td>
+     
+  </tr>
+  <tr >
+    <td colspan="3" class="table-head">Scenario: Claims Adjuster at Greenwell Bank's insurance Dept.</td> 
+  </tr>
+    <tr >
+    <td colspan="3">
+
+Claims Adjuster Employee Bruce is a very eager new employee at Greenwell Bank
+and Insurance Company. He was finally hired after being called in for two separate
+interviews. He has prior experience from another insurance company, but his old
+job involved attempting to accurately calculate his clients valuables based on the
+word of the client, some improperly scanned and thoroughly wrinkled proofs of
+purchase and a lot of bickering over the actual value of 20 year old televisions that
+“still worked as good as new.”
+Now, Bruce thoroughly enjoys his job as a Claims Adjuster. His favorite story to
+share with family and friends from his first 3 months at Greenwell Bank and
+Insurance Company, involves an iguana, a saltwater fish tank and a resulting fire
+that managed to only burn half of his clients full-sized bed. He enjoys getting to help
+people each day and takes great pride in how well his company takes care of his
+clients. using APPNAME..</td> 
+  </tr>
+</table>
+ 
+    <table style="width:100%">
+  <tr>
+    <th>The Jeffreys<br/><em>Policyholder</em></th>
+    <th rowspan="2">Details<br/>
+        <ul>
+          
+            <li>Met on Farmer’s Only</li>
+            <li>Own a pug named Wally</li>
+            <li>Enjoy deep-sea fishing</li>
+            <li>Listen to Barenaked Ladies daily</li>
+            <li>Have won Scrabble championships</li>
+            <li>Don’t like children</li>
+            <li>Fear aquariums</li>
+        </ul>
+    </th>
+  </tr>
+  <tr>
+    <td><img src="img/jim.gif" alt="Jim">
+  <img src="img/gerald.gif" alt="Gerald">
+    </td>
+     
+  </tr>
+  <tr >
+    <td colspan="3" class="table-head">Scenario: Victims of an Arsonist</td> 
+  </tr>
+    <tr >
+    <td colspan="3">
+
+Jim and Gerald Jeffreys have lived in a quaint beach-front bungalow on the Oregon
+Coast for the last twenty years. Although they owned their home by the sea outright,
+they wisely invested in home-owners insurance, hoping that they would never need
+it. Last May, while they were in Bakersfield, California a local teen targeted their
+home, doused it in gasoline, dropped a match and watched it burn to the ground.
+He didn’t even leave the scene of the crime. He was arrested, but being a teenager
+from a family of few means, the Jeffreys can only pursue criminal charges. They
+have to depend on the Greenwell Bank and Insurance Company’s thorough
+inventory system to evaluate the total cost of their tragic loss and cut them a check
+to buy their next beach-side home.
+Losing the house is devastating, but the couple find some solace in the fact that
+they are being adequately compensated by their home-owners insurance. After all,
+they’ve been paying into the policy for 20 years. It’s about time that they benefit
+from those monthly payments.
+Now that the Fire Chief Inspector ruled that the fire was arson they are looking
+forward to picking up the pieces and starting over in a home just as beautiful as
+their last. They used APPNAME to make a thorough inventory and updated the
+inventory list yearly. Due to their diligence and APPNAME they are being
+compensated appropriately for their loss.</td> 
+  </tr>
+</table>
+
+ 
 <h3 id="page-specs">Page Specifications &amp; Wireframes</h3>
 
 <h4 id="spec-pol">Policyholders </h4>
@@ -277,10 +471,10 @@ Losing the house is devastating, but the couple find some solace in the fact tha
 
  
 <h3 id="security">Security</h3>
-<p>Security is very important for Greenwell Bank and we have designed the app with that in mind.
-Policyholders will be required to log in with a email and password before having access to the system.  Once they have been verified they will be required to link to a valid Greenwell insurance policy before their completed inventory can be submitted for appraisal or claims could be submitted.</p>
-<p>Employees will sign in using their company email. Employees will have defined roles, as set by the “Super User” account, in our example it’s Sally Stone.  Each defined role will have a limited set of permissions that allows the company to control access levels within the app.  The Super User account is also allowed to add specific additional permissions to a single employee as required by individual job requirements.</p>
-<p>For example, Bruce is a claims adjuster at Greenwell Bank’s insurance division.  Bruce has no need to adjust appraised values of items as part of his job duties and as such would not have access to those features when he signs in.  Instead, Bruce will see a dashboard that has policies assigned to him and their given status in the approval process.</p>
+<p><strong>Security</strong> is very important for Greenwell Bank and we have designed the app with that in mind.</p>
+<p>Policyholders will be required to log in with a email and password before having access to the system.  Once they have been verified they will be required to link to a valid Greenwell insurance policy before their completed inventory can be submitted for appraisal or claims could be submitted.</p>
+<p><strong>Employees</strong> will sign in using their company email. Employees will have defined roles, as set by the “Super User” account, in our example it’s Sally Stone.  Each defined role will have a limited set of permissions that allows the company to control access levels within the app.  The Super User account is also allowed to add specific additional permissions to a single employee as required by individual job requirements.</p>
+<p><em>For example</em>, Bruce is a claims adjuster at Greenwell Bank’s insurance division.  Bruce has no need to adjust appraised values of items as part of his job duties and as such would not have access to those features when he signs in.  Instead, Bruce will see a dashboard that has policies assigned to him and their given status in the approval process.</p>
 <p>No data will be passed in the URL’s, session variables will be used instead.</p>
 <p>SSL will not be required for this app, passwords will be hashed before being sent to the server.</p>
 
@@ -294,6 +488,7 @@ Policyholders will be required to log in with a email and password before having
 <p>Based on most recent user statistics, the majority of Greenwells Bank app visitors use Chrome browser, and mobile devices. Based on this information, we will be testing our app across phones and tablets as well as desktop across Chrome, Firefox, and IE11.</p>
 
 <p>AppName follows interface guidelines structured by Greenwell Bank, with an exeption of the navigation placement as approved by Mr. Greenwell upon wireframe presentation.</p>
+<p>All pages must pass HTML and CSS validation by the W3C validation service</p>
  
 
       <ul>

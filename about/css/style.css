@@ -70,7 +70,19 @@ h5{
     }
     .personas img{float: left; margin: 10px;}
     
-    
+    /* personas table */
+        table {border-radius: 10px; margin-bottom: 20px;}
+        table, th, td {
+            border: 3px solid rgba(154, 179, 35,0.8);
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;    
+        }
+        .table-head{background: rgba(154, 179, 35,0.5);}
+
+
     @media screen and (max-width: 1100px) {
     body {
         padding: 30px;;
