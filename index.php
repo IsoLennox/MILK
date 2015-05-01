@@ -1,28 +1,33 @@
 <?php include("inc/header.php"); ?>
- 
-<!--if client: show client home page, else: show employee home page.-->
+<?php if($_SESSION['is_employee']==0){
+    echo "<h1>CLIENT</h1>";
 
-<h1>Home Page!</h1>
-         
-       <p>Statistics</p>
+}else{
+    echo "<h1>Employee</h1>";
+
+} ?>
  
-       <p>Graphs: (research highcharts)</p>
-       
-        <p>Employees:
-        total number of clients, circle percentage chart of pending, approved and denied claims</p>
- 
+ <p>Home Page</p>
+           
+           
+           <?php
+
+//example query
+
+//    $query  = "SELECT * FROM TABLE";  
+//    $result = mysqli_query($connection, $query);
+//    if($result){
+//        //show each result value
+//        foreach($result as $show){
+//            
+//            $this_value=$show['col_name'];
+//            echo $this_value;
+//                      
+//            }
+//        }
+ ?>
+     
         
-        <p>Clients:
-        current status of recent claims made, recent items added, widget to add more items, graph showing item types
-        </p>
-         
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ipsum sed molestias optio iure sint inventore molestiae et a rerum illo eligendi, at veniam facilis commodi quis iusto velit temporibus.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ipsum sed molestias optio iure sint inventore molestiae et a rerum illo eligendi, at veniam facilis commodi quis iusto velit temporibus.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ipsum sed molestias optio iure sint inventore molestiae et a rerum illo eligendi, at veniam facilis commodi quis iusto velit temporibus.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ipsum sed molestias optio iure sint inventore molestiae et a rerum illo eligendi, at veniam facilis commodi quis iusto velit temporibus.</p>
- 
-       <img src="http://lorempixel.com/400/200/people" alt="">
-       <img src="http://lorempixel.com/400/200/people" alt="">
-       <img src="http://lorempixel.com/400/200/people" alt="">
-       <img src="http://lorempixel.com/400/200/people" alt="">
+      
+        
 <?php include("inc/footer.php"); ?>

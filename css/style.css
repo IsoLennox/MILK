@@ -1,0 +1,86 @@
+body{
+ 
+} 
+ .links:hover{cursor: pointer;}
+
+.search input[type="submit"]{
+    font-family: FontAwesome;
+    content: "&#xf002;";  
+}
+.search input[type="submit"]:hover{color: white;}
+
+input[type="submit"]:hover{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: darkolivegreen;
+    color: antiquewhite;
+}
+
+input[type="submit"]{ 
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: olivedrab;
+    color: antiquewhite;
+}
+
+
+input[type="file"]:hover{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px; 
+    color: black;
+}
+
+input[type="file"]{ 
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px;
+/*    background-color: olivedrab;*/
+/*    color: antiquewhite;*/
+    color: black;
+}
+ 
+
+.clearfix:after {
+visibility: hidden;
+display: block;
+font-size: 0;
+content: " ";
+clear: both;
+height: 0;
+}
+
+.clearfix {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+ 
+
+ 
+
+
+/******************************
+        /MEDIA QUERIES
+*******************************/
+
+
+@media(max-width: 1000px) {
+ 
+    
+}
+
+
+
+/*MOBILE DEVICES ONLY*/
+@media only screen and (max-device-width: 800px) {
+    
+ 
+
+	}

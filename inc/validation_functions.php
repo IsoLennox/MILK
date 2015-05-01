@@ -1,7 +1,4 @@
 <?php
-
-//THIS FILE IS FOR LIVE VALIDATION OF FORMS
-
 $errors = array();
 
 function fieldname_as_text($fieldname) {
@@ -52,7 +49,7 @@ function validate_username_unique($prospect_username) {
 
 function validate_email_unique($required_fields) {
     
- //MAKE SURE THIS EMAIL IS NOT TAKEN
+ //
 }
 
 
