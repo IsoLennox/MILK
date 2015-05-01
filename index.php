@@ -7,7 +7,7 @@
 
 } ?>
  
- <p>Home Page</p>
+ <p>Home Page!</p>
            
            
            <?php
