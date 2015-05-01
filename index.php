@@ -9,7 +9,7 @@
 } ?>
   
 <h1>Home Page</h1>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta magni enim sit quasi expedita ex, assumenda, repellendus sequi neque hic, tempore ullam debitis eaque consectetur dicta est fuga autem voluptate.</p>
+           <p>Porem ipsum dolor sit amet, consectetur adipisicing elit. Soluta magni enim sit quasi expedita ex, assumenda, repellendus sequi neque hic, tempore ullam debitis eaque consectetur dicta est fuga autem voluptate.</p>
  
            
            <?php
