@@ -47,12 +47,10 @@ h5{
     margin-bottom: 30px;
 }
 
-.panel{
-    background: #90C32E;
-    padding: 10px;
-    border-radius: 10px;
-}
-header { background: #90C32E;
+ 
+header {
+/*    background: rgba(144,195,46,.4);*/
+    background: #D3E7AB;
     height: 70px; 
     padding: 10px;
     position: fixed;
@@ -62,7 +60,9 @@ header { background: #90C32E;
 }  
 
 
-nav { background: #90C32E; 
+nav { 
+    /*    background: rgba(144,195,46,.4);*/
+    background: #D3E7AB;
     width: 200px;
     padding: 20px;
     float: left;

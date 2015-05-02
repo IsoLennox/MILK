@@ -37,7 +37,8 @@ confirm_logged_in(); ?>
     
 <!--    FULL SITE  -->
     <header>
- <a href="index.php"><img src="img/greenwell_logo_sm.png" alt="Greenwell Bank Logo"></a>
+<!-- <a href="index.php"><img src="img/greenwell_logo_sm.png" alt="Greenwell Bank Logo"></a>-->
+ <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a>
        
 
         
