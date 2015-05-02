@@ -2,6 +2,24 @@
 require_once("inc/db_connection.php"); 
 require_once("inc/functions.php");
 require_once("inc/validation_functions.php"); ?>
+<style>
+
+.message{
+
+    width: 250px;
+    margin: 10px;
+    padding: 5px;
+    color: #eee;
+    border-radius: 5px;
+
+}
+#create{ 
+    margin-top:50px;
+    width: 400px;
+    padding: 20px;  
+}
+ 
+</style>
 
 <?php
 $email = "";
@@ -65,42 +83,18 @@ if (isset($_POST['submit'])) {
 ?>
  <html lang="en">
   <head>
-    <title>Basic Login</title>
+    <title>UnderMyRoof - Login</title>
     <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    
-      <style>
-          body, li, {
-          color: #666;
-          }
-.message, .error{
-
-    width: 250px;
-    margin: 10px;
-    padding: 5px;
-    color: #eee;
-    border-radius: 5px;
-    background: #666;
-    
-
-} 
-          
-#create{
-    margin: 0 auto;
-    margin-top:50px;
-    width: 300px;
-    padding: 20px;
-    background: ivory;
-    border-radius: 5px; 
-    }
-</style>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> 
   </head>
   <body>
  
  
  <div id="create">
-   <h2>Basic Login</h2>
-     <p>A simple login and register profile creator.</p>
+    <img src="img/greenwell_logo_med.png" alt="Greenwell Logo" />  
+    
+    <img src="img/under_my_roof.png" alt="UnderMyRoof Logo" />
+     <p>Please sign in</p>
      
          <?php echo message(); ?>
     <?php echo form_errors($errors); ?>
@@ -109,21 +103,17 @@ if (isset($_POST['submit'])) {
       <p><input placeholder="EMAIL" type="text" name="email" value="<?php echo htmlentities($email); ?>" />
       </p>
       <p><input placeholder="PASSWORD" type="password" name="password" value="" />
-      <a href="forgot_password.php"><i title="Forgot Your Password?" class="fa fa-question-circle"></i></a>
+     
       </p>
       <input id="loginButton" type="submit" name="submit" value="Log In" /><br/>
       <br />
-        <a href="new_user.php"><div id="createButton">Create New Account</div></a>
+       
+       
+     
         
     </form>
+     <a title="Forgot Your Password?" href="forgot_password.php"><i title="Forgot Your Password?" class="fa fa-question-circle"> Forgot Your Password?</i></a> 
+        <a href="new_user.php"><div id="createButton">Create New Account</div></a>
      </div> 
-       
-         
       
-      <!--
-    ********** IF ANY PROBLEMS WITH PASSWORDS:
-
-        <a href="reset_password.php">Reset Password</a>
-
--->
-  
+ 

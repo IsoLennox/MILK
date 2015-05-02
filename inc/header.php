@@ -37,7 +37,7 @@ confirm_logged_in(); ?>
     
 <!--    FULL SITE  -->
     <header>
- <a href="index.php"><img src="img/Greenwell_sm.png" alt="Greenwell Bank Logo"></a>
+ <a href="index.php"><img src="img/greenwell_logo_sm.png" alt="Greenwell Bank Logo"></a>
        
 
         
@@ -88,31 +88,21 @@ if($_SESSION['is_employee']==0){
                       <li><a href="claim_history.php">Claim History</a></li>
                   </ul> 
                   
-                    <li>Help</li> 
+                    <li><a href="help.php">Help</a></li> 
               </ul>
               <?php
 }else{
     echo "<h4>Employee</h4>"; 
         ?>
-                  <ul>
-                  <li>Header</li>
-                  <ul>
-                      <li>Link</li>
-                      <li>Link</li>
-                  </ul> 
-                  
-                         <li>Header</li>
-                  <ul>
-                      <li>Link</li>
-                      <li>Link</li>
-                  </ul> 
-                  
-                    <li>Header</li>
-                  <ul>
-                      <li>Link</li>
-                      <li>Link</li>
-                  </ul> 
-              </ul>
+            <ul>
+                <li><a href="messages.php">Messages</a></li>
+                <li><a href="claims.php">Claims</a></li> 
+
+                <li><a href="employees.php">Employees</a></li>
+                <li><a href="roles.php">Roles</a></li>
+                <li><a href="company_details.php">Company Details</a></li>
+
+            </ul>
               <?php
 }
         ?>

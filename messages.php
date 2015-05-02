@@ -1,25 +1,19 @@
 <?php include("inc/header.php"); ?>
 
-<a href="claim_history.php">&laquo; Claims History</a>
-<h1>CLAIM TITLE</h1> 
 
-<?php
-if($_SESSION['is_employee']==1){
-    echo "<a href=\"#\">Update This Claim</a>"; 
-}
-?>
+<h1>Messages</h1>
 
-<br/>
-<br/> 
-          <p>Claim Details</p><br/> 
-          <p>Claim Details</p><br/> 
-          <p>Claim Notes</p><br/> 
-           
+    <h4>New Message</h4>
+ 
+          <p>Your conversations:</p>
+          <ul>
+              <li><a href="read_message.php?thread=1">Conversation with Sally Stone</a></li>
+          </ul>
            <?php
 
 //example query
 
-//    $query  = "SELECT * FROM TABLE WHERE user_id={$_SESSION['user_id']}"; 
+//    $query  = "SELECT * FROM TABLE";  
 //    $result = mysqli_query($connection, $query);
 //    if($result){
 //        //show each result value

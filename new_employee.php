@@ -1,7 +1,4 @@
-<?php require_once("inc/session.php"); ?>
-<?php require_once("inc/db_connection.php"); ?>
-<?php require_once("inc/functions.php"); ?>
-<?php require_once("inc/validation_functions.php"); ?>  
+<?php include("inc/header.php"); ?>
 <style>
 
 .message{
@@ -68,9 +65,9 @@ if($first_password===$confirmed_password){
             
             //Username is not taken
               $query  = "INSERT INTO customers (";
-    $query .= " email, username, password";
+    $query .= " email, username, password, is_employee";
     $query .= ") VALUES (";
-    $query .= " '{$email}', '{$username}', '{$hashed_password}'";
+    $query .= " '{$email}', '{$username}', '{$hashed_password}', 1";
     $query .= ") ";
     $new_user_created = mysqli_query($connection, $query);
             
@@ -110,14 +107,7 @@ if($first_password===$confirmed_password){
 
 <!DOCTYPE html>
 <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <title>290 Project: Arbytes</title>
-     <!-- Arbyte is a pun branched from the term "Arbeit" meaning 'task' or 'work' and "bytes" -->
-     <link rel="stylesheet" href="css/style.css">
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-     
-     
+ 
      
      <script>
  //check username availability/if empty
@@ -218,20 +208,16 @@ if($first_password===$confirmed_password){
          
      
      </script>
- </head>
- <body> 
+  
           
   <div id="create">
    
-       <img src="img/greenwell_logo_med.png" alt="Greenwell Logo" />  
-    
-    <img src="img/under_my_roof.png" alt="UnderMyRoof Logo" />
-      
+     
       
     <?php echo message(); ?>
     <?php echo form_errors($errors); ?>
     
-    <h2>Create New Account</h2> 
+    <h2>Create New Employee</h2> 
       
     <form action="new_user.php" method="post">
  
@@ -241,15 +227,20 @@ if($first_password===$confirmed_password){
         <div id="eavailability"></div>
       
         
-    <p id="u-error">Username (Public):
+    <p id="u-error">Full Name:
         <input type="text" name="username" id="username" value="" />
          
       </p>
       <div id="availability"></div>
       
-
+        <p>Role:
+            <select name="role" id="role">
+<!--               LOOP THROUGH ROLES TABLE TO GET EACH OPTION-->
+                <option value="1">Super User</option>
+            </select>
+        </p>
       
-      <p id="p1-error">Password:
+      <p id="p1-error">Temporary Password:
         <input type="password" name="password" id="pass" value="" />
       </p>
         <p id="p2-error">Confirm Password: 
@@ -264,7 +255,7 @@ if($first_password===$confirmed_password){
       
     </form>
     <br />
-    <a href="login.php">Cancel</a>
+    <a href="employees.php">Cancel</a>
 
    
       

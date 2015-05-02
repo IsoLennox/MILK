@@ -53,8 +53,7 @@ h5{
     border-radius: 10px;
 }
 header { background: #90C32E;
-    height: 70px;
-    overflow: hidden;
+    height: 70px; 
     padding: 10px;
     position: fixed;
     top: 0;
