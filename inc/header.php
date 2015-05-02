@@ -70,6 +70,7 @@ if($_SESSION['is_employee']==0){
     echo "<h4>Client</h4>"; 
     ?>
                   <ul>
+                  <li><a href="index.php">Dashboard</a></li>
                   <li>Inventory </li>
                   <ul>
                       
@@ -93,15 +94,17 @@ if($_SESSION['is_employee']==0){
               </ul>
               <?php
 }else{
-    echo "<h4>Employee</h4>"; 
+    echo "<h4>Employee Role</h4>";  
         ?>
             <ul>
                 <li><a href="messages.php">Messages</a></li>
                 <li><a href="claims.php">Claims</a></li> 
+<!--                <li><a href="claims.php">Tickets</a></li> -->
 
                 <li><a href="employees.php">Employees</a></li>
                 <li><a href="roles.php">Roles</a></li>
                 <li><a href="company_details.php">Company Details</a></li>
+                <li><a href="index.php">Statistics</a></li>
 
             </ul>
               <?php

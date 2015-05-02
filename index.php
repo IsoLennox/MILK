@@ -1,26 +1,30 @@
 <?php include("inc/header.php"); ?>
 
 
-<h1>Home Page</h1>
-           <p>Porem ipsum dolor sit amet, consectetur adipisicing elit. Soluta magni enim sit quasi expedita ex, assumenda, repellendus sequi neque hic, tempore ullam debitis eaque consectetur dicta est fuga autem voluptate.</p>
- 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
- 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
- 			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
- 			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
- 			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
- 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
- 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
- 			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
- 			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
- 			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
- 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
- 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
- 			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
- 			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
- 			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
- 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <?php 
+ 
+if($_SESSION['is_employee']==0){
+    //CLIENT
+    ?>
+    <h2>Your Dashboard</h2> 
+    <ul>
+        <li>Total number of items</li>
+        <li>number of claims made &amp; Percent of resolved/denied/pending claims</li>
+        <li>Your Rooms and items in them</li>
+        <li>Quick Add New item</li>
+    </ul>
+    <?php
+    
+}else{  ?>
+    <h2>Statistics</h2>
+    <ul>
+        <li>Total number of clients</li>
+        <li>number of claims made &amp; Percent of resolved/denied/pending claims</li>
+    </ul>
+    <?php
+
+}
+    ?>
 
            
            <?php
