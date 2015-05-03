@@ -55,7 +55,7 @@ function find_user_by_username($username) {
     $safe_username = mysqli_real_escape_string($connection, $username);
 
     $query  = "SELECT * ";
-    $query .= "FROM customers ";
+    $query .= "FROM users ";
     $query .= "WHERE username = '{$safe_username}' ";
     $query .= "LIMIT 1";
     $user_set = mysqli_query($connection, $query);
@@ -115,7 +115,7 @@ function find_user_by_id($user_id) {
     $safe_user_id = mysqli_real_escape_string($connection, $user_id);
 
     $query  = "SELECT * ";
-    $query .= "FROM customers ";
+    $query .= "FROM users ";
     $query .= "WHERE id = {$safe_user_id} ";
     $query .= "LIMIT 1";
     $user_set = mysqli_query($connection, $query);
@@ -191,7 +191,7 @@ function find_user_by_email($email) {
     $safe_email = mysqli_real_escape_string($connection, $email);
 
     $query  = "SELECT * ";
-    $query .= "FROM customers ";
+    $query .= "FROM users ";
     $query .= "WHERE email = '{$safe_email}' ";
     $query .= "LIMIT 1";
     $user_set = mysqli_query($connection, $query);

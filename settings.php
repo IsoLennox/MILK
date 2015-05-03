@@ -12,7 +12,7 @@
 </script>
 <!--  GET USER INFO-->
             <?php 
-    $user_query  = "SELECT * FROM customers WHERE id={$_SESSION['user_id']}";  
+    $user_query  = "SELECT * FROM users WHERE id={$_SESSION['user_id']}";  
     $user_result = mysqli_query($connection, $user_query);
     $num_rows=mysqli_num_rows($user_result);
     if($num_rows >= 1){
@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
       }else{
       //perform update
           
-            $update_book  = "UPDATE customers SET ";
+            $update_book  = "UPDATE users SET ";
             $update_book .= "username = '{$username}' ";
             $update_book .= "WHERE id = {$_SESSION['user_id']} ";
             $result = mysqli_query($connection, $update_book);
@@ -74,7 +74,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         }else{
             //perform update
     
-    $update_book  = "UPDATE customers SET ";
+    $update_book  = "UPDATE users SET ";
     $update_book .= "email = '{$email}' ";
     $update_book .= "WHERE id = {$_SESSION['user_id']} ";
     $result = mysqli_query($connection, $update_book);
@@ -111,7 +111,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
                 //new passwords match
                 //perform update with $hashed_pass
                 
-    $update_book  = "UPDATE customers SET ";
+    $update_book  = "UPDATE users SET ";
     $update_book .= "password = '{$hashed_password}' ";
     $update_book .= "WHERE id = {$_SESSION['user_id']} ";
     $result = mysqli_query($connection, $update_book);

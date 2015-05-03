@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
         
         //get this user info
         $query  = "SELECT * ";
-		$query .= "FROM customers ";
+		$query .= "FROM users ";
 		$query .= "WHERE id={$found_user["id"]} LIMIT 1"; 
 		$all_users = mysqli_query($connection, $query); 
         $array= mysqli_fetch_assoc($all_users);

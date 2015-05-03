@@ -77,7 +77,7 @@ if ($uploadOk == 0) {
       
         // unmark all as current, then insert current image    // Perform Update
 
-    $reset  = "UPDATE customers SET ";
+    $reset  = "UPDATE users SET ";
     $reset .= "avatar = '{$target_file}' ";
     $reset .= "WHERE id = {$user_id} ";
     $result = mysqli_query($connection, $reset);

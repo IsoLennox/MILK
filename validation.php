@@ -6,7 +6,7 @@ if(isset($_GET['uname'])){
 $uname = $_GET['uname'];
 
 //Checks if the username is available or not
-$query = "SELECT username FROM customers WHERE username = '$uname'";
+$query = "SELECT username FROM users WHERE username = '$uname'";
 
 $result = mysqli_query($connection, $query);
 
@@ -89,7 +89,7 @@ if(isset($_GET['email'])){
 $email = $_GET['email'];
 
 //Checks if the email is available or not
-$query = "SELECT email FROM customers WHERE email = '$email'";
+$query = "SELECT email FROM users WHERE email = '$email'";
 
 $result = mysqli_query($connection, $query);
 
@@ -109,7 +109,7 @@ if(isset($_GET['forgotemail'])){
 $email = $_GET['forgotemail'];
 
 //Checks if the email is available or not
-$query = "SELECT email FROM customers WHERE email = '$email'";
+$query = "SELECT email FROM users WHERE email = '$email'";
 
 $result = mysqli_query($connection, $query);
 

@@ -30,7 +30,7 @@ function validate_username_unique($prospect_username) {
     global $errors;
     global $connection;
     
-    $check_username  = "SELECT * FROM customers WHERE username = '{$prospect_username}'";
+    $check_username  = "SELECT * FROM users WHERE username = '{$prospect_username}'";
     $username_checked = mysqli_query($connection, $check_username);
     
         confirm_query($username_checked);

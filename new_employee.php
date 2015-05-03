@@ -57,14 +57,14 @@ if($first_password===$confirmed_password){
     
     //check that username entered does not exist
     
-    $query  = "select * from customers WHERE username='{$username}'"; 
+    $query  = "select * from users WHERE username='{$username}'"; 
     $username_found = mysqli_query($connection, $query);
         $username_array= mysqli_fetch_assoc($username_found);
         
         if (empty($username_array)){
             
             //Username is not taken
-              $query  = "INSERT INTO customers (";
+              $query  = "INSERT INTO users (";
     $query .= " email, username, password, is_employee";
     $query .= ") VALUES (";
     $query .= " '{$email}', '{$username}', '{$hashed_password}', 1";

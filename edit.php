@@ -6,7 +6,7 @@
                        //change to 0
         $_SESSION["theme"] = 0; 
                     
-    $update_theme  = "UPDATE customers SET theme = 0 ";
+    $update_theme  = "UPDATE users SET theme = 0 ";
     $update_theme .= "WHERE id = {$_SESSION['user_id']} ";
     $result = mysqli_query($connection, $update_theme);
 
@@ -25,7 +25,7 @@
                         //change to 1 
    $_SESSION["theme"] = 1; 
                     
-    $update_theme  = "UPDATE customers SET theme = 1 ";
+    $update_theme  = "UPDATE users SET theme = 1 ";
     $update_theme .= "WHERE id = {$_SESSION['user_id']} ";
     $result = mysqli_query($connection, $update_theme);
 

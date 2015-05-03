@@ -28,7 +28,7 @@ if(isset($_GET['user'])){
 
 
 //GET PROFILE IMAGE AND CONTENT
-    $query  = "SELECT * FROM customers WHERE id={$user_id} LIMIT 1";  
+    $query  = "SELECT * FROM users WHERE id={$user_id} LIMIT 1";  
     $result = mysqli_query($connection, $query);
      $num_rows=mysqli_num_rows($result);
 //    if($result){

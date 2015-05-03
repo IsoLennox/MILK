@@ -7,7 +7,7 @@
  
 
     //REMOVE FROM DIR
-$remove  = "SELECT * FROM customers ";
+$remove  = "SELECT * FROM users ";
 $remove .= "WHERE id = {$_SESSION['user_id']} ";
 $remove_result = mysqli_query($connection, $remove);
 if($remove_result){
@@ -36,7 +36,7 @@ if($remove_result){
         unlink($avatar);
 
         //REMOVE FROM DB
-        $reset  = "UPDATE customers SET ";
+        $reset  = "UPDATE users SET ";
         $reset .= "avatar = '' ";
         $reset .= "WHERE id = {$_SESSION['user_id']} ";
         $result = mysqli_query($connection, $reset);

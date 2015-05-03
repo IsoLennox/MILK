@@ -1,6 +1,6 @@
 <?php include("inc/header.php");  
 
-     $query  = "SELECT * FROM customers WHERE id={$_SESSION['user_id']}";  
+     $query  = "SELECT * FROM users WHERE id={$_SESSION['user_id']}";  
     $result = mysqli_query($connection, $query);
      
     if($result){
@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
     
    // Perform Update BOOK
       
-    $update_profile  = "UPDATE customers SET ";
+    $update_profile  = "UPDATE users SET ";
     $update_profile .= "profile_content = '{$content}' ";
     $update_profile .= "WHERE id = {$_SESSION['user_id']} ";
     $result = mysqli_query($connection, $update_profile);
