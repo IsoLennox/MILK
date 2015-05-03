@@ -6,7 +6,7 @@ if(isset($_GET['user'])){
     
     //GET USERNAME
     $find_user = find_user_by_id($user_id);
-    $username= $find_user['username'];
+    $username= $find_user['first_name']." ".$find_user['last_name'];
     
     
 }elseif(isset($_GET['user_id'])){
@@ -14,7 +14,7 @@ if(isset($_GET['user'])){
     
     //GET USERNAME
     $find_user = find_user_by_id($user_id);
-    $username= $find_user['username'];
+    $username= $find_user['first_name']." ".$find_user['last_name'];
     
     
 }else{
