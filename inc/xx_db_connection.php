@@ -1,5 +1,18 @@
 <?php
+
+
+
+
+
+
+
+
+
+// IMPORTANT!!!!
+
+//RENAME FILE 'db_connection.php'
  
+//REPLACE '******'  WITH YOUR LOCALHOST DATA
 
 define("DB_SERVER","localhost");
 define("DB_USER","*********");
