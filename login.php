@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     if ($found_user) {
       // Success : Create session varabes
 	   $_SESSION["user_id"] = $found_user["id"]; 
-	   $_SESSION["username"] = $found_user["username"]; 
+	   $_SESSION["username"] = $found_user["first_name"]." ".$found_user["last_name"];  
 	   $_SESSION["is_employee"] = $found_user["is_employee"]; 
 	   $_SESSION["theme"] = $found_user["theme"]; 
 			 

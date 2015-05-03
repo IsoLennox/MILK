@@ -17,7 +17,8 @@
     $num_rows=mysqli_num_rows($user_result);
     if($num_rows >= 1){
         $user_data=mysqli_fetch_assoc($user_result);
-        $username=$user_data['username'];
+        $first=$user_data['first_name'];
+        $last=$user_data['last_name'];
         $email=$user_data['email'];
         $stored_pass=$user_data['password'];
  
@@ -34,25 +35,26 @@ if (isset($_POST['submit'])) {
 /*********************************/ 
     
    if (isset($_GET['username'])) {
-  $username = mysql_prep($_POST["username"]);
-      if(empty($_POST['username'])){
+  $first = mysql_prep($_POST["first"]);
+  $last = mysql_prep($_POST["last"]);
+      if(empty($_POST['first']) || empty($_POST['last'])){
       //cannot be empty
-          $_SESSION["message"] = "Username cannot be empty!";
+          $_SESSION["message"] = "Name cannot be empty!";
           redirect_to("settings.php");
       }else{
       //perform update
           
             $update_book  = "UPDATE users SET ";
-            $update_book .= "username = '{$username}' ";
+            $update_book .= "first_name = '{$first}', last_name = '{$last}' ";
             $update_book .= "WHERE id = {$_SESSION['user_id']} ";
             $result = mysqli_query($connection, $update_book);
             if ($result && mysqli_affected_rows($connection) == 1) {
               // Success
-                       $_SESSION["message"] = "Username Saved! Please log out and back in to see changes.";
+                       $_SESSION["message"] = "Name Saved! Please log out and back in to see changes.";
                         redirect_to("settings.php");
             } else {
               // Failure
-                        $_SESSION["message"] = "Username Could Not Be Saved!";
+                        $_SESSION["message"] = "Name Could Not Be Saved!";
                         redirect_to("settings.php");
             }//END UPDATE ACCOUNT
           
@@ -157,35 +159,34 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
      
      <script>
  //check username availability/if empty
-function checkUname(){
-              $("#u-error input").css({"border": "1px solid grey"});
-        $.ajax({
-          url: "validation.php?uname="+username
-        }).success(function( data ) {
-          $("#availability").html(data);
-        });  
-}
+ 
          
        $(document).ready(function () {
 
-    $("#username").blur(function () {
+    $("#first").blur(function () {
       var username = $(this).val();
       if (username == '') {
         $("#availability").html("");
-           $("#u-error input").css({"border": "5px solid #E43633"});
+           $("#f-error input").css({"border": "5px solid #E43633"});
       }else{
-          $("#u-error input").css({"border": "1px solid grey"});
-        $.ajax({
-          url: "validation.php?uname="+username
-        }).done(function( data ) {
-          $("#availability").html(data);
-        });   
+          $("#f-error input").css({"border": "1px solid grey"});
+      
       } 
-    });
-  });
+    }); 
+           
+           
+    $("#last").blur(function () {
+      var username = $(this).val();
+      if (username == '') {
+        $("#availability").html("");
+           $("#l-error input").css({"border": "5px solid #E43633"});
+      }else{
+          $("#l-error input").css({"border": "1px solid grey"});
+      
+      } 
+    }); 
          
- //check email availability/if empty
-       $(document).ready(function () {
+ //check email availability/if empty 
     $("#email").blur(function () {
       var email = $(this).val();
       if (email == '') {
@@ -200,6 +201,7 @@ function checkUname(){
         });   
       } 
     });
+           
   });
  
  
@@ -269,16 +271,18 @@ function checkUname(){
    <div class="center one-third"> 
  
    
-   <h3 class="links" onclick="toggle_visibility('new_username');">Change Username</h3> 
+   <h2 class="links" onclick="toggle_visibility('new_username');">Change Username</h2> 
    <p>Your public-facing name</p>
     <span id="new_username">
     <form action="settings.php?username" method="POST">
        
-         <p id="u-error">New Username:
-        <input type="text" name="username" id="username" value="<?php echo $username; ?>" /> 
-<!--        user must unfocus input to see if avail or not-->
-        <i title="Check availability" class="fa fa-search"></i>
+         <p id="u-error">First Name:
+        <input type="text" name="first" id="first" value="<?php echo $first; ?>" /> 
          
+      </p>
+      
+               <p id="u-error">Last Name:
+        <input type="text" name="last" id="last" value="<?php echo $last; ?>" />           
       </p>
       <div id="availability"></div> 
       <br/><br/>  <input type="submit" name="submit" value="Save">
@@ -287,7 +291,7 @@ function checkUname(){
     
     
     <hr/>
-   <h3 class="links" onclick="toggle_visibility('new_email');">Change Email  </h3>
+   <h2 class="links" onclick="toggle_visibility('new_email');">Change Email  </h2>
       <p>Used to log in and recover password</p>
        <span id="new_email">
     <form action="settings.php?email" method="POST">
@@ -301,7 +305,7 @@ function checkUname(){
    <hr/>
    
    
-   <h3 class="links" onclick="toggle_visibility('new_pass');">Change Password</h3>
+   <h2 class="links" onclick="toggle_visibility('new_pass');">Change Password</h2>
           <span id="new_pass"> 
     <form action="settings.php?password" method="POST">
         <p> Old Password:</p> <input type="password" value="" name="old_pass" placeholder="OLD PASSWORD"><br/>

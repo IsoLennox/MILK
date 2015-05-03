@@ -84,7 +84,9 @@ if (isset($_POST['submit'])) {
     </form>
     <br />
     <a href="profile.php">Cancel</a>
-   
-    <hr/><br/>
+    
+    <br/>
+    <br/>
+    <p>Not what you're looking for? <a href="settings.php">Edit Account Settings</a></p>
  
 <?php include("inc/footer.php"); ?> 

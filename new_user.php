@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
   // Process the form
   
   // validations
-  $required_fields = array("email","username","password", "confirm_password");
+  $required_fields = array("email","first","last","password", "confirm_password");
   validate_presences($required_fields);
   
  
@@ -47,7 +47,8 @@ if (isset($_POST['submit'])) {
      $_SESSION["message"] = "Invalid email";
           redirect_to("new_user.php");
         }else{
-      $username = mysql_prep($_POST["username"]);
+      $first = mysql_prep($_POST["first"]);
+      $last = mysql_prep($_POST["last"]);
      
   
    // $hashed_password = password_encrypt($_POST["password"]);
@@ -60,17 +61,17 @@ if($first_password===$confirmed_password){
     
     //check that username entered does not exist
     
-    $query  = "select * from users WHERE username='{$username}'"; 
-    $username_found = mysqli_query($connection, $query);
-        $username_array= mysqli_fetch_assoc($username_found);
+    $query  = "select * from users WHERE email='{$email}'"; 
+    $user_found = mysqli_query($connection, $query);
+        $user_array= mysqli_fetch_assoc($user_found);
         
         if (empty($username_array)){
             
             //Username is not taken
               $query  = "INSERT INTO users (";
-    $query .= " email, username, password";
+    $query .= " email, first_name, last_name, password";
     $query .= ") VALUES (";
-    $query .= " '{$email}', '{$username}', '{$hashed_password}'";
+    $query .= " '{$email}', '{$first}', '{$last}', '{$hashed_password}'";
     $query .= ") ";
     $new_user_created = mysqli_query($connection, $query);
             
@@ -112,7 +113,7 @@ if($first_password===$confirmed_password){
 <html lang="en">
  <head>
      <meta charset="UTF-8">
-     <title>290 Project: Arbytes</title>
+     <title>UnderMyRoof - New User</title>
      <!-- Arbyte is a pun branched from the term "Arbeit" meaning 'task' or 'work' and "bytes" -->
      <link rel="stylesheet" href="css/style.css">
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -122,20 +123,28 @@ if($first_password===$confirmed_password){
      <script>
  //check username availability/if empty
        $(document).ready(function () {
-    $("#username").blur(function () {
+    $("#first").blur(function () {
       var username = $(this).val();
       if (username == '') {
         $("#availability").html("");
-           $("#u-error input").css({"border": "5px solid #E43633"});
+           $("#f-error input").css({"border": "5px solid #E43633"});
       }else{
-          $("#u-error input").css({"border": "1px solid grey"});
-        $.ajax({
-          url: "validation.php?uname="+username
-        }).done(function( data ) {
-          $("#availability").html(data);
-        });   
+          $("#f-error input").css({"border": "1px solid grey"});
+      
       } 
-    });
+    }); 
+           
+           
+    $("#last").blur(function () {
+      var username = $(this).val();
+      if (username == '') {
+        $("#availability").html("");
+           $("#l-error input").css({"border": "5px solid #E43633"});
+      }else{
+          $("#l-error input").css({"border": "1px solid grey"});
+      
+      } 
+    }); 
   });
          
  //check email availability/if empty
@@ -241,11 +250,15 @@ if($first_password===$confirmed_password){
         <div id="eavailability"></div>
       
         
-    <p id="u-error">Username (Public):
-        <input type="text" name="username" id="username" value="" />
+    <p id="f-error">First:
+        <input type="text" name="first" id="first" value="" />
          
       </p>
-      <div id="availability"></div>
+        <p id="l-error">Last:
+        <input type="text" name="last" id="last" value="" />
+         
+      </p>
+      
       
 
       
