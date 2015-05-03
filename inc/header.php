@@ -12,7 +12,20 @@ confirm_logged_in(); ?>
         <title>MILK apps</title>
         <meta name="description" content="An interactive PDF library">
 <!--        Main stylesheet-->
+       <?php if(isset($_SESSION['theme'])){
+            if($_SESSION['theme']==1){
+                // Add dark theme ?>
+                <link rel="stylesheet" href="css/style.css">
+                <link rel="stylesheet" href="css/dark-theme.css">
+          <?php  }else{ 
+//                light theme
+           ?> <link rel="stylesheet" href="css/style.css">
+         <?php   }
+
+        }else{ ?>
         <link rel="stylesheet" href="css/style.css">
+        <?php } ?>
+        
 <!--        link to font awesome-->
          <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <!--         STYLE GUIDE FONT  -->
@@ -67,6 +80,7 @@ confirm_logged_in(); ?>
  <?php 
  
 if($_SESSION['is_employee']==0){
+//     IS CLIENT
     echo "<h4>Client</h4>"; 
     ?>
                   <ul>
@@ -92,8 +106,22 @@ if($_SESSION['is_employee']==0){
                   
                     <li><a href="help.php">Help</a></li> 
               </ul>
+              
+              <ul id="themes">
+                 <?php if(isset($_SESSION['theme'])){
+            if($_SESSION['theme']==1){
+                  echo "<li><a href=\"edit.php?theme\">Switch to Light Theme</a></li>";
+                    }else{
+                    echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
+                    }
+                }else{
+            echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
+            }
+        ?>
+              </ul>
               <?php
 }else{
+    //IS EMPLOYEE
     echo "<h4>Employee Role</h4>";  
         ?>
             <ul>
@@ -107,9 +135,21 @@ if($_SESSION['is_employee']==0){
                 <li><a href="index.php">Statistics</a></li>
 
             </ul>
-              <?php
-}
+             
+             
+                           <ul id="themes">
+                 <?php if(isset($_SESSION['theme'])){
+            if($_SESSION['theme']==1){
+                  echo "<li><a href=\"edit.php?theme\">Switch to Light Theme</a></li>";
+                    }else{
+                    echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
+                    }
+                }else{
+            echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
+            }
         ?>
+              </ul>
+              <?php }       ?>
               
 
           </nav>
@@ -117,5 +157,3 @@ if($_SESSION['is_employee']==0){
         <div class="clearfix" id="page"> 
               <?php echo message(); ?>
               <?php echo form_errors($errors); ?>
-         
-

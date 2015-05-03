@@ -45,6 +45,7 @@ if (isset($_POST['submit'])) {
 	   $_SESSION["user_id"] = $found_user["id"]; 
 	   $_SESSION["username"] = $found_user["username"]; 
 	   $_SESSION["is_employee"] = $found_user["is_employee"]; 
+	   $_SESSION["theme"] = $found_user["theme"]; 
 			 
         
         //get this user info
