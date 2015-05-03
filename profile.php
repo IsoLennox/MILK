@@ -36,8 +36,10 @@ if(isset($_GET['user'])){
         $profile_array=mysqli_fetch_assoc($result);
         
         $content=$profile_array['profile_content'];
-        $avatar="http://lorempixel.com/150/150/cats";
-
+        $avatar=$profile_array['avatar'];
+        if(empty($avatar)){
+        $avatar="http://lorempixel.com/250/250/abstract";
+        }
 ?>
  
     <h2> <?php echo $username; ?>'s Profile </h2>
@@ -46,12 +48,14 @@ if(isset($_GET['user'])){
         <section id="avatar" class="left"> <img src="<?php echo $avatar; ?>" alt="profile image">
          </section>
         <section id="profile-content"> <?php echo $content; ?> </section>
+        
+<!--        GET ADDRESS (ROLE IF EMPLOYEE), ETC -->
     </div>
 
 <?php
 
 if($user_id==$_SESSION['user_id']){
-    echo "<br/><span class=\"right\"><a href=\"edit_profile.php\"><i class=\"fa fa-pencil\"></i> Edit Profile</a></span><br/>";
+    echo "<br/> <a href=\"edit_profile.php\"><i class=\"fa fa-pencil\"></i> Edit Profile</a> <br/>";
 }
 ?>
  

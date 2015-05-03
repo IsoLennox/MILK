@@ -8,11 +8,11 @@
         $old_content=$profile_array['profile_content'];
         $avatar=$profile_array['avatar'];
         if(empty($avatar)){
-            $avatar="http://lorempixel.com/150/150/cats";
+            $avatar="http://lorempixel.com/250/250/abstract";
         }
     }else{
         $old_content="Error retrieving Profile";
-        $avatar="http://lorempixel.com/150/150/cats";
+        $avatar="http://lorempixel.com/250/250/abstract";
     }
  
 
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
     if ($result && mysqli_affected_rows($connection) == 1) {
       // Success
         $_SESSION["message"] = "profile updated.";
-        redirect_to("edit_profile.php?");
+        redirect_to("profile.php?");
 
     } else {
       // Failure
@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
  
     <input type="submit" value="Upload File" name="submit">
 </form>
-   <?php if($avatar!="http://lorempixel.com/150/150/cats"){ ?>
+   <?php if($avatar!="http://lorempixel.com/250/250/abstract"){ ?>
     <a href="delete.php?avatar=<?php echo $_SESSION['user_id']; ?>"> <i class="fa fa-trash-o"> Delete Profile Image</i></a>
  <?php } ?>
   </section> 
