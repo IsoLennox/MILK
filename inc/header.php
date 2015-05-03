@@ -53,7 +53,7 @@ confirm_logged_in(); ?>
 <!-- <a href="index.php"><img src="img/greenwell_logo_sm.png" alt="Greenwell Bank Logo"></a>-->
  <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a>
        
-
+        <span id="page_name"><?php if(isset($page)){echo $page;} ?></span>
         
         
 <!--        USER ICONS -->

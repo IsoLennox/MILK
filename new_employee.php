@@ -1,4 +1,5 @@
-<?php include("inc/header.php"); ?>
+<?php $page = "Create A New Employee";
+include("inc/header.php"); ?>
 <style>
 
 .message{
@@ -17,12 +18,9 @@
  
 </style>
 <?php
-
-//Creating New group and Admin user
-
  
 
-
+//Creating New Employee
 if (isset($_POST['submit'])) {
     
      
@@ -216,7 +214,7 @@ if (isset($_POST['submit'])) {
     <?php echo message(); ?>
     <?php echo form_errors($errors); ?>
     
-    <h2>Create New Employee</h2> 
+<!--    <h2>Create New Employee</h2> -->
       
     <form action="new_employee.php" method="post">
 

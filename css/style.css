@@ -59,7 +59,12 @@ header {
     z-index: 999;
 }  
 
-
+#page_name {
+    position: relative; 
+    top: -30px; left: 30px;
+    font-weight: 900;
+    font-size: 22px;
+}
 nav { 
     /*    background: rgba(144,195,46,.4);*/
     background: #D3E7AB;
@@ -85,11 +90,7 @@ footer{
 .accent{background:#387929;
     padding: 10px;
     border-radius: 10px;
-}
-
-
-
-
+} 
 
 .splash {padding-bottom: 200px;}
 .center{
