@@ -49,25 +49,7 @@ function check_password($user_id, $password) {
 
 
  
-function find_user_by_username($username) {
-    global $connection;
-
-    $safe_username = mysqli_real_escape_string($connection, $username);
-
-    $query  = "SELECT * ";
-    $query .= "FROM users ";
-    $query .= "WHERE username = '{$safe_username}' ";
-    $query .= "LIMIT 1";
-    $user_set = mysqli_query($connection, $query);
-    confirm_query($user_set);
-    if($user = mysqli_fetch_assoc($user_set)) {
-        return $user;
-    } else {
-        return null;
-    }
-}
-
-
+ 
 
 function confirm_logged_in(){
     if (!logged_in()){
@@ -127,63 +109,7 @@ function find_user_by_id($user_id) {
     }
 }
 
-
-function find_author_by_id($author_id) {
-    global $connection;
-
-    $safe_author_id = mysqli_real_escape_string($connection, $author_id);
-
-    $query  = "SELECT * ";
-    $query .= "FROM authors ";
-    $query .= "WHERE id = {$safe_author_id} ";
-    $query .= "LIMIT 1";
-    $author_set = mysqli_query($connection, $query);
-    confirm_query($author_set);
-    if($author = mysqli_fetch_assoc($author_set)) {
-        return $author;
-    } else {
-        return null;
-    }
-}
-
-function find_genre_by_id($genre_id) {
-    global $connection;
-
-    $safe_genre_id = mysqli_real_escape_string($connection, $genre_id);
-
-    $query  = "SELECT * ";
-    $query .= "FROM genres ";
-    $query .= "WHERE id = {$safe_genre_id} ";
-    $query .= "LIMIT 1";
-    $genre_set = mysqli_query($connection, $query);
-    confirm_query($genre_set);
-    if($genre = mysqli_fetch_assoc($genre_set)) {
-        return $genre;
-    } else {
-        return null;
-    }
-}
-
-
-
-function find_books_by_author($author_id) {
-    global $connection;
-
-    $safe_author_id = mysqli_real_escape_string($connection, $author_id);
-
-    $query  = "SELECT * ";
-    $query .= "FROM authors_books ";
-    $query .= "WHERE author_id = {$safe_author_id} ";
-    $author_set = mysqli_query($connection, $query);
-    confirm_query($author_set);
-    if($author = mysqli_fetch_assoc($author_set)) {
-        return $author;
-    } else {
-        return null;
-    }
-}
-
-
+ 
 
 function find_user_by_email($email) {
     global $connection;
