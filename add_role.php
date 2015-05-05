@@ -23,12 +23,13 @@
    $query  = "SELECT * FROM permissions";  
    $result = mysqli_query($connection, $query);
    if($result){
+       echo "<br/>";
        //show each result value
        foreach($result as $show){
            
            $role_id = $show['id'];
            $role_name = $show['name'];
-           echo "<input type=\"checkbox\" name=\"permission[]\">" . $role_name;
+           echo "<input type=\"checkbox\" name=\"permission[]\">" . $role_name."<br/>";
                      
            }
        }
