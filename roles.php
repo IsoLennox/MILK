@@ -6,6 +6,7 @@
          
          
           <p>Employee Roles</p>
+<!--
           <ul>
               <li><a href="#">Super User</a>
               <ul>Permissions:
@@ -22,21 +23,22 @@
               </ul>
               </li>
           </ul>
+-->
            <?php
 
-//example query
+//Get all Roles
 
-//    $query  = "SELECT * FROM TABLE";  
-//    $result = mysqli_query($connection, $query);
-//    if($result){
-//        //show each result value
-//        foreach($result as $show){
-//            
-//            $this_value=$show['col_name'];
-//            echo $this_value;
-//                      
-//            }
-//        }
+    $role_query  = "SELECT * FROM roles";  
+    $role_result = mysqli_query($connection, $role_query);
+    if($role_result){
+        //show each result value
+        foreach($result as $role){
+            $role_id=$role['id'];
+            echo $role['name'];
+             
+                      
+            }
+        }
  ?>
      
         
