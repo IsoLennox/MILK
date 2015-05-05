@@ -32,7 +32,7 @@
     $role_result = mysqli_query($connection, $role_query);
     if($role_result){
         //show each result value
-        foreach($result as $role){
+        foreach($role_result as $role){
             $role_id=$role['id'];
             echo $role['name'];
          
