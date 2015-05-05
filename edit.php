@@ -50,6 +50,10 @@
     echo "<h1>Change Company Details</h1>";
  }
 
+ if(isset($_GET['role'])){
+    echo "<h1>Edit Role ".$_GET['role']." </h1>";
+ }
+
     
  
  include("inc/footer.php"); ?> 
