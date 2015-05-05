@@ -5,12 +5,7 @@
  <a href="add_role.php">New Role</a>
          
          
-          <p>Employee Roles</p>
-<<<<<<< HEAD
-<!--
-=======
-          <p>Your mom is an employee</p>
->>>>>>> fff91253dc9db247996a8eb2c141afad6c77b88d
+          <p>Employee Roles</p> 
           <ul>
               <li><a href="#">Super User</a>
               <ul>Permissions:
