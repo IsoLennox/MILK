@@ -35,7 +35,9 @@
         foreach($result as $role){
             $role_id=$role['id'];
             echo $role['name'];
-            echo "<p>That was a role name.</p>";
+         
+            //Get permissions for this role
+             
                       
             }
         }
