@@ -13,6 +13,7 @@ if($_SESSION['is_employee']==0){
         <li>Your Rooms and items in them</li>
         <li>Quick Add New item</li>
         <li>Sup</li>
+        <li>MILK</li>
     </ul>
     <?php
     
