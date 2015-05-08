@@ -12,6 +12,7 @@ if($_SESSION['is_employee']==0){
         <li>number of claims made &amp; Percent of resolved/denied/pending claims</li>
         <li>Your Rooms and items in them</li>
         <li>Quick Add New item</li>
+        <li>Sup</li>
     </ul>
     <?php
     
