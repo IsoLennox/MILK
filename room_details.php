@@ -2,7 +2,7 @@
 
 <a href="rooms.php">&laquo; All Rooms</a>
 <h1>Room Name</h1>
-<a href="edit_item.php?id=1">Edit</a>
+<a href="edit.php?room=1">Edit</a>
 
 <br/>
 <br/>

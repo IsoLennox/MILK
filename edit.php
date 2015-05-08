@@ -54,6 +54,9 @@
     echo "<h1>Edit Role ".$_GET['role']." </h1>";
  }
 
+ if(isset($_GET['room'])){
+    echo "<h1>Edit Room ".$_GET['room']." </h1>";
+ }
     
  
  include("inc/footer.php"); ?> 

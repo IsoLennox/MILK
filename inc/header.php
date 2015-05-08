@@ -92,10 +92,7 @@ if($_SESSION['is_employee']==0){
                       <ul>
                           <li><a href="add_item.php">Add Item</a></li>
                       </ul> 
-                      <li><a href="rooms.php">View Rooms</a></li>
-                       <ul>
-                          <li><a href="add_room.php">Add Room</a></li> 
-                      </ul> 
+                      <li><a href="rooms.php">View Rooms</a></li> 
                   </ul> 
                   
                   <li>Claims</li>

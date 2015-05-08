@@ -6,6 +6,7 @@
            
  <form action="#">
     Name: <input type="text">
+    Room: (dropdown, get rooms)
     <input type="submit" value="Save Item">
  </form>
      
