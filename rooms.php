@@ -39,27 +39,25 @@
          
 
 
- <p>Your Rooms:</p>
-<a href="room_details.php?id=1">Sample Room</a>
-           
-           <?php
+ <h2>Your Rooms:</h2> 
+<?php //GET ROOMS OF THIS USER
 
-//example query
-
-//    $query  = "SELECT * FROM TABLE WHERE user_id={$_SESSION['user_id']}";  
-//    $result = mysqli_query($connection, $query);
-//    if($result){
-//        //show each result value
-//        foreach($result as $show){
-//            
-//            $this_value=$show['col_name'];
-//            echo $this_value;
-//                      
-//            }
-//        }
+    $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
+    $roomresult = mysqli_query($connection, $roomquery);
+    if($roomresult){
+        //show each result value
+        foreach($roomresult as $show){
+            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a></h4>";
+            echo $show['notes']."<br/>";
+            }
+        }
  ?>
      
         
-      
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
         
 <?php include("inc/footer.php"); ?>

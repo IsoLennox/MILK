@@ -1,31 +1,40 @@
 <?php include("inc/header.php"); ?>
+<?php 
+
+if(isset($_GET['id'])){ ?>
 
 <a href="rooms.php">&laquo; All Rooms</a>
-<h1>Room Name</h1>
-<a href="edit.php?room=1">Edit</a>
+ 
+ <?php
+    $query  = "SELECT * FROM rooms WHERE id={$_GET['id']}"; 
+    $result = mysqli_query($connection, $query);
+    if($result){
+        foreach($result as $show){
+            echo "<h1>".$show['name']."</h1>";
+            echo "<a href=\"edit.php?room=".$_GET['id']."\">Edit</a> ";
+            echo "<p>".$show['notes']."</p>";
+                $item_query  = "SELECT * FROM items WHERE room_id={$_GET['id']}"; 
+                $itemresult = mysqli_query($connection, $item_query);
+                if($itemresult){
+                    echo "Items in this room: ";
+                    echo "<ul>";
+                    foreach($itemresult as $item){
+                        echo "<li><a href=\"item_details.php?id=".$item['id']."\">".$item['name']."</li>"; 
+                    }
+                    echo "</ul>";
+                }//end get items in room
 
-<br/>
-<br/>
- <p>Items in this room:</p>
-<a href="item_details.php?id=1">Sample Item</a>
+            }
+        }
+  }else{
+    $_SESSION["message"] = "Room does not exist!";
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+}
+
+?>
+
            
-           <?php
-
-//example query
-
-//    $query  = "SELECT * FROM TABLE WHERE user_id={$_SESSION['user_id']}"; 
-//    $result = mysqli_query($connection, $query);
-//    if($result){
-//        //show each result value
-//        foreach($result as $show){
-//            
-//            $this_value=$show['col_name'];
-//            echo $this_value;
-//                      
-//            }
-//        }
- ?>
-     
+            
         
       
         
