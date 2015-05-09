@@ -81,27 +81,28 @@ confirm_logged_in(); ?>
  
 if($_SESSION['is_employee']==0){
 //     IS CLIENT
-    echo "<h4>Client</h4>"; 
+    echo "<h4>".$_SESSION['username']."</h4>"; 
     ?>
-                  <ul>
+            <ul>
                   <li><a href="index.php">Dashboard</a></li>
                   <li>Inventory </li>
                   <ul>
-                      
+                      <li><a href="add_item.php">Add Item</a></li>
                       <li><a href="inventory.php">View Items</a></li>
-                      <ul>
-                          <li><a href="add_item.php">Add Item</a></li>
-                      </ul> 
                       <li><a href="rooms.php">View Rooms</a></li> 
+                      
                   </ul> 
                   
                   <li>Claims</li>
                   <ul> 
-                      <li><a href="file_new_claim.php">File New Claim</a></li>
+                      <li><a href="file_new_claim.php">File Claim</a></li>
                       <li><a href="claim_history.php">Claim History</a></li>
                   </ul> 
                   
                     <li><a href="help.php">Help</a></li> 
+ 
+                    
+                    
               </ul>
               
               <ul id="themes">
@@ -119,6 +120,7 @@ if($_SESSION['is_employee']==0){
               <?php
 }else{
     //IS EMPLOYEE
+    echo "<h4>".$_SESSION['username']."</h4>"; 
     echo "<h4>Employee Role</h4>";  
         ?>
             <ul>
