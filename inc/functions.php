@@ -129,6 +129,43 @@ function find_user_by_email($email) {
     }
 }
 
+
+function get_room_name($id){
+    global $connection;
+    $room_query  = "SELECT * FROM rooms WHERE id={$id}"; 
+    $roomresult = mysqli_query($connection, $room_query);
+    confirm_query($roomresult);
+    if($roomresult){ 
+        $array=mysqli_fetch_assoc($roomresult);
+        $name= $array['name'];
+        return $name;
+    }//end get rooms 
+}
+
+function get_category_name($id){
+    global $connection;
+    $cat_query  = "SELECT * FROM item_category WHERE id={$id}"; 
+    $catresult = mysqli_query($connection, $cat_query);
+    confirm_query($catresult);
+    if($catresult){ 
+        $array=mysqli_fetch_assoc($catresult);
+        $name= $array['name'];
+        return $name;
+    }//end get categories 
+}
+
+
+function get_item_name($id){
+    global $connection;
+    $name_query  = "SELECT * FROM items WHERE id={$id}"; 
+    $nameresult = mysqli_query($connection, $name_query);
+    confirm_query($nameresult);
+    if($nameresult){ 
+        $array=mysqli_fetch_assoc($nameresult);
+        $name= $array['name'];
+        return $name;
+    }//end get names
+}
  
  
 	

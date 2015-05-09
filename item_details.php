@@ -14,7 +14,23 @@ if(isset($_GET['id'])){
             if($show['user_id']===$_SESSION['user_id'] || $_SESSION['is_employee']==1){
             
                 echo "<h1>".$show['name']."</h1>"; 
-                echo "<a href=\"edit_item.php?id=".$show['id']."\">Edit</a>";
+                echo "<a href=\"edit_item.php?id=".$show['id']."\">Edit</a><br/>";
+                
+                
+                $room_name=get_room_name($show['room_id']);
+                $cat_name=get_category_name($show['category']);
+                echo "Category: ".$cat_name."<br/>";
+                echo "Room: ".$room_name;
+                      
+                echo "<br/>";
+                //GET ALL OTHER DETAILS
+                echo "Purchase Date: ".$show['purchase_date']."<br/>"; 
+                echo "Purchase Price: ".$show['purchase_price']."<br/>"; 
+                echo "Declared Value: ".$show['declared_value']."<br/>"; 
+                echo "Description/Notes:<br/>".$show['notes']."<br/>"; 
+                
+                
+                
 
                 }else{
                 //No permission to view this item

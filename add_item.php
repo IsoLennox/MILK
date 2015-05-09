@@ -15,14 +15,14 @@
                         //OPTIONS
                         echo "<option name=\"category\" value=\"".$category['id']."\" >".$category['name']."</option>"; 
                     }
-                    echo "</select></p><br/>";
+                    echo "</select></p>";
                 }//end get categories
 
 ?>
 
 
 
-    <p>Item Title: <input type="text" name="name" placeholder="i.e. Samsung Television" value="" ></p><br/>
+    <p>Item Title: <input type="text" name="name" placeholder="i.e. Samsung Television" value="" ></p>
     
 <!--    //GET ROOMS TO CHOOSE FROM -->
    <?php
@@ -35,17 +35,17 @@
                         //OPTIONS
                         echo "<option name=\"room\" value=\"".$room['id']."\" >".$room['name']."</option>"; 
                     }
-                    echo "</select></p><br/>";
+                    echo "</select></p>";
                 }//end get rooms 
  ?>
    
    <p>Item Description/Notes: <textarea name="notes" id="notes" cols="30" rows="10" value=""></textarea></p>
      
-    <p>Purchase Date: <input type="text" name="purchase_date" placeholder="mm/dd/yyyy" value=""></p><br/>
-    <p>Purchase Price: $<input type="text" name="purchase_price" placeholder="950.89" value=""></p><br/>
-    <p>Declared Value: $<input type="text" name="declared_value" placeholder="950.99" value=""></p><br/>
+    <p>Purchase Date: <input type="text" name="purchase_date" placeholder="mm/dd/yyyy" value=""></p>
+    <p>Purchase Price: $<input type="text" name="purchase_price" placeholder="950.89" value=""></p>
+    <p>Declared Value: $<input type="text" name="declared_value" placeholder="950.99" value=""></p>
    
-    <p>Add File (e.x. Image/file of object, reciept, appraisal... )</p><br/>
+    <p>Add File (e.x. Image/file of object, reciept, appraisal... )</p>
     <input type="submit" value="Save Item">
  </form>
      
