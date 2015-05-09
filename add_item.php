@@ -2,11 +2,46 @@
 
 
 <h1>New Item</h1> 
+<form method="POST" >
+               
+     <!--    //GET ITEM CATEGORIES -->
+   <?php
+                $category_query  = "SELECT * FROM item_category"; 
+                $categoryresult = mysqli_query($connection, $category_query);
+                if($categoryresult){ 
+                    echo "<p>Category:  <select>";
+                    foreach($categoryresult as $category){
+                        echo "<option name=\"category\" value=\"".$category['id']."\" >".$category['name']."</option>"; 
+                    }
+                    echo "</select></p><br/>";
+                }//end get categories
 
-           
- <form action="#">
-    Name: <input type="text">
-    Room: (dropdown, get rooms)
+?>
+
+
+
+    <p>Item Title: <input type="text" name="name" placeholder="i.e. Samsung Television" value="" ></p><br/>
+    
+<!--    //GET ROOMS TO CHOOSE FROM -->
+   <?php
+                $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}"; 
+                $roomresult = mysqli_query($connection, $room_query);
+                if($roomresult){ 
+                    echo "<p>Room: <select>";
+                    foreach($roomresult as $room){
+                        echo "<option name=\"room\" value=\"".$room['id']."\" >".$room['name']."</option>"; 
+                    }
+                    echo "</select></p><br/>";
+                }//end get rooms 
+ ?>
+   
+   <p>Item Description/Notes: <textarea name="notes" id="notes" cols="30" rows="10" value=""></textarea></p>
+     
+    <p>Purchase Date: <input type="text" name="purchase_date" placeholder="mm/dd/yyyy" value=""></p><br/>
+    <p>Purchase Price: $<input type="text" name="purchase_price" placeholder="950.89" value=""></p><br/>
+    <p>Declared Value: $<input type="text" name="declared_value" placeholder="950.89" value=""></p><br/>
+   
+    <p>Add File (e.x. Image/file of object, reciept, appraisal... )</p><br/>
     <input type="submit" value="Save Item">
  </form>
      

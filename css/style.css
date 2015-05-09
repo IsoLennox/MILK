@@ -1,4 +1,4 @@
-/*based on style guide until larhea*/
+/*   LARHEA: CHANGE ANYTHING YOU NEED TO, THIS WAS JUST FOR ENOUGH STRUCTURE FOR TESTING */
 body{
     font-size: 18px; 
     font-family: 'Nunito', sans-serif;
@@ -7,49 +7,16 @@ body{
     margin: 0;
 }
 
-
-
-h1,
-h2,
-/*h3,*/
-h4, 
-h5,
-h6{color: #004800;}
-
-h1{ font-size: 50px;  }
+/*COLORS: color:
+#004800;
+rgba(154,179,35,1);
+rgba(144,195,46,.4);
+*/
  
-h3{
-/*    headings */
-    width: 100%;
-    clear: both;
-/*    background: rgba(154,179,35,1);*/
-    background: #004800;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 50px 0 50px 0;
-    
-    font-size: 26px;
-    font-family: sans-serif;
-}
-h4{
-/* subheadings */
-    font-size: 26px;
-}
-
-h5{
-/* sub-subheadings */
-     font-size: 20px;
-    width: 97%;
-    margin: 0 auto;
-    background: rgba(154,179,35,.4);
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-}
+ 
 
  
-header {
-/*    background: rgba(144,195,46,.4);*/
+header { 
     background: #D3E7AB;
     height: 70px; 
     padding: 10px;
@@ -59,19 +26,20 @@ header {
     z-index: 999;
 }  
 
-#page_name {
+#page_name { 
     position: relative; 
     top: -30px; left: 30px;
     font-weight: 900;
     font-size: 22px;
 }
 nav { 
+/*    CHANGE ANYTHING YOU NEED TO, THIS WAS JUST FOR ENOUGH STRUCTURE FOR TESTING */
     /*    background: rgba(144,195,46,.4);*/
     background: #D3E7AB;
     width: 200px;
     padding: 20px;
     float: left;
-      position:fixed;
+    position:fixed;
     top:90px;
     bottom:0px;
     left:0px;
@@ -84,36 +52,18 @@ footer{
     clear: both;
     position: absolute;
     bottom: 0;
-}
-
-
-.accent{background:#387929;
-    padding: 10px;
-    border-radius: 10px;
 } 
-
-.splash {padding-bottom: 200px;}
 .center{
     margin: 0 auto;
     text-align: center;
 }
 .left{float: left;}
 .right{float: right;}
- 
-p { padding: 10px;
-    line-height: 2.2;
-} 
+  
  
 
-
-
-
-/*//FOR TESTING BEFORE LARHEAS STYLES*/
  
-.side_nav{}
-
-
- .links:hover{cursor: pointer;}
+.links:hover{cursor: pointer;}
 
 .search input[type="submit"]{
     font-family: FontAwesome;
@@ -151,8 +101,6 @@ input[type="file"]{
     font-size: 20px;
     padding: 5px;
     border-radius: 5px;
-/*    background-color: olivedrab;*/
-/*    color: antiquewhite;*/
     color: black;
 }
  
@@ -184,15 +132,15 @@ height: 0;
 
 
 @media(max-width: 1000px) {
- 
+    body{}
+    nav{}
     
 }
 
-
-
+ 
 /*MOBILE DEVICES ONLY*/
 @media only screen and (max-device-width: 800px) {
-    
+    body{}
+    nav{}
  
-
-	}
+}

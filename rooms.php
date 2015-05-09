@@ -1,6 +1,4 @@
-<?php include("inc/header.php"); ?>
-
-
+<?php  include("inc/header.php");  ?>
 <h1>Your Rooms</h1>
   <?php  if(isset($_POST['submit'])){
         if(empty($_POST['name'])){
