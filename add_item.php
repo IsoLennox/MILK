@@ -9,8 +9,10 @@
                 $category_query  = "SELECT * FROM item_category"; 
                 $categoryresult = mysqli_query($connection, $category_query);
                 if($categoryresult){ 
+                    //CATEGORY SELECT BOX
                     echo "<p>Category:  <select>";
                     foreach($categoryresult as $category){
+                        //OPTIONS
                         echo "<option name=\"category\" value=\"".$category['id']."\" >".$category['name']."</option>"; 
                     }
                     echo "</select></p><br/>";
@@ -27,8 +29,10 @@
                 $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}"; 
                 $roomresult = mysqli_query($connection, $room_query);
                 if($roomresult){ 
+                    //ROOM SELECT BOX
                     echo "<p>Room: <select>";
                     foreach($roomresult as $room){
+                        //OPTIONS
                         echo "<option name=\"room\" value=\"".$room['id']."\" >".$room['name']."</option>"; 
                     }
                     echo "</select></p><br/>";
@@ -39,7 +43,7 @@
      
     <p>Purchase Date: <input type="text" name="purchase_date" placeholder="mm/dd/yyyy" value=""></p><br/>
     <p>Purchase Price: $<input type="text" name="purchase_price" placeholder="950.89" value=""></p><br/>
-    <p>Declared Value: $<input type="text" name="declared_value" placeholder="950.89" value=""></p><br/>
+    <p>Declared Value: $<input type="text" name="declared_value" placeholder="950.99" value=""></p><br/>
    
     <p>Add File (e.x. Image/file of object, reciept, appraisal... )</p><br/>
     <input type="submit" value="Save Item">

@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
                     for ($i = 0; $i < count($permissions_array); $i++) {  
                             $insert_permission_query  = "INSERT INTO roles_permissions (permission_id, role_id) VALUES ('{$permissions_array[$i]}', '{$role_id}')";
                             $insert_permission_query_result = mysqli_query($connection, $insert_permission_query);
-                                } 
+                                }//end insert roles/permissions int ojoint table 
                 
                           $_SESSION["message"] = "New Role Created!";
                           redirect_to("roles.php");
@@ -34,13 +34,13 @@ if (isset($_POST['submit'])) {
                 
                     $_SESSION["message"] = "New Role Created, Could Not Find new role! Permissions not added.";
                     redirect_to("add_role.php");
-                }
+                }//end get new role ID
         }else{
             $_SESSION["message"] = "New Role Failed!";
             redirect_to("add_role.php");
-    }
+        }//end insert uery
             
-    }
+    }//end check if form was submitted
 ?>
 
 <form action="add_role.php" method="POST">
@@ -59,36 +59,16 @@ if (isset($_POST['submit'])) {
            
            $role_id = $show['id'];
            $role_name = $show['name']; 
+           //put each permission in a check box
            echo "<input type=\"checkbox\" name=\"permission[]\" value=\"".$role_id."\"  >".$role_name."<br/>"; 
                      
-           }
-       }
+           }//end loop through permissions
+       }//end call all site permissions
  ?>
         <input type="submit" name="submit" id="submit" value="Save Role">
 </form>
  <a href="roles.php">cancel</a>
 
-
-         
- 
-           <?php
-
-//example query
-
-//    $query  = "SELECT * FROM TABLE";  
-//    $result = mysqli_query($connection, $query);
-//    if($result){
-//        //show each result value
-//        foreach($result as $show){
-//            
-//            $this_value=$show['col_name'];
-//            echo $this_value;
-//                      
-//            }
-//        }
- ?>
-     
-        
-      
+  
         
 <?php include("inc/footer.php"); ?>

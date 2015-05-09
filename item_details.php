@@ -1,27 +1,39 @@
 <?php include("inc/header.php"); ?>
-
 <a href="inventory.php">&laquo; All Items</a>
-<h1>Item Name</h1>
- <p>This is the item you clicked on</p>
-<a href="edit_item.php?id=1">Edit</a>
+<?php
+if(isset($_GET['id'])){ 
+    $id=$_GET['id'];
+    
+    $query  = "SELECT * FROM items WHERE id={$id}"; 
+    $result = mysqli_query($connection, $query);
+    if($result){
+        //show each result value
+        foreach($result as $show){
+            
+                //if item is not yours or if you are not employee, cannot view this item
+            if($show['user_id']===$_SESSION['user_id'] || $_SESSION['is_employee']==1){
+            
+                echo "<h1>".$show['name']."</h1>"; 
+                echo "<a href=\"edit_item.php?id=".$show['id']."\">Edit</a>";
+
+                }else{
+                //No permission to view this item
+                echo "<br/><br/>Oops! It seems this is not your item.";
+            }
+        }
+    } 
+    
+    
+    
+}else{
+    echo "This item seems to have been removed!";
+}
+?>
+ 
+ 
+
            
-           <?php
-
-//example query
-
-//    $query  = "SELECT * FROM TABLE WHERE user_id={$_SESSION['user_id']}"; 
-//    $result = mysqli_query($connection, $query);
-//    if($result){
-//        //show each result value
-//        foreach($result as $show){
-//            
-//            $this_value=$show['col_name'];
-//            echo $this_value;
-//                      
-//            }
-//        }
- ?>
-     
+ 
         
       
         

@@ -5,19 +5,15 @@ require_once("inc/validation_functions.php"); ?>
 <style>
 
 .message{
-
+/*FOR ERRORS*/
     width: 250px;
     margin: 10px;
     padding: 5px;
     color: #eee;
+    background: #222;
     border-radius: 5px;
 
-}
-#create{ 
-    margin-top:50px;
-    width: 400px;
-    padding: 20px;  
-}
+} 
  
 </style>
 
@@ -27,17 +23,15 @@ $email = "";
 if (isset($_POST['submit'])) {
   // Process the form
   
-  // validations
+  // validations: Make sure these fields are not empty
   $required_fields = array("email", "password");
   validate_presences($required_fields);
   
   if (empty($errors)) {
-    // Attempt Login
-
+    // Reuired fields not empty, attempt Login based on passed values
 		$email = $_POST["email"];
 		$password = $_POST["password"];
-      
-		 
+        //call database to see if email and passowrd combo is in DB
 		$found_user = attempt_login($email, $password);
 
     if ($found_user) {
@@ -57,15 +51,15 @@ if (isset($_POST['submit'])) {
         
         
         if($all_users){
-       
-    foreach($all_users as $user){
-        //user found, redirect 
-        redirect_to("index.php");
-    }
+
+            foreach($all_users as $user){
+                //user found, redirect 
+                redirect_to("index.php");
+            }
             
         }else{
-            //query did not find result
-        $_SESSION["message"] = "User not found.";
+                //query did not find result
+            $_SESSION["message"] = "User not found.";
         }//end find user ID
   
         
@@ -76,11 +70,7 @@ if (isset($_POST['submit'])) {
   }
     
     
-} else {
-  // This is probably a GET request
-  
-} // end: if (isset($_POST['submit']))
-
+} 
 ?>
  <html lang="en">
   <head>
@@ -91,28 +81,21 @@ if (isset($_POST['submit'])) {
   <body>
  
  
- <div id="create">
-    <img src="img/greenwell_logo_med.png" alt="Greenwell Logo" />  
-    
-    <img src="img/under_my_roof.png" alt="UnderMyRoof Logo" />
-     <p>Please sign in</p>
+ <div> 
+     <p>Log In</p>
      
-         <?php echo message(); ?>
+    <?php echo message(); ?>
     <?php echo form_errors($errors); ?>
       
-    <form id="loginform" action="login.php" method="post">
-      <p><input placeholder="EMAIL" type="text" name="email" value="<?php echo htmlentities($email); ?>" />
-      </p>
-      <p><input placeholder="PASSWORD" type="password" name="password" value="" />
-     
-      </p>
-      <input id="loginButton" type="submit" name="submit" value="Log In" /><br/>
-      <br />
-       
-       
-     
-        
-    </form>
+        <form id="loginform" action="login.php" method="post">
+            <p><input placeholder="EMAIL" type="text" name="email" value="<?php echo htmlentities($email); ?>" />
+            </p>
+            <p><input placeholder="PASSWORD" type="password" name="password" value="" />
+
+            </p>
+            <input id="loginButton" type="submit" name="submit" value="Log In" /><br/>
+            <br /> 
+        </form>
      <a title="Forgot Your Password?" href="forgot_password.php"><i title="Forgot Your Password?" class="fa fa-question-circle"> Forgot Your Password?</i></a> 
         <a href="new_user.php"><div id="createButton">Create New Account</div></a>
      </div> 

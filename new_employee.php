@@ -1,21 +1,16 @@
 <?php $page = "Create A New Employee";
 include("inc/header.php"); ?>
 <style>
-
 .message{
-
+/*FOR ERRORS*/
     width: 250px;
     margin: 10px;
     padding: 5px;
     color: #eee;
+    background: #222;
     border-radius: 5px;
 
-}
-#create{ 
-    margin-top:50px; 
-    padding: 20px;  
-}
- 
+} 
 </style>
 <?php
  

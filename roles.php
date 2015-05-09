@@ -4,27 +4,7 @@
 <h1>Employee Roles</h1> 
  <a href="add_role.php">New Role</a><br/>
  
-         
-          
-<!--
-          <ul>
-              <li><a href="#">Super User</a>
-              <ul>Permissions:
-                  <li>permission</li>
-                  <li>permission</li>
-                  <li>permission</li>
-                  
-              </ul>
-              <ul>Users with this role:
-                  <li>Sally Stone</li>
-              </ul>
-              <ul>
-                  <li><a href="edit_role.php?id=1">Edit This Role</a></li>
-              </ul>
-              </li>
-          </ul>
--->
-           <?php
+<?php
 
 //Get all Roles
 
@@ -52,14 +32,14 @@
                                     foreach($name_result as $name){
                                         echo "<li>".$name['name']."</li>";  
                                         } 
-                                } 
-                        }
+                                }//end echo permission name
+                        }//end get permissions
                         echo "</ul>";
-                    }
-            }
+                    }//end get permissions from joint table
+            }//end echo roles
         echo "<a href=\"edit.php?role=".$role_id."\">Edit Role</a><br/>";
     echo "</ul>";
-    }
+    }//end call roles table
  ?>
      
         
