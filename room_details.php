@@ -6,6 +6,7 @@ if(isset($_GET['id'])){ ?>
 <a href="rooms.php">&laquo; All Rooms</a>
  
  <?php
+    //Get room selected: 
     $query  = "SELECT * FROM rooms WHERE id={$_GET['id']}"; 
     $result = mysqli_query($connection, $query);
     if($result){
