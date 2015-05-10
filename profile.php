@@ -25,7 +25,8 @@ if(isset($_GET['user'])){
 
 
 
-
+//ONLY SHOW THIS USERS PROFILE IF BELONGS TO USER, OR IS EMPLOYEE VIEWING
+if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
 
 //GET PROFILE IMAGE AND CONTENT
     $query  = "SELECT * FROM users WHERE id={$user_id} LIMIT 1";  
@@ -47,22 +48,39 @@ if(isset($_GET['user'])){
     <div id="profile">
         <section id="avatar" class="left"> <img src="<?php echo $avatar; ?>" alt="profile image">
          </section>
-        <section id="profile-content"> <?php echo $content; ?> </section>
+        <section id="profile-content"> <?php echo $content; ?> 
         
-<!--        GET ADDRESS (ROLE IF EMPLOYEE), ETC -->
+<!--        ACCOUNT DETAILS  -->
+       <?php
+        echo "<br/><Br/>";
+        echo $profile_array['phone']."<br/>";
+        echo $profile_array['email']."<br/>";
+        echo $profile_array['address']."<br/>";
+        echo $profile_array['city']."<br/>";
+        echo $profile_array['state']."<br/>";
+        echo $profile_array['zip']."<br/>";
+        echo $profile_array['policy_number']."<br/>"; 
+        ?>
+        
+        </section>
+ 
     </div>
 
-<?php
+        <?php
 
-if($user_id==$_SESSION['user_id']){
-    echo "<br/> <a href=\"edit_profile.php\"><i class=\"fa fa-pencil\"></i> Edit Profile</a> <br/>";
-}
-?>
+        if($user_id==$_SESSION['user_id']){
+            echo "<br/> <a href=\"edit_profile.php\"><i class=\"fa fa-pencil\"></i> Edit Profile</a> <br/>";
+        }
+        ?>
  
   <?php
     }else{
         echo "This user does not exist";
-    } ?>
+    }
+
+}else{
+    echo "You do not have permission to view this profile.";
+}?>
  
         
 <?php include("inc/footer.php"); ?>

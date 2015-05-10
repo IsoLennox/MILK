@@ -9,7 +9,7 @@ confirm_logged_in(); ?>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>MILK apps</title>
+        <title>Under My Roof</title>
         <meta name="description" content="An interactive PDF library">
         <!--        Main stylesheet-->
         <?php if(isset($_SESSION['theme'])){

@@ -11,6 +11,7 @@ if($_SESSION['is_employee']==1){
 
 <br/>
 <br/> 
+          <p>Made By: UserName (link to profile)</p><br/> 
           <p>Item Title/ID</p><br/> 
           <p>Claim Details</p><br/> 
           <p>Claim Details</p><br/> 

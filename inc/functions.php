@@ -155,15 +155,16 @@ function get_category_name($id){
 }
 
 
-function get_item_name($id){
+function get_item_details($id){
     global $connection;
     $name_query  = "SELECT * FROM items WHERE id={$id}"; 
     $nameresult = mysqli_query($connection, $name_query);
     confirm_query($nameresult);
     if($nameresult){ 
         $array=mysqli_fetch_assoc($nameresult);
-        $name= $array['name'];
-        return $name;
+//        $name= $array['name'];
+//        return $name;
+        return $array;
     }//end get names
 }
  
