@@ -1,6 +1,10 @@
 <?php  include("inc/header.php");  ?>
 <h1>Your Rooms</h1>
-  <?php  if(isset($_POST['submit'])){
+  <?php  
+
+//INSERT NEW ROOM FROM FORM BELOW
+
+    if(isset($_POST['submit'])){
         if(empty($_POST['name'])){
             $_SESSION["message"] = "Name Cannot be Empty";
             header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -29,28 +33,29 @@
     }  ?>
 
       
- <form method="POST">
+<!--      ADD A ROOM  -->
+<form method="POST">
     Add Room: <input type="text" name="name" placeholder="e.x. Bedroom.."><br/>
-     Room Notes: <br/><textarea cols="20" rows="8"  name="notes" placeholder="e.x. This room is in the guest house..."></textarea><br/> 
+    Room Notes: <br/><textarea cols="20" rows="8"  name="notes" placeholder="e.x. This room is in the guest house..."></textarea><br/> 
     <input name="submit" type="submit" value="Save Room">
- </form> 
-         
-
-
+</form> 
+          
+          
+<!-- SHOW ALL ROOMS BELOGING TO LOGGED IN USER   -->
+<div id="rooms">
  <h2>Your Rooms:</h2> 
-<?php //GET ROOMS OF THIS USER
-
+<?php  
     $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
     $roomresult = mysqli_query($connection, $roomquery);
     if($roomresult){
         //show each result value
         foreach($roomresult as $show){
-            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a></h4>";
-            echo $show['notes']."<br/>";
+            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (# items)</h4>";
+//            echo $show['notes']."<br/>";
             }
         }
- ?>
-     
+ ?> 
+</div> <!-- END ROOMS -->
         
       <br/>
       <br/>

@@ -8,28 +8,31 @@
   
   <form method="POST">
       <h3>Refine Your Results</h3>
-           <!--    //GET ITEM CATEGORIES -->
+           <!--    //GET ITEM CATEGORIES TO CHOOSE FROM -->
    <?php
 
 //    get all categories this user has items in
     $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']}";  
     $itemresult = mysqli_query($connection, $item_query);
     if($itemresult){ 
+        echo "<p>Category:  <select name=\"category\">";
+         echo "<option value=\"all\" >All Categories</option>"; 
         foreach($itemresult as $item){
             $categories=$item['category']; 
-            echo "<p>Category:  <select name=\"category\">";
+            
                 //only show categories if you have items in them
                 $category_query  = "SELECT * FROM item_category WHERE id = {$categories}"; 
                 $categoryresult = mysqli_query($connection, $category_query);
                 if($categoryresult){  
-                    echo "<option value=\"all\" >All Categories</option>"; 
+                   
                     foreach($categoryresult as $category){
                         //OPTIONS
                         echo "<option name=\"category\" value=\"".$category['id']."\" >".$category['name']."</option>"; 
                     }//end loop through categories                    
                 }//end get categories
-            echo "</select></p>";
+            
             }//end items found with categories
+        echo "</select></p>";
         echo "</ul>";
         } 
 ?>
@@ -57,7 +60,7 @@
   
 
   <?php 
-//Get items
+//GET ITEMS IN ROOM/ITEM TYPE CHOSEN:
 
     if(isset($_POST['submit'])){ 
          
@@ -99,7 +102,7 @@
         
 
     }else{
-        //no search refinements
+        //no search refinements, SHOW ALL ITEMS
         $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']}"; 
     }
 

@@ -2,21 +2,47 @@
 
 
 <h1>New Item</h1> 
+
+<?php
+if (isset($_POST['submit'])) {
+    $name= $_POST['name']; 
+    $room= $_POST['room']; 
+    $notes= $_POST['notes']; 
+    $date= $_POST['purchase_date']; 
+    $price= $_POST['purchase_price']; 
+    $value= $_POST['declared_value']; 
+    $cat= $_POST['category'];   
+    
+    
+        //INSERT ALL DATA EXCEPT PERMISSIONS
+    $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat} ) ";
+    $insert_result = mysqli_query($connection, $insert);
+    if($insert_result){ 
+            $_SESSION["message"] = "Item Saved!";
+            redirect_to("inventory.php");        
+        }else{
+            $_SESSION["message"] = "Item could not be saved";
+            redirect_to("inventory.php");
+        }//end insert uery    
+    }//end check if form was submitted
+?>
+
+
 <form method="POST" >
                
      <!--    //GET ITEM CATEGORIES -->
    <?php
-                $category_query  = "SELECT * FROM item_category"; 
-                $categoryresult = mysqli_query($connection, $category_query);
-                if($categoryresult){ 
-                    //CATEGORY SELECT BOX
-                    echo "<p>Category:  <select>";
-                    foreach($categoryresult as $category){
-                        //OPTIONS
-                        echo "<option name=\"category\" value=\"".$category['id']."\" >".$category['name']."</option>"; 
-                    }
-                    echo "</select></p>";
-                }//end get categories
+    $category_query  = "SELECT * FROM item_category"; 
+    $categoryresult = mysqli_query($connection, $category_query);
+    if($categoryresult){ 
+        //CATEGORY SELECT BOX
+        echo "<p>Category:  <select  name=\"category\">";
+        foreach($categoryresult as $category){
+            //OPTIONS
+            echo "<option value=\"".$category['id']."\" >".$category['name']."</option>"; 
+        }
+        echo "</select></p>";
+    }//end get categories
 
 ?>
 
@@ -26,17 +52,17 @@
     
 <!--    //GET ROOMS TO CHOOSE FROM -->
    <?php
-                $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}"; 
-                $roomresult = mysqli_query($connection, $room_query);
-                if($roomresult){ 
-                    //ROOM SELECT BOX
-                    echo "<p>Room: <select>";
-                    foreach($roomresult as $room){
-                        //OPTIONS
-                        echo "<option name=\"room\" value=\"".$room['id']."\" >".$room['name']."</option>"; 
-                    }
-                    echo "</select></p>";
-                }//end get rooms 
+        $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}"; 
+        $roomresult = mysqli_query($connection, $room_query);
+        if($roomresult){ 
+            //ROOM SELECT BOX
+            echo "<p>Room: <select name=\"room\" >";
+            foreach($roomresult as $room){
+                //OPTIONS
+                echo "<option value=\"".$room['id']."\" >".$room['name']."</option>"; 
+            }
+            echo "</select></p>";
+        }//end get rooms 
  ?>
    
    <p>Item Description/Notes: <textarea name="notes" id="notes" cols="30" rows="10" value=""></textarea></p>
@@ -46,7 +72,7 @@
     <p>Declared Value: $<input type="text" name="declared_value" placeholder="950.99" value=""></p>
    
     <p>Add File (e.x. Image/file of object, reciept, appraisal... )</p>
-    <input type="submit" value="Save Item">
+    <input type="submit" name="submit" value="Save Item">
  </form>
      
         
