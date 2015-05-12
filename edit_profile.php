@@ -72,7 +72,12 @@ if (isset($_POST['submit'])) {
   </section> 
   <div class="clear"></div>
   <hr/>
-   
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
    <h2>Edit Profile Content</h2>
     <form action="edit_profile.php" method="post">
    
