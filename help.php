@@ -6,6 +6,9 @@
      <li>FAQ</li>
      <li>FAQ</li>
      <li>FAQ</li>
+     <li>FAQ</li>
+     <li>FAQ</li>
+     <li>FAQ</li>
  </ul>
     <h1>Take the walkthrough again</h1>
      
