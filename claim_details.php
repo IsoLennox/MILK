@@ -1,33 +1,35 @@
 <?php include("inc/header.php"); ?>
 
-<a href="claim_history.php">&laquo; Back to Claims History</a>
+<!-- if employee, back to claims, else back to claims history -->
+
  
 
 <?php
-
+ 
 if(isset($_GET['id'])){
    
     
 if($_SESSION['is_employee']==1){
-    echo "<a href=\"#\">Update This Claim</a>"; 
+    echo "<a href=\"claims.php\">&laquo; Back to Claims</a><br/>";
+    echo "<br/><a href=\"#\">Update This Claim</a><br/>";     
+}else{
+
+    echo "<a href=\"claim_history.php\">&laquo; Back to Claims History</a>";
 }
-?>
- <br>
- <br>
- <br>
- <br>
-           
-           <?php
+
+    
+    
         //TO DO:
         //GET THIS CLAIM IF USER IS LOGGED IN OR EMPLOYEE
         //  GET USERNAME BY USER_ID 
 
-    $query  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} AND id={$_GET['id']}";  
+    $query  = "SELECT * FROM claims WHERE id={$_GET['id']}";  
     $result = mysqli_query($connection, $query);
     if($result){ 
         //show each result value
         foreach($result as $show){
-              if($show['user_id']===$_SESSION['user_id'] || $_SESSION['is_employee']==1){
+//              if($_SESSION['is_employee']==1 || $show['user_id']===$_SESSION['user_id'] ){
+              if($_SESSION['is_employee']==1 || $show['user_id']===$_SESSION['user_id'] ){
             
                         //GET CLAIM TYPE NAME
     $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  

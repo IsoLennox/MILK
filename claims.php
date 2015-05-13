@@ -113,7 +113,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     }else{
   
   echo "<h1>All Claims</h1>";
-    $query  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} ORDER BY id DESC";  
+    $query  = "SELECT * FROM claims ORDER BY id DESC";  
     $result = mysqli_query($connection, $query);
     if($result){ 
         //show each result value
