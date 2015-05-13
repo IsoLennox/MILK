@@ -75,7 +75,4 @@ if($_SESSION['is_employee']==0){
 //        }
  ?>
      
-        
-      
-        
 <?php include("inc/footer.php"); ?>

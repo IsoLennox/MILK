@@ -11,13 +11,31 @@ if (isset($_POST['submit'])) {
     $date= $_POST['purchase_date']; 
     $price= $_POST['purchase_price']; 
     $value= $_POST['declared_value']; 
-    $cat= $_POST['category'];   
+    $cat= $_POST['category'];  
+    $date = date('d/m/Y H:i');
     
     
         //INSERT ALL DATA EXCEPT PERMISSIONS
-    $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat} ) ";
+    $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat}, {$date} ) ";
     $insert_result = mysqli_query($connection, $insert);
     if($insert_result){ 
+            
+        //INSERT INTO HISTORY
+        
+            //get item id for link in history content
+            $get_item = "SELECT * FROM items WHERE name='{$name}' AND user_id={$_SESSION['user_id']} ORDER BY id DESC "; 
+            $itemresult = mysqli_query($connection, $get_item);
+            if($itemresult){
+                $item_found=mysqli_fetch_assoc($itemresult);
+                $item_id=$item_found['id'];
+            }else{
+                $item_id="";
+            }
+        
+            $content = "Added item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
+            $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
+            $insert_history = mysqli_query($connection, $history); 
+        
             $_SESSION["message"] = "Item Saved!";
             redirect_to("inventory.php");        
         }else{

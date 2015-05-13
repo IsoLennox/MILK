@@ -80,7 +80,7 @@ if($_SESSION['is_employee']==0){
                 <li><a href="file_new_claim.php">File Claim</a></li>
                 <li><a href="claim_history.php">Claim History</a></li>
             </ul> 
-            <li><a href="#">Activity</a></li> 
+            <li><a href="activity.php">Activity</a></li> 
             <li><a href="help.php">Help</a></li> 
         </ul>
               
@@ -111,7 +111,7 @@ if($_SESSION['is_employee']==0){
                 <li><a href="roles.php">Roles</a></li>
                 <li><a href="company_details.php">Company Details</a></li>
                 <li><a href="index.php">Statistics</a></li>
-                <li><a href="#">Activity</a></li> 
+                <li><a href="activity.php">Activity</a></li> 
 
             </ul>
             <ul id="themes">
