@@ -51,7 +51,7 @@ confirm_logged_in(); ?>
     <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a>
     <!--        USER ICONS -->
     <div id="user_header" class="right">
-        <i class="fa fa-user"> </i> <a title="Your Profile" href="profile.php?user=<?php echo $_SESSION['user_id'] ?>"><?php echo $_SESSION['username']; ?></a> | 
+        <i class="fa fa-user"> </i> <a title="Your Profile" href="profile.php"><?php echo $_SESSION['username']; ?></a> | 
         <a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i class="fa fa-cog"></i></a> | 
         <a title="Log Out" href="logout.php"><i class="fa fa-sign-out"></i></a> 
     </div> 
@@ -62,7 +62,12 @@ confirm_logged_in(); ?>
     //CHECK IF CLIENT OR EMPLOYEE 
     
 if($_SESSION['is_employee']==0){
+    
+    //************************//
     //     IS CLIENT
+    //************************//
+    
+    
     echo "<h4>".$_SESSION['username']."</h4>"; 
     ?>
         <ul>
@@ -83,26 +88,19 @@ if($_SESSION['is_employee']==0){
             <li><a href="activity.php">Activity</a></li> 
             <li><a href="help.php">Help</a></li> 
         </ul>
-              
-        <ul id="themes">
-        <?php if(isset($_SESSION['theme'])){
-            if($_SESSION['theme']==1){
-                //theme is dark, give option to swtich to light
-                    echo "<li><a href=\"edit.php?theme\">Switch to Light Theme</a></li>";
-                    }else{
-                //theme is light, give option to switch to dark
-                    echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
-                    }
-                }else{
-                // default is light, give option to switch to dark 
-                    echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
-                }  ?>
-        </ul><?php
+<?php
     
 }else{
+    
+    //************************//
     //IS EMPLOYEE
+    //************************//
+    
     echo "<h4>".$_SESSION['username']."</h4>"; 
     echo "<h4>Employee Role</h4>";  
+    
+    //NOTIFICATIONS FOR CLAIMS: GET NUMBER OF CLAIMS PENDING
+    //NOTIFICATIONS FOR MESSAGES: GET NUMBER OF MESSAGES WHERE SENT_TO==you && VIEWED==0
         ?>
             <ul>
                 <li><a href="messages.php">Messages</a></li>
@@ -114,6 +112,9 @@ if($_SESSION['is_employee']==0){
                 <li><a href="activity.php">Activity</a></li> 
 
             </ul>
+<?php }  ?>
+         
+<!--         BOTH SIDE WITLL HAVE THESE OPTIONS  -->
             <ul id="themes">
                  <?php if(isset($_SESSION['theme'])){
             if($_SESSION['theme']==1){
@@ -125,7 +126,7 @@ if($_SESSION['is_employee']==0){
             echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
             }
         ?>
-             </ul><?php }  ?>
+             </ul>
           </nav>
           
         <div class="clearfix" id="page"> 

@@ -1,37 +1,74 @@
 <?php include("inc/header.php"); ?>
 
-<a href="claim_history.php">&laquo; Claims History</a>
-<h1>CLAIM TITLE</h1> 
+<a href="claim_history.php">&laquo; Back to Claims History</a>
+ 
 
 <?php
+
+if(isset($_GET['id'])){
+   
+    
 if($_SESSION['is_employee']==1){
     echo "<a href=\"#\">Update This Claim</a>"; 
 }
 ?>
-
-<br/>
-<br/> 
-          <p>Made By: UserName (link to profile)</p><br/> 
-          <p>Item Title/ID</p><br/> 
-          <p>Claim Details</p><br/> 
-          <p>Claim Details</p><br/> 
-          <p>Claim Notes</p><br/> 
+ <br>
+ <br>
+ <br>
+ <br>
            
            <?php
+        //TO DO:
+        //GET THIS CLAIM IF USER IS LOGGED IN OR EMPLOYEE
+        //  GET USERNAME BY USER_ID 
 
-//example query
+    $query  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} AND id={$_GET['id']}";  
+    $result = mysqli_query($connection, $query);
+    if($result){ 
+        //show each result value
+        foreach($result as $show){
+              if($show['user_id']===$_SESSION['user_id'] || $_SESSION['is_employee']==1){
+            
+                        //GET CLAIM TYPE NAME
+    $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
+    $type_result = mysqli_query($connection, $type_query);
+    if($type_result){
+        $type_array=mysqli_fetch_assoc($type_result);
+        $claim_type=$type_array['name'];
+    }
+            
+            
+            echo "<h1>".$show['title']."</h1>";
+            echo "<h2> Pending</h2>";
+            
+            echo "Filed By: ".$show['user_id']."<br/>";
+            echo "Date Filed: ".$show['datetime']."<br/>";
+            
+            echo "Claim Type: ".$claim_type."<br/>";
+            echo "Items: <ul>";
+                  
+            $item_query  = "SELECT * FROM claim_items WHERE claim_id={$show['id']}";  
+            $item_result = mysqli_query($connection, $item_query);
+            foreach($item_result as $item){ 
+                  $itemname_query  = "SELECT * FROM items WHERE id={$item['item_id']}";  
+                  $itemname_result = mysqli_query($connection, $itemname_query);
+                  foreach($itemname_result as $itemname){
+                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a></li>";
+                    } 
+            }
+                  echo "</ul>";
+                  
+            echo "Notes/Description: ".$show['notes']."<br/>";      
+            }else{
+        echo "Oops! It looks like you do not have permission to be here";
+     }  
+        }
+     }
+    
+}else{
 
-//    $query  = "SELECT * FROM TABLE WHERE user_id={$_SESSION['user_id']}"; 
-//    $result = mysqli_query($connection, $query);
-//    if($result){
-//        //show each result value
-//        foreach($result as $show){
-//            
-//            $this_value=$show['col_name'];
-//            echo $this_value;
-//                      
-//            }
-//        }
+    echo "This claim does not exist!";
+}
  ?>
      
         

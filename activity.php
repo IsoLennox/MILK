@@ -1,7 +1,15 @@
 <?php include("inc/header.php"); ?> 
     
            
-                  <h1>Your Activity</h1>       
+                  <h1>Your Activity</h1> 
+                  
+                        <select name="filter" id="filter">
+                            <option value="all">All Activity</option>
+                            <option value="new">New Items</option>
+                            <option value="removed">Removed Items</option>
+                            <option value="edited">Edited Items</option>
+                            <option value="claims">Submitted Claims</option>
+                       </select>    
 <?php
 
 //GET ALL HISTPORY FROM USER LOGGED IN

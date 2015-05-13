@@ -18,7 +18,7 @@ if(isset($_GET['remove'])){
             
              //INSERT into history table
             $date = date('d/m/Y H:i');
-            $content = "DELETED item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
+            $content = "Removed item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
             $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
             $insert_history = mysqli_query($connection, $history); 
             
@@ -47,19 +47,47 @@ if(isset($_GET['remove'])){
         //show each result value
         foreach($result as $show){
             
+      
+            
+            
+            
                 //if item is not yours or if you are not employee, cannot view this item
             if($show['user_id']===$_SESSION['user_id'] || $_SESSION['is_employee']==1){
                 
+                //SEE IF ITEM IS IN TRASH
                 if($show['in_trash']==1){
                    $in_trash= "This item was removed. <a href=\"#\">Restore it?</a>";
                 }else{
                     $in_trash=" <a onclick=\"return confirm('DELETE this item?')\" href=\"item_details.php?remove=".$show['id']."&item=".$show['name']."\">Remove Item</a>";
                 }
+                
+                      
             
+                
+                
+                
+                
                 echo "<h1>".$show['name']."</h1>"; 
-                echo "<a href=\"edit_item.php?id=".$show['id']."\">Edit</a><br/>";
                 
                 
+                //IF IS INVOLDED IN CLAIM, SHOW CLAIM ID/LINK AND REMOVE TRASH/EDIT OPTION
+                $claim_query  = "SELECT * FROM claim_items WHERE item_id={$id}"; 
+                $claim_result = mysqli_query($connection, $claim_query);
+                $claim_num = mysqli_num_rows($claim_result);
+//            if($claim_result){
+            if($claim_num >=1){
+                $claim_array=mysqli_fetch_assoc($claim_result);
+                echo "This item is invloved in <a href=\"claim_details.php?id=".$claim_array['claim_id']."\">CLAIM #".$claim_array['claim_id']."</a><br/>";
+                $in_trash="";
+                $edit="";
+            }else{
+                $edit="<a href=\"edit_item.php?id=".$show['id']."\">Edit</a><br/>";
+            }
+                
+                if($show['in_trash']==0){
+                    echo $edit;
+                }
+                 
                 $room_name=get_room_name($show['room_id']);
                 $cat_name=get_category_name($show['category']);
                 echo "Category: ".$cat_name."<br/>";

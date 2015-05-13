@@ -8,15 +8,6 @@ if(isset($_GET['user'])){
     $find_user = find_user_by_id($user_id);
     $username= $find_user['first_name']." ".$find_user['last_name'];
     
-    
-}elseif(isset($_GET['user_id'])){
-    $user_id=$_GET['user_id'];
-    
-    //GET USERNAME
-    $find_user = find_user_by_id($user_id);
-    $username= $find_user['first_name']." ".$find_user['last_name'];
-    
-    
 }else{
     $user_id=$_SESSION['user_id'];
     $username = $_SESSION['username'];

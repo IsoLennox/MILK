@@ -1,6 +1,12 @@
 <?php include("inc/header.php"); ?>
 
 <!--FOR EMPLOYEES-->
+ 
+<!--
+TO DO: 
+
+ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
+-->
 
 <h1>Claims</h1>
 
@@ -22,56 +28,123 @@
     if(isset($_GET['pending'])){
     
     //select all where claim type == pending   order by id ASC  
-        ?>
-        <h2>Pending Claims</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut id libero nam velit perspiciatis quis commodi soluta? Repudiandae aliquam rem molestias reprehenderit in repellat vitae, placeat atque veniam, facilis saepe.
-        </p>
-        <a href="claim_details.php?id=1">View this Claim</a>
-        <Br/>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut id libero nam velit perspiciatis quis commodi soluta? Repudiandae aliquam rem molestias reprehenderit in repellat vitae, placeat atque veniam, facilis saepe.</p>
-        <a href="claim_details.php?id=1">View this Claim</a>
-        <Br/>
-        <?php   
+    echo "<h2>Pending Claims</h2>";  
+        //GET ALL PENDING 
+
+    $query  = "SELECT * FROM claims WHERE status_id=0 ORDER BY id DESC";  
+    $result = mysqli_query($connection, $query);
+    if($result){ 
+        //show each result value
+        foreach($result as $show){
+            
+                        //GET CLAIM TYPE NAME
+    $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
+    $type_result = mysqli_query($connection, $type_query);
+    if($type_result){
+        $type_array=mysqli_fetch_assoc($type_result);
+        $claim_type=$type_array['name'];
+    }
+            
+            
+            echo "Title: ".$show['title']."<br/>";
+            echo "Date Filed: ".$show['datetime']."<br/>"; 
+            echo "Claim Type: ".$claim_type."<br/>";
+               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+            }  
+        }  
     
     }elseif(isset($_GET['approved'])){
     
     //select all where claim type == approved    order by id DESC  
-        ?>
-        <h2>Approved Claims</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut id libero nam velit perspiciatis quis commodi soluta? Repudiandae aliquam rem molestias reprehenderit in repellat vitae, placeat atque veniam, facilis saepe.
-        </p>
-        <a href="claim_details.php?id=1">View this Claim</a>
-        <Br/>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut id libero nam velit perspiciatis quis commodi soluta? Repudiandae aliquam rem molestias reprehenderit in repellat vitae, placeat atque veniam, facilis saepe.</p>
-        <a href="claim_details.php?id=1">View this Claim</a>
-        <Br/>
-        <?php 
+      
+    echo "<h2>Approved Claims</h2>";  
+        //GET ALL PENDING 
+
+    $query  = "SELECT * FROM claims WHERE status_id=2 ORDER BY id DESC";  
+    $result = mysqli_query($connection, $query);
+    if($result){ 
+        //show each result value
+        foreach($result as $show){
+            
+                        //GET CLAIM TYPE NAME
+    $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
+    $type_result = mysqli_query($connection, $type_query);
+    if($type_result){
+        $type_array=mysqli_fetch_assoc($type_result);
+        $claim_type=$type_array['name'];
+    }
+            
+            
+            echo "Title: ".$show['title']."<br/>";
+            echo "Date Filed: ".$show['datetime']."<br/>"; 
+            echo "Claim Type: ".$claim_type."<br/>";
+               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+            }  
+        }
+     
     
     }elseif(isset($_GET['denied'])){
     
     //select all where claim type == approved    order by id DESC  
-        ?>
-        <h2>Denied Claims</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut id libero nam velit perspiciatis quis commodi soluta? Repudiandae aliquam rem molestias reprehenderit in repellat vitae, placeat atque veniam, facilis saepe.
-        </p>
-        <a href="claim_details.php?id=1">View this Claim</a>
-        <Br/>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut id libero nam velit perspiciatis quis commodi soluta? Repudiandae aliquam rem molestias reprehenderit in repellat vitae, placeat atque veniam, facilis saepe.</p>
-        <a href="claim_details.php?id=1">View this Claim</a>
-        <Br/>
-        <?php   }else{
- 
-    //select all claims order by id DESC  
-        ?>
-        <h2>All Claims</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut id libero nam velit perspiciatis quis commodi soluta? Repudiandae aliquam rem molestias reprehenderit in repellat vitae, placeat atque veniam, facilis saepe.
-        </p>
-        <a href="claim_details.php?id=1">View this Claim</a>
-        <Br/>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut id libero nam velit perspiciatis quis commodi soluta? Repudiandae aliquam rem molestias reprehenderit in repellat vitae, placeat atque veniam, facilis saepe.</p>
-        <a href="claim_details.php?id=1">View this Claim</a>
-        <Br/>
- <?php }//end show claims dependant on uery
+    echo "<h2>Denied Claims</h2>";  
+        //GET ALL PENDING 
+
+    $query  = "SELECT * FROM claims WHERE status_id=3 ORDER BY id DESC";  
+    $result = mysqli_query($connection, $query);
+    if($result){ 
+        //show each result value
+        foreach($result as $show){
+            
+                        //GET CLAIM TYPE NAME
+    $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
+    $type_result = mysqli_query($connection, $type_query);
+    if($type_result){
+        $type_array=mysqli_fetch_assoc($type_result);
+        $claim_type=$type_array['name'];
+    }
+            
+            
+            echo "Title: ".$show['title']."<br/>";
+            echo "Date Filed: ".$show['datetime']."<br/>"; 
+            echo "Claim Type: ".$claim_type."<br/>";
+               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+            }  
+        }
+    }else{
+  
+  echo "<h1>All Claims</h1>";
+    $query  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} ORDER BY id DESC";  
+    $result = mysqli_query($connection, $query);
+    if($result){ 
+        //show each result value
+        foreach($result as $show){
+            
+            //GET CLAIM TYPE NAME
+    $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
+    $type_result = mysqli_query($connection, $type_query);
+    if($type_result){
+        $type_array=mysqli_fetch_assoc($type_result);
+        $claim_type=$type_array['name'];
+    }
+            
+            
+        if($show['status_id']==0){
+            $status="Pending";
+        }elseif($show['status_id']==2){
+            $status="Approved";
+        }elseif($show['status_id']==3){
+            $status="Denied";
+        }
+            
+            
+            echo "Title: ".$show['title']."<br/>";
+            echo "Date Filed: ".$show['datetime']."<br/>";
+            echo "Status: ".$status."<br/>";
+            echo "Claim Type: ".$claim_type."<br/>";
+               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+            }  
+        }
+  }//end show claims dependant on uery
 ?>
 
       
