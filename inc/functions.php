@@ -46,8 +46,10 @@ function check_password($user_id, $password) {
 			return false;
 		}
 	}
- 
 
+
+ 
+ 
 
 function confirm_logged_in(){
     if (!logged_in()){
@@ -95,7 +97,7 @@ function find_user_by_id($user_id) {
     $safe_user_id = mysqli_real_escape_string($connection, $user_id);
 
     $query  = "SELECT * ";
-    $query .= "FROM customers ";
+    $query .= "FROM users ";
     $query .= "WHERE id = {$safe_user_id} ";
     $query .= "LIMIT 1";
     $user_set = mysqli_query($connection, $query);
@@ -109,15 +111,13 @@ function find_user_by_id($user_id) {
 
  
 
-
-
 function find_user_by_email($email) {
     global $connection;
 
     $safe_email = mysqli_real_escape_string($connection, $email);
 
     $query  = "SELECT * ";
-    $query .= "FROM customers ";
+    $query .= "FROM users ";
     $query .= "WHERE email = '{$safe_email}' ";
     $query .= "LIMIT 1";
     $user_set = mysqli_query($connection, $query);
@@ -129,6 +129,45 @@ function find_user_by_email($email) {
     }
 }
 
+
+function get_room_name($id){
+    global $connection;
+    $room_query  = "SELECT * FROM rooms WHERE id={$id}"; 
+    $roomresult = mysqli_query($connection, $room_query);
+    confirm_query($roomresult);
+    if($roomresult){ 
+        $array=mysqli_fetch_assoc($roomresult);
+        $name= $array['name'];
+        return $name;
+    }//end get rooms 
+}
+
+function get_category_name($id){
+    global $connection;
+    $cat_query  = "SELECT * FROM item_category WHERE id={$id}"; 
+    $catresult = mysqli_query($connection, $cat_query);
+    confirm_query($catresult);
+    if($catresult){ 
+        $array=mysqli_fetch_assoc($catresult);
+        $name= $array['name'];
+        return $name;
+    }//end get categories 
+}
+
+
+function get_item_details($id){
+    global $connection;
+    $name_query  = "SELECT * FROM items WHERE id={$id}"; 
+    $nameresult = mysqli_query($connection, $name_query);
+    confirm_query($nameresult);
+    if($nameresult){ 
+        $array=mysqli_fetch_assoc($nameresult);
+//        $name= $array['name'];
+//        return $name;
+        return $array;
+    }//end get names
+}
+ 
  
  
 	

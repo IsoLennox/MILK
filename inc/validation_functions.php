@@ -1,7 +1,4 @@
 <?php
-
-//THIS FILE IS FOR LIVE VALIDATION OF FORMS
-
 $errors = array();
 
 function fieldname_as_text($fieldname) {
@@ -33,7 +30,7 @@ function validate_username_unique($prospect_username) {
     global $errors;
     global $connection;
     
-    $check_username  = "SELECT * FROM customers WHERE username = '{$prospect_username}'";
+    $check_username  = "SELECT * FROM users WHERE username = '{$prospect_username}'";
     $username_checked = mysqli_query($connection, $check_username);
     
         confirm_query($username_checked);
@@ -52,7 +49,7 @@ function validate_username_unique($prospect_username) {
 
 function validate_email_unique($required_fields) {
     
- //MAKE SURE THIS EMAIL IS NOT TAKEN
+ //
 }
 
 

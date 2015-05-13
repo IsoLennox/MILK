@@ -1,7 +1,5 @@
-<?php require_once("inc/session.php"); ?>
-<?php require_once("inc/db_connection.php"); ?>
-<?php require_once("inc/functions.php"); ?>
-<?php require_once("inc/validation_functions.php"); ?>  
+<?php $page = "Create A New Employee";
+include("inc/header.php"); ?>
 <style>
 .message{
 /*FOR ERRORS*/
@@ -15,26 +13,32 @@
 } 
 </style>
 <?php
-
-//Creating New group and Admin user
-
  
 
-
+//Creating New Employee
 if (isset($_POST['submit'])) {
-  // USER SUBMITTED FORM
+    
+     
+  // Process the form
+  
   // validations
-  $required_fields = array("email","first","last","password", "confirm_password");
+  $required_fields = array("email","first", "last","password", "confirm_password");
   validate_presences($required_fields);
+  
+ 
   if (empty($errors) ) {
     // Perform Create
+
+      
     $email = mysql_prep($_POST["email"]); 
-      if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+
             $_SESSION["message"] = "Invalid email";
-            redirect_to("new_user.php");
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }else{
             $first = mysql_prep($_POST["first"]);
             $last = mysql_prep($_POST["last"]);
+
 
             // $hashed_password = password_encrypt($_POST["password"]);
             $hashed_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
@@ -43,58 +47,57 @@ if (isset($_POST['submit'])) {
 
 
             if($first_password===$confirmed_password){
-                    //check that username entered does not exist
 
-                    $query  = "select * from users WHERE email='{$email}'"; 
-                    $user_found = mysqli_query($connection, $query);
-                    $user_array= mysqli_fetch_assoc($user_found);
+                //check that unique email entered does not exist
 
-                    if (empty($username_array)){
+                $query  = "select * from users WHERE email='{$email}'"; 
+                $user_found = mysqli_query($connection, $query);
+                $user_array= mysqli_fetch_assoc($user_found);
 
-                    //Username is not taken
-                        $query  = "INSERT INTO users (";
-                        $query .= " email, first_name, last_name, password";
-                        $query .= ") VALUES (";
-                        $query .= " '{$email}', '{$first}', '{$last}', '{$hashed_password}'";
-                        $query .= ") ";
-                        $new_user_created = mysqli_query($connection, $query);
+                if (empty($user_array)){
+
+                    //Email is not taken
+                    $query  = "INSERT INTO users (";
+                    $query .= " email, first_name, last_name, password, is_employee";
+                    $query .= ") VALUES (";
+                    $query .= " '{$email}', '{$first}', '{$last}', '{$hashed_password}', 1";
+                    $query .= ") ";
+                    $new_user_created = mysqli_query($connection, $query);
 
 
-                        if ($new_user_created) { 
-                            // Success
-                            $_SESSION["message"] = "Account created! Log In."; 
-                            redirect_to("login.php");
-
-                        } else {
-                            // Failure
-                            $_SESSION["message"] = "User Not Created!";
-
-                        }
-
+                    if ($new_user_created) { 
+                        // Success
+                        $_SESSION["message"] = "Account for ".$first." ".$last." created!"; 
+                        redirect_to("employees.php");
 
                     } else {
-                    // Failure
-                    $_SESSION["message"] = "Username Exists";
+                        // Failure
+                        $_SESSION["message"] = "User Not Created!";
+                        header('Location: ' . $_SERVER['HTTP_REFERER']);
 
                     }
-
+                } else {
+                    // Failure
+                    $_SESSION["message"] = "User with that email Exists";
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                }
+    
             }//end confirm passwords match
       }//end confirm email format
     }//end confirm no errors in form
-} ?> 
+} else {
+  // This is probably a GET request
+  
+} // end: if (isset($_POST['submit']))
+
+?>  
 
 <!DOCTYPE html>
 <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <title>UnderMyRoof - New User</title> 
-     <link rel="stylesheet" href="css/style.css">
-     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-     
-     
+ 
      
      <script>
-    //make sure not empty, live response
+ //check if empty
        $(document).ready(function () {
     $("#first").blur(function () {
       var username = $(this).val();
@@ -200,32 +203,48 @@ if (isset($_POST['submit'])) {
          
      
      </script>
- </head>
- 
- 
-<body>    
-<div><!--LOGIN CONTAINER--> 
-
-
+  
+          
+  <div id="create"> 
     <?php echo message(); ?>
     <?php echo form_errors($errors); ?>
+    
+<!--    <h2>Create New Employee</h2> -->
+      
+    <form action="new_employee.php" method="post">
 
-    <h2>Create New Account</h2> 
-    <form action="new_user.php" method="post">
-        <p id="e-error">Email (Used to Log In):
-        <input type="text" name="email" id="email" value="" /> </p>
-        <div id="eavailability"></div>
+        <p id="e-error">Email (Log In/Recover password):
+            <input type="text" name="email" id="email" value="" /> </p> 
+            <div id="eavailability"></div>
 
-        <p id="f-error">First: <input type="text" name="first" id="first" value="" /></p>
-        <p id="l-error">Last:<input type="text" name="last" id="last" value="" /></p>
-        <p id="p1-error">Password:<input type="password" name="password" id="pass" value="" /></p>
-        <p id="p2-error">Confirm Password: <input type="password" name="confirm_password" id="pass2" value="" onkeyup="checkPass(); return false;" /></p>
-        <span id="confirmMessage" class="confirmMessage"></span><br/>
+        <p id="f-error">First:
+            <input type="text" name="first" id="first" value="" /> </p>
+
+        <p id="l-error">Last:
+            <input type="text" name="last" id="last" value="" /> </p>
+
+        <p>Role:
+            <select name="role" id="role">
+            <!--               LOOP THROUGH ROLES TABLE TO GET EACH OPTION-->
+            <option value="1">Super User</option>
+            </select>
+            </p>
+
+        <p id="p1-error">Temporary Password:
+            <input type="password" name="password" id="pass" value="" /></p>
+
+        <p id="p2-error">Confirm Password: 
+            <input type="password" name="confirm_password" id="pass2" value="" onkeyup="checkPass(); return false;" /> </p>
+            <span id="confirmMessage" class="confirmMessage"></span>
+
+        <br/> 
         <input type="submit" name="submit" value="Continue" />
 
     </form>
     <br />
-    <a href="login.php">Cancel</a>
+    <a href="employees.php">Cancel</a>
 
-</div><!--   END LOGIN CONTAINER  -->
+   
+      
+       </div>
         

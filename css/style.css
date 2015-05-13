@@ -1,0 +1,146 @@
+/*   LARHEA: CHANGE ANYTHING YOU NEED TO, THIS WAS JUST FOR ENOUGH STRUCTURE FOR TESTING */
+body{
+    font-size: 18px; 
+    font-family: 'Nunito', sans-serif;
+    font-weight: 100; 
+    color: #333;
+    margin: 0;
+}
+
+/*COLORS: color:
+#004800;
+rgba(154,179,35,1);
+rgba(144,195,46,.4);
+*/
+ 
+ 
+
+ 
+header { 
+    background: #D3E7AB;
+    height: 70px; 
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    width: 99%;
+    z-index: 999;
+}  
+
+#page_name { 
+    position: relative; 
+    top: -30px; left: 30px;
+    font-weight: 900;
+    font-size: 22px;
+}
+nav { 
+/*    CHANGE ANYTHING YOU NEED TO, THIS WAS JUST FOR ENOUGH STRUCTURE FOR TESTING */
+    /*    background: rgba(144,195,46,.4);*/
+    background: #D3E7AB;
+    width: 200px;
+    padding: 20px;
+    float: left;
+    position:fixed;
+    top:90px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    
+} 
+
+#page{margin-left: 300px; margin-top: 120px;}
+footer{
+    clear: both;
+    position: absolute;
+    bottom: 0;
+} 
+.center{
+    margin: 0 auto;
+    text-align: center;
+}
+.left{float: left;}
+.right{float: right;}
+  
+ 
+
+ 
+.links:hover{cursor: pointer;}
+
+.search input[type="submit"]{
+    font-family: FontAwesome;
+    content: "&#xf002;";  
+}
+.search input[type="submit"]:hover{color: white;}
+
+input[type="submit"]:hover{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: darkolivegreen;
+    color: antiquewhite;
+}
+
+input[type="submit"]{ 
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: olivedrab;
+    color: antiquewhite;
+}
+
+
+input[type="file"]:hover{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px; 
+    color: black;
+}
+
+input[type="file"]{ 
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+}
+ 
+
+.clearfix:after {
+visibility: hidden;
+display: block;
+font-size: 0;
+content: " ";
+clear: both;
+height: 0;
+}
+
+.clearfix {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+ 
+
+ 
+
+
+/******************************
+        /MEDIA QUERIES
+*******************************/
+
+
+@media(max-width: 1000px) {
+    body{}
+    nav{}
+    
+}
+
+ 
+/*MOBILE DEVICES ONLY*/
+@media only screen and (max-device-width: 800px) {
+    body{}
+    nav{}
+ 
+}

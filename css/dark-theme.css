@@ -1,0 +1,10 @@
+header, nav{
+/*    background: rgba(144,195,46,.4);*/
+    background: #222;
+    color: rgba(154,179,35,1);
+}
+
+header a, nav a {
+    color: beige; 
+/*    color: rgba(154,179,35,1);*/
+}

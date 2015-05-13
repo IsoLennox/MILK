@@ -1,0 +1,90 @@
+body{
+    font-size: 18px; 
+    font-family: 'Nunito', sans-serif;
+    font-weight: 100;
+    padding: 250px;
+    padding-top: 20px;
+    color: #333;
+}
+
+h1,
+h2,
+/*h3,*/
+h4, 
+/*h5,*/
+h6{color: #004800;}
+    
+h1{ font-size: 50px;}
+h2{}
+h3{
+/*    headings */
+    width: 100%;
+    clear: both;
+    background: rgba(154,179,35,1);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 50px 0 50px 0;
+    
+    font-size: 26px; 
+}
+h4{
+/* subheadings */
+    font-size: 26px;
+}
+
+h5{
+/* sub-subheadings */
+     font-size: 20px;
+    width: 97%;
+    margin: 0 auto;
+/*    background: rgba(154,179,35,.4);*/
+    background: rgba(0,72,0,.4);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+    .splash {padding-bottom: 400px;}
+    #table_contents{
+        width: 50%;
+        margin: 0 auto;  
+    } 
+    
+    .center{
+        margin: 0 auto;
+        text-align: center;
+    }
+    .left{float: left;}
+    
+    img{margin: 25px;}
+    p { padding: 10px;} 
+    
+    .med_img{ width: 700px;}
+    .small_img{ width: 350px;}
+    .smaller_img{ width: 250px; float: left;}
+    
+    .personas{
+        border: 3px solid rgba(154,179,35,.4);
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+    .personas img{float: left; margin: 10px;}
+    
+    /* personas table */
+        table {border-radius: 10px; margin-bottom: 20px;}
+        table, th, td {
+            border: 3px solid rgba(154, 179, 35,0.8);
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;    
+        }
+        .table-head{background: rgba(154, 179, 35,0.5);}
+
+
+    @media screen and (max-width: 1100px) {
+    body {
+        padding: 30px;;
+    }
+} 
