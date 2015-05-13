@@ -26,7 +26,12 @@ if($_SESSION['is_employee']==0){
     $claims=0;
     $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
     $claim_result = mysqli_query($connection, $claim_count);
-    $num_claims=mysqli_num_rows($claim_result);
+    $num_claims=0;
+    if($claim_result){
+        foreach($claim_result as $claim){
+        $num_claims++;
+    }
+    }
     echo "You have made ".$num_claims." claims";
     ?>
         

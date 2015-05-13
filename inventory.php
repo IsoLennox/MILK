@@ -12,7 +12,7 @@
    <?php
 
 //    get all categories this user has items in
-    $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']}";  
+    $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";  
     $itemresult = mysqli_query($connection, $item_query);
     if($itemresult){ 
         echo "<p>Category:  <select name=\"category\">";
@@ -72,7 +72,7 @@
             $cat_name=get_category_name($room);
             echo "<h3>".$cat_name."items in ".$room_name."</h3>";
             //show results based on refinements
-            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND category={$category}"; 
+            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND category={$category} AND in_trash=0"; 
         }
         
         //ONLY A ROOM WAS CHOSEN
@@ -82,7 +82,7 @@
             $room_name=get_room_name($room);
             echo "All items in ".$room_name;
             //show results based on refinements
-            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room}"; 
+            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND in_trash=0"; 
         }
         
 
@@ -92,18 +92,18 @@
             $cat_name=get_category_name($category);
             echo "All items in category: ".$cat_name;
             //show results based on refinements
-            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND category={$category}"; 
+            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND category={$category} AND in_trash=0"; 
         }
         
         //IF both fields were "ALL"
         if($room=$_POST['room']==="all" && $category=$_POST['category']==="all"){ 
-            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']}"; 
+            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0"; 
         }
         
 
     }else{
         //no search refinements, SHOW ALL ITEMS
-        $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']}"; 
+        $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0"; 
     }
 
 

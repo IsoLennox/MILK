@@ -53,13 +53,13 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
 <!--        ACCOUNT DETAILS  -->
        <?php
         echo "<br/><Br/>";
-        echo $profile_array['phone']."<br/>";
-        echo $profile_array['email']."<br/>";
-        echo $profile_array['address']."<br/>";
-        echo $profile_array['city']."<br/>";
-        echo $profile_array['state']."<br/>";
-        echo $profile_array['zip']."<br/>";
-        echo $profile_array['policy_number']."<br/>"; 
+        echo "Phone: ".$profile_array['phone']."<br/>";
+        echo "Email: ".$profile_array['email']."<br/>";
+        echo "Address: ".$profile_array['address']."<br/>";
+        echo "City: ".$profile_array['city']."<br/>";
+        echo "State: ".$profile_array['state']."<br/>";
+        echo "Zip: ".$profile_array['zip']."<br/>";
+        echo "Policy Number: ".$profile_array['policy_number']."<br/>"; 
         ?>
         
         </section>
