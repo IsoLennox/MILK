@@ -100,11 +100,15 @@ if($_SESSION['is_employee']==0){
     echo "<h4>Employee Role</h4>";  
     
     //NOTIFICATIONS FOR CLAIMS: GET NUMBER OF CLAIMS PENDING
+    $claim_notification="SELECT COUNT(*) as total FROM claims WHERE status_id=0";
+    $result=mysqli_query($connection, $claim_notification);
+    $data=mysqli_fetch_assoc($result);
+    $total= $data['total'];
     //NOTIFICATIONS FOR MESSAGES: GET NUMBER OF MESSAGES WHERE SENT_TO==you && VIEWED==0
         ?>
             <ul>
                 <li><a href="messages.php">Messages</a></li>
-                <li><a href="claims.php">Claims</a></li> 
+                <li><a href="claims.php">Claims</a>(<?php echo $total; ?>)</li> 
                 <li><a href="employees.php">Employees</a></li>
                 <li><a href="roles.php">Roles</a></li>
                 <li><a href="company_details.php">Company Details</a></li>
