@@ -74,27 +74,42 @@ if($_SESSION['is_employee']==0){
 
         <ul>
            
-         <?php if(!isset($current_page)){
+         <?php 
+    //PAGE INDICATORS
+    if(!isset($current_page)){
                     echo "<li class=\"current_page\"><a href=\"index.php\">Dashboard</a></li>";
                 }else{
                    echo " <li><a href=\"index.php\">Dashboard</a></li>";
                 }
+    
+    // END PAGE INDICATORS
             ?>
              
                 <?php
                 if($current_page=="inventory"){
                     echo "<li class=\"current_page\">Inventory </li>";
-                }else{
-                   echo " <li>Inventory </li>";
-                }
-            ?>
-            
-            <ul>
+                    ?>
+                     <ul>
                 <li><a href="add_item.php">Add Item</a></li>
                 <li><a href="inventory.php">View Items</a></li>
                 <li><a href="rooms.php">View Rooms</a></li> 
 
             </ul> 
+               <?php
+                }else{
+                   echo " <li>Inventory </li>";
+                     ?>
+                     <ul>
+                <li><a href="add_item.php">Add Item</a></li>
+                <li><a href="inventory.php">View Items</a></li>
+                <li><a href="rooms.php">View Rooms</a></li> 
+
+            </ul> 
+               <?php
+                }
+            ?>
+            
+           
 
             <li>Claims</li>
             <ul> 

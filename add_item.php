@@ -1,4 +1,6 @@
-<?php include("inc/header.php"); ?>
+<?php 
+$current_page="inventory";
+include("inc/header.php"); ?>
 
 
 <h1>New Item</h1> 
