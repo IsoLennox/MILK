@@ -74,11 +74,15 @@ if($_SESSION['is_employee']==0){
 
         <ul>
            
-         <?php if(!isset($current_page)){
+         <?php 
+    //PAGE INDICATORS
+    if(!isset($current_page)){
                     echo "<li class=\"current_page\"><a href=\"index.php\">Dashboard</a></li>";
                 }else{
                    echo " <li><a href=\"index.php\">Dashboard</a></li>";
                 }
+    
+    // END PAGE INDICATORS
             ?>
              
                 <?php
