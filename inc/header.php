@@ -66,13 +66,29 @@ if($_SESSION['is_employee']==0){
     //************************//
     //     IS CLIENT
     //************************//
-    
-    
-    echo "<h4>".$_SESSION['username']."</h4>"; 
-    ?>
+         ?>
+     <form action="#" method="#">
+         <input type="search" name="client_search" id="searchbar">
+         <input type="submit" name="submit" id="nav_search" value="Search">
+     </form>
+
         <ul>
-            <li><a href="index.php">Dashboard</a></li>
-            <li>Inventory </li>
+           
+         <?php if(!isset($current_page)){
+                    echo "<li class=\"current_page\"><a href=\"index.php\">Dashboard</a></li>";
+                }else{
+                   echo " <li><a href=\"index.php\">Dashboard</a></li>";
+                }
+            ?>
+             
+                <?php
+                if($current_page=="inventory"){
+                    echo "<li class=\"current_page\">Inventory </li>";
+                }else{
+                   echo " <li>Inventory </li>";
+                }
+            ?>
+            
             <ul>
                 <li><a href="add_item.php">Add Item</a></li>
                 <li><a href="inventory.php">View Items</a></li>
@@ -96,7 +112,12 @@ if($_SESSION['is_employee']==0){
     //IS EMPLOYEE
     //************************//
     
-    echo "<h4>".$_SESSION['username']."</h4>"; 
+     ?>
+     <form action="#" method="#">
+         <input type="search" name="employee_search" id="searchbar">
+         <input type="submit" name="submit" id="nav_search" value="Search">
+     </form>
+     <?php 
     echo "<h4>Employee Role</h4>";  
     
     //NOTIFICATIONS FOR CLAIMS: GET NUMBER OF CLAIMS PENDING

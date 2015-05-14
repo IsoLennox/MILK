@@ -1,17 +1,8 @@
 <?php include("inc/header.php"); ?>
  
- <script>
-     //TOGGLE VISIBILITY FORMS
-    function toggle_visibility(id) {
-       var e = document.getElementById(id);
-       if(e.style.display == 'block')
-          e.style.display = 'none';
-       else
-          e.style.display = 'block';
-    }
-</script>
+ 
 <!--  GET USER INFO-->
-            <?php 
+   <?php 
     $user_query  = "SELECT * FROM users WHERE id={$_SESSION['user_id']}";  
     $user_result = mysqli_query($connection, $user_query);
     $num_rows=mysqli_num_rows($user_result);
@@ -267,11 +258,11 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
      
      </script>  
     
-   <h4>Settings</h4>
-   <div class="center one-third"> 
+   <h1>Settings</h1>
+   <div> 
  
    
-   <h2 class="links" onclick="toggle_visibility('new_username');">Change Username</h2> 
+   <h2>Change Username</h2> 
    <p>Your public-facing name</p>
     <span id="new_username">
     <form action="settings.php?username" method="POST">
@@ -291,7 +282,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     
     
     <hr/>
-   <h2 class="links" onclick="toggle_visibility('new_email');">Change Email  </h2>
+   <h2>Change Email  </h2>
       <p>Used to log in and recover password</p>
        <span id="new_email">
     <form action="settings.php?email" method="POST">
@@ -305,7 +296,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
    <hr/>
    
    
-   <h2 class="links" onclick="toggle_visibility('new_pass');">Change Password</h2>
+   <h2>Change Password</h2>
           <span id="new_pass"> 
     <form action="settings.php?password" method="POST">
         <p> Old Password:</p> <input type="password" value="" name="old_pass" placeholder="OLD PASSWORD"><br/>
