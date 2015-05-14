@@ -82,14 +82,20 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                 $itemresult = mysqli_query($connection, $item_query);
                 if($itemresult){ 
                     //item SELECT BOX
-                    echo "<p>Items: "; 
+                    echo "<p>Items: <br/>"; 
+                    ?> <ul id="form_id" style="list-style: none;">
+                        <li>
+                          <label for="select_input">
+                            <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> Select all
+                          </label>
+                        </li> <?php
+                          
                     foreach($itemresult as $item){
                         //OPTIONS
-                        echo "<input type=\"checkbox\" name=\"items[]\" value=\"".$item['id']."\" >".$item['name']."</option>"; 
+                        echo "<li><input type=\"checkbox\" name=\"items[]\" value=\"".$item['id']."\" >".$item['name']."</option></li>"; 
                     }
-                    echo "</p>";
-                }//end get items 
-                    echo "<p>+ Add Item</p>";
+                    echo "</ul></p>";
+                }//end get items  
 
                     $claim_type_query  = "SELECT * FROM claim_types ORDER BY name"; 
                         $claim_typeresult = mysqli_query($connection, $claim_type_query);
@@ -113,7 +119,48 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
  </form>
      
 <a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');">Cancel</a> 
+       
         
+        
+ 
+
+
+<!--         JAVASCRIPT FOR SELECT ALL BUTTON      -->
+
+<script>
+    var formblock;
+var forminputs;
+
+function prepare() {
+      formblock= document.getElementById('form_id');
+      forminputs = formblock.getElementsByTagName('input');
+      selectinput = document.getElementById('select_input');
+    }
+ 
+    function select_all(name) {
+
+    for (i = 0; i < forminputs.length; i++) {
+    var regex = new RegExp(name, "i");
+      if (regex.test(forminputs[i].getAttribute('name'))) {
+        if (selectinput.checked==true) {
+          forminputs[i].checked = true;
+        } else {
+          forminputs[i].checked = false;
+        }
+      }
+    }
+    }
+ 
+    if (window.addEventListener) {
+      window.addEventListener("load", prepare, false);
+    } else if (window.attachEvent) {
+      window.attachEvent("onload", prepare)
+    } else if (document.getElementById) {
+      window.onload = prepare;
+    }
+</script>
+
+
 <?php  
 
 include("inc/footer.php"); ?>
