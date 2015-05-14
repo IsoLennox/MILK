@@ -45,13 +45,40 @@
 <div id="rooms">
  <h2>Your Rooms:</h2> 
 <?php  
+
+                function item_array($array, $key, $value){
+                    $array[$key] = $value;
+                    return $array;
+                }
+
     $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
     $roomresult = mysqli_query($connection, $roomquery);
     if($roomresult){
         //show each result value
         foreach($roomresult as $show){
-            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (# items)</h4>";
-//            echo $show['notes']."<br/>";
+                $item_count=0;
+                $item_array=array();
+
+            
+                $item_query  = "SELECT * FROM items WHERE room_id={$show['id']} AND in_trash=0";  
+                $item_result = mysqli_query($connection, $item_query);
+            if($item_result){
+                foreach($item_result as $item){  
+                    $item_count++; 
+                    $item_array = item_array($item_array, $item['id'], $item['name']);
+                 }
+            }
+            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (".$item_count." items)</h4>";
+           
+                if(!empty($item_array)){
+                     echo "<ul>";
+                    foreach($item_array as $id=>$name){
+                        echo "<li><a href=\"item_details.php?id=".$id."\" >".$name."</a></li>";
+                    }
+                    echo "</ul>";
+                }
+            
+ 
             }
         }
  ?> 
