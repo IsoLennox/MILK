@@ -7,6 +7,8 @@ if($_SESSION['is_employee']==0){
     //CLIENT
     ?>
     <h2>Your Dashboard</h2> 
+    
+    <img src="img/stats.PNG" alt="sample stats" />
     <ul>
         <li>Total number of items</li>
         <?php
@@ -53,6 +55,8 @@ if($_SESSION['is_employee']==0){
     
 }else{  ?>
     <h2>Statistics</h2>
+    
+     <img src="img/stats.PNG" alt="sample stats" />
     <ul>
         <li>Total number of clients</li>
         <li>number of claims made &amp; Percent of resolved/denied/pending claims</li>
