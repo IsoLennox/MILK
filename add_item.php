@@ -16,10 +16,10 @@ if (isset($_POST['submit'])) {
     
     
         //INSERT ALL DATA EXCEPT PERMISSIONS
-    $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat}, {$date} ) ";
+    $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date, updated, in_trash ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat}, '{$date}', '{$date}', 0 ) ";
     $insert_result = mysqli_query($connection, $insert);
     if($insert_result){ 
-            
+             
         //INSERT INTO HISTORY
         
             //get item id for link in history content
