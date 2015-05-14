@@ -46,7 +46,7 @@ if(isset($_GET['id'])){ ?>
         
 <?php     }
     
-        echo "<a href=\"room_details.php?id=".$_GET['room']."\">Cancel</a>";
+        echo "<a onclick=\"return confirm('Leave the page? This will not save your changes!')\" href=\"room_details.php?id=".$_GET['room']."\">Cancel</a>";
 
 }elseif(isset($_GET['submit'])){ 
     //SAVE ROOM EDITS
