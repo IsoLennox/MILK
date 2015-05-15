@@ -2,23 +2,10 @@
 
 
 <h1>Employee Roles</h1> 
-<?php
-//SEE IF THIS USER HAS EDIT ROLE PERMISSIONS
-     foreach($_SESSION['permissions'] as $key => $val){ 
-         echo $val;
-        if($val==3){
-            $permission=1; 
-        }else{
-            $permission=0;
-        }
-    }
 
-
-//REDIRECT IF NO PERMISSIONS TO VIEW THIS PAGE
-if($permission==1){ ?>
  <a href="add_role.php">New Role</a><br/>
  
-<?php }
+ <?php
 
 //Get all Roles
 
@@ -50,7 +37,7 @@ if($permission==1){ ?>
                         }//end get permissions
                         echo "</ul>";
                     }//end get permissions from joint table
-            if($permission==1){ echo "<a href=\"edit.php?role=".$role_id."\">Edit Role</a><br/>"; }
+                echo "<a href=\"edit.php?role=".$role_id."\">Edit Role</a><br/>"; 
              echo "<br/>";
             }//end echo roles
        

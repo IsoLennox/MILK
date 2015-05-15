@@ -204,12 +204,29 @@ if($_SESSION['is_employee']==0){
     $data=mysqli_fetch_assoc($result);
     $total= $data['total'];
     //NOTIFICATIONS FOR MESSAGES: GET NUMBER OF MESSAGES WHERE SENT_TO==you && VIEWED==0
-        ?>
+    
+    
+   
+//GET NAV ITEM PERMISSIONS
+     foreach($_SESSION['permissions'] as $key => $val){ 
+//         echo $val;
+         
+         //UPDATE ROLES
+        if($key===3){ 
+            $roles=1; 
+        }else{
+            $roles=0;
+        } 
+    }  ?>
             <ul>
                 <li><a href="messages.php">Messages</a></li>
                 <li><a href="claims.php">Claims</a>(<?php echo $total; ?>)</li> 
                 <li><a href="employees.php">Employees</a></li>
+                <?php if($roles==1){ ?>
                 <li><a href="roles.php">Roles</a></li>
+                
+                <?php }?>
+                
                 <li><a href="company_details.php">Company Details</a></li>
                 <li><a href="index.php">Statistics</a></li>
                 <li><a href="activity.php">Activity</a></li> 

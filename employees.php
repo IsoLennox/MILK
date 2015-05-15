@@ -2,12 +2,21 @@
 
 
 <h1>Employees</h1>
- <a href="new_employee.php">New Employee</a> 
+
+<?php
+                //GET PERMISSIONS FOR THIS PAGE
+             foreach($_SESSION['permissions'] as $key => $val){  
+                 //EDIT EMPLOYEES
+                if($key===2){ 
+                    echo " <a href=\"new_employee.php\">New Employee</a> ";
+                } 
+            }  
+
+?>
+
          
-         
-          <p>Employees of Greenwell Bank using UnderMyRoof</p>
-          <ul>
-                        <?php
+          
+          <ul> <?php
 
 //GET ALL EMPLOYEES
 
@@ -27,6 +36,14 @@
                 }
                     
             echo "<li><a href=\"profile.php?user=".$show['id']."\">".$show['first_name']." ".$show['last_name']."</a> ".$role['name']."</li>";
+            
+                    //GET PERMISSIONS FOR THIS PAGE
+             foreach($_SESSION['permissions'] as $key => $val){  
+                 //EDIT EMPLOYEES
+                if($key===2){ 
+                    echo "Edit Employee (Change role / Delete employee)";
+                } 
+            }  
              
         }
     }
