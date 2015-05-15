@@ -183,15 +183,18 @@ if($_SESSION['is_employee']==0){
   
 <header>
     <!--        USER ICONS -->
-    <div id="user_header" class="right">
+    <!-- <div id="user_header"> -->
+    <div class="search_container">
         <form class ='search' action="#" method="#">
         	<input type="submit" name="submit" id="nav_search" value="">
-	        <input type="search" name="client_search" id="searchbar">
-	        
+	        <input type="search" placeholder='Search Here' name="client_search" id="searchbar">
 	    </form>
+	</div>
+    <div class="account_links">
         <a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i class="fa fa-cog"></i></a> | 
         <a title="Log Out" href="logout.php"><i class="fa fa-sign-out"></i></a> 
-    </div> 
+    </div>
+    <!-- </div>  -->
 </header> 
 
 

@@ -20,35 +20,72 @@ rgba(144,195,46,.4);
 */
  /*-----------------------------------------------*/
  /*Header Area On Every Page*/
+nav { 
+/*    CHANGE ANYTHING YOU NEED TO, THIS WAS JUST FOR ENOUGH STRUCTURE FOR TESTING */
+    /*    background: rgba(144,195,46,.4);*/
+    background: #eee;
+    width: 200px;
+    padding: 20px;
+    float: left;
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    
+} 
 
 header { 
     background: #eee;
-    height: 100px; 
-    padding: 10px;
+    height: 60px; 
+    /*padding: 10px;*/
+    float:right;
     position: fixed;
     top: 0;
+    left:240px;
     width: 100%;
     z-index: 999;
+    border-bottom: 1px solid #90C32E;
 }  
 
-    header div {
-        float:left;
+
+.account_links {
+    width:50%;
+}
+
+.search_container {
+    width:50%;
+}
+
+.search input[type="submit"]{
+    width:60px; 
+    height:60px;
+    background:#90C32E;
+}
+.search input[type="submit"]:hover{
+    background: #eee;
+}
+
+.search input[type='search'] {
+    width:75%; 
+    height:60px;
+    border-right:1px solid #90C32E;
+    background-color: #eee;
+}
+
+.search input {
+    float:left;
+}
+    .search input:nth-of-type(2) {
+        margin-right: 20px;
     }
-    header div:nth-of-type(1) {
-        width:20%;
-    }
-    header div:nth-of-type(2) {
-        width:80%;
-        text-align: left
-    }
 
 
 
 
 
 
-
-
+/*-----------------------------------------------*/
 .current_page{
     background:white;
 }
@@ -59,20 +96,7 @@ header {
     font-weight: 900;
     font-size: 22px;
 }
-nav { 
-/*    CHANGE ANYTHING YOU NEED TO, THIS WAS JUST FOR ENOUGH STRUCTURE FOR TESTING */
-    /*    background: rgba(144,195,46,.4);*/
-    background: #D3E7AB;
-    width: 200px;
-    padding: 20px;
-    float: left;
-    position:fixed;
-    top:90px;
-    bottom:0px;
-    left:0px;
-    right:0px;
-    
-} 
+
 
 #page{margin-left: 300px; margin-top: 120px;}
 footer{
@@ -94,31 +118,6 @@ input,textarea {
 }
  
 .links:hover{cursor: pointer;}
-
-.search input[type="submit"]{
-    width:50px; 
-    height:50px;
-    color:#90C32E;
-}
-.search input[type="submit"]:hover{
-    color: white;
-}
-
-.search input[type='search'] {
-    width:75%; 
-    height:50px;
-    border-right:1px solid #333;
-}
-
-.search input {
-    float:left;
-}
-    .search input:nth-of-type(2) {
-        margin-right: 20px;
-    }
-
-
-
 
 
 input[type="submit"]:hover{
