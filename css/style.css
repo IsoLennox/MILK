@@ -1,3 +1,9 @@
+/*#004800  Used for headings
+#90C32E  Used for panel backgrounds
+#333333  Used for text
+#387929 */
+
+
 /*   LARHEA: CHANGE ANYTHING YOU NEED TO, THIS WAS JUST FOR ENOUGH STRUCTURE FOR TESTING */
 body{
     font-size: 18px; 
@@ -12,19 +18,36 @@ body{
 rgba(154,179,35,1);
 rgba(144,195,46,.4);
 */
- 
- 
+ /*-----------------------------------------------*/
+ /*Header Area On Every Page*/
 
- 
 header { 
-    background: #D3E7AB;
-    height: 70px; 
+    background: #eee;
+    height: 100px; 
     padding: 10px;
     position: fixed;
     top: 0;
-    width: 99%;
+    width: 100%;
     z-index: 999;
 }  
+
+    header div {
+        float:left;
+    }
+    header div:nth-of-type(1) {
+        width:20%;
+    }
+    header div:nth-of-type(2) {
+        width:80%;
+        text-align: left
+    }
+
+
+
+
+
+
+
 
 .current_page{
     background:white;
@@ -60,36 +83,55 @@ footer{
 .center{
     margin: 0 auto;
     text-align: center;
-}
+}/*
 .left{float: left;}
-.right{float: right;}
+.right{float: right;}*/
   
  
-
+input,textarea {
+    border:none;
+    outline:none;
+}
  
 .links:hover{cursor: pointer;}
 
 .search input[type="submit"]{
-    font-family: FontAwesome;
-    content: "&#xf002;";  
+    width:50px; 
+    height:50px;
+    color:#90C32E;
 }
-.search input[type="submit"]:hover{color: white;}
+.search input[type="submit"]:hover{
+    color: white;
+}
+
+.search input[type='search'] {
+    width:75%; 
+    height:50px;
+    border-right:1px solid #333;
+}
+
+.search input {
+    float:left;
+}
+    .search input:nth-of-type(2) {
+        margin-right: 20px;
+    }
+
+
+
+
 
 input[type="submit"]:hover{
     cursor: pointer;
-    padding: 5px;
+    /*padding: 5px;*/
     border-radius: 5px;
-    background-color: darkolivegreen;
-    color: antiquewhite;
 }
 
 input[type="submit"]{ 
     cursor: pointer;
     font-size: 20px;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: olivedrab;
-    color: antiquewhite;
+    /*padding: 5px;*/
+    /*border-radius: 5px;*/
 }
 
 
