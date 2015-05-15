@@ -7,27 +7,24 @@ include("inc/header.php"); ?>
  
 
 <?php
+if(isset($_GET['submit'])){
+    $new_status=$_GET['status'];
+    $notes=$_GET['notes'];
+    $append_prefix= "<br><hr/><br><strong>Claim Adjuster Notes: </strong>";
  
+ }
 if(isset($_GET['id'])){
    
-    
-if($_SESSION['is_employee']==1){
-    echo "<a href=\"claims.php\">&laquo; Back to Claims</a><br/>";
-    echo "<br/><a href=\"update_claim.php?id=".$_GET['id']."\">Update This Claim</a><br/>";     
-}else{
-
-    echo "<a href=\"claim_history.php\">&laquo; Back to Claims History</a>";
-}
-
- 
-
+    //CHECK PERMISSIONS
+    if($_SESSION['is_employee']==1){
+       
+        
     $query  = "SELECT * FROM claims WHERE id={$_GET['id']}";  
     $result = mysqli_query($connection, $query);
     if($result){ 
         //show each result value
-        foreach($result as $show){
-//              if($_SESSION['is_employee']==1 || $show['user_id']===$_SESSION['user_id'] ){
-              if($_SESSION['is_employee']==1 || $show['user_id']===$_SESSION['user_id'] ){
+        foreach($result as $show){ 
+           
             
                         //GET CLAIM TYPE NAME
     $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
@@ -38,11 +35,8 @@ if($_SESSION['is_employee']==1){
     }
             
             
-            echo "<h1>".$show['title']."</h1>";
-            echo "<h2> Pending</h2>";
-             if($show['user_id']===$_SESSION['user_id'] ){
-                 echo "<a href=\"#\">Revoke this claim</a><br/>";
-             }//end revoke option
+            echo "<h1>Updating: ".$show['title']."</h1>";
+            echo "<h2>Status: ".$show['status_id']."</h2>"; 
             
                   $user=find_user_by_id($show['user_id']);
                   $username=$user['first_name']." ".$user['last_name'];
@@ -64,13 +58,32 @@ if($_SESSION['is_employee']==1){
             }
                   echo "</ul>";
                   
-            echo "Notes/Description: ".$show['notes']."<br/>";      
-            }else{
-        echo "Oops! It looks like you do not have permission to be here";
-     }  
+            echo "Notes/Description: ".$show['notes']."<br/>";    
+            echo "<hr/>";
+            echo "<h2>Actions</h2>";
+            
+            ?>
+            <form method="POST">
+                
+                <input type="radio" name="status">Approve
+                <input type="radio" name="status">Deny
+                <br/>
+                <textarea name="notes" id="notes" cols="30" rows="10" placeholder="Append notes..."></textarea>
+                <input type="submit" name="submit" value="Update Claim">
+            </form>
+            <?php 
         }
      }
-    
+        
+        
+        
+
+
+    }else{
+        //redirect to a sweet no permissions page
+        echo "You do not have permission to view this page!";
+
+    } //end get permissions
 }else{
 
     echo "This claim does not exist!";

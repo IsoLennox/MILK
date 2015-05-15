@@ -63,10 +63,43 @@ if($_SESSION['is_employee']==0){
         <li>Total number of clients</li>
         <li>number of claims made &amp; Percent of resolved/denied/pending claims</li>
     </ul>
+    
+    
+    
+    
+    
+    
     <?php
+    
+    
+    
+            //GET CLAIM COUNTS
+            $all_query  = "SELECT COUNT(*) as total FROM claims";   
+            $all_result = mysqli_query($connection, $all_query);
+            $data=mysqli_fetch_assoc($all_result);
 
-}
-    ?>
+            $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=0";   
+            $pending_result = mysqli_query($connection, $pending_query);
+            $pdata=mysqli_fetch_assoc($pending_result); 
+
+
+            $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=2";   
+            $approved_result = mysqli_query($connection, $approved_query);
+            $adata=mysqli_fetch_assoc($approved_result); 
+
+            $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=3";   
+            $denied_result = mysqli_query($connection, $denied_query);
+            $ddata=mysqli_fetch_assoc($denied_result); 
+        ?>
+           <li><a href="claims.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claims.php?pending">Pending</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claims.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claims.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
+           
+           
+           
+
+<?php }     ?>
 
            
            <?php
