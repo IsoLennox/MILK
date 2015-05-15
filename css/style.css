@@ -85,6 +85,13 @@ rgba(154,179,35,1);
 rgba(144,195,46,.4);
 */
  /*-----------------------------------------------*/
+h1 {
+	font-size: 2em;
+	font-weight: 700;
+	color:#004800;
+	text-align: center;
+}
+
 
 a {
 	color:#90C32E;
@@ -93,6 +100,8 @@ a {
 a:hover {
 
 }
+
+
 
 
 
@@ -124,15 +133,36 @@ nav {
 		text-decoration: none;
 	}
 
-	nav > ul li {
+	nav ul > li {
 		padding: 15px 20px;
+		font-weight:400;
 	}
 
 	nav ul li ul li {
-		padding:5px;
+		padding:5px 15px;
+		font-weight: 300;
+	}
+	nav ul li ul li:nth-of-type(1) {
+		padding-top:15px;
+	}
+	/*nav ul li ul li a:active {
+		border-left:3px solid #90C32E;
+		background-color: #333
+		color:#90C32E;
+	}*/
+
+	.current_page ul li a:active {
+		color:#90C32E;
 	}
 
-
+.logo_user {
+	text-align: center;
+	padding-bottom:20px;
+	border-bottom: 1px solid #e1e1e1
+}
+.logo_user img{
+	margin: 20px 0;
+}
 
 header { 
     background: #eee;
@@ -173,6 +203,7 @@ header {
     width:60px; 
     height:60px;
     background:#90C32E;
+    border:none;
 }
 .search input[type="submit"]:hover{
     background: #eee;
@@ -184,6 +215,7 @@ header {
     height:60px;
     border-right:1px solid #90C32E;
     background-color: #eee;
+    border:none;
 }
 
 .search input {
@@ -196,6 +228,7 @@ header {
 
 
 /*-----------------------------------------------*/
+
 .current_page{
     background:white;
 }
@@ -221,44 +254,6 @@ footer{
 .left{float: left;}
 .right{float: right;}*/
   
- 
-input,textarea {
-    border:none;
-    outline:none;
-}
- 
-.links:hover{cursor: pointer;}
-
-
-input[type="submit"]:hover{
-    cursor: pointer;
-    /*padding: 5px;*/
-    border-radius: 5px;
-}
-
-input[type="submit"]{ 
-    cursor: pointer;
-    font-size: 20px;
-    /*padding: 5px;*/
-    /*border-radius: 5px;*/
-}
-
-
-input[type="file"]:hover{
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px; 
-    color: black;
-}
-
-input[type="file"]{ 
-    cursor: pointer;
-    font-size: 20px;
-    padding: 5px;
-    border-radius: 5px;
-    color: black;
-}
- 
 
 .clearfix:after {
 visibility: hidden;
@@ -277,8 +272,87 @@ height: 0;
 /* End hide from IE-mac */
 
  
-
+input,textarea {
+    border:none;
+    outline:none;
+}
  
+
+
+/*-------------------------------------------------*/
+/*Inventory Page FORM Styling*/
+.add_item {
+	width:900px;
+	margin:0 auto;
+}
+
+
+.add_item input,textarea,select {
+    width:100%;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+}
+
+.add_item input[type="submit"]:hover{
+    cursor: pointer;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: #90C32E;
+
+}
+
+.add_item input[type="submit"]{ 
+    cursor: pointer;
+    font-size: 20px;
+    /*padding: 5px;*/
+    /*border-radius: 5px;*/
+}
+
+
+.add_item input[type="file"]:hover{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px; 
+    color: black;
+}
+
+.add_item input[type="file"]{ 
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /******************************

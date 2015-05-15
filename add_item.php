@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 
-<form method="POST" >
+<form class='add_item' method="POST" >
                
      <!--    //GET ITEM CATEGORIES -->
    <?php
@@ -56,7 +56,9 @@ if (isset($_POST['submit'])) {
     $categoryresult = mysqli_query($connection, $category_query);
     if($categoryresult){ 
         //CATEGORY SELECT BOX
-        echo "<p>Category:  <select  name=\"category\">";
+        //OPTION VALUE -- NEEDS TO BE ADDED AS CONDITIONAL fOR EMPTY//////////////////////////////////////////
+        echo "<p>Item Category: <select  name=\"category\">";
+        echo "<option value=\"--\" >--Select Item Category--</option>";
         foreach($categoryresult as $category){
             //OPTIONS
             echo "<option value=\"".$category['id']."\" >".$category['name']."</option>"; 
@@ -68,7 +70,7 @@ if (isset($_POST['submit'])) {
 
 
 
-    <p>Item Title: <input type="text" name="name" placeholder="i.e. Samsung Television" value="" ></p>
+    <p> Item Name: <input type="text" name="name" placeholder=" i.e. Samsung Television" value="" ></p>
     
 <!--    //GET ROOMS TO CHOOSE FROM -->
    <?php
