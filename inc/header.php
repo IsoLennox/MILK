@@ -138,7 +138,7 @@ if($_SESSION['is_employee']==0){
 <?php }else{ ?>
                <li>Claims
             <ul> 
-                
+              <li><a href="file_new_claim.php">File Claim</a></li>  
           <?php 
         //GET COUNTS
             $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
@@ -163,7 +163,7 @@ if($_SESSION['is_employee']==0){
            <li><a href="claim_history.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
            <li><a href="claim_history.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
         
-                <li><a href="file_new_claim.php">File Claim</a></li>
+                
 <!--                <li><a href="claim_history.php">Claim History</a></li>-->
             </ul></li> 
           
@@ -238,10 +238,10 @@ if($_SESSION['is_employee']==0){
 
     <div class="account_links">
         <div>
-        	<a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i class="fa fa-cog"></i></a>
+        	<a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i class="fa fa-cog fa-2x"></i></a>
         </div>
         <div>
-        	<a title="Log Out" href="logout.php"><i class="fa fa-sign-out"></i></a>
+        	<a title="Log Out" href="logout.php"><i class="fa fa-sign-out fa-2x"></i></a>
         </div> 
     </div>
 </header> 

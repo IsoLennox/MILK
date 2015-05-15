@@ -107,8 +107,8 @@ nav {
 /*    CHANGE ANYTHING YOU NEED TO, THIS WAS JUST FOR ENOUGH STRUCTURE FOR TESTING */
     /*    background: rgba(144,195,46,.4);*/
     background: #eee;
-    width: 240px;
-    padding: 20px;
+    width: 250px;
+    /*padding: 20px;*/
     position:fixed;
     top:0px;
     bottom:0px;
@@ -124,8 +124,12 @@ nav {
 		text-decoration: none;
 	}
 
-	nav ul li {
-		padding:10px 20px;
+	nav > ul li {
+		padding: 15px 20px;
+	}
+
+	nav ul li ul li {
+		padding:5px;
 	}
 
 
@@ -135,9 +139,9 @@ header {
     height: 60px;
     position: fixed;
     top: 0;
-    left:240px;
-    max-width: 2000px;
-    width: 83%;
+    left:250px;
+    /*max-width: 2000px;*/
+    width: calc(100% - 250px);
     z-index: 999;
     border-bottom: 1px solid #90C32E;
 }  
@@ -152,12 +156,12 @@ header {
 }
     .account_links >div {
     	min-width: 60px;
-        width:49%;
+        width:50%;
         color:#333;
         padding:5px;
         height:60px;
         float:left;
-        border-left: 1px solid #90C32E;
+        /*border-left: 1px solid #90C32E;*/
         text-align: center;
     }
 
@@ -166,7 +170,7 @@ header {
 }
 
 .search input[type="submit"]{
-    width:5%; 
+    width:60px; 
     height:60px;
     background:#90C32E;
 }
@@ -175,7 +179,8 @@ header {
 }
 
 .search input[type='search'] {
-    width:95%; 
+	width:95%;
+    width:calc(100% - 60px); 
     height:60px;
     border-right:1px solid #90C32E;
     background-color: #eee;
