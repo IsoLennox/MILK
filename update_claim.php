@@ -7,13 +7,15 @@ include("inc/header.php"); ?>
  
 
 <?php
-if(isset($_GET['submit'])){
-    $new_status=$_GET['status'];
-    $notes=$_GET['notes'];
+if(isset($_POST['submit'])){
+    $claim_id=$_POST['id'];
+    $new_status=$_POST['status'];
+    $notes=$_POST['notes'];
     $append_prefix= "<br><hr/><br><strong>Claim Adjuster Notes: </strong>";
+    
+    echo "You've submitted: <br/>Status: ".$new_status."<br/>Notes: ".$append_prefix.$notes;
  
- }
-if(isset($_GET['id'])){
+ }elseif(isset($_GET['id'])){
    
     //CHECK PERMISSIONS
     if($_SESSION['is_employee']==1){
@@ -36,7 +38,15 @@ if(isset($_GET['id'])){
             
             
             echo "<h1>Updating: ".$show['title']."</h1>";
-            echo "<h2>Status: ".$show['status_id']."</h2>"; 
+            
+            if($show['status_id'==0]){
+                $status="Pending"; 
+            }elseif($show['status_id'==2]){
+                $status="Pending"; 
+            }elseif($show['status_id'==3]){
+                $status="Pending"; 
+            }
+            echo "<h2>Status: ".$status."</h2>"; 
             
                   $user=find_user_by_id($show['user_id']);
                   $username=$user['first_name']." ".$user['last_name'];
@@ -63,13 +73,14 @@ if(isset($_GET['id'])){
             echo "<h2>Actions</h2>";
             
             ?>
-            <form method="POST">
+            <form action="update_claim.php?id=<?php echo $show['id']; ?>" method="POST">
                 
-                <input type="radio" name="status">Approve
-                <input type="radio" name="status">Deny
+                <input checked type="radio" name="status" value="0">Pending
+                <input type="radio" name="status" value="2">Approve
+                <input type="radio" name="status" value="3">Deny
                 <br/>
                 <textarea name="notes" id="notes" cols="30" rows="10" placeholder="Append notes..."></textarea>
-                <input type="submit" name="submit" value="Update Claim">
+                <input type="submit" id="submit" name="submit" value="Update Claim">
             </form>
             <?php 
         }
