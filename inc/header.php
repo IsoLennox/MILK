@@ -76,7 +76,7 @@ if($_SESSION['is_employee']==0){
            
          <?php 
     //PAGE INDICATORS
-    if(!isset($current_page)){
+    if(!isset($current_page) || $current_page=="dashboard"){
                     echo "<li class=\"current_page\"><a href=\"index.php\">Dashboard</a></li>";
                 }else{
                    echo " <li><a href=\"index.php\">Dashboard</a></li>";
@@ -107,21 +107,38 @@ if($_SESSION['is_employee']==0){
             </ul> 
                <?php
                 }
-            ?>
-            
-           
-
-            <li>Claims</li>
+    
+            if($current_page=="claims"){ ?>
+            <li class="current_page">Claims</li>
             <ul> 
                 <li><a href="file_new_claim.php">File Claim</a></li>
                 <li><a href="claim_history.php">Claim History</a></li>
             </ul> 
-            <li><a href="activity.php">Activity</a></li> 
-            <li><a href="help.php">Help</a></li> 
+           
+<?php }else{ ?>
+               <li>Claims</li>
+            <ul> 
+                <li><a href="file_new_claim.php">File Claim</a></li>
+                <li><a href="claim_history.php">Claim History</a></li>
+            </ul> 
+          
+   <?php } 
+            
+             if($current_page=="activity"){ ?>
+   
+            <li class="current_page"><a href="activity.php">Activity</a></li> 
+            <?php }else{ ?>
+             <li><a href="activity.php">Activity</a></li>
+           <?php  } 
+            
+            if($current_page=="help"){?>
+            <li class="current_page"><a href="help.php">Help</a></li> 
+             <?php }else{ ?>
+              <li><a href="help.php">Help</a></li> 
+              <?php  } ?>
         </ul>
-<?php
     
-}else{
+<?php }else{
     
     //************************//
     //IS EMPLOYEE

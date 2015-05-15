@@ -1,4 +1,6 @@
-<?php include("inc/header.php"); ?>
+<?php 
+$current_page="dashboard";
+include("inc/header.php"); ?>
 
 
   <?php 

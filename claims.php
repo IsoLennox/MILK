@@ -1,4 +1,6 @@
-<?php include("inc/header.php"); ?>
+<?php 
+$current_page="claims";
+include("inc/header.php"); ?>
 
 <!--FOR EMPLOYEES-->
  

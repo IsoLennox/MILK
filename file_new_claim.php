@@ -1,4 +1,6 @@
-<?php include("inc/header.php"); 
+<?php  
+$current_page="claims";
+include("inc/header.php"); 
 
 //PROCESS/INSERT CLAIM INTO TABLE
 if(isset($_POST['submit'])){

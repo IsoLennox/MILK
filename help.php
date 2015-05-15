@@ -1,4 +1,7 @@
-<?php include("inc/header.php"); ?>
+<?php 
+$current_page="help";
+include("inc/header.php"); ?>
+
 
 <h1>Submit a Help Ticket</h1>
 <h1>FAQS</h1>
