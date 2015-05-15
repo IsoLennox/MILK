@@ -44,7 +44,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     if(isset($_GET['pending'])){
     
     //select all where claim type == pending   order by id ASC  
-    echo "<h2>Pending Claims</h2>";  
+    echo "<h1>Pending Claims</h1>";  
         //GET ALL PENDING 
 
     $query  = "SELECT * FROM claims WHERE status_id=0 ORDER BY id DESC";  
@@ -73,7 +73,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     
     //select all where claim type == approved    order by id DESC  
       
-    echo "<h2>Approved Claims</h2>";  
+    echo "<h1>Approved Claims</h1>";  
         //GET ALL PENDING 
 
     $query  = "SELECT * FROM claims WHERE status_id=2 ORDER BY id DESC";  
@@ -102,7 +102,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     }elseif(isset($_GET['denied'])){
     
     //select all where claim type == approved    order by id DESC  
-    echo "<h2>Denied Claims</h2>";  
+    echo "<h1>Denied Claims</h1>";  
         //GET ALL PENDING 
 
     $query  = "SELECT * FROM claims WHERE status_id=3 ORDER BY id DESC";  
