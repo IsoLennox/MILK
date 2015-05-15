@@ -1,3 +1,68 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+}
+/*---------------------------------------------------------------*/
+
+
+
+
 /*#004800  Used for headings
 #90C32E  Used for panel backgrounds
 #333333  Used for text
@@ -9,8 +74,9 @@ body{
     font-size: 18px; 
     font-family: 'Nunito', sans-serif;
     font-weight: 100; 
-    color: purple;
+    color: #333;
     margin: 0;
+    /*background-color: #eee;*/
 }
 
 /*COLORS: color:
@@ -19,46 +85,88 @@ rgba(154,179,35,1);
 rgba(144,195,46,.4);
 */
  /*-----------------------------------------------*/
+
+a {
+	color:#90C32E;
+}
+
+a:hover {
+
+}
+
+
+
+/*.wrapper {
+    margin:0 auto;
+    max-width: 1500px;
+    width:100%;
+}*/
+
  /*Header Area On Every Page*/
 nav { 
 /*    CHANGE ANYTHING YOU NEED TO, THIS WAS JUST FOR ENOUGH STRUCTURE FOR TESTING */
     /*    background: rgba(144,195,46,.4);*/
     background: #eee;
-    width: 200px;
+    width: 240px;
     padding: 20px;
-    float: left;
     position:fixed;
     top:0px;
     bottom:0px;
     left:0px;
     right:0px;
+    color:#333;
+    font-size: 1em;
     
 } 
 
+	nav a {
+		color:#333;
+		text-decoration: none;
+	}
+
+	nav ul li {
+		padding:10px 20px;
+	}
+
+
+
 header { 
     background: #eee;
-    height: 60px; 
-    /*padding: 10px;*/
-    float:right;
+    height: 60px;
     position: fixed;
     top: 0;
     left:240px;
-    width: 100%;
+    max-width: 2000px;
+    width: 83%;
     z-index: 999;
     border-bottom: 1px solid #90C32E;
 }  
 
+    header > div {
+        float:left;
+    }
 
 .account_links {
-    width:50%;
+    width:15%;
+    /*height:60px;*/
 }
+    .account_links >div {
+    	min-width: 60px;
+        width:49%;
+        color:#333;
+        padding:5px;
+        height:60px;
+        float:left;
+        border-left: 1px solid #90C32E;
+        text-align: center;
+    }
 
 .search_container {
-    width:50%;
+    width:85%;
 }
 
 .search input[type="submit"]{
-    width:60px; 
+    width:5%; 
     height:60px;
     background:#90C32E;
 }
@@ -67,7 +175,7 @@ header {
 }
 
 .search input[type='search'] {
-    width:75%; 
+    width:95%; 
     height:60px;
     border-right:1px solid #90C32E;
     background-color: #eee;
@@ -76,12 +184,9 @@ header {
 .search input {
     float:left;
 }
-    .search input:nth-of-type(2) {
+    /*.search input:nth-of-type(2) {
         margin-right: 20px;
-    }
-
-
-
+    }*/
 
 
 

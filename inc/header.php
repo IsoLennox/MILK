@@ -49,7 +49,7 @@ confirm_logged_in();
     
 <!--    FULL SITE  -->
 
-          
+<div class="wrapper">        
 <nav>
 	<div>
 	    <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a>
@@ -136,7 +136,7 @@ if($_SESSION['is_employee']==0){
             </ul> 
            
 <?php }else{ ?>
-               <li>Claims</li>
+               <li>Claims
             <ul> 
                 
           <?php 
@@ -165,7 +165,7 @@ if($_SESSION['is_employee']==0){
         
                 <li><a href="file_new_claim.php">File Claim</a></li>
 <!--                <li><a href="claim_history.php">Claim History</a></li>-->
-            </ul> 
+            </ul></li> 
           
    <?php } 
             
@@ -190,10 +190,6 @@ if($_SESSION['is_employee']==0){
     //************************//
     
      ?>
-     <form action="#" method="#">
-         <input type="search" name="employee_search" id="searchbar">
-         <input type="submit" name="submit" id="nav_search" value="Search">
-     </form>
      <?php 
     echo "<h4>Employee Role</h4>";  
     
@@ -233,18 +229,21 @@ if($_SESSION['is_employee']==0){
   
 <header>
     <!--        USER ICONS -->
-    <!-- <div id="user_header"> -->
     <div class="search_container">
-        <form class ='search' action="#" method="#">
-        	<input type="submit" name="submit" id="nav_search" value="">
+        <form class ='search' action="#" method="#">        	
 	        <input type="search" placeholder='Search Here' name="client_search" id="searchbar">
+	        <input type="submit" name="submit" id="nav_search" value="">
 	    </form>
 	</div>
+
     <div class="account_links">
-        <a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i class="fa fa-cog"></i></a> | 
-        <a title="Log Out" href="logout.php"><i class="fa fa-sign-out"></i></a> 
+        <div>
+        	<a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i class="fa fa-cog"></i></a>
+        </div>
+        <div>
+        	<a title="Log Out" href="logout.php"><i class="fa fa-sign-out"></i></a>
+        </div> 
     </div>
-    <!-- </div>  -->
 </header> 
 
 
