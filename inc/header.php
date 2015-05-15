@@ -30,7 +30,7 @@ confirm_logged_in();
         <!--        link to font awesome-->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <!--         STYLE GUIDE FONT  -->
-        <link href="http://fonts.googleapis.com/css?family=Nunito:300" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
         <!--   JS VERSIONS-->
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
@@ -51,10 +51,10 @@ confirm_logged_in();
 
 <div class="wrapper">        
 <nav>
-	<div>
-	    <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a>
-	    <i class="fa fa-user"> </i> <a title="Your Profile" href="profile.php"><?php echo $_SESSION['username']; ?></a>
-    </div>
+	<div class= 'logo_user'>
+    <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a><br>
+    <i class="fa fa-user"> </i> <a title="Your Profile" href="profile.php"><?php echo $_SESSION['username']; ?></a>
+  </div>
 
 <?php 
     
@@ -82,31 +82,31 @@ if($_SESSION['is_employee']==0){
              
                 <?php
                 if($current_page=="inventory"){
-                    echo "<li class=\"current_page\">Inventory </li>";
+                    echo "<li class=\"current_page\"><a href='inventory.php'>Inventory</a>";
                     ?>
                      <ul>
                 <li><a href="add_item.php">Add Item</a></li>
-                <li><a href="inventory.php">View Items</a></li>
+                <!-- <li><a href="inventory.php">View Items</a></li> -->
                 <li><a href="rooms.php">View Rooms</a></li> 
 
-            </ul> 
+            </ul> </li>
                <?php
                 }else{
-                   echo " <li>Inventory </li>";
+                   echo " <li><a href='inventory.php'>Inventory</a> ";
                      ?>
                      <ul>
                 <li><a href="add_item.php">Add Item</a></li>
-                <li><a href="inventory.php">View Items</a></li>
+                <!-- <li><a href="inventory.php">View Items</a></li> -->
                 <li><a href="rooms.php">View Rooms</a></li> 
 
-            </ul> 
+            </ul> </li>
                <?php
                 }
     
             if($current_page=="claims"){ ?>
-            <li class="current_page">Claims</li>
+            <li class="current_page"><a href="claim_history.php">Claims</a>
             <ul> 
-                
+               <li><a href="file_new_claim.php">File Claim</a></li> 
           <?php 
         //GET COUNTS
             $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
@@ -131,12 +131,12 @@ if($_SESSION['is_employee']==0){
            <li><a href="claim_history.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
            <li><a href="claim_history.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
         
-                <li><a href="file_new_claim.php">File Claim</a></li>
+                
 <!--                <li><a href="claim_history.php">Claim History</a></li>-->
-            </ul> 
+            </ul></li> 
            
 <?php }else{ ?>
-               <li>Claims
+               <li><a href="claim_history.php">Claims</a>
             <ul> 
               <li><a href="file_new_claim.php">File Claim</a></li>  
           <?php 
