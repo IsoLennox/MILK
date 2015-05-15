@@ -4,13 +4,21 @@ include("inc/header.php"); ?>
     
            
                   <h1>Your Activity</h1> 
-                  
+                
                         <select name="filter" id="filter">
-                            <option value="all">All Activity</option>
+                           <option value="all">All Activity</option>
+                           
+                            <?php if($_SESSION['is_employee']==0){ ?> 
                             <option value="new">New Items</option>
                             <option value="removed">Removed Items</option>
                             <option value="edited">Edited Items</option>
                             <option value="claims">Submitted Claims</option>
+                            <?php }else{ ?>
+                            <option value="new">Updated Claim</option>
+                            <option value="removed">Added Employee</option>
+                            <option value="edited">Updated Roles</option>
+                            <option value="claims">etc.</option>
+                            <?php } ?>
                        </select>    
 <?php
 
