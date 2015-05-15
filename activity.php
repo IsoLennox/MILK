@@ -1,4 +1,6 @@
-<?php include("inc/header.php"); ?> 
+<?php 
+$current_page="activity";
+include("inc/header.php"); ?> 
     
            
                   <h1>Your Activity</h1> 

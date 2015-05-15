@@ -1,4 +1,6 @@
-<?php include("inc/header.php"); 
+<?php  
+$current_page="claims";
+include("inc/header.php"); 
 
 //PROCESS/INSERT CLAIM INTO TABLE
 if(isset($_POST['submit'])){
@@ -81,6 +83,8 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
             $item_query  = "SELECT * FROM items WHERE in_trash=0 ORDER BY name"; 
                 $itemresult = mysqli_query($connection, $item_query);
                 if($itemresult){ 
+                    
+                    
                     //item SELECT BOX
                     echo "<p>Items: <br/>"; 
                     ?> <ul id="form_id" style="list-style: none;">
@@ -91,8 +95,17 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                         </li> <?php
                           
                     foreach($itemresult as $item){
-                        //OPTIONS
-                        echo "<li><input type=\"checkbox\" name=\"items[]\" value=\"".$item['id']."\" >".$item['name']."</option></li>"; 
+                        
+                        //Check to see that item is not already involved in claim
+                        $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$item['id']}"; 
+                        $item_claim_result = mysqli_query($connection, $item_claim_query);
+                        $claim_item_rows=mysqli_num_rows($item_claim_result);
+                        if($claim_item_rows < 1){ 
+                            //OPTIONS
+                            echo "<li><input type=\"checkbox\" name=\"items[]\" value=\"".$item['id']."\" >".$item['name']."</option></li>"; 
+                        }
+                        
+                        
                     }
                     echo "</ul></p>";
                 }//end get items  

@@ -1,4 +1,6 @@
-<?php include("inc/header.php"); ?>
+<?php
+$current_page="claims";
+include("inc/header.php"); ?>
 
 <!-- if employee, back to claims, else back to claims history -->
 
@@ -42,6 +44,7 @@ if($_SESSION['is_employee']==1){
             
             echo "<h1>".$show['title']."</h1>";
             echo "<h2> Pending</h2>";
+                  echo "<a href=\"#\">Revoke this claim</a><br/>";
             
             echo "Filed By: ".$show['user_id']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";

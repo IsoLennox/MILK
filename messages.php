@@ -1,4 +1,6 @@
-<?php include("inc/header.php"); ?>
+<?php
+$current_page="messages";
+include("inc/header.php"); ?>
 
 
 <h1>Messages</h1>

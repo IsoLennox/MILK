@@ -1,4 +1,7 @@
-<?php include("inc/header.php"); ?>
+<?php
+$current_page="claims";
+include("inc/header.php"); ?>
+
 
 
 <h1>Your Claims</h1>
@@ -6,11 +9,41 @@
 <!--<a href="claim_details.php?id=1">Sample Claim</a>-->
            
    <ul class="inline">
-           <li><a href="claim_history.php">All</a></li>
-           <li><a href="claim_history.php?pending">Pending</a></li>
-           <li><a href="claim_history.php?approved">Approved</a></li>
-           <li><a href="claim_history.php?denied">Denied</a></li>
+          <?php 
+//GET COUNTS
+    $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
+    $all_result = mysqli_query($connection, $all_query);
+    $data=mysqli_fetch_assoc($all_result);
+
+    $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
+    $pending_result = mysqli_query($connection, $pending_query);
+    $pdata=mysqli_fetch_assoc($pending_result); 
+     
+
+    $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=2";   
+    $approved_result = mysqli_query($connection, $approved_query);
+    $adata=mysqli_fetch_assoc($approved_result); 
+
+    $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=3";   
+    $denied_result = mysqli_query($connection, $denied_query);
+    $ddata=mysqli_fetch_assoc($denied_result); 
+?>
+           <li><a href="claim_history.php">All</a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claim_history.php?pending">Pending</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
        </ul>
+       
+                   
+<!--
+        if($show['status_id']==0){
+            $status="Pending";
+        }elseif($show['status_id']==2){
+            $status="Approved";
+        }elseif($show['status_id']==3){
+            $status="Denied";
+        }
+-->
        
        
        <?php

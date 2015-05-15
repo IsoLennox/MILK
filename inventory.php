@@ -112,13 +112,23 @@ include("inc/header.php"); ?>
      
     $result = mysqli_query($connection, $query);
     if($result){
-        //show each result value
+        //SHOW ITEMS
         echo "<ul>";
         foreach($result as $show){
+                         //Check to see if involved in claim
+                        $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$show['id']}"; 
+                        $item_claim_result = mysqli_query($connection, $item_claim_query);
+                        $claim_item_rows=mysqli_num_rows($item_claim_result);
+                        if($claim_item_rows >= 1){ 
+                            $claim_class="style=\"color:red;\""; 
+                        }else{
+                            $claim_class="";
+                        }
             
             $id=$show['id'];
             $name=$show['name'];
-            echo "<li><a href=\"item_details.php?id=".$id."\">".$name."</a></li>";
+            echo "<li ".$claim_class."><a href=\"item_details.php?id=".$id."\">".$name."</a></li>";
+
                 $room_name=get_room_name($show['room_id']);
                 $cat_name=get_category_name($show['category']);
                 echo "Category: ".$cat_name."<br/>";
