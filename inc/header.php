@@ -2,7 +2,8 @@
 require_once("inc/functions.php"); 
 require_once("inc/db_connection.php"); 
 require_once("inc/validation_functions.php"); 
-confirm_logged_in(); ?>
+confirm_logged_in(); 
+?>
 <!DOCTYPE html>
 <html>
     
@@ -47,17 +48,15 @@ confirm_logged_in(); ?>
     
     
 <!--    FULL SITE  -->
-<header>
-    <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a>
-    <!--        USER ICONS -->
-    <div id="user_header" class="right">
-        <i class="fa fa-user"> </i> <a title="Your Profile" href="profile.php"><?php echo $_SESSION['username']; ?></a> | 
-        <a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i class="fa fa-cog"></i></a> | 
-        <a title="Log Out" href="logout.php"><i class="fa fa-sign-out"></i></a> 
-    </div> 
-</header> 
-          
-<nav><?php 
+
+<div class="wrapper">        
+<nav>
+	<div>
+	    <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a>
+	    <i class="fa fa-user"> </i> <a title="Your Profile" href="profile.php"><?php echo $_SESSION['username']; ?></a>
+    </div>
+
+<?php 
     
     //CHECK IF CLIENT OR EMPLOYEE 
     
@@ -67,10 +66,6 @@ if($_SESSION['is_employee']==0){
     //     IS CLIENT
     //************************//
          ?>
-     <form action="#" method="#">
-         <input type="search" name="client_search" id="searchbar">
-         <input type="submit" name="submit" id="nav_search" value="Search">
-     </form>
 
         <ul>
            
@@ -141,7 +136,7 @@ if($_SESSION['is_employee']==0){
             </ul> 
            
 <?php }else{ ?>
-               <li>Claims</li>
+               <li>Claims
             <ul> 
                 
           <?php 
@@ -170,7 +165,7 @@ if($_SESSION['is_employee']==0){
         
                 <li><a href="file_new_claim.php">File Claim</a></li>
 <!--                <li><a href="claim_history.php">Claim History</a></li>-->
-            </ul> 
+            </ul></li> 
           
    <?php } 
             
@@ -195,10 +190,6 @@ if($_SESSION['is_employee']==0){
     //************************//
     
      ?>
-     <form action="#" method="#">
-         <input type="search" name="employee_search" id="searchbar">
-         <input type="submit" name="submit" id="nav_search" value="Search">
-     </form>
      <?php 
     echo "<h4>Employee Role</h4>";  
     
@@ -235,7 +226,29 @@ if($_SESSION['is_employee']==0){
         ?>
              </ul>
           </nav>
-          
+  
+<header>
+    <!--        USER ICONS -->
+    <div class="search_container">
+        <form class ='search' action="#" method="#">        	
+	        <input type="search" placeholder='Search Here' name="client_search" id="searchbar">
+	        <input type="submit" name="submit" id="nav_search" value="">
+	    </form>
+	</div>
+
+    <div class="account_links">
+        <div>
+        	<a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i class="fa fa-cog"></i></a>
+        </div>
+        <div>
+        	<a title="Log Out" href="logout.php"><i class="fa fa-sign-out"></i></a>
+        </div> 
+    </div>
+</header> 
+
+
+
+
         <div class="clearfix" id="page"> 
               <?php echo message(); ?>
               <?php echo form_errors($errors); ?>
