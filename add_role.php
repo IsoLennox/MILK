@@ -1,8 +1,24 @@
 <?php include("inc/header.php"); ?>
+<?php
+ 
+//SEE IF THIS USER HAS EDIT ROLE PERMISSIONS
+     foreach($_SESSION['permissions'] as $key => $val){ 
+        if($val==3){
+            $permission=1; 
+        }else{
+            $permission=0;
+        }
+    }
 
+
+//REDIRECT IF NO PERMISSIONS TO VIEW THIS PAGE
+if($permission!==1){
+    redirect_to('index.php');
+}else{ 
+?>
 
 <h1>New Role</h1> 
-
+ 
 <?php
 if (isset($_POST['submit'])) {
     $name= $_POST['name'];
@@ -71,4 +87,6 @@ if (isset($_POST['submit'])) {
 
   
         
-<?php include("inc/footer.php"); ?>
+<?php
+    }
+include("inc/footer.php"); ?>

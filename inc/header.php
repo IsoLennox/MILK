@@ -191,7 +191,12 @@ if($_SESSION['is_employee']==0){
     
      ?>
      <?php 
-    echo "<h4>Employee Role</h4>";  
+    $role_query  = "SELECT * FROM roles WHERE id={$_SESSION['role']}";  
+    $role_result = mysqli_query($connection, $role_query);
+    if($role_result){
+        $role=mysqli_fetch_assoc($role_result);
+        echo "<h4>".$role['name']."</h4>";  
+    }
     
     //NOTIFICATIONS FOR CLAIMS: GET NUMBER OF CLAIMS PENDING
     $claim_notification="SELECT COUNT(*) as total FROM claims WHERE status_id=0";

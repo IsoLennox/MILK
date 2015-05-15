@@ -44,6 +44,7 @@ if (isset($_POST['submit'])) {
             $hashed_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
             $first_password = $_POST["password"];
             $confirmed_password = $_POST["confirm_password"];
+            $role = $_POST["role"];
 
 
             if($first_password===$confirmed_password){
@@ -58,9 +59,9 @@ if (isset($_POST['submit'])) {
 
                     //Email is not taken
                     $query  = "INSERT INTO users (";
-                    $query .= " email, first_name, last_name, password, is_employee";
+                    $query .= " email, first_name, last_name, password, is_employee, role";
                     $query .= ") VALUES (";
-                    $query .= " '{$email}', '{$first}', '{$last}', '{$hashed_password}', 1";
+                    $query .= " '{$email}', '{$first}', '{$last}', '{$hashed_password}', 1, {$role}";
                     $query .= ") ";
                     $new_user_created = mysqli_query($connection, $query);
 
@@ -225,8 +226,17 @@ if (isset($_POST['submit'])) {
 
         <p>Role:
             <select name="role" id="role">
-            <!--               LOOP THROUGH ROLES TABLE TO GET EACH OPTION-->
-            <option value="1">Super User</option>
+            <?php
+    $role_query  = "SELECT * FROM roles";  
+    $role_result = mysqli_query($connection, $role_query);
+    if($role_result){
+        //show each result value 
+        foreach($role_result as $role){ 
+            echo "<option value=\"".$role['id']."\">".$role['name']."</option>"; 
+        }
+    }
+                ?>
+         
             </select>
             </p>
 

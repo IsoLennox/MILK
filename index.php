@@ -4,6 +4,8 @@ include("inc/header.php"); ?>
 
 
   <?php 
+
+
  
 if($_SESSION['is_employee']==0){
     //CLIENT
@@ -55,7 +57,15 @@ if($_SESSION['is_employee']==0){
     </ul>
     <?php
     
-}else{  ?>
+}else{  
+
+ 
+//    foreach($_SESSION['permissions'] as $key => $val){ 
+//        if($val==3){
+//            echo "permission granted!";
+//        }
+//    }
+?>
     <h2>Statistics</h2>
     
      <img src="img/stats.PNG" alt="sample stats" />

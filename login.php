@@ -40,7 +40,16 @@ if (isset($_POST['submit'])) {
 	   $_SESSION["username"] = $found_user["first_name"]." ".$found_user["last_name"];  
 	   $_SESSION["is_employee"] = $found_user["is_employee"]; 
 	   $_SESSION["theme"] = $found_user["theme"]; 
-			 
+	   $_SESSION["role"] = $found_user["role"]; 
+        $perm=array();
+        
+        //GET PERMISSIONS
+            $p_query  = "SELECT * FROM roles_permissions WHERE role_id= {$_SESSION['role']}";
+            $p_query_result = mysqli_query($connection, $p_query);
+            foreach($p_query_result as $permission){
+                array_push($perm, $permission['permission_id']);
+            }
+			$_SESSION["permissions"]=$perm; 
         
         //get this user info
         $query  = "SELECT * ";
