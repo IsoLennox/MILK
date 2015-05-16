@@ -51,8 +51,10 @@ if(isset($_GET['id'])){
     }   
 //     echo "<h3>".$status."</h3>";
      if($show['user_id']===$_SESSION['user_id'] ){
-
-         echo "<div id=\"fake_status\">Draft > <span id=\"current_status\">".$status."</span> > Approved/Denied </div>";
+         if($status=="Draft"){
+            $status="Add Images/Revise Draft";
+         }
+         echo "<div class=\"fake_status\">Draft > <span id=\"current_status\">".$status."</span> > Approved/Denied </div>"; 
     //                 echo "<a href=\"claim_details.php?revoke=".$_GET['id']."\">Revoke this claim</a><br/>";
          //IF A DRAFT, OPTIONS TO EDIT OR SUBMIT
          if($show['status_id']==1 || $show['status_id']==4){

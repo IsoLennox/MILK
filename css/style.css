@@ -356,12 +356,13 @@ input[type="text"]{
     padding: 5px;
     border:1px solid #555;
     font-weight: 900;
+    margin: 5px;
 }
 
 .fa-trash-o { color:red;}
 .fa-trash-o:hover { color:grey;}
 
-#fake_status{
+.fake_status{
     text-align: center;
     background-color: #90C32E;
     padding: 10px;
@@ -375,7 +376,13 @@ input[type="text"]{
     padding: 5px;  
 }
 
+ 
 
+input[type="checkbox"]{
+   width: 50px;
+
+}
+ 
 
 
 

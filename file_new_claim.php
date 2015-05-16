@@ -66,7 +66,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
 
 <!-- NEW CLAIM FORM   -->
 <h1>File New Claim</h1> 
-
+ 
           
 <!--
           // TO DO:
@@ -75,8 +75,8 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
           // CHECKBOXES FOR ITEMS??
 -->
            
- <form method="POST"> 
-      
+ <form class="add_item" method="POST"> 
+      <div class="fake_status"><span id="current_status">Add Details</span> > Add Images/Revise Draft > Submit Claim</div>
           <p>Title: <input type="text" name="title"></p>
        <?php
         
@@ -103,6 +103,9 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                         if($claim_item_rows < 1){ 
                             //OPTIONS
                             echo "<li><input type=\"checkbox\" name=\"items[]\" value=\"".$item['id']."\" >".$item['name']."</option></li>"; 
+                            $next=1;
+                        }else{
+                            $next=0;
                         }
                         
                         
@@ -126,11 +129,12 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
     
     <p>Notes and Details:</p>
     <textarea name="notes" id="notes" cols="30" rows="10" maxlength="250" placeholder="Describe the nature of the claim..."></textarea>
-    
-    <p>You will be able to add images in the drafting stage</p>
-    <input type="submit" name="submit" value="File Claim"> 
- </form>
-     
+     <?php if($next==1){ ?>
+    <input type="submit" name="submit" value="Next"> 
+    <?php }else{
+            echo "You do not have any items to submit in this claim";
+         } ?>
+ </form> 
 <a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');">Cancel</a> 
        
         

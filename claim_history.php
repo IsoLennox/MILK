@@ -22,7 +22,7 @@ include("inc/header.php"); ?>
             }
             
             
-            echo "Title: ".$show['title']."<br/>";
+            echo "Title: ".$show['title']."<br/>"; 
             echo "Date Filed: ".$show['datetime']."<br/>";
             echo "Status: Pending<br/>";
             echo "Claim Type: ".$claim_type."<br/>";
@@ -189,14 +189,10 @@ include("inc/header.php"); ?>
     if($status_result){
         $status_array=mysqli_fetch_assoc($status_result);
         $status=$status_array['name'];
-    }
-            
-     
-            
-            
+    } 
             echo "Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status: ".$status."<br/>";
+            echo "Status: <span style=\"color:red;\">".$status."</span><br/>";
             echo "Claim Type: ".$claim_type."<br/>";
                echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";  
             

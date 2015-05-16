@@ -17,7 +17,7 @@ if($_SESSION['is_employee']==0){
         <li>Total number of items</li>
         <?php
     $items=0;
-    $item_count  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']}";  
+    $item_count  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";  
     $item_result = mysqli_query($connection, $item_count);
     $num_items=mysqli_num_rows($item_result);
     echo "You have ".$num_items." items";

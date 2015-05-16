@@ -49,6 +49,10 @@ if (isset($_POST['submit'])) {
 
 
 <form class='add_item' method="POST" >
+              
+    <p> Item Name: <input type="text" name="name" placeholder=" i.e. Samsung Television" value="" ></p>
+    
+              
                
      <!--    //GET ITEM CATEGORIES -->
    <?php
@@ -66,12 +70,7 @@ if (isset($_POST['submit'])) {
         echo "</select></p>";
     }//end get categories
 
-?>
-
-
-
-    <p> Item Name: <input type="text" name="name" placeholder=" i.e. Samsung Television" value="" ></p>
-    
+?> 
 <!--    //GET ROOMS TO CHOOSE FROM -->
    <?php
         $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}"; 
