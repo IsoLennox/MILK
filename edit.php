@@ -47,8 +47,21 @@
 
 
  if(isset($_GET['company_details'])){
-    echo "<h1>Change Company Details</h1>";
- }
+ 
+    //GET PERMISSIONS FOR THIS PAGE
+ foreach($_SESSION['permissions'] as $key => $val){  
+      
+    if($val==1){ 
+        $permission=1; 
+        } 
+    }
+     if($permission==1){
+     
+        echo "<h1>Change Company Details</h1>";
+     
+     
+     } 
+ }//end edit company details
 
  if(isset($_GET['role'])){
     echo "<h1>Edit Role ".$_GET['role']." </h1>";

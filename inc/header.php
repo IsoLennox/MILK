@@ -212,10 +212,8 @@ if($_SESSION['is_employee']==0){
 //         echo $val;
          
          //UPDATE ROLES
-        if($key===3){ 
+        if($val==3){ 
             $roles=1; 
-        }else{
-            $roles=0;
         } 
     }  ?>
             <ul>

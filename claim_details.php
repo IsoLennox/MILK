@@ -9,18 +9,7 @@ include("inc/header.php"); ?>
 <?php
  
 if(isset($_GET['id'])){
-   
     
-if($_SESSION['is_employee']==1){
-    echo "<a href=\"claims.php\">&laquo; Back to Claims</a><br/>";
-    echo "<br/><a href=\"update_claim.php?id=".$_GET['id']."\">Update This Claim</a><br/>";     
-}else{
-
-    echo "<a href=\"claim_history.php\">&laquo; Back to Claims History</a>";
-}
-
- 
-
     $query  = "SELECT * FROM claims WHERE id={$_GET['id']}";  
     $result = mysqli_query($connection, $query);
     if($result){ 
@@ -39,6 +28,22 @@ if($_SESSION['is_employee']==1){
             
             
             echo "<h1>".$show['title']."</h1>";
+                  
+            if($_SESSION['is_employee']==1){ 
+
+                    //GET PERMISSIONS FOR THIS PAGE
+             foreach($_SESSION['permissions'] as $key => $val){ 
+                if($val==4){  
+                   $permission=1;
+
+                    }//end show link if has claims permissions 
+                }//end check permissions 
+                if($permission==1){
+                echo "<br/><a href=\"update_claim.php?id=".$_GET['id']."\">Update This Claim</a><br/>";
+                }
+            } //end check if employee
+                  
+                  
             echo "<h2> Pending</h2>";
              if($show['user_id']===$_SESSION['user_id'] ){
                  echo "<a href=\"#\">Revoke this claim</a><br/>";

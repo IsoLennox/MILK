@@ -1,5 +1,15 @@
-<?php include("inc/header.php"); ?>
+<?php include("inc/header.php");  
 
+
+//GET PERMISSIONS
+     foreach($_SESSION['permissions'] as $key => $val){ 
+         //UPDATE ROLES
+        if($val==3){ 
+            $roles=1; 
+        } 
+    }
+    if($roles!==1){ redirect_to('index.php'); }
+?>
 
 <h1>Employee Roles</h1> 
 

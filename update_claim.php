@@ -19,6 +19,14 @@ if(isset($_POST['submit'])){
    
     //CHECK PERMISSIONS
     if($_SESSION['is_employee']==1){
+        
+                //GET PERMISSIONS FOR THIS PAGE
+ foreach($_SESSION['permissions'] as $key => $val){   
+    if($key===4){  
+        $permission=1; 
+        }//end show link if has claims permissions 
+    }//end check permissions
+        if($permission!==1){ redirect_to('claims.php'); }
        
         
     $query  = "SELECT * FROM claims WHERE id={$_GET['id']}";  
@@ -39,12 +47,12 @@ if(isset($_POST['submit'])){
             
             echo "<h1>Updating: ".$show['title']."</h1>";
             
-            if($show['status_id'==0]){
+            if($show['status_id']==0){
                 $status="Pending"; 
-            }elseif($show['status_id'==2]){
-                $status="Pending"; 
-            }elseif($show['status_id'==3]){
-                $status="Pending"; 
+            }elseif($show['status_id']==2){
+                $status="Approved"; 
+            }elseif($show['status_id']==3){
+                $status="Denied"; 
             }
             echo "<h2>Status: ".$status."</h2>"; 
             
@@ -82,6 +90,7 @@ if(isset($_POST['submit'])){
                 <textarea name="notes" id="notes" cols="30" rows="10" placeholder="Append notes..."></textarea>
                 <input type="submit" id="submit" name="submit" value="Update Claim">
             </form>
+            <a href="#" onlick="return confirm('Cancel this operation? Your progress will not be saved!'); ">Cancel</a>
             <?php 
         }
      }

@@ -7,7 +7,7 @@
                 //GET PERMISSIONS FOR THIS PAGE
              foreach($_SESSION['permissions'] as $key => $val){  
                  //EDIT EMPLOYEES
-                if($key===2){ 
+                if($val==2){ 
                     echo " <a href=\"new_employee.php\">New Employee</a> ";
                 } 
             }  
@@ -40,7 +40,7 @@
                     //GET PERMISSIONS FOR THIS PAGE
              foreach($_SESSION['permissions'] as $key => $val){  
                  //EDIT EMPLOYEES
-                if($key===2){ 
+                if($val==2){ 
                     echo "Edit Employee (Change role / Delete employee)";
                 } 
             }  

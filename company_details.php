@@ -2,7 +2,21 @@
 
 
 <h1>Company Details</h1>
- <a href="edit.php?company_details=1">Edit Company Details</a>
+
+
+<?php
+                //GET PERMISSIONS FOR THIS PAGE
+             foreach($_SESSION['permissions'] as $key => $val){  
+                 //EDIT COMPANY DETAILS
+                if($key===1){ 
+                    echo "<a href=\"edit.php?company_details=1\">Edit Company Details</a>";
+                } 
+            }  
+
+?>
+
+
+ 
           <h4>About Greenwell Bank using UnderMyRoof</h4>
         
         <img src="img/greenwell_logo_med.png" alt="Greenwell Logo">
