@@ -65,6 +65,8 @@ if(isset($_GET['revoke'])){
                   
  
              if($show['user_id']===$_SESSION['user_id'] ){
+                 
+                 echo "<h1>Status bar: Draft > Submitted/Pending > Approved/Denied </h1>";
 //                 echo "<a href=\"claim_details.php?revoke=".$_GET['id']."\">Revoke this claim</a><br/>";
                  //IF A DRAFT, OPTIONS TO EDIT OR SUBMIT
                  if($show['status_id']==1){
