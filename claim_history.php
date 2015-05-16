@@ -12,7 +12,7 @@ include("inc/header.php"); ?>
     if($result){ 
         //show each result value
         foreach($result as $show){
-            
+            echo "<div class=\"notes_container\">";
                         //GET CLAIM TYPE NAME
             $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
             $type_result = mysqli_query($connection, $type_query);
@@ -28,6 +28,8 @@ include("inc/header.php"); ?>
             echo "Claim Type: ".$claim_type."<br/>";
             echo "Notes/Description: ".$show['notes']."<br/>"; 
              echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>"; 
+            
+            echo "</div>";
             }  
         }
             echo "<Br/>";  
@@ -42,6 +44,8 @@ include("inc/header.php"); ?>
         //show each result value
         foreach($result as $show){
             
+            echo "<div class=\"notes_container\">";
+            
                         //GET CLAIM TYPE NAME
             $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
             $type_result = mysqli_query($connection, $type_query);
@@ -57,6 +61,8 @@ include("inc/header.php"); ?>
             echo "Claim Type: ".$claim_type."<br/>";
             echo "Notes/Description: ".$show['notes']."<br/>"; 
              echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>"; 
+            
+            echo "</div>";
             }  
         }
             echo "<Br/>";  
@@ -101,6 +107,8 @@ include("inc/header.php"); ?>
         //show each result value
         foreach($result as $show){
             
+            echo "<div class=\"notes_container\">";
+            
                         //GET CLAIM TYPE NAME
     $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
     $type_result = mysqli_query($connection, $type_query);
@@ -114,7 +122,42 @@ include("inc/header.php"); ?>
             echo "Date Filed: ".$show['datetime']."<br/>";
             echo "Status: Denied<br/>";
             echo "Claim Type: ".$claim_type."<br/>";
-               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";  
+            
+            echo "</div>";
+            }
+        }
+        
+        
+        
+        
+    }elseif(isset($_GET['changes'])){
+    
+    echo "<h2>Pending Changes / Awaiting Resubmittal</h2>";  
+        //GET ALL PENDING FROM USER LOGGED IN
+
+    $query  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4 ORDER BY id DESC";  
+    $result = mysqli_query($connection, $query);
+    if($result){ 
+        //show each result value
+        foreach($result as $show){
+            echo "<div class=\"notes_container\">";
+                        //GET CLAIM TYPE NAME
+    $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
+    $type_result = mysqli_query($connection, $type_query);
+    if($type_result){
+        $type_array=mysqli_fetch_assoc($type_result);
+        $claim_type=$type_array['name'];
+    }
+            
+            
+            echo "Title: ".$show['title']."<br/>";
+            echo "Date Filed: ".$show['datetime']."<br/>";
+            echo "Status: Pending Changes<br/>";
+            echo "Claim Type: ".$claim_type."<br/>";
+               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";  
+            
+            echo "</div>";
             }
         }
     }else{
@@ -129,6 +172,8 @@ include("inc/header.php"); ?>
     if($result){ 
         //show each result value
         foreach($result as $show){
+            
+            echo "<div class=\"notes_container\">";
             
             //GET CLAIM TYPE NAME
     $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
@@ -153,7 +198,10 @@ include("inc/header.php"); ?>
             echo "Date Filed: ".$show['datetime']."<br/>";
             echo "Status: ".$status."<br/>";
             echo "Claim Type: ".$claim_type."<br/>";
-               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";  
+            
+            
+            echo "</div>";
             }  
         }
   }//end show claims dependant on uery

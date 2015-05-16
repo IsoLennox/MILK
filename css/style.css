@@ -76,6 +76,7 @@ body{
     font-weight: 100; 
     color: #333;
     margin: 0;
+    margin-right: 100px;
     /*background-color: #eee;*/
 }
 
@@ -331,13 +332,48 @@ input,textarea {
 
 
 
+/*-------------------------------------------------*/
+/*Isobel Sandbox : TEMPORARY FOR VISIBILITY DURING PRE-STYLED DEVELOPMENT :  CAN DELETE!! */
 
+.notes_container{
+    /* Used in 'claim_details.php' in multiple places */
+    border: 1px solid grey;
+    padding: 30px;
+    margin: 10px;
+}
 
+h2 {	font-size: 2em;
+	font-weight: 700;
+	color:#004800;}
 
+h3 {
+    color: firebrick;
+    font-size: 1.5em;
+}
+ 
+input[type="text"]{ 
+    background:#eee;
+    padding: 5px;
+    border:1px solid #555;
+    font-weight: 900;
+}
 
+.fa-trash-o { color:red;}
+.fa-trash-o:hover { color:grey;}
 
+#fake_status{
+    text-align: center;
+    background-color: #90C32E;
+    padding: 10px;
+    border-radius: 10px;
+}
 
-
+#current_status { 
+    background: red; 
+    color: white; 
+    font-weight: 900; 
+    padding: 5px;  
+}
 
 
 

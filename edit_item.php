@@ -7,7 +7,8 @@ include("inc/header.php"); ?>
 
 if(isset($_POST['submit'])){
     echo "submitted!";
-    // UPDATE TABLE 
+    // UPDATE TABLE : ADD 'updated' col
+    //ADD TO HISTORY
     //  REDIRECT TO ITEM DETAILS
 }
     
