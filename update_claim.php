@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
         
                 //GET PERMISSIONS FOR THIS PAGE
  foreach($_SESSION['permissions'] as $key => $val){   
-    if($key===4){  
+    if($val==4){  
         $permission=1; 
         }//end show link if has claims permissions 
     }//end check permissions

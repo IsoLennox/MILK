@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     
     
         //INSERT ALL DATA EXCEPT PERMISSIONS
-$insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, datetime ) VALUES ( {$_SESSION['user_id']}, '{$title}', '{$notes}','{$claim_type}', 0, '{$date}' ) ";
+$insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, datetime ) VALUES ( {$_SESSION['user_id']}, '{$title}', '{$notes}','{$claim_type}', 1, '{$date}' ) ";
     $insert_result = mysqli_query($connection, $insert);
     if($insert_result){
         
@@ -36,21 +36,21 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
             }
         
         
-                //INSERT ITEMS INTO claim_items TABLE
+//                INSERT ITEMS INTO claim_items TABLE  
  
         foreach($items_array as $item){
         $insert_item  = "INSERT INTO claim_items ( item_id, claim_id) VALUES ( {$item}, {$claim_id} ) ";
             $claimresult = mysqli_query($connection, $insert_item);
         }
-        
-            $content = "Filed Claim: <a href=\"claim_details.php?id=".$claim_id."\">".$title."</a>";
-            $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
-            $insert_history = mysqli_query($connection, $history); 
+//       INSERT INTO HISTORY TABLE (NOT FOR DRAFTS) 
+//            $content = "Filed Claim: <a href=\"claim_details.php?id=".$claim_id."\">".$title."</a>";
+//            $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
+//            $insert_history = mysqli_query($connection, $history); 
         
         //INSERT INTO EMPLOYEE NOTIFICATION TABLE???
         
-            $_SESSION["message"] = "Claim Submitted";
-            redirect_to("claim_history.php");        
+            $_SESSION["message"] = "Claim Saved As Draft";
+            redirect_to("claim_details.php?id=".$claim_id."");        
         }else{
             $_SESSION["message"] = "Claim could not be submitted";
             redirect_to("file_new_claim.php");
@@ -127,8 +127,8 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
     <p>Notes and Details:</p>
     <textarea name="notes" id="notes" cols="30" rows="10" maxlength="250" placeholder="Describe the nature of the claim..."></textarea>
     
-    <p>Upload files (i.e. Images of damage, appraisals of repair costs, etc.)</p>
-    <input type="submit" name="submit" value="File Claim">
+    <p>You will be able to add images in the drafting stage</p>
+    <input type="submit" name="submit" value="File Claim"> 
  </form>
      
 <a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');">Cancel</a> 

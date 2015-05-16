@@ -14,14 +14,14 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
 
          <?php  
             //GET CLAIM COUNTS
-            $all_query  = "SELECT COUNT(*) as total FROM claims";   
+            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id != 1";   
             $all_result = mysqli_query($connection, $all_query);
             $data=mysqli_fetch_assoc($all_result);
 
             $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=0";   
             $pending_result = mysqli_query($connection, $pending_query);
             $pdata=mysqli_fetch_assoc($pending_result); 
-
+ 
 
             $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=2";   
             $approved_result = mysqli_query($connection, $approved_query);
@@ -144,13 +144,14 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     }
             
             
-        if($show['status_id']==0){
-            $status="Pending";
-        }elseif($show['status_id']==2){
-            $status="Approved";
-        }elseif($show['status_id']==3){
-            $status="Denied";
-        }
+                        //GET CLAIM STATUS NAME
+    $status_query  = "SELECT * FROM status_types WHERE id={$show['status_id']}";  
+    $status_result = mysqli_query($connection, $status_query);
+    if($status_result){
+        $status_array=mysqli_fetch_assoc($status_result);
+        $status=$status_array['name'];
+    }
+        
             
             
             echo "Title: ".$show['title']."<br/>";

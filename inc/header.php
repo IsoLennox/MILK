@@ -116,6 +116,11 @@ if($_SESSION['is_employee']==0){
             $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
             $pending_result = mysqli_query($connection, $pending_query);
             $pdata=mysqli_fetch_assoc($pending_result); 
+                
+            $draft_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1";   
+            $draft_result = mysqli_query($connection, $draft_query);
+            $drdata=mysqli_fetch_assoc($draft_result); 
+
 
 
             $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=2";   
@@ -127,6 +132,7 @@ if($_SESSION['is_employee']==0){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
            <li><a href="claim_history.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claim_history.php?draft">Drafts</a> (<?php echo $drdata['total']; ?>)</li>
            <li><a href="claim_history.php?pending">Pending</a> (<?php echo $pdata['total']; ?>)</li>
            <li><a href="claim_history.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
            <li><a href="claim_history.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
@@ -148,6 +154,10 @@ if($_SESSION['is_employee']==0){
             $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
             $pending_result = mysqli_query($connection, $pending_query);
             $pdata=mysqli_fetch_assoc($pending_result); 
+                
+            $draft_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1";   
+            $draft_result = mysqli_query($connection, $draft_query);
+            $drdata=mysqli_fetch_assoc($draft_result); 
 
 
             $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=2";   
@@ -159,6 +169,7 @@ if($_SESSION['is_employee']==0){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
            <li><a href="claim_history.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claim_history.php?draft">Drafts</a> (<?php echo $drdata['total']; ?>)</li>
            <li><a href="claim_history.php?pending">Pending</a> (<?php echo $pdata['total']; ?>)</li>
            <li><a href="claim_history.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
            <li><a href="claim_history.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>

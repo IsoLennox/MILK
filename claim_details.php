@@ -8,7 +8,17 @@ include("inc/header.php"); ?>
 
 <?php
  
-if(isset($_GET['id'])){
+if(isset($_GET['revoke'])){
+    
+    //Update claims table to revoked=1
+    //insert into history table
+    
+    echo "Revoking this claim!";
+    
+    
+    
+    
+}elseif(isset($_GET['id'])){
     
     $query  = "SELECT * FROM claims WHERE id={$_GET['id']}";  
     $result = mysqli_query($connection, $query);
@@ -43,12 +53,34 @@ if(isset($_GET['id'])){
                 }
             } //end check if employee
                   
+//GET CLAIM STATUS NAME
+    $status_query  = "SELECT * FROM status_types WHERE id={$show['status_id']}";  
+    $status_result = mysqli_query($connection, $status_query);
+    if($status_result){
+        $status_array=mysqli_fetch_assoc($status_result);
+        $status=$status_array['name'];
+    }
+        
+                  echo "<h2>".$status."</h2>";
                   
-            echo "<h2> Pending</h2>";
+ 
              if($show['user_id']===$_SESSION['user_id'] ){
-                 echo "<a href=\"#\">Revoke this claim</a><br/>";
+//                 echo "<a href=\"claim_details.php?revoke=".$_GET['id']."\">Revoke this claim</a><br/>";
+                 //IF A DRAFT, OPTIONS TO EDIT OR SUBMIT
+                 if($show['status_id']==1){
+                     $draft=1; 
+                     echo "edit (add/remove items; edit notes/details; )<br/>";
+                     echo "Submit Claim (confirm: you cannot edit this claim after submitting)<br/>";
+                     echo "Add Attachments<br/>";
+                 
+                 }else{ $draft=0; }
+                  
              }//end revoke option
             
+                  
+                  
+                  
+                  
                   $user=find_user_by_id($show['user_id']);
                   $username=$user['first_name']." ".$user['last_name'];
                   
@@ -64,7 +96,7 @@ if(isset($_GET['id'])){
                   $itemname_query  = "SELECT * FROM items WHERE id={$item['item_id']}";  
                   $itemname_result = mysqli_query($connection, $itemname_query);
                   foreach($itemname_result as $itemname){
-                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a></li>";
+                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a> - $".$itemname['declared_value']."</li>";
                     } 
             }
                   echo "</ul>";
