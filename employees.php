@@ -9,8 +9,20 @@
                  //EDIT EMPLOYEES
                 if($val==2){ 
                     echo " <a href=\"new_employee.php\">New Employee</a> ";
+                    //can remove this upon styling
+                    echo "<hr/>";
                 } 
             }  
+
+ 
+
+if($_GET['edit']){
+    $emp_id=$_GET['edit'];
+    echo "Editing employee ".$emp_id;
+    
+    //can remove this upon styling
+    echo "<hr/>";
+}
 
 ?>
 
@@ -41,18 +53,18 @@
              foreach($_SESSION['permissions'] as $key => $val){  
                  //EDIT EMPLOYEES
                 if($val==2){ 
-                    echo "Edit Employee (Change role / Delete employee)";
+                    echo "<a href=\"employees.php?edit=".$show['id']."\">Edit Employee</a> (Change role / Delete employee)";
                 } 
             }  
-             
+            
+            //can remove this upon styling
+             echo "<hr/>";
         }
-    }
- ?>
-     
-              
-          </ul>
-
         
+    }
+ ?>    </ul>
+
+
       
         
 <?php include("inc/footer.php"); ?>

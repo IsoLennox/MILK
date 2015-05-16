@@ -52,6 +52,7 @@ confirm_logged_in();
 <div class="wrapper">        
 <nav>
 	<div class= 'logo_user'>
+<!--   MAKE LOGO PART OF QUERY SO IT IS CHANGEABLE/DYNAMIC  -->
     <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a><br>
     <i class="fa fa-user"> </i> <a title="Your Profile" href="profile.php"><?php echo $_SESSION['username']; ?></a>
   </div>
