@@ -48,12 +48,14 @@ if (isset($_POST['submit'])) {
 ?>
 
 
+
+
+<!-- NEW ITEM FORM   -->
+
+
 <form class='add_item' method="POST" >
               
-    <p> Item Name: <input type="text" name="name" placeholder=" i.e. Samsung Television" value="" ></p>
-    
-              
-               
+    <p> Item Name: <input type="text" name="name" placeholder=" i.e. Samsung Television" value="" ></p> 
      <!--    //GET ITEM CATEGORIES -->
    <?php
     $category_query  = "SELECT * FROM item_category"; 
@@ -87,7 +89,6 @@ if (isset($_POST['submit'])) {
  ?>
    
    <p>Item Description/Notes: <textarea name="notes" id="notes" cols="30" rows="10" value=""></textarea></p>
-     
     <p>Purchase Date: <input type="text" name="purchase_date" placeholder="mm/dd/yyyy" value=""></p>
     <p>Purchase Price: $<input type="text" name="purchase_price" placeholder="950.89" value=""></p>
     <p>Declared Value: $<input type="text" name="declared_value" placeholder="950.99" value=""></p>
@@ -95,8 +96,6 @@ if (isset($_POST['submit'])) {
     <p>Add File (e.x. Image/file of object, reciept, appraisal... )</p>
     <input type="submit" name="submit" value="Save Item">
  </form>
-     
-        
-     <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');">Cancel</a> 
+ <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');">Cancel</a> 
         
 <?php include("inc/footer.php"); ?>

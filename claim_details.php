@@ -14,70 +14,65 @@ if(isset($_GET['id'])){
     if($result){ 
         //show each result value
         foreach($result as $show){
-//              if($_SESSION['is_employee']==1 || $show['user_id']===$_SESSION['user_id'] ){
+            
               if($_SESSION['is_employee']==1 || $show['user_id']===$_SESSION['user_id'] ){
             
                         //GET CLAIM TYPE NAME
-    $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
-    $type_result = mysqli_query($connection, $type_query);
-    if($type_result){
-        $type_array=mysqli_fetch_assoc($type_result);
-        $claim_type=$type_array['name'];
-    }
-            
-            
-            echo "<h1>".$show['title']."</h1>";
-                  
-                  //GET CLAIM STATUS NAME
-    $status_query  = "SELECT * FROM status_types WHERE id={$show['status_id']}";  
-    $status_result = mysqli_query($connection, $status_query);
-    if($status_result){
-        $status_array=mysqli_fetch_assoc($status_result);
-        $status=$status_array['name'];
-    }   
+                    $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
+                    $type_result = mysqli_query($connection, $type_query);
+                    if($type_result){
+                        $type_array=mysqli_fetch_assoc($type_result);
+                        $claim_type=$type_array['name'];
+                    }
+
+
+                   echo "<h1>".$show['title']."</h1>";
+
+                                  //GET CLAIM STATUS NAME
+                    $status_query  = "SELECT * FROM status_types WHERE id={$show['status_id']}";  
+                    $status_result = mysqli_query($connection, $status_query);
+                    if($status_result){
+                        $status_array=mysqli_fetch_assoc($status_result);
+                        $status=$status_array['name'];
+                    }   
      
-                  
-                  
-                  
-            if($_SESSION['is_employee']==1){ 
-                
-                echo $status;
+                    //GET PERMISSIONS 
+                    if($_SESSION['is_employee']==1){  
+                        //show status of claim
+                        echo $status;
 
-                    //GET PERMISSIONS FOR THIS PAGE
-             foreach($_SESSION['permissions'] as $key => $val){ 
-                if($val==4){  
-                   $permission=1;
+                        //SEE IF HAS PERMISSIONS TO UPDATE CLAIMS
+                     foreach($_SESSION['permissions'] as $key => $val){ 
+                        if($val==4){  
+                           $permission=1;
+                            }//end show link if has claims permissions 
+                        }//end check permissions 
+                        if($permission==1){
+                        //has permissions to update claim, show link
+                        echo "<br/><a href=\"update_claim.php?id=".$_GET['id']."\">Update This Claim</a><br/>";
+                        }
+                    } //end check if employee
 
-                    }//end show link if has claims permissions 
-                }//end check permissions 
-                if($permission==1){
-                    
-                echo "<br/><a href=\"update_claim.php?id=".$_GET['id']."\">Update This Claim</a><br/>";
-                }
-            } //end check if employee
-                  
-             
-                  
-                  
-                  
-//    STATUS BAR
-     if($show['user_id']===$_SESSION['user_id'] ){
-         if($status=="Draft"){
-            $status="Add Images/Revise Draft";
-         }
-         echo "<div class=\"fake_status\">Draft > <span id=\"current_status\">".$status."</span> > Approved/Denied </div>"; 
-    //                 echo "<a href=\"claim_details.php?revoke=".$_GET['id']."\">Revoke this claim</a><br/>";
-         //IF A DRAFT, OPTIONS TO EDIT OR SUBMIT
-         if($show['status_id']==1 || $show['status_id']==4){
-             //can edit if a draft, or pending changes
-             $draft=1; 
-         }else{ $draft=0; }
 
-     }//end check if draft/pending client changes
-            
                   
+                    //    STATUS BAR
+                         if($show['user_id']===$_SESSION['user_id'] ){
+                             if($status=="Draft"){
+                                $status="Add Images/Revise Draft";
+                             }
+                             echo "<div class=\"fake_status\">Draft > <span id=\"current_status\">".$status."</span> > Approved/Denied </div>"; 
+                        //                 echo "<a href=\"claim_details.php?revoke=".$_GET['id']."\">Revoke this claim</a><br/>";
+                             //IF A DRAFT, OPTIONS TO EDIT OR SUBMIT
+                             if($show['status_id']==1 || $show['status_id']==4){
+                                 //can edit if a draft, or pending changes
+                                 $draft=1; 
+                             }else{ $draft=0; }
+
+                         }//end check if draft/pending client changes
+
+
                   
-                  
+//              SHOW CLAIM DETAILS     
             
             echo "Claim Type: ".$claim_type."<br/>";
                   
@@ -108,10 +103,7 @@ if(isset($_GET['id'])){
                     
                         echo "<br/><br/>";
                         echo "Add Attachments<br/>";
-                        echo "<p> Attach Images or PDFs of Reports, Damages, Reciepts, or any other details that may help our progress in Approving your claim.</p>";
-                      
-                    
-                    
+                        echo "<p> Attach Images or PDFs of Reports, Damages, Reciepts, or any other details that may help our progress in Approving your claim.</p>"; 
                         echo "<br/><br/>";
                         echo "<a onclick=\"return confirm('Submit this claim? You cannot edit this claim after submitting');\" href=\"claim_details.php?submit=".$show['id']."&title=".$show['title']."\">Submit Claim </a><br/>";
                   }
