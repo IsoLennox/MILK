@@ -90,7 +90,8 @@ if (isset($_POST['submit'])) {
   <body>
  
  
- <div> 
+ <div style="margin: 0 auto; width:600px;">
+    <img src="img/login_temp.PNG" alt="TEMPORARY LOGIN IMAGE"> 
      <p>Log In</p>
      
     <?php echo message(); ?>
