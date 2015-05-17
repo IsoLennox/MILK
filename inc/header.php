@@ -52,8 +52,17 @@ confirm_logged_in();
 <div class="wrapper">        
 <nav>
 	<div class= 'logo_user'>
-<!--   MAKE LOGO PART OF QUERY SO IT IS CHANGEABLE/DYNAMIC  -->
-    <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a><br>
+    <?php 
+        $logo_query="SELECT * FROM company_details";
+        $logo_found=mysqli_query($connection, $logo_query);;
+        if($logo_found){
+            $details=mysqli_fetch_assoc($logo_found);
+            $logo=$details['logo'];
+        }else{
+            $logo="img/under_my_roof_sm.png";
+        }
+        ?>
+    <a href="index.php"><img src="<?php echo $logo; ?>" alt="Greenwell Bank Logo"></a><br>
     <i class="fa fa-user"> </i> <a title="Your Profile" href="profile.php"><?php echo $_SESSION['username']; ?></a>
   </div>
 
