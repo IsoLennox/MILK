@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 12, 2015 at 01:49 PM
+-- Generation Time: May 17, 2015 at 05:52 PM
 -- Server version: 5.5.42-37.1
 -- PHP Version: 5.4.23
 
@@ -28,12 +28,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `claims` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
   `status_id` int(7) NOT NULL,
   `datetime` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
-  `notes` varchar(999) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `notes` varchar(999) COLLATE utf8_unicode_ci NOT NULL,
+  `claim_type` int(7) NOT NULL,
+  `user_id` int(7) NOT NULL,
+  `updated` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `claims`
+--
+
+INSERT INTO `claims` (`id`, `status_id`, `datetime`, `title`, `notes`, `claim_type`, `user_id`, `updated`) VALUES
+(3, 4, '13/05/2015 13:22', 'Robbery', '(uploaded police report)<hr/>fs <br><hr/><br><strong>Claim Adjuster Notes: </strong> Needs more information. Please write out a detailed description.<hr/><hr/><br/>', 4, 2, '16/05/2015'),
+(8, 1, '15/05/2015 20:46', 'They Broke it!', 'Vandals came in and broke my romulan necklace. Specists.', 2, 2, ''),
+(9, 0, '16/05/2015 17:34', 'Tornado', 'Lost the pieces to my monopoly set.', 1, 2, '');
 
 -- --------------------------------------------------------
 
@@ -50,20 +61,103 @@ CREATE TABLE IF NOT EXISTS `claims_img` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `claim_items`
+--
+
+CREATE TABLE IF NOT EXISTS `claim_items` (
+  `id` int(11) NOT NULL,
+  `item_id` int(7) NOT NULL,
+  `claim_id` int(7) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `claim_items`
+--
+
+INSERT INTO `claim_items` (`id`, `item_id`, `claim_id`) VALUES
+(1, 7, 3),
+(2, 2, 3),
+(6, 13, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `claim_types`
+--
+
+CREATE TABLE IF NOT EXISTS `claim_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `claim_types`
+--
+
+INSERT INTO `claim_types` (`id`, `name`) VALUES
+(1, 'Natural Disaster'),
+(2, 'Vandalism'),
+(3, 'Fire/Arson'),
+(4, 'Theft'),
+(5, 'Flood'),
+(6, 'Other (Add to notes)');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `company_details`
 --
 
 CREATE TABLE IF NOT EXISTS `company_details` (
   `id` int(11) NOT NULL,
-  `logo` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `logo` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `city` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
-  `state` int(7) NOT NULL,
+  `state` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `zip` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `content` varchar(500) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `company_details`
+--
+
+INSERT INTO `company_details` (`id`, `logo`, `name`, `address`, `city`, `state`, `zip`, `phone`, `content`) VALUES
+(4, 'img/green_round.png', 'Under My Roof', '1234 Main St.', 'Vancouver', 'Washington', '98664', '(360) 992-9999', 'Comprehensive protection for the things you treasure');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history`
+--
+
+CREATE TABLE IF NOT EXISTS `history` (
+  `id` int(11) NOT NULL,
+  `user_id` int(7) NOT NULL,
+  `content` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `datetime` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`id`, `user_id`, `content`, `datetime`) VALUES
+(12, 2, 'Added item: <a href="item_details.php?id=12">Romulan Necklacce</a>', '14/05/2015 18:22'),
+(2, 2, 'Added item: <a href="item_details.php?id=10">testing history</a>', '12052015'),
+(3, 2, 'Removed item: <a href="item_details.php?id=10">testing history</a>', ''),
+(11, 2, 'Removed item: <a href="item_details.php?id=11">sfdsf</a>', '14/05/2015 18:17'),
+(10, 2, 'Added item: <a href="item_details.php?id=11">sfdsf</a>', '14/05/2015 17:41'),
+(9, 2, 'Removed item: <a href="item_details.php?id=6">Sheep Skin Banjo</a>', '14/05/2015 17:28'),
+(8, 2, 'Filed Claim: <a href="claim_details.php?id=3">Robbery</a>', '13/05/2015 13:22'),
+(13, 1, 'Updated <a href="item_details.php?id=3">Claim #</a>', '16/05/2015 14:37'),
+(14, 1, 'Updated <a href="item_details.php?id=3">Claim #</a>', '16/05/2015 14:38'),
+(15, 2, 'Filed Claim: <a href="claim_details.php?id=3">Robbery</a>', '16/05/2015 15:15'),
+(16, 1, 'Updated <a href="item_details.php?id=3">Claim #</a>', '16/05/2015 15:21'),
+(17, 2, 'Added item: <a href="item_details.php?id=13">Vintage Monopoly Set</a>', '16/05/2015 16:10'),
+(18, 2, 'Filed Claim: <a href="claim_details.php?id=9">Tornado</a>', '16/05/2015 17:35');
 
 -- --------------------------------------------------------
 
@@ -73,24 +167,33 @@ CREATE TABLE IF NOT EXISTS `company_details` (
 
 CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) NOT NULL,
-  `user_id` int(7) NOT NULL,
-  `category` int(7) NOT NULL,
+  `user_id` int(7) DEFAULT NULL,
+  `category` int(7) DEFAULT NULL,
   `room_id` int(7) DEFAULT NULL,
-  `name` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   `purchase_date` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `purchase_price` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `purchase_price` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `declared_value` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `notes` varchar(999) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `notes` varchar(999) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `upload_date` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `updated` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `in_trash` int(2) DEFAULT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `user_id`, `category`, `room_id`, `name`, `purchase_date`, `purchase_price`, `declared_value`, `notes`) VALUES
-(7, 2, 1, 5, 'Diamond Watch', '12/23/1989', '15,000', '16,000', 'In the safe'),
-(2, 2, 2, 2, 'Sampsung Television', '12/23/1989', '2000.00', '1800.00', 'Family heirloom!'),
-(6, 2, 4, 5, 'Sheep Skin Banjo', '10/01/1929', '5.00', '20,000', 'Appraised 10/07/1997');
+INSERT INTO `items` (`id`, `user_id`, `category`, `room_id`, `name`, `purchase_date`, `purchase_price`, `declared_value`, `notes`, `upload_date`, `updated`, `in_trash`) VALUES
+(7, 2, 1, 5, 'Diamond Watch', '12/23/1989', '15,000', '16,000', 'In the safe', '0', '', 0),
+(2, 2, 2, 2, 'Sampsung Television', '12/23/1989', '2000.00', '1800.00', 'Family heirloom!', '0', '', 0),
+(6, 2, 4, 5, 'Sheep Skin Banjo', '10/01/1929', '5.00', '20,000', 'Appraised 10/07/1997', '0', '', 1),
+(8, 2, 1, 1, 'test', '12052015', '2000', '2100', 'tet', '12052015', '', 1),
+(9, 2, 1, 1, 'Test again', '12052015', '2000', '2100', 'lorem', '12052015', '', 1),
+(10, 2, 1, 1, 'testing history', '12052015', '2000', '2100', 'stuff', '12052015', '', 1),
+(11, 2, 1, 1, 'sfdsf', '14/05/2015 17:41', '76', '6786', 'dfdasgfg', '14/05/2015 17:41', '14/05/2015 17:41', 1),
+(12, 2, 1, 5, 'Romulan Necklacce', '14/05/2015 18:22', '50', '200', 'My prized posession', '14/05/2015 18:22', '14/05/2015 18:22', 0),
+(13, 2, 7, 1, 'Vintage Monopoly Set', '16/05/2015 16:10', '15', '200', 'Keeping this safe', '16/05/2015 16:10', '16/05/2015 16:10', 0);
 
 -- --------------------------------------------------------
 
@@ -101,7 +204,7 @@ INSERT INTO `items` (`id`, `user_id`, `category`, `room_id`, `name`, `purchase_d
 CREATE TABLE IF NOT EXISTS `item_category` (
   `id` int(11) NOT NULL,
   `name` varchar(60) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `item_category`
@@ -116,7 +219,8 @@ INSERT INTO `item_category` (`id`, `name`) VALUES
 (6, 'Sporting Goods'),
 (7, 'Memorabilia'),
 (8, 'Large Appliances'),
-(9, 'Small Appliances');
+(9, 'Small Appliances'),
+(10, 'Other (specify in notes)');
 
 -- --------------------------------------------------------
 
@@ -144,7 +248,32 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `sent_to` int(7) NOT NULL,
   `viewed` int(1) NOT NULL,
   `content` varchar(999) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `datetime`, `thread_id`, `sent_from`, `sent_to`, `viewed`, `content`) VALUES
+(1, '17/05/2015 15:18', 1, 1, 6, 1, 'YAY MESSAGES!'),
+(2, '17/05/2015 16:03', 1, 1, 6, 1, 'another message thread test'),
+(3, '17/05/2015 16:03', 1, 6, 1, 1, 'then why!?'),
+(4, '17/05/2015 16:08', 1, 6, 1, 1, 'I hacked LaRheas Account!'),
+(5, '17/05/2015 16:13', 1, 6, 1, 1, 'yes''s'),
+(6, '17/05/2015 16:44', 1, 1, 6, 1, 'FIX THESE SCROLL BRS!!!   \r\n\r\nhttp://webdesign.tutsplus.com/articles/quick-tip-styling-scrollbars-to-match-your-ui-design--webdesign-9430'),
+(7, '17/05/2015 16:54', 1, 6, 1, 1, 'New message thread test'),
+(8, '17/05/2015 16:56', 1, 6, 1, 1, 'I don''t want claim 9 take it!'),
+(9, '17/05/2015 17:01', 2, 6, 9, 0, 't'),
+(10, '17/05/2015 17:02', 3, 6, 7, 0, 'string''s test''s #9'),
+(11, '17/05/2015 17:05', 2, 6, 9, 0, 'gfdg3&amp;quot;''$'),
+(12, '17/05/2015 17:07', 2, 6, 9, 0, 'tgrtge54'),
+(13, '17/05/2015 17:08', 2, 6, 9, 0, 'dfgdsfgerg4'),
+(14, '17/05/2015 17:08', 2, 6, 9, 0, 'gdfgdfgd'),
+(15, '17/05/2015 17:09', 2, 6, 9, 0, 'dfgdsfg'),
+(16, '17/05/2015 17:10', 2, 6, 9, 0, 'fgdsdfg'),
+(17, '17/05/2015 17:10', 2, 6, 9, 0, 'dfgdfg'),
+(18, '17/05/2015 17:11', 2, 6, 9, 0, 'fg3g34'),
+(19, '17/05/2015 17:18', 2, 6, 9, 0, 'hello! &amp;amp; i''s');
 
 -- --------------------------------------------------------
 
@@ -176,14 +305,15 @@ INSERT INTO `permissions` (`id`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL,
   `name` varchar(60) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'Super User');
+(1, 'Super User'),
+(2, 'Claims Adjuster');
 
 -- --------------------------------------------------------
 
@@ -195,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `roles_permissions` (
   `id` int(11) NOT NULL,
   `role_id` int(7) NOT NULL,
   `permission_id` int(7) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `roles_permissions`
@@ -205,7 +335,8 @@ INSERT INTO `roles_permissions` (`id`, `role_id`, `permission_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
-(4, 1, 4);
+(4, 1, 4),
+(5, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -225,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `notes`, `user_id`) VALUES
-(1, 'Zora''s Bedroom', 'Upstairs', 2),
+(1, 'Zora''s Bedroom', 'Upstairs in main house', 2),
 (2, 'Upstairs Bathroom', 'Upstairs Bathroom', 2),
 (5, 'Master Bedroom', '', 2);
 
@@ -315,7 +446,18 @@ INSERT INTO `state` (`id`, `name`, `code`) VALUES
 CREATE TABLE IF NOT EXISTS `status_types` (
   `id` int(11) NOT NULL,
   `name` varchar(60) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `status_types`
+--
+
+INSERT INTO `status_types` (`id`, `name`) VALUES
+(1, 'Draft'),
+(2, 'Approved'),
+(3, 'Denied'),
+(4, 'Pending Changes'),
+(0, 'Processing');
 
 -- --------------------------------------------------------
 
@@ -327,7 +469,16 @@ CREATE TABLE IF NOT EXISTS `thread` (
   `id` int(11) NOT NULL,
   `user1` int(7) NOT NULL,
   `user2` int(7) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `thread`
+--
+
+INSERT INTO `thread` (`id`, `user1`, `user2`) VALUES
+(1, 1, 6),
+(2, 6, 9),
+(3, 6, 7);
 
 -- --------------------------------------------------------
 
@@ -353,19 +504,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `policy_number` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `profile_content` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(200) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `is_employee`, `role`, `is_verified`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `state`, `zip`, `phone`, `theme`, `policy_number`, `profile_content`, `avatar`) VALUES
-(1, 1, 0, 0, 'isolennox@gmail.com', '$2y$10$yR2UgcSME9HNaAVXl4GPouD0FyHNThuTw382F6YjsDwnoc.hgSQ7q', 'Isobel C', 'Lennox', '', '', 0, '', '', 1, '', 'Hi Kris!', 'profile_img/1/regina.gif'),
-(2, 0, 0, 0, 'lennoxfiles@gmail.com', '$2y$10$m9raYcb0d8nZdvNL1dBs9.L3hKNlKqp2mSA0mUEzUPeyYRoYeIUpu', 'Izzy', 'Bee', '987 Mullberry Lane', 'Anchorage', 1, '96544', '6098404145', 0, '9898785-545-654001', 'kjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjg', 'profile_img/2/bruce.gif'),
-(5, 1, 0, 0, 'me@g.com', '$2y$10$QNlVcJ7Ij981gmRAy729bOxOUxo9Y8JZPpj0x7Qhh3NDIM3av1jxC', 'test', 'guy', '', '', 0, '', '', 0, '', '', ''),
-(6, 1, 0, 0, 'larhea@gmail.com', '$2y$10$WCI96qcP1mfOI7hz0/Gq0eRh4dbSub0hE.svLWGChJFyXjVfKXmde', 'LaRhea', 'Phillips', '', '', 0, '', '', 0, '', '', ''),
+(1, 1, 1, 0, 'isolennox@gmail.com', '$2y$10$yR2UgcSME9HNaAVXl4GPouD0FyHNThuTw382F6YjsDwnoc.hgSQ7q', 'Isobel C', 'Lennox', '', '', 0, '', '', 0, '', 'Hi Kris!', 'profile_img/1/regina.gif'),
+(2, 0, 0, 0, 'lennoxfiles@gmail.com', '$2y$10$m9raYcb0d8nZdvNL1dBs9.L3hKNlKqp2mSA0mUEzUPeyYRoYeIUpu', 'Izzy', 'Bee', '987 Mullberry Lane', 'Anchorage', 1, '96544', '6098404145', 1, '9898785-545-654001', 'kjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjg', 'profile_img/2/bruce.gif'),
+(6, 1, 1, 0, 'larhea@gmail.com', '$2y$10$WCI96qcP1mfOI7hz0/Gq0eRh4dbSub0hE.svLWGChJFyXjVfKXmde', 'LaRhea', 'Phillips', '', '', 0, '', '', 0, '', '', ''),
 (7, 1, 0, 0, 'matt@gmail.com', '$2y$10$XTxBelwLV6o9lIF9nOBSieAyP5KbQeAqNBpjnZ1dJGkwi87eU.PLG', 'Matt', 'Browne', '', '', 0, '', '', 0, '', '', ''),
-(8, 0, 0, 0, 'g@me.com', '$2y$10$Ukl2SMPPgyj6MuBJE7YSt.8Ucmq.QvvMEq8eema309l9RG2C.0gue', 'Guest', 'guy', '', '', 0, '', '', 0, '', '', '');
+(8, 0, 0, 0, 'g@me.com', '$2y$10$Ukl2SMPPgyj6MuBJE7YSt.8Ucmq.QvvMEq8eema309l9RG2C.0gue', 'Guest', 'guy', '', '', 0, '', '', 0, '', '', ''),
+(9, 1, 2, 0, 'claims@gmail.com', '$2y$10$CnniO89AgDVYEfwS1hkoZuOdCqcxfEaBmsVfMfQzjIgkhpj2XKXj6', 'Claims', 'Adjuster', '', '', 0, '', '', 0, '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -384,9 +535,27 @@ ALTER TABLE `claims_img`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `claim_items`
+--
+ALTER TABLE `claim_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `claim_types`
+--
+ALTER TABLE `claim_types`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `company_details`
 --
 ALTER TABLE `company_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `history`
+--
+ALTER TABLE `history`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -469,27 +638,42 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `claims`
 --
 ALTER TABLE `claims`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `claims_img`
 --
 ALTER TABLE `claims_img`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `claim_items`
+--
+ALTER TABLE `claim_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `claim_types`
+--
+ALTER TABLE `claim_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
 -- AUTO_INCREMENT for table `company_details`
 --
 ALTER TABLE `company_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `item_category`
 --
 ALTER TABLE `item_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `item_img`
 --
@@ -499,7 +683,7 @@ ALTER TABLE `item_img`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -509,12 +693,12 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `roles_permissions`
 --
 ALTER TABLE `roles_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `rooms`
 --
@@ -529,17 +713,17 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `status_types`
 --
 ALTER TABLE `status_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
