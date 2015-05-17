@@ -384,7 +384,11 @@ input[type="checkbox"]{
 }
  
 
-
+#scrollbox{
+/* USED IN read_message.php */
+    height: 400px;
+    overflow: scroll;
+}
 
 
 

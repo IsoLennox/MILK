@@ -248,7 +248,15 @@ if($_SESSION['is_employee']==0){
         } 
     }  ?>
             <ul>
-                <li><a href="messages.php">Messages</a></li>
+               
+                   <?php 
+                    $message_query="SELECT COUNT(*) as messages FROM messages WHERE sent_to={$_SESSION['user_id']} AND viewed=0";
+                    $message_found=mysqli_query($connection, $message_query);
+                    $mes=mysqli_fetch_assoc($message_found);
+                    $num_messg= $mes['messages'];
+                     
+                    ?>
+                <li><a href="messages.php">Messages</a>(<?php echo $num_messg; ?>)</li>
                 <li><a href="claims.php">Claims</a>(<?php echo $total; ?>)</li> 
                 <li><a href="employees.php">Employees</a></li>
                 <?php if($roles==1){ ?>
