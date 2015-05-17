@@ -2,14 +2,14 @@
 
 <a href="messages.php">&laquo; All Messages</a>
  
- <h1>Conversation with <?php echo $_GET['with']; ?></h1>
+ <h1>Conversation with <a href="profile.php?user=<?php echo $_GET['with_user']; ?>"><?php echo $_GET['with']; ?></a></h1>
           
 <div id="scrollbox">
            <?php
 
 //MARK ALL IN THREAD WHERE YOU ARE SENT_TO as VIEWED=1
-    $viewed_query  = "UPDATE messages WHERE thread={$_GET['thread']} AND sent_to={$_SESSION['user_id']} SET viewed=1";  
-    $viewed_result = mysqli_query($connection, $viewed_query);
+    $viewed_query  = "UPDATE messages SET viewed=1 WHERE thread_id={$_GET['thread']} AND sent_to={$_SESSION['user_id']}";  
+    $viewed_result = mysqli_query($connection, $viewed_query); 
   
 
 //READ ALL MESSAGES
@@ -20,9 +20,9 @@
         //show each result value
         foreach($result as $show){
             $name=find_user_by_id($show['sent_from']);
-            echo "From: <a href=\"profile.php?id=".$show['sent_from']."\">".$name['first_name']."</a><br/>";
+            echo "From: <a href=\"profile.php?user=".$show['sent_from']."\">".$name['first_name']."</a><br/>";
             echo "Sent: ".$show['datetime']."<br/>";
-            echo $show['content']."<br/>";
+            echo htmlspecialchars_decode($show['content'])."<br/>";
             echo "<hr/><br/>";
              
                       
@@ -30,9 +30,11 @@
         }
  ?>
       </div>
-          <form action="#">
+          <form method="POST" action="messages.php?send">
               
-              <textarea name="reply" id="" cols="30" rows="10"></textarea>
+              <textarea name="msg" id="" cols="30" rows="10"></textarea>
+              <input type="hidden" name="send_to" value="<?php echo $_GET['with_user']; ?>">
+              <input type="hidden" name="thread" value="<?php echo $_GET['thread']; ?>">
               <input type="submit" name="sumbit" id="submit" value="Reply">
           </form>
         

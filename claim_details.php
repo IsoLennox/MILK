@@ -28,7 +28,20 @@ if(isset($_GET['id'])){
             
             echo "<h1>".$show['title']."</h1>";
                   
+                  //GET CLAIM STATUS NAME
+    $status_query  = "SELECT * FROM status_types WHERE id={$show['status_id']}";  
+    $status_result = mysqli_query($connection, $status_query);
+    if($status_result){
+        $status_array=mysqli_fetch_assoc($status_result);
+        $status=$status_array['name'];
+    }   
+     
+                  
+                  
+                  
             if($_SESSION['is_employee']==1){ 
+                
+                echo $status;
 
                     //GET PERMISSIONS FOR THIS PAGE
              foreach($_SESSION['permissions'] as $key => $val){ 
@@ -38,18 +51,16 @@ if(isset($_GET['id'])){
                     }//end show link if has claims permissions 
                 }//end check permissions 
                 if($permission==1){
+                    
                 echo "<br/><a href=\"update_claim.php?id=".$_GET['id']."\">Update This Claim</a><br/>";
                 }
             } //end check if employee
                   
-//GET CLAIM STATUS NAME
-    $status_query  = "SELECT * FROM status_types WHERE id={$show['status_id']}";  
-    $status_result = mysqli_query($connection, $status_query);
-    if($status_result){
-        $status_array=mysqli_fetch_assoc($status_result);
-        $status=$status_array['name'];
-    }   
-//     echo "<h3>".$status."</h3>";
+             
+                  
+                  
+                  
+//    STATUS BAR
      if($show['user_id']===$_SESSION['user_id'] ){
          if($status=="Draft"){
             $status="Add Images/Revise Draft";
@@ -64,6 +75,9 @@ if(isset($_GET['id'])){
 
      }//end check if draft/pending client changes
             
+                  
+                  
+                  
             
             echo "Claim Type: ".$claim_type."<br/>";
                   

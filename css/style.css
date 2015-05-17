@@ -392,7 +392,24 @@ input[type="checkbox"]{
 
 
 
+::-webkit-scrollbar,
+::-mz-scrollbar
+{
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
 
+::-webkit-scrollbar-track,
+::-mz-scrollbar-track
+{
+  background: rgba(205, 30, 220, 0.1);
+}
+
+::-webkit-scrollbar-thumb,
+::-mz-scrollbar-thumb
+{
+  background: rgba(244, 0, 0, 0.5);
+}
 
 
 
