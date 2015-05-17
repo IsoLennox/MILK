@@ -56,7 +56,7 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         <section id="avatar" class="left"> <img src="<?php echo $avatar; ?>" alt="profile image">
          </section>
          
-         <a href="messages.php?new&route=<?php echo $profile_array['id']; ?>">Send Message</a><br/>
+         <a href="messages.php?new&name=<?php echo $username; ?>&route=<?php echo $profile_array['id']; ?>">Send Message</a><br/>
         <section id="profile-content"> <?php echo $content; ?> 
         
 <!--        ACCOUNT DETAILS  -->

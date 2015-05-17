@@ -14,24 +14,21 @@ include("inc/header.php"); ?>
                    echo "<form action=\"messages.php?send\" method=\"POST\">"; 
                         echo "<select name=\"send_to\">";
                     //show each result value
-                    foreach($result as $show){
-                        //see if came from user's profile
-                            if(isset($_GET['route'])){
-                                if($_GET['route']==$show['id']){
-                                    $selected="selected";
-                                }
+                   
+                    //see if came from user's profile
+                    if(isset($_GET['route'])){
+                                 echo "<option value=\"".$_GET['route']."\">".$_GET['name']."</option>";
                             }else{
-                                $selected="";
-                            }
-                        
-                        
-                        echo "<option ".$selected." value=\"".$show['id']."\">".$show['first_name']." ".$show['last_name']."</option>";
-
+                    foreach($result as $show){ 
+                                echo "<option value=\"".$show['id']."\">".$show['first_name']." ".$show['last_name']."</option>"; 
                         }
+                    }//end check if user pre-selected
+                    
                         echo "</select>";
                         echo "<textarea name=\"msg\" placeholder=\"Hello...\"></textarea>";
                     echo "<input type=\"submit\" name=\"submit\" value=\"Send Message\">";
                     echo "</form>";
+                    echo "<a href=\"messages.php\" onclick=\"return confirm('Leave the page? This will not save your message!');\">Cancel</a> ";
                 }else{
                     echo "There are no employees to send a message to!";
                 }
