@@ -156,6 +156,24 @@ if($_SESSION['is_employee']==0){
 //have a refine statistics box: filter each section with checkboxes
 //export option for all results
 
+//FILTER BOX:
+
+// Refine Results:
+?>
+<form action="#" method="POST">
+    
+    <input type="checkbox" name="results[]" value="claims">Claims
+<!--    inside would involve total number of claims, number of items in each claims type, number involved in each claim status -->
+    <input type="checkbox" name="results[]" value="items">Items
+<!--    inside would involve number of items total, as well as number of items in each category-->
+    <input type="checkbox" name="results[]" value="users">Users
+<!--    inside would involve total num of users, total num of clients vs. employees, and statistics based on location and how many number of items, and claims clients have each, and on average --> 
+
+<input type="submit" name="refine" value="Refine">
+</form>
+
+<?php
+
 //example query
 
 //    $query  = "SELECT * FROM TABLE";  
