@@ -244,6 +244,7 @@ if($_SESSION['is_employee']==0){
          
          //UPDATE ROLES
         if($val==3){ 
+            //has edit roles permissions
             $roles=1; 
         } 
     }  ?>
