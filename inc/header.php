@@ -257,17 +257,17 @@ if($_SESSION['is_employee']==0){
                     $num_messg= $mes['messages'];
                      
                     ?>
-                <li><a href="messages.php">Messages</a>(<?php echo $num_messg; ?>)</li>
-                <li><a href="claims.php">Claims</a>(<?php echo $total; ?>)</li> 
-                <li><a href="employees.php">Employees</a></li>
-                <?php if($roles==1){ ?>
-                <li><a href="roles.php">Roles</a></li>
+                <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages</a>(<?php echo $num_messg; ?>)</li>
+                <li><a href="claims.php"><i class="fa fa-file-text"></i> Claims</a>(<?php echo $total; ?>)</li> 
+                <li><a href="employees.php"><i class="fa fa-user"></i> Employees</a></li>
+                <?php if($role == 1){ ?>
+                <li><a href="roles.php"><i class="fa fa-user-secret"></i> Roles</a></li>
                 
                 <?php }?>
                 
-                <li><a href="company_details.php">Company Details</a></li>
-                <li><a href="index.php">Statistics</a></li>
-                <li><a href="activity.php">Activity</a></li> 
+                <li><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
+                <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+                <li><a href="activity.php"><i class="fa fa-history"></i> Activity</a></li> 
 
             </ul>
 <?php }  ?>
@@ -276,12 +276,12 @@ if($_SESSION['is_employee']==0){
             <ul id="themes">
                  <?php if(isset($_SESSION['theme'])){
             if($_SESSION['theme']==1){
-                  echo "<li><a href=\"edit.php?theme\">Switch to Light Theme</a></li>";
+                  echo "<li><a href=\"edit.php?theme\"><i class=\"fa fa-sun-o\"></i> Light Theme</a></li>";
                     }else{
-                    echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
+                    echo "<li><a href=\"edit.php?theme\"><i class=\"fa fa-moon-o\"></i> Dark Theme</a></li>";
                     }
                 }else{
-            echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
+            echo "<li><a href=\"edit.php?theme\"><i class=\"fa fa-moon-o\"></i> Dark Theme</a></li>";
             }
         ?>
              </ul>
