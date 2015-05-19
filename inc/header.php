@@ -289,9 +289,9 @@ if($_SESSION['is_employee']==0){
 <header>
     <!--        USER ICONS -->
     <div class="search_container">
-        <form class ='search' action="#" method="#">        	
-	        <input type="search" placeholder='Search Here' name="client_search" id="searchbar">
-	        <input type="submit" name="submit" id="nav_search" value="">
+        <form class='search' action="search.php" method="POST">        	
+	        <input type="search" placeholder='Search Here' name="query" id="searchbar">
+	        <input type="submit" name="search" id="nav_search" value="">
 	    </form>
 	</div>
 
