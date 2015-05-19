@@ -259,14 +259,14 @@ if($_SESSION['is_employee']==0){
                 <li><a href="messages.php">Messages</a>(<?php echo $num_messg; ?>)</li>
                 <li><a href="claims.php">Claims</a>(<?php echo $total; ?>)</li> 
                 <li><a href="employees.php">Employees</a></li>
-                <?php if($roles==1){ ?>
+                <?php if($role == 1){ ?>
                 <li><a href="roles.php">Roles</a></li>
                 
                 <?php }?>
                 
                 <li><a href="company_details.php">Company Details</a></li>
                 <li><a href="index.php">Statistics</a></li>
-                <li><a href="activity.php">Activity</a></li> 
+                <li><a href="activity.php"><i class="fa fa-user-secret"></i> Activity</a></li> 
 
             </ul>
 <?php }  ?>
