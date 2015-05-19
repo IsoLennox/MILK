@@ -87,6 +87,8 @@ if($_SESSION['is_employee']==0){
     
 }else{  
 
+    
+    //IS EMPLOYEE
  
 //    foreach($_SESSION['permissions'] as $key => $val){ 
 //        if($val==3){
