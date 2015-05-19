@@ -63,11 +63,8 @@
      } 
  }//end edit company details
 
- if(isset($_GET['role'])){
-    echo "<h1>Edit Role ".$_GET['role']." </h1>";
- }
 
 
-    
+ 
  
  include("inc/footer.php"); ?> 
