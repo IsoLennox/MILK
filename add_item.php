@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     $price= $_POST['purchase_price']; 
     $value= $_POST['declared_value']; 
     $cat= $_POST['category'];  
-    $date = date('d/m/Y H:i');
+    $date = date('m/d/Y H:i');
     
     
         //INSERT ALL DATA EXCEPT PERMISSIONS
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
             $insert_history = mysqli_query($connection, $history); 
         
             $_SESSION["message"] = "Item Saved!";
-            redirect_to("inventory.php");        
+            redirect_to("item_details.php?id=".$item_id);        
         }else{
             $_SESSION["message"] = "Item could not be saved";
             redirect_to("inventory.php");
@@ -93,8 +93,7 @@ if (isset($_POST['submit'])) {
     <p>Purchase Price: $<input type="text" name="purchase_price" placeholder="950.89" value=""></p>
     <p>Declared Value: $<input type="text" name="declared_value" placeholder="950.99" value=""></p>
    
-    <p>Add File (e.x. Image/file of object, reciept, appraisal... )</p>
-    <input type="submit" name="submit" value="Save Item">
+    <input type="submit" name="submit" value="Next: Add Files">
  </form>
  <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');">Cancel</a> 
         

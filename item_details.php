@@ -18,7 +18,7 @@ if(isset($_GET['remove'])){
         // Success 
             
              //INSERT into history table
-            $date = date('d/m/Y H:i');
+            $date = date('m/d/Y H:i');
             $content = "Removed item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
             $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
             $insert_history = mysqli_query($connection, $history); 
@@ -30,6 +30,39 @@ if(isset($_GET['remove'])){
         } else {
         // Failure
         $_SESSION["message"] = "Could not delete item";
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        }//END REMOVE ITEM
+    
+    
+   
+    
+}elseif(isset($_GET['restore'])){ 
+    $item_id=$_GET['restore'];
+    $name=$_GET['item']; 
+    
+    //UPDATE item to in_trash=1
+    
+        $update_item  = "UPDATE items SET in_trash = 0 ";
+        $update_item .= "WHERE id = {$item_id} ";
+        $result = mysqli_query($connection, $update_item);
+
+        if ($result && mysqli_affected_rows($connection) == 1) {
+        // Success 
+            
+             //INSERT into history table
+            $date = date('m/d/Y H:i');
+            $content = "Restored item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
+            $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
+            $insert_history = mysqli_query($connection, $history); 
+            
+            
+            $_SESSION["message"] = "Item Restored!";
+            redirect_to('item_details.php?id='.$item_id);
+
+        } else {
+        // Failure
+        $_SESSION["message"] = "Could not restore item";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
 
         }//END REMOVE ITEM
@@ -57,7 +90,7 @@ if(isset($_GET['remove'])){
                 
                 //SEE IF ITEM IS IN TRASH
                 if($show['in_trash']==1){
-                   $in_trash= "This item was removed. <a href=\"#\">Restore it?</a>";
+                   $in_trash= "This item was removed. <a href=\"item_details.php?restore=".$show['id']."&item=".$show['name']."\">Restore it?</a>";
                 }else{
                     $in_trash=" <a onclick=\"return confirm('DELETE this item?')\" href=\"item_details.php?remove=".$show['id']."&item=".$show['name']."\">Remove Item</a>";
                 }
@@ -70,7 +103,7 @@ if(isset($_GET['remove'])){
                 
                 echo "<h1>".$show['name']."</h1>"; 
                 
-                
+                 echo "<h3>Item Details</h3>";
                 //IF IS INVOLDED IN CLAIM, SHOW CLAIM ID/LINK AND REMOVE TRASH/EDIT OPTION
                 $claim_query  = "SELECT * FROM claim_items WHERE item_id={$id}"; 
                 $claim_result = mysqli_query($connection, $claim_query);
@@ -81,8 +114,17 @@ if(isset($_GET['remove'])){
                 echo "This item is invloved in <a href=\"claim_details.php?id=".$claim_array['claim_id']."\">CLAIM #".$claim_array['claim_id']."</a><br/>";
                 $in_trash="";
                 $edit="";
+                $upload="";
+                $upload_form="";
             }else{
-                $edit="<a href=\"edit_item.php?id=".$show['id']."\">Edit</a><br/>";
+                $edit="<a href=\"edit_item.php?id=".$show['id']."\">Edit Item Details</a><br/>";
+                $upload="<a href=\"item_details.php?add_image&id=".$show['id']."\">+ Add Files</a>";
+                $upload_form="<form action=\"upload_item_img.php\" method=\"post\" enctype=\"multipart/form-data\">
+                            Upload an Image or PDF:<br/>
+                            <input type=\"file\" name=\"image\" id=\"fileToUpload\"><br/>
+
+                            <input type=\"submit\" value=\"Upload File\" name=\"submit\">
+                            </form>";
             }
                 
                 if($show['in_trash']==0){
@@ -101,6 +143,38 @@ if(isset($_GET['remove'])){
                 echo "Declared Value: ".$show['declared_value']."<br/>"; 
                 echo "Description/Notes:<br/>".$show['notes']."<br/>"; 
                 
+                echo "<h3>File Attachments</h3>";
+               
+                if(isset($_GET['add_image'])){ 
+                    $item_id=$_GET['add_image']; 
+                    echo $upload_form;
+                }else{
+                    echo $upload;
+                }
+                
+//                EXAMPLE 
+                echo "<br/><br/>";
+                
+                echo "
+                <a href=\"#\" alt=\"View full size image\" ><img class=\"thumbnail\" src=\"http://lorempixel.com/80/80/abstract\"></a>
+                <span class=\"caption\">Caption ipsum plorem pilsubmus et tu farmer greyous muffin.</span> 
+                <a href=\"#\">Edit</a>
+                <a href=\"#\">Delete</a>";
+                echo "<br/><br/>";
+                
+                  echo "
+                <a href=\"#\" alt=\"View full size image\" ><img class=\"thumbnail\" src=\"http://lorempixel.com/80/80/abstract\"></a>
+                <span class=\"caption\">Caption ipsum plorem pilsubmus et tu farmer greyous muffin.</span> 
+                <a href=\"#\">Edit</a>
+                <a href=\"#\">Delete</a>";
+                echo "<br/><br/>";
+                  echo "
+                <a href=\"#\" alt=\"View full size image\" ><img class=\"thumbnail\" src=\"http://lorempixel.com/80/80/abstract\"></a>
+                <span class=\"caption\">Caption ipsum plorem pilsubmus et tu farmer greyous muffin.</span> 
+                <a href=\"#\">Edit</a>
+                <a href=\"#\">Delete</a>";
+                echo "<br/><br/>";
+//                END EXAMPLE
                 
                 echo $in_trash;
 
