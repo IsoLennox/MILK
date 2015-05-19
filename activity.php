@@ -4,7 +4,7 @@ include("inc/header.php"); ?>
     
          <?php  if(isset($_GET['all'])){ ?>
                 <h1>All Activity</h1>
-                  <span class="left"><a href="activity?all">View your history</a></span> 
+                  <span class="left"><a href="activity.php?all">View your history</a></span> 
 
     
 
