@@ -144,6 +144,18 @@ if($_SESSION['is_employee']==0){
            
            <?php
 
+
+
+
+// TO DO:
+
+// GET how many claims are in each claim type
+// GET how many items are in each item category
+
+
+//have a refine statistics box: filter each section with checkboxes
+//export option for all results
+
 //example query
 
 //    $query  = "SELECT * FROM TABLE";  
