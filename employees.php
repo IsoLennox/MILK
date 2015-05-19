@@ -8,7 +8,8 @@
              foreach($_SESSION['permissions'] as $key => $val){  
                  //EDIT EMPLOYEES
                 if($val==2){ 
-                    echo " <a href=\"new_employee.php\">New Employee</a> ";
+                    echo " <a href=\"new_employee.php\">New Employee</a> <br/>";
+                    echo " <a href=\"#\">View Disabled Accounts</a> ";
                     //can remove this upon styling
                     echo "<hr/>";
                 } 
@@ -19,7 +20,10 @@
 if($_GET['edit']){
     $emp_id=$_GET['edit'];
     echo "Editing employee ".$emp_id;
-    
+    echo "Current Role: Super User<br/>";
+    echo "Change Role: list of roles/permissions<br/>";
+    echo "disable account<br/>";
+    echo "change password<br/>";
     //can remove this upon styling
     echo "<hr/>";
 }
