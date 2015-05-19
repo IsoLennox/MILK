@@ -152,7 +152,7 @@ if(isset($_GET['remove'])){
                     echo $upload;
                 }
                 
-//                EXAMPLE GALLERY
+//                EXAMPLE 
                 echo "<br/><br/>";
                 
                 echo "

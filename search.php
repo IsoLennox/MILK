@@ -90,7 +90,8 @@ if(isset($_POST['search'])){
                     $claim_search=1; //only if yours (defined in query)
                     $item_search=1; //only if yours
                 }
-                 
+                
+                
             }else{ 
          $string_array= explode(" ",$string);
                 
