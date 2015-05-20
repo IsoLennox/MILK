@@ -290,6 +290,8 @@ footer{
 .clearfix:after {
 visibility: hidden;
 display: block;
+}
+
 .clearfix {display: inline-block;}
 
 /* Hides from IE-mac \*/
