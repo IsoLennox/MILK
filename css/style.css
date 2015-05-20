@@ -296,44 +296,18 @@ display: block;
 * html .clearfix {height: 1%;}
 .clearfix {display: block;}
 /* End hide from IE-mac */
-
- 
-<<<<<<< HEAD
-
-=======
-/*input,textarea {
-    border:none;
-    outline:none;
-}*/
->>>>>>> ba3f932cae0a182eec6889163737cb28d6c5b4d8
  
 
 
 /*-------------------------------------------------*/
 /*Inventory Page FORM Styling*/
 .add_item {
-<<<<<<< HEAD
 	max-width:900px;
 	width:70%;
 	margin:0 auto;
 }
 
-
 input,textarea,select {
-=======
-    width:900px;
-    margin:0 auto;
-}
-
-
-font-size: 0;
-content: " ";
-clear: both;
-height: 0;
-}
-
-.add_item input,textarea,select {
->>>>>>> ba3f932cae0a182eec6889163737cb28d6c5b4d8
     width:100%;
     padding: 7px 10px;
     border-radius: 5px;
@@ -416,25 +390,14 @@ h3 {
     color: firebrick;
     font-size: 1.5em;
 }
-<<<<<<< HEAD
 
-
-=======
- 
-input[type="text"]{ 
-    background:#eee;
-    padding: 5px;
-    border:1px solid #555;
-    font-weight: 900;
-    margin: 5px;
-}
 .fa-2x {
     /* search bar icons in header */
     position:relative;
     top: 7px;
     width: 40px;
 }
->>>>>>> ba3f932cae0a182eec6889163737cb28d6c5b4d8
+
 .fa-trash-o { color:red;}
 .fa-trash-o:hover { color:grey;}
 
