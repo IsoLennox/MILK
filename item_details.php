@@ -146,6 +146,7 @@ if(isset($_GET['remove'])){
                 echo "Description/Notes:<br/>".$show['notes']."<br/>"; 
                 
                 echo "<h3>File Attachments</h3>";
+                echo "<p>Images, Reciepts, Appraisals, and other documents that prove the condition, value, and ownership of this item.</p>";
                
                 if(isset($_GET['add_image'])){ 
                     $item_id=$_GET['add_image']; 
@@ -183,8 +184,8 @@ if(isset($_GET['remove'])){
             }
                 
               
-    
-                
+                //obviously, we will style this to make it a button/icon and out of the way
+                echo "<br/><br/><br/>";
                 echo $in_trash;
 
                 }else{
