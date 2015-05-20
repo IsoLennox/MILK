@@ -245,7 +245,7 @@ if($_SESSION['is_employee']==0){
     //NOTIFICATIONS FOR MESSAGES: GET NUMBER OF MESSAGES WHERE SENT_TO==you && VIEWED==0
     
     
-   
+   $role=0;
 //GET NAV ITEM PERMISSIONS
      foreach($_SESSION['permissions'] as $key => $val){ 
 //         echo $val;
@@ -253,8 +253,8 @@ if($_SESSION['is_employee']==0){
          //UPDATE ROLES
         if($val==3){ 
             //has edit roles permissions
-            $roles=1; 
-        } 
+            $role++;  
+        }
     }  ?>
             <ul>
                
@@ -266,7 +266,7 @@ if($_SESSION['is_employee']==0){
                      
                     ?>
                 <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages </a>(<?php echo $num_messg; ?>)</li>
-                <li><a href="claims.php"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
+                <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
                 <li><a href="employees.php"><i class="fa fa-users"></i> Employees</a></li>
                 <?php if($role == 1){ ?>
                 <li><a href="roles.php"><i class="fa fa-user-secret"></i> Roles</a></li>

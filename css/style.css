@@ -103,8 +103,8 @@ a:hover {
 }
 
 
-
-
+.left{float: left;}
+.right{float: right;}
 
 /*.wrapper {
     margin:0 auto;
@@ -231,6 +231,7 @@ header {
     color: #ffffff;
     vertical-align: super;
     margin:0;
+    font-style: normal;    
 }
 
 .search input[type='search'] {
@@ -332,6 +333,7 @@ h3 {
     font-size: 1.5em;
 }
 
+
 .fa-2x {
     /* search bar icons in header */
     position:relative;
@@ -391,6 +393,7 @@ input[type="checkbox"]{
 }
 
 
+
 #page_name { 
     position: relative; 
     top: -30px; left: 30px;
@@ -430,8 +433,18 @@ display: block;
 /* End hide from IE-mac */
  
 
+.claims_list{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 20px;
+}
 
+.claims{
+    margin-bottom: 20px;
+    clear: both;
+}
 
+.claims h4 { margin: 0; margin-top: 20px; font-weight: 900; font-size: 1.1em;}
 
 
 ::-webkit-scrollbar,

@@ -11,7 +11,7 @@ include("inc/header.php"); ?>
 <?php }else{ ?>
                   <h1>Your Activity</h1>
                   <?php  if($_SESSION['is_employee']==1){ ?>
-                  <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> View all employee history</a></span> 
+                  <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> All employee history</a></span> 
                   <?php  } ?>
                 
                         <select name="filter" id="filter">
