@@ -401,7 +401,11 @@ input[type="checkbox"]{
     overflow: scroll;
 }
 
-
+.gallery{
+    margin: 50px;
+    padding: 20px;
+    border: 1px solid grey;
+}
 
 ::-webkit-scrollbar,
 ::-mz-scrollbar
