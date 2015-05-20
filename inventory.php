@@ -3,10 +3,12 @@ $current_page="inventory";
 include("inc/header.php"); ?>
 
 
-<h1>Your Inventory</h1>
 
-<a href="add_item.php">+ Add Item</a>
  
+  <?php if(!isset($_GET['trash'])){ ?>
+  <h1>Your Inventory</h1>
+  <a href="add_item.php">+ Add Item</a><br/>
+  <a href="inventory.php?trash">View Trash Can</a>
   
   <form method="POST">
       <h3>Refine Your Results</h3>
@@ -58,6 +60,7 @@ include("inc/header.php"); ?>
      <input type="submit" value="Find Items" name="submit">
  
   </form>
+  <?php } ?>
   
   
 
@@ -103,6 +106,11 @@ include("inc/header.php"); ?>
         }
         
 
+    }elseif(isset($_GET['trash'])){
+        echo "<a href=\"inventory.php\">&laquo; Back to Inventory</a>";
+        echo "<h1 style=\"color:red;\">Trash Can</h1>";
+        //VIEW TRASH CAN
+        $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=1"; 
     }else{
         //no search refinements, SHOW ALL ITEMS
         $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0"; 
@@ -113,30 +121,31 @@ include("inc/header.php"); ?>
     $result = mysqli_query($connection, $query);
     if($result){
         //SHOW ITEMS
-        echo "<ul>";
+        
         foreach($result as $show){
+            echo "<div class=\"notes_container\">";
                          //Check to see if involved in claim
                         $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$show['id']}"; 
                         $item_claim_result = mysqli_query($connection, $item_claim_query);
                         $claim_item_rows=mysqli_num_rows($item_claim_result);
                         if($claim_item_rows >= 1){ 
-                            $claim_class="style=\"color:red;\""; 
+                            $claim_class="<p style=\"color:red;\"> Involved in claim </p>"; 
                         }else{
                             $claim_class="";
                         }
             
             $id=$show['id'];
             $name=$show['name'];
-            echo "<li ".$claim_class."><a href=\"item_details.php?id=".$id."\">".$name."</a></li>";
-
+            echo "<a href=\"item_details.php?id=".$id."\">".$name."</a><br/>";
+                echo $claim_class;
                 $room_name=get_room_name($show['room_id']);
                 $cat_name=get_category_name($show['category']);
                 echo "Category: ".$cat_name."<br/>";
                 echo "Room: ".$room_name;
             
-            
+            echo "</div>";
             }
-        echo "</ul>";
+        
         }
  ?>
      

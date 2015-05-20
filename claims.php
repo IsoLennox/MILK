@@ -14,7 +14,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
 
          <?php  
             //GET CLAIM COUNTS
-            $all_query  = "SELECT COUNT(*) as total FROM claims";   
+            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id != 1";   
             $all_result = mysqli_query($connection, $all_query);
             $data=mysqli_fetch_assoc($all_result);
 
@@ -22,6 +22,10 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             $pending_result = mysqli_query($connection, $pending_query);
             $pdata=mysqli_fetch_assoc($pending_result); 
 
+            $waiting_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=4";   
+            $waiting_result = mysqli_query($connection, $waiting_query);
+            $wdata=mysqli_fetch_assoc($waiting_result); 
+ 
 
             $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=2";   
             $approved_result = mysqli_query($connection, $approved_query);
@@ -33,7 +37,8 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
         ?>
         <ul>
            <li><a href="claims.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claims.php?pending">Pending</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claims.php?pending">Processing</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claims.php?changes">Pending Changes</a> (<?php echo $wdata['total']; ?>)</li>
            <li><a href="claims.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
            <li><a href="claims.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
         </ul>
@@ -44,10 +49,38 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     if(isset($_GET['pending'])){
     
     //select all where claim type == pending   order by id ASC  
-    echo "<h2>Pending Claims</h2>";  
+    echo "<h1>Unprocessed Claims</h1>";  
         //GET ALL PENDING 
 
     $query  = "SELECT * FROM claims WHERE status_id=0 ORDER BY id DESC";  
+    $result = mysqli_query($connection, $query);
+    if($result){ 
+        //show each result value
+        foreach($result as $show){
+            
+                        //GET CLAIM TYPE NAME
+    $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
+    $type_result = mysqli_query($connection, $type_query);
+    if($type_result){
+        $type_array=mysqli_fetch_assoc($type_result);
+        $claim_type=$type_array['name'];
+    }
+            
+            
+            echo "Title: ".$show['title']."<br/>";
+            echo "Date Filed: ".$show['datetime']."<br/>"; 
+            echo "Claim Type: ".$claim_type."<br/>";
+               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+            }  
+        }  
+    
+    }elseif(isset($_GET['changes'])){
+    
+    //select all where claim type == pending   order by id ASC  
+    echo "<h1>Awaiting Client Changes</h1>";  
+        //GET ALL PENDING 
+
+    $query  = "SELECT * FROM claims WHERE status_id=4 ORDER BY id DESC";  
     $result = mysqli_query($connection, $query);
     if($result){ 
         //show each result value
@@ -73,7 +106,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     
     //select all where claim type == approved    order by id DESC  
       
-    echo "<h2>Approved Claims</h2>";  
+    echo "<h1>Approved Claims</h1>";  
         //GET ALL PENDING 
 
     $query  = "SELECT * FROM claims WHERE status_id=2 ORDER BY id DESC";  
@@ -102,7 +135,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     }elseif(isset($_GET['denied'])){
     
     //select all where claim type == approved    order by id DESC  
-    echo "<h2>Denied Claims</h2>";  
+    echo "<h1>Denied Claims</h1>";  
         //GET ALL PENDING 
 
     $query  = "SELECT * FROM claims WHERE status_id=3 ORDER BY id DESC";  
@@ -129,7 +162,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     }else{
   
   echo "<h1>All Claims</h1>";
-    $query  = "SELECT * FROM claims ORDER BY id DESC";  
+    $query  = "SELECT * FROM claims WHERE status_id != 1 ORDER BY id DESC";  
     $result = mysqli_query($connection, $query);
     if($result){ 
         //show each result value
@@ -144,13 +177,14 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     }
             
             
-        if($show['status_id']==0){
-            $status="Pending";
-        }elseif($show['status_id']==2){
-            $status="Approved";
-        }elseif($show['status_id']==3){
-            $status="Denied";
-        }
+                        //GET CLAIM STATUS NAME
+    $status_query  = "SELECT * FROM status_types WHERE id={$show['status_id']}";  
+    $status_result = mysqli_query($connection, $status_query);
+    if($status_result){
+        $status_array=mysqli_fetch_assoc($status_result);
+        $status=$status_array['name'];
+    }
+        
             
             
             echo "Title: ".$show['title']."<br/>";

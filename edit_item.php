@@ -7,7 +7,46 @@ include("inc/header.php"); ?>
 
 if(isset($_POST['submit'])){
     echo "submitted!";
-    // UPDATE TABLE 
+    // UPDATE TABLE : ADD 'updated' col
+    $item_id=$_POST['item_id'];
+    $name=$_POST['name'];
+    $room=$_POST['room'];
+    $category=$_POST['category'];
+    $notes=$_POST['notes'];
+    $purchase_date=$_POST['purchase_date'];
+    $purchase_price=$_POST['purchase_price'];
+    $declared_value=$_POST['declared_value'];
+    $date = date('m/d/Y H:i');
+    
+    
+    
+        $update_item  = "UPDATE items SET name='{$name}', room_id={$room}, category={$category}, notes='{$notes}', purchase_date='{$purchase_date}', purchase_price='{$purchase_price}', declared_value='{$declared_value}', updated='{$date}' ";
+//        $update_item  = "UPDATE items SET name='{$name}', room_id={$room}, updated='{$date}' ";
+        $update_item .= "WHERE id = {$item_id} ";
+        $result = mysqli_query($connection, $update_item);
+
+        if ($result && mysqli_affected_rows($connection) == 1) {
+        // Success 
+            
+             //INSERT into history table
+            
+            $content = "Edited item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
+            $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
+            $insert_history = mysqli_query($connection, $history); 
+            
+            
+            $_SESSION["message"] = "Updated Item!";
+            redirect_to('item_details.php?id='.$item_id);
+
+        } else {
+        // Failure
+        $_SESSION["message"] = "Could not update item room#".$room;
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        }//END EDIT ITEM
+    
+    
+    //ADD TO HISTORY
     //  REDIRECT TO ITEM DETAILS
 }
     
@@ -31,12 +70,12 @@ if(isset($_POST['submit'])){
                 $categoryresult = mysqli_query($connection, $category_query);
                 if($categoryresult){ 
                     //CATEGORY SELECT BOX
-                    echo "<p>Category:  <select>";
+                    echo "<p>Category:  <select name=\"category\" >";
                     foreach($categoryresult as $category){
                         //OPTIONS
                         
                         if($category['id']==$name['category']){ $selected = "selected";}else{ $selected="";}
-                        echo "<option {$selected} name=\"category\" value=\"".$category['id']."\" >".$category['name']."</option>";  
+                        echo "<option ".$selected." value=\"".$category['id']."\" >".$category['name']."</option>";  
                     }
                     echo "</select></p>";
                 }//end get categories
@@ -50,11 +89,12 @@ if(isset($_POST['submit'])){
                 $roomresult = mysqli_query($connection, $room_query);
                 if($roomresult){ 
                     //ROOM SELECT BOX
-                    echo "<p>Room: <select>";
+                    echo "<p>Room: <select name=\"room\" >";
                     foreach($roomresult as $room){
                         //OPTIONS
                          if($room['id']==$name['room_id']){ $selected = "selected";}else{ $selected="";}
-                        echo "<option {$selected} name=\"room\" value=\"".$room['id']."\" >".$room['name']."</option>"; 
+                        echo "<option ".$selected." value=\"".$room['id']."\" >".$room['name']."</option>"; 
+                        
                     }
                     echo "</select></p>";
                 }//end get rooms 
@@ -67,6 +107,7 @@ if(isset($_POST['submit'])){
     <p>Declared Value: $<input type="text" name="declared_value" placeholder="950.99" value="<?php echo $name['declared_value']; ?>"></p>
    
     <p>Add File (e.x. Image/file of object, reciept, appraisal... )</p>
+    <input type="hidden" name="item_id" value="<?php echo $name['id']; ?>">
     <input type="submit" name="submit" value="Save Item">
  </form>
      

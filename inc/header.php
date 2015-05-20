@@ -52,7 +52,17 @@ confirm_logged_in();
 <div class="wrapper">        
 <nav>
 	<div class= 'logo_user'>
-    <a href="index.php"><img src="img/under_my_roof_sm.png" alt="Greenwell Bank Logo"></a><br>
+    <?php 
+        $logo_query="SELECT * FROM company_details";
+        $logo_found=mysqli_query($connection, $logo_query);;
+        if($logo_found){
+            $details=mysqli_fetch_assoc($logo_found);
+            $logo=$details['logo'];
+        }else{
+            $logo="img/under_my_roof_sm.png";
+        }
+        ?>
+    <a href="index.php"><img src="<?php echo $logo; ?>" alt="Greenwell Bank Logo"></a><br>
     <i class="fa fa-user"> </i> <a title="Your Profile" href="profile.php"><?php echo $_SESSION['username']; ?></a>
   </div>
 
@@ -116,6 +126,15 @@ if($_SESSION['is_employee']==0){
             $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
             $pending_result = mysqli_query($connection, $pending_query);
             $pdata=mysqli_fetch_assoc($pending_result); 
+                
+            $draft_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1";   
+            $draft_result = mysqli_query($connection, $draft_query);
+            $drdata=mysqli_fetch_assoc($draft_result); 
+
+                
+            $changes_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
+            $changes_result = mysqli_query($connection, $changes_query);
+            $cdata=mysqli_fetch_assoc($changes_result); 
 
 
             $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=2";   
@@ -127,8 +146,10 @@ if($_SESSION['is_employee']==0){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
            <li><a href="claim_history.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claim_history.php?pending">Pending</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?draft">Drafts</a> (<?php echo $drdata['total']; ?>)</li>
+           <li><a href="claim_history.php?pending">Processing</a> (<?php echo $pdata['total']; ?>)</li>
            <li><a href="claim_history.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?changes">Pending Changes</a> (<?php echo $cdata['total']; ?>)</li>
            <li><a href="claim_history.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
         
                 
@@ -148,6 +169,14 @@ if($_SESSION['is_employee']==0){
             $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
             $pending_result = mysqli_query($connection, $pending_query);
             $pdata=mysqli_fetch_assoc($pending_result); 
+                
+            $draft_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1";   
+            $draft_result = mysqli_query($connection, $draft_query);
+            $drdata=mysqli_fetch_assoc($draft_result); 
+                
+            $changes_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
+            $changes_result = mysqli_query($connection, $changes_query);
+            $cdata=mysqli_fetch_assoc($changes_result); 
 
 
             $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=2";   
@@ -159,8 +188,10 @@ if($_SESSION['is_employee']==0){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
            <li><a href="claim_history.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claim_history.php?pending">Pending</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?draft">Drafts</a> (<?php echo $drdata['total']; ?>)</li>
+           <li><a href="claim_history.php?pending">Processing</a> (<?php echo $pdata['total']; ?>)</li>
            <li><a href="claim_history.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?changes">Pending Changes</a> (<?php echo $cdata['total']; ?>)</li>
            <li><a href="claim_history.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
         
                 
@@ -204,15 +235,39 @@ if($_SESSION['is_employee']==0){
     $data=mysqli_fetch_assoc($result);
     $total= $data['total'];
     //NOTIFICATIONS FOR MESSAGES: GET NUMBER OF MESSAGES WHERE SENT_TO==you && VIEWED==0
-        ?>
+    
+    
+   
+//GET NAV ITEM PERMISSIONS
+     foreach($_SESSION['permissions'] as $key => $val){ 
+//         echo $val;
+         
+         //UPDATE ROLES
+        if($val==3){ 
+            //has edit roles permissions
+            $roles=1; 
+        } 
+    }  ?>
             <ul>
-                <li><a href="messages.php">Messages</a></li>
-                <li><a href="claims.php">Claims</a>(<?php echo $total; ?>)</li> 
-                <li><a href="employees.php">Employees</a></li>
-                <li><a href="roles.php">Roles</a></li>
-                <li><a href="company_details.php">Company Details</a></li>
-                <li><a href="index.php">Statistics</a></li>
-                <li><a href="activity.php">Activity</a></li> 
+               
+                   <?php 
+                    $message_query="SELECT COUNT(*) as messages FROM messages WHERE sent_to={$_SESSION['user_id']} AND viewed=0";
+                    $message_found=mysqli_query($connection, $message_query);
+                    $mes=mysqli_fetch_assoc($message_found);
+                    $num_messg= $mes['messages'];
+                     
+                    ?>
+                <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages</a>(<?php echo $num_messg; ?>)</li>
+                <li><a href="claims.php"><i class="fa fa-file-text"></i> Claims</a>(<?php echo $total; ?>)</li> 
+                <li><a href="employees.php"><i class="fa fa-users"></i> Employees</a></li>
+                <?php if($role == 1){ ?>
+                <li><a href="roles.php"><i class="fa fa-user-secret"></i> Roles</a></li>
+                
+                <?php }?>
+                
+                <li><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
+                <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+                <li><a href="activity.php"><i class="fa fa-history"></i> Activity</a></li> 
 
             </ul>
 <?php }  ?>
@@ -221,12 +276,12 @@ if($_SESSION['is_employee']==0){
             <ul id="themes">
                  <?php if(isset($_SESSION['theme'])){
             if($_SESSION['theme']==1){
-                  echo "<li><a href=\"edit.php?theme\">Switch to Light Theme</a></li>";
+                  echo "<li><a href=\"edit.php?theme\"><i class=\"fa fa-sun-o\"></i> Light Theme</a></li>";
                     }else{
-                    echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
+                    echo "<li><a href=\"edit.php?theme\"><i class=\"fa fa-moon-o\"></i> Dark Theme</a></li>";
                     }
                 }else{
-            echo "<li><a href=\"edit.php?theme\">Switch to Dark Theme</a></li>";
+            echo "<li><a href=\"edit.php?theme\"><i class=\"fa fa-moon-o\"></i> Dark Theme</a></li>";
             }
         ?>
              </ul>
@@ -235,9 +290,9 @@ if($_SESSION['is_employee']==0){
 <header>
     <!--        USER ICONS -->
     <div class="search_container">
-        <form class ='search' action="#" method="#">        	
-	        <input type="search" placeholder='Search Here' name="client_search" id="searchbar">
-	        <input type="submit" name="submit" id="nav_search" value="">
+        <form class='search' action="search.php" method="POST">        	
+	        <input type="search" placeholder='Search Here' name="query" id="searchbar">
+	        <input type="submit" name="search" id="nav_search" value="">
 	    </form>
 	</div>
 

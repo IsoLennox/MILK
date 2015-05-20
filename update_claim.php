@@ -2,23 +2,61 @@
 $current_page="claims";
 include("inc/header.php"); ?>
 
-<!-- if employee, back to claims, else back to claims history -->
+<!-- FOR EMPLOYEES -->
 
  
 
 <?php
 if(isset($_POST['submit'])){
-    $claim_id=$_POST['id'];
+    $claim_id=$_GET['id'];
     $new_status=$_POST['status'];
     $notes=$_POST['notes'];
     $append_prefix= "<br><hr/><br><strong>Claim Adjuster Notes: </strong>";
+    $date = date('d/m/Y H:i');
     
-    echo "You've submitted: <br/>Status: ".$new_status."<br/>Notes: ".$append_prefix.$notes;
+                            //GET CLAIM NOTES
+    $note_query  = "SELECT * FROM claims WHERE id={$claim_id}";  
+    $note_result = mysqli_query($connection, $note_query);
+    if($note_result){
+        $note_array=mysqli_fetch_assoc($note_result);
+        $claim_notes=$note_array['notes'];
+    }else{
+        $claim_notes="User made no notes";
+    }
+    
+    $notes=$claim_notes." ".$append_prefix." ".$notes;
+     
+    //UPDATE CLAIM
+    $insert  = "UPDATE claims SET notes='{$notes}', status_id='{$new_status}', updated='{$date}' WHERE id='{$claim_id}'";
+    $insert_result = mysqli_query($connection, $insert); 
+     if ($insert_result && mysqli_affected_rows($connection) == 1) {
+    
+        //ADD TO HISTORY        
+            $content = "Updated <a href=\"claim_details.php?id=".$claim_id."\">Claim #".$claim_id."</a>";
+            $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
+            $insert_history = mysqli_query($connection, $history); 
+         //REDIRECT
+            $_SESSION['message']= "Claim #".$claim_id." Updated";
+            redirect_to('claims.php');
+     }else{
+            $_SESSION['message']="Could not update this claim";
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+     }
+    
+    
  
  }elseif(isset($_GET['id'])){
    
     //CHECK PERMISSIONS
     if($_SESSION['is_employee']==1){
+        
+                //GET PERMISSIONS FOR THIS PAGE
+ foreach($_SESSION['permissions'] as $key => $val){   
+    if($val==4){  
+        $permission=1; 
+        }//end show link if has claims permissions 
+    }//end check permissions
+        if($permission!==1){ redirect_to('claims.php'); }
        
         
     $query  = "SELECT * FROM claims WHERE id={$_GET['id']}";  
@@ -39,12 +77,12 @@ if(isset($_POST['submit'])){
             
             echo "<h1>Updating: ".$show['title']."</h1>";
             
-            if($show['status_id'==0]){
+            if($show['status_id']==0){
                 $status="Pending"; 
-            }elseif($show['status_id'==2]){
-                $status="Pending"; 
-            }elseif($show['status_id'==3]){
-                $status="Pending"; 
+            }elseif($show['status_id']==2){
+                $status="Approved"; 
+            }elseif($show['status_id']==3){
+                $status="Denied"; 
             }
             echo "<h2>Status: ".$status."</h2>"; 
             
@@ -63,7 +101,7 @@ if(isset($_POST['submit'])){
                   $itemname_query  = "SELECT * FROM items WHERE id={$item['item_id']}";  
                   $itemname_result = mysqli_query($connection, $itemname_query);
                   foreach($itemname_result as $itemname){
-                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a></li>";
+                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a> - $".$itemname['declared_value']."</li>";
                     } 
             }
                   echo "</ul>";
@@ -74,14 +112,20 @@ if(isset($_POST['submit'])){
             
             ?>
             <form action="update_claim.php?id=<?php echo $show['id']; ?>" method="POST">
-                
-                <input checked type="radio" name="status" value="0">Pending
-                <input type="radio" name="status" value="2">Approve
-                <input type="radio" name="status" value="3">Deny
+               
+                          <?php
+            $status_query  = "SELECT * FROM status_types WHERE id != 1 AND id != 0";  
+            $status_result = mysqli_query($connection, $status_query);
+            foreach($status_result as $status){ 
+                if($status['id']==$show['status_id']){ $checked="checked";}else{ $checked="";}
+                   echo "<input ".$checked." type=\"radio\" name=\"status\" value=\"".$status['id']."\">".$status['name'];
+            }
+            ?> 
                 <br/>
                 <textarea name="notes" id="notes" cols="30" rows="10" placeholder="Append notes..."></textarea>
                 <input type="submit" id="submit" name="submit" value="Update Claim">
             </form>
+            <a href="#" onlick="return confirm('Cancel this operation? Your progress will not be saved!'); ">Cancel</a>
             <?php 
         }
      }

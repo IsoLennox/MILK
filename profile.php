@@ -27,6 +27,21 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
     if($num_rows ==1){
         $profile_array=mysqli_fetch_assoc($result);
         
+        
+        //GET ROLE
+                $role_query  = "SELECT * FROM roles WHERE id={$profile_array['role']}";  
+                $roleresult = mysqli_query($connection, $role_query);
+                if($roleresult){
+                    $role=mysqli_fetch_assoc($roleresult);
+                    if(!$role['name']){
+                        $role['name']="";
+                    }
+                }
+        
+           
+
+       
+        
         $content=$profile_array['profile_content'];
         $avatar=$profile_array['avatar'];
         if(empty($avatar)){
@@ -35,10 +50,13 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
 ?>
  
     <h2> <?php echo $username; ?>'s Profile </h2>
+    <h3><?php echo $role['name']; ?></h3>
     
     <div id="profile">
         <section id="avatar" class="left"> <img src="<?php echo $avatar; ?>" alt="profile image">
          </section>
+         
+         <a href="messages.php?new&name=<?php echo $username; ?>&route=<?php echo $profile_array['id']; ?>">Send Message</a><br/>
         <section id="profile-content"> <?php echo $content; ?> 
         
 <!--        ACCOUNT DETAILS  -->

@@ -1,0 +1,147 @@
+[02-May-2015 11:53:03 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[02-May-2015 11:53:03 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[02-May-2015 11:59:16 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[02-May-2015 11:59:16 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[02-May-2015 11:59:26 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[02-May-2015 11:59:26 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[02-May-2015 15:26:31 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home4/ilennox/public_html/team_milk/public/claims.php on line 74
+[03-May-2015 15:48:23 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[03-May-2015 15:48:23 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[03-May-2015 16:06:41 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/inc/header.php on line 147
+[03-May-2015 16:08:17 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/inc/header.php on line 144
+[03-May-2015 16:08:39 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/inc/header.php on line 133
+[03-May-2015 16:08:41 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/inc/header.php on line 133
+[03-May-2015 16:09:14 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[03-May-2015 16:09:14 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[03-May-2015 16:09:41 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[03-May-2015 16:09:41 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[03-May-2015 16:09:43 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[03-May-2015 16:09:43 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[03-May-2015 16:09:49 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[03-May-2015 16:09:49 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[03-May-2015 16:09:50 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[03-May-2015 16:09:50 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[03-May-2015 16:10:35 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[03-May-2015 16:10:35 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[03-May-2015 16:10:38 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[03-May-2015 16:10:38 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[03-May-2015 16:10:39 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 12
+[03-May-2015 16:10:39 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/edit.php on line 133
+[03-May-2015 17:51:51 America/Chicago] PHP Parse error:  syntax error, unexpected '<' in /home4/ilennox/public_html/team_milk/public/new_employee.php on line 270
+[03-May-2015 17:54:06 America/Chicago] PHP Parse error:  syntax error, unexpected '<' in /home4/ilennox/public_html/team_milk/public/validation.php on line 108
+[05-May-2015 15:20:30 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/roles.php on line 34
+[05-May-2015 15:40:23 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/roles.php on line 35
+[05-May-2015 17:32:50 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/roles.php on line 60
+[08-May-2015 16:18:28 America/Chicago] PHP Parse error:  syntax error, unexpected '[', expecting '(' in /home4/ilennox/public_html/team_milk/public/add_room.php on line 4
+[08-May-2015 16:43:01 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/rooms.php on line 19
+[08-May-2015 19:06:26 America/Chicago] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in /home4/ilennox/public_html/team_milk/public/room_details.php on line 54
+[08-May-2015 19:06:26 America/Chicago] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in /home4/ilennox/public_html/team_milk/public/room_details.php on line 55
+[08-May-2015 19:26:27 America/Chicago] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in /home4/ilennox/public_html/team_milk/public/room_details.php on line 54
+[08-May-2015 19:26:27 America/Chicago] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in /home4/ilennox/public_html/team_milk/public/room_details.php on line 55
+[08-May-2015 19:54:41 America/Chicago] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in /home4/ilennox/public_html/team_milk/public/room_details.php on line 54
+[08-May-2015 19:54:41 America/Chicago] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in /home4/ilennox/public_html/team_milk/public/room_details.php on line 55
+[09-May-2015 13:06:51 America/Chicago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home4/ilennox/public_html/team_milk/public/item_details.php on line 20
+[09-May-2015 15:44:28 America/Chicago] PHP Parse error:  syntax error, unexpected '$_POST' (T_VARIABLE) in /home4/ilennox/public_html/team_milk/public/inventory.php on line 60
+[09-May-2015 15:58:48 America/Chicago] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home4/ilennox/public_html/team_milk/public/inc/functions.php on line 136
+[09-May-2015 16:11:40 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/inventory.php on line 18
+[09-May-2015 16:18:51 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home4/ilennox/public_html/team_milk/public/inventory.php on line 112
+[09-May-2015 16:20:02 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home4/ilennox/public_html/team_milk/public/inventory.php on line 112
+[10-May-2015 17:05:43 America/Chicago] PHP Fatal error:  Call to undefined function get_item_name() in /home4/ilennox/public_html/team_milk/public/edit_item.php on line 15
+[10-May-2015 17:08:23 America/Chicago] PHP Parse error:  syntax error, unexpected '""' (T_CONSTANT_ENCAPSED_STRING) in /home4/ilennox/public_html/team_milk/public/edit_item.php on line 36
+[10-May-2015 17:20:46 America/Chicago] PHP Parse error:  syntax error, unexpected '<' in /home4/ilennox/public_html/team_milk/public/profile.php on line 63
+[12-May-2015 22:51:14 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/index.php on line 29
+[12-May-2015 22:52:45 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/index.php on line 30
+[13-May-2015 12:40:26 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 113
+[13-May-2015 12:40:53 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 117
+[13-May-2015 12:40:55 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 117
+[13-May-2015 13:37:42 America/Chicago] PHP Fatal error:  Call to undefined function mysli_fetch_assoc() in /home4/ilennox/public_html/team_milk/public/item_details.php on line 68
+[13-May-2015 14:14:09 America/Chicago] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, object given in /home4/ilennox/public_html/team_milk/public/inc/header.php on line 105
+[13-May-2015 14:26:49 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 36
+[13-May-2015 19:41:01 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home4/ilennox/public_html/team_milk/public/rooms.php on line 55
+[13-May-2015 19:41:01 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/rooms.php on line 56
+[13-May-2015 19:41:01 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home4/ilennox/public_html/team_milk/public/rooms.php on line 55
+[13-May-2015 19:41:01 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/rooms.php on line 56
+[13-May-2015 19:41:01 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home4/ilennox/public_html/team_milk/public/rooms.php on line 55
+[13-May-2015 19:41:01 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/rooms.php on line 56
+[13-May-2015 19:42:16 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home4/ilennox/public_html/team_milk/public/rooms.php on line 55
+[13-May-2015 19:42:16 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home4/ilennox/public_html/team_milk/public/rooms.php on line 55
+[13-May-2015 19:42:16 America/Chicago] PHP Warning:  mysqli_query(): Empty query in /home4/ilennox/public_html/team_milk/public/rooms.php on line 55
+[13-May-2015 19:54:09 America/Chicago] PHP Fatal error:  Unsupported operand types in /home4/ilennox/public_html/team_milk/public/rooms.php on line 60
+[13-May-2015 20:07:28 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/rooms.php on line 68
+[13-May-2015 20:07:28 America/Chicago] PHP Fatal error:  Cannot redeclare item_array() (previously declared in /home4/ilennox/public_html/team_milk/public/rooms.php:54) in /home4/ilennox/public_html/team_milk/public/rooms.php on line 54
+[13-May-2015 20:07:50 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/rooms.php on line 68
+[13-May-2015 20:07:50 America/Chicago] PHP Fatal error:  Cannot redeclare item_array() (previously declared in /home4/ilennox/public_html/team_milk/public/rooms.php:54) in /home4/ilennox/public_html/team_milk/public/rooms.php on line 54
+[13-May-2015 20:09:01 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/rooms.php on line 69
+[13-May-2015 20:09:01 America/Chicago] PHP Fatal error:  Cannot redeclare item_array() (previously declared in /home4/ilennox/public_html/team_milk/public/rooms.php:54) in /home4/ilennox/public_html/team_milk/public/rooms.php on line 54
+[13-May-2015 20:11:25 America/Chicago] PHP Fatal error:  Cannot redeclare item_array() (previously declared in /home4/ilennox/public_html/team_milk/public/rooms.php:55) in /home4/ilennox/public_html/team_milk/public/rooms.php on line 55
+[13-May-2015 20:11:53 America/Chicago] PHP Warning:  array_push() expects parameter 1 to be array, null given in /home4/ilennox/public_html/team_milk/public/rooms.php on line 68
+[13-May-2015 20:11:53 America/Chicago] PHP Warning:  array_push() expects parameter 1 to be array, null given in /home4/ilennox/public_html/team_milk/public/rooms.php on line 68
+[13-May-2015 20:11:53 America/Chicago] PHP Warning:  array_push() expects parameter 1 to be array, null given in /home4/ilennox/public_html/team_milk/public/rooms.php on line 68
+[13-May-2015 20:14:49 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/rooms.php on line 74
+[13-May-2015 20:15:01 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/rooms.php on line 74
+[14-May-2015 18:25:58 America/Chicago] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in /home4/ilennox/public_html/team_milk/public/room_details.php on line 55
+[14-May-2015 18:25:58 America/Chicago] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in /home4/ilennox/public_html/team_milk/public/room_details.php on line 56
+[14-May-2015 18:40:32 America/Chicago] PHP Catchable fatal error:  Object of class mysqli_result could not be converted to string in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 13
+[14-May-2015 18:42:10 America/Chicago] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, null given in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 13
+[14-May-2015 18:42:34 America/Chicago] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, object given in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 13
+[14-May-2015 18:43:25 America/Chicago] PHP Deprecated:  mysql_query(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 13
+[14-May-2015 18:43:25 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 13
+[14-May-2015 18:43:25 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 13
+[14-May-2015 18:43:25 America/Chicago] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, boolean given in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 14
+[14-May-2015 18:43:36 America/Chicago] PHP Warning:  mysqli_query() expects at least 2 parameters, 1 given in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 13
+[14-May-2015 18:43:36 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 14
+[14-May-2015 18:44:22 America/Chicago] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, object given in /home4/ilennox/public_html/team_milk/public/claim_history.php on line 13
+[15-May-2015 15:40:06 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/index.php on line 124
+[15-May-2015 15:40:28 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/index.php on line 88
+[15-May-2015 15:43:51 America/Chicago] PHP Fatal error:  Call to undefined function get_user_by_id() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 51
+[15-May-2015 15:44:22 America/Chicago] PHP Warning:  Missing argument 1 for find_user_by_id(), called in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 51 and defined in /home4/ilennox/public_html/team_milk/public/inc/functions.php on line 94
+[15-May-2015 17:13:06 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/employees.php on line 39
+[15-May-2015 17:48:44 America/Chicago] PHP Warning:  array_push() expects parameter 1 to be array, null given in /home4/ilennox/public_html/team_milk/public/login.php on line 49
+[15-May-2015 17:48:44 America/Chicago] PHP Warning:  array_push() expects parameter 1 to be array, null given in /home4/ilennox/public_html/team_milk/public/login.php on line 49
+[15-May-2015 17:48:44 America/Chicago] PHP Warning:  array_push() expects parameter 1 to be array, null given in /home4/ilennox/public_html/team_milk/public/login.php on line 49
+[15-May-2015 17:48:44 America/Chicago] PHP Warning:  array_push() expects parameter 1 to be array, null given in /home4/ilennox/public_html/team_milk/public/login.php on line 49
+[15-May-2015 18:20:16 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/inc/header.php on line 283
+[15-May-2015 18:39:38 America/Chicago] PHP Parse error:  syntax error, unexpected ']' in /home4/ilennox/public_html/team_milk/public/update_claim.php on line 42
+[15-May-2015 20:38:56 America/Chicago] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 71
+[15-May-2015 20:53:16 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/claims.php on line 19
+[15-May-2015 20:53:59 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/claims.php on line 19
+[15-May-2015 20:54:55 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/claims.php on line 19
+[15-May-2015 20:54:57 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/claims.php on line 19
+[16-May-2015 13:44:28 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 170
+[16-May-2015 13:44:51 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 170
+[16-May-2015 13:44:52 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 170
+[16-May-2015 13:46:56 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 174
+[16-May-2015 14:16:14 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 237
+[16-May-2015 14:16:25 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 237
+[16-May-2015 14:16:29 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 237
+[16-May-2015 14:48:32 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 260
+[16-May-2015 14:50:23 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 260
+[16-May-2015 16:20:06 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/claim_details.php on line 260
+[16-May-2015 18:14:25 America/Chicago] PHP Warning:  mysqli_num_rows() expects exactly 1 parameter, 2 given in /home4/ilennox/public_html/team_milk/public/company_details.php on line 13
+[17-May-2015 12:55:58 America/Chicago] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home4/ilennox/public_html/team_milk/public/new_company_profile.php on line 13
+[17-May-2015 13:00:42 America/Chicago] PHP Warning:  getimagesize(): Filename cannot be empty in /home4/ilennox/public_html/team_milk/public/inc/company_img.php on line 9
+[17-May-2015 13:21:45 America/Chicago] PHP Warning:  unlink(): No such file or directory in /home4/ilennox/public_html/team_milk/public/new_company_profile.php on line 14
+[17-May-2015 13:22:01 America/Chicago] PHP Warning:  unlink(): No such file or directory in /home4/ilennox/public_html/team_milk/public/new_company_profile.php on line 14
+[17-May-2015 13:24:18 America/Chicago] PHP Warning:  unlink(): No such file or directory in /home4/ilennox/public_html/team_milk/public/new_company_profile.php on line 14
+[17-May-2015 13:25:42 America/Chicago] PHP Warning:  unlink(): No such file or directory in /home4/ilennox/public_html/team_milk/public/new_company_profile.php on line 14
+[17-May-2015 13:26:00 America/Chicago] PHP Warning:  unlink(): No such file or directory in /home4/ilennox/public_html/team_milk/public/new_company_profile.php on line 14
+[17-May-2015 13:26:41 America/Chicago] PHP Warning:  unlink(): No such file or directory in /home4/ilennox/public_html/team_milk/public/new_company_profile.php on line 14
+[17-May-2015 13:28:18 America/Chicago] PHP Warning:  unlink(): No such file or directory in /home4/ilennox/public_html/team_milk/public/new_company_profile.php on line 14
+[17-May-2015 14:45:50 America/Chicago] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home4/ilennox/public_html/team_milk/public/messages.php on line 13
+[17-May-2015 15:16:14 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/messages.php on line 46
+[17-May-2015 15:32:39 America/Chicago] PHP Fatal error:  Call to undefined function get_username_by_id() in /home4/ilennox/public_html/team_milk/public/read_message.php on line 27
+[17-May-2015 16:09:22 America/Chicago] PHP Warning:  mysqli_real_escape_string() expects exactly 2 parameters, 1 given in /home4/ilennox/public_html/team_milk/public/messages.php on line 41
+[17-May-2015 17:16:48 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home4/ilennox/public_html/team_milk/public/messages.php on line 25
+[18-May-2015 19:32:33 America/Chicago] PHP Parse error:  syntax error, unexpected '"</option>"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home4/ilennox/public_html/team_milk/public/edit_item.php on line 96
+[18-May-2015 20:22:19 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/item_details.php on line 114
+[18-May-2015 20:24:14 America/Chicago] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/item_details.php on line 78
+[19-May-2015 13:07:22 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home4/ilennox/public_html/team_milk/public/search.php on line 201
+[19-May-2015 13:10:03 America/Chicago] PHP Fatal error:  Call to undefined function startsWith() in /home4/ilennox/public_html/team_milk/public/search.php on line 30
+[19-May-2015 13:12:03 America/Chicago] PHP Fatal error:  Call to undefined function str_starts_with() in /home4/ilennox/public_html/team_milk/public/search.php on line 30
+[19-May-2015 13:14:28 America/Chicago] PHP Fatal error:  Call to undefined function endsWith() in /home4/ilennox/public_html/team_milk/public/search.php on line 30
+[19-May-2015 13:17:26 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/search.php on line 47
+[19-May-2015 13:30:51 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/ilennox/public_html/team_milk/public/search.php on line 181
+[19-May-2015 13:31:55 America/Chicago] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home4/ilennox/public_html/team_milk/public/search.php on line 97
+[19-May-2015 13:40:53 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/search.php on line 79
+[19-May-2015 13:41:02 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/search.php on line 79
+[19-May-2015 13:42:36 America/Chicago] PHP Warning:  Invalid argument supplied for foreach() in /home4/ilennox/public_html/team_milk/public/search.php on line 79

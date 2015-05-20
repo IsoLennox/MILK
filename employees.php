@@ -2,12 +2,37 @@
 
 
 <h1>Employees</h1>
- <a href="new_employee.php">New Employee</a> 
+
+<?php
+                //GET PERMISSIONS FOR THIS PAGE
+             foreach($_SESSION['permissions'] as $key => $val){  
+                 //EDIT EMPLOYEES
+                if($val==2){ 
+                    echo " <a href=\"new_employee.php\">New Employee</a> <br/>";
+                    echo " <a href=\"#\">View Disabled Accounts</a> ";
+                    //can remove this upon styling
+                    echo "<hr/>";
+                } 
+            }  
+
+ 
+
+if($_GET['edit']){
+    $emp_id=$_GET['edit'];
+    echo "Editing employee ".$emp_id;
+    echo "Current Role: Super User<br/>";
+    echo "Change Role: list of roles/permissions<br/>";
+    echo "disable account<br/>";
+    echo "change password<br/>";
+    //can remove this upon styling
+    echo "<hr/>";
+}
+
+?>
+
          
-         
-          <p>Employees of Greenwell Bank using UnderMyRoof</p>
-          <ul>
-                        <?php
+          
+          <ul> <?php
 
 //GET ALL EMPLOYEES
 
@@ -27,15 +52,23 @@
                 }
                     
             echo "<li><a href=\"profile.php?user=".$show['id']."\">".$show['first_name']." ".$show['last_name']."</a> ".$role['name']."</li>";
-             
+            
+                    //GET PERMISSIONS FOR THIS PAGE
+             foreach($_SESSION['permissions'] as $key => $val){  
+                 //EDIT EMPLOYEES
+                if($val==2){ 
+                    echo "<a href=\"employees.php?edit=".$show['id']."\">Edit Employee</a> (Change role / Delete employee)";
+                } 
+            }  
+            
+            //can remove this upon styling
+             echo "<hr/>";
         }
-    }
- ?>
-     
-              
-          </ul>
-
         
+    }
+ ?>    </ul>
+
+
       
         
 <?php include("inc/footer.php"); ?>

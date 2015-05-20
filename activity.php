@@ -2,8 +2,17 @@
 $current_page="activity";
 include("inc/header.php"); ?> 
     
-           
-                  <h1>Your Activity</h1> 
+         <?php  if(isset($_GET['all'])){ ?>
+                <h1>All Activity</h1>
+                  <span class="left"><a href="activity.php?all">View your history</a></span> 
+
+    
+
+<?php }else{ ?>
+                  <h1>Your Activity</h1>
+                  <?php  if($_SESSION['is_employee']==1){ ?>
+                  <span class="left"><a href="activity.php?all">View all employee history</a></span> 
+                  <?php  } ?>
                 
                         <select name="filter" id="filter">
                            <option value="all">All Activity</option>
@@ -35,6 +44,7 @@ include("inc/header.php"); ?>
             }
         echo "</ul>";
         }
- ?>
+ 
+    } ?>
      
 <?php include("inc/footer.php"); ?>
