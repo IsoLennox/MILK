@@ -89,8 +89,8 @@ if($_SESSION['is_employee']==0){
     
             //GET COUNTS
     
-            //count total # claims
-            $all_query  = "SELECT COUNT(*) as total FROM claims";   
+            //count total # claims that are NOT DRAFTS
+            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id!=1";   
             $all_result = mysqli_query($connection, $all_query);
             $data=mysqli_fetch_assoc($all_result);
 
