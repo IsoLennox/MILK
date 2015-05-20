@@ -439,6 +439,19 @@ input[type="checkbox"]{
     border: 1px solid grey;
 }
 
+.claims_list{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 20px;
+}
+
+.claims{
+    margin-bottom: 20px;
+    clear: both;
+}
+
+.claims h4 { margin: 0; margin-top: 20px; font-weight: 900; font-size: 1.1em;}
+
 ::-webkit-scrollbar,
 ::-mz-scrollbar
 {

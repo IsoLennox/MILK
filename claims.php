@@ -71,9 +71,10 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     }
     $result = mysqli_query($connection, $query);
     if($result){ 
+        echo "<div class=\"claims_list\">";
         //show each result value
         foreach($result as $show){
-            
+            echo "<div class=\"claims\">";
             //GET CLAIM TYPE NAME
     $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
     $type_result = mysqli_query($connection, $type_query);
@@ -97,8 +98,10 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             echo "Date Filed: ".$show['datetime']."<br/>";
             echo "Status: ".$status."<br/>";
             echo "Claim Type: ".$claim_type."<br/>";
-               echo "<a href=\"claim_details.php?id=".$show['id']."\"><i class=\"fa fa-eye\"></i> View this Claim</a>";       
+               echo "<a href=\"claim_details.php?id=".$show['id']."\"><i class=\"fa fa-eye\"></i> View this Claim</a>";  
+            echo "<div>";
             }  
+        echo "</div>";
         }
 ?>
 
