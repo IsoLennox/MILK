@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
         //CATEGORY SELECT BOX
         //OPTION VALUE -- NEEDS TO BE ADDED AS CONDITIONAL fOR EMPTY//////////////////////////////////////////
         echo "<p>Item Category: <select  name=\"category\">";
-        echo "<option value=\"--\" >--Select Item Category--</option>";
+        // echo "<option value=\"--\" >--Select Item Category--</option>";
         foreach($categoryresult as $category){
             //OPTIONS
             echo "<option value=\"".$category['id']."\" >".$category['name']."</option>"; 
