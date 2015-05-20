@@ -28,7 +28,7 @@ include("inc/header.php"); ?>
                         echo "<textarea name=\"msg\" placeholder=\"Hello...\"></textarea>";
                     echo "<input type=\"submit\" name=\"submit\" value=\"Send Message\">";
                     echo "</form>";
-                    echo "<a href=\"messages.php\" onclick=\"return confirm('Leave the page? This will not save your message!');\">Cancel</a> ";
+                    echo "<a href=\"messages.php\" onclick=\"return confirm('Leave the page? This will not save your message!');\"><i class=\"fa fa-times\"></i> Cancel</a> ";
                 }else{
                     echo "There are no employees to send a message to!";
                 }
@@ -96,7 +96,7 @@ include("inc/header.php"); ?>
 
 ?>
    <h1>Messages</h1>
-    <h4> <a href="messages.php?new">New Message</a></h4> 
+    <h4> <a href="messages.php?new"><i class="fa fa-envelope"> </i> New Message</a></h4> 
           <ul>
           <?php
                 //Find which threads have new messages

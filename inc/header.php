@@ -296,11 +296,11 @@ if($_SESSION['is_employee']==0){
           </nav>
   
 <header>
-    <!--        USER ICONS -->
+    <!-- Search Bar -->
     <div class="search_container">
         <form class='search' action="search.php" method="POST">        	
 	        <input type="search" placeholder='Search Here' name="query" id="searchbar">
-	        <input type="submit" name="search" id="nav_search" value="">
+	        <input type="submit" name="search" id="nav_search" value="&#xf002;">
 	    </form>
 	</div>
 

@@ -31,8 +31,8 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol, ul, li {
+	list-style-type: none;
 }
 blockquote, q {
 	quotes: none;
@@ -127,7 +127,8 @@ nav {
     color:#333;
     font-size: 1em;
     
-} 
+}
+
 
 	nav a {
 		color:#333;
@@ -200,7 +201,8 @@ header {
     }
 
 .account_links {
-    width:15%;
+    width:11%;
+    margin-left: .85em;
     /*height:60px;*/
 }
     .account_links >div {
@@ -222,6 +224,16 @@ header {
     height:60px;
     background:#90C32E;
     border:none;
+    font-size: 1.3em;
+}
+
+#nav_search {
+    font-family: fontAwesome;
+    font-weight: bold;
+    font-size: 1.75em;
+    color: #ffffff;
+    vertical-align: super;
+    
 }
 .search input[type="submit"]:hover{
     background: #eee;
@@ -278,12 +290,6 @@ footer{
 .clearfix:after {
 visibility: hidden;
 display: block;
-font-size: 0;
-content: " ";
-clear: both;
-height: 0;
-}
-
 .clearfix {display: inline-block;}
 
 /* Hides from IE-mac \*/
@@ -292,13 +298,21 @@ height: 0;
 /* End hide from IE-mac */
 
  
+<<<<<<< HEAD
 
+=======
+/*input,textarea {
+    border:none;
+    outline:none;
+}*/
+>>>>>>> ba3f932cae0a182eec6889163737cb28d6c5b4d8
  
 
 
 /*-------------------------------------------------*/
 /*Inventory Page FORM Styling*/
 .add_item {
+<<<<<<< HEAD
 	max-width:900px;
 	width:70%;
 	margin:0 auto;
@@ -306,6 +320,20 @@ height: 0;
 
 
 input,textarea,select {
+=======
+    width:900px;
+    margin:0 auto;
+}
+
+
+font-size: 0;
+content: " ";
+clear: both;
+height: 0;
+}
+
+.add_item input,textarea,select {
+>>>>>>> ba3f932cae0a182eec6889163737cb28d6c5b4d8
     width:100%;
     padding: 7px 10px;
     border-radius: 5px;
@@ -388,8 +416,25 @@ h3 {
     color: firebrick;
     font-size: 1.5em;
 }
+<<<<<<< HEAD
 
 
+=======
+ 
+input[type="text"]{ 
+    background:#eee;
+    padding: 5px;
+    border:1px solid #555;
+    font-weight: 900;
+    margin: 5px;
+}
+.fa-2x {
+    /* search bar icons in header */
+    position:relative;
+    top: 7px;
+    width: 40px;
+}
+>>>>>>> ba3f932cae0a182eec6889163737cb28d6c5b4d8
 .fa-trash-o { color:red;}
 .fa-trash-o:hover { color:grey;}
 
@@ -421,7 +466,11 @@ input[type="checkbox"]{
     overflow: scroll;
 }
 
-
+.gallery{
+    margin: 50px;
+    padding: 20px;
+    border: 1px solid grey;
+}
 
 ::-webkit-scrollbar,
 ::-mz-scrollbar

@@ -119,10 +119,12 @@ if(isset($_GET['remove'])){
             }else{
                 $edit="<a href=\"edit_item.php?id=".$show['id']."\">Edit Item Details</a><br/>";
                 $upload="<a href=\"item_details.php?add_image&id=".$show['id']."\">+ Add Files</a>";
+                
                 $upload_form="<form action=\"upload_item_img.php\" method=\"post\" enctype=\"multipart/form-data\">
                             Upload an Image or PDF:<br/>
                             <input type=\"file\" name=\"image\" id=\"fileToUpload\"><br/>
-
+                            <input type=\"hidden\" value=\"".$_GET['id']."\" name=\"item_id\">
+                           <p> Title: <input type=\"text\" value=\"\" name=\"title\" placeholder=\"i.e. Image of item..\" ></p><br/>
                             <input type=\"submit\" value=\"Upload File\" name=\"submit\">
                             </form>";
             }
@@ -144,6 +146,7 @@ if(isset($_GET['remove'])){
                 echo "Description/Notes:<br/>".$show['notes']."<br/>"; 
                 
                 echo "<h3>File Attachments</h3>";
+                echo "<p>Images, Reciepts, Appraisals, and other documents that prove the condition, value, and ownership of this item.</p>";
                
                 if(isset($_GET['add_image'])){ 
                     $item_id=$_GET['add_image']; 
@@ -152,30 +155,37 @@ if(isset($_GET['remove'])){
                     echo $upload;
                 }
                 
-//                EXAMPLE 
-                echo "<br/><br/>";
+//            GET GALLERY
+                //HOW TO COMPRESS IMAGES???
+                $image_query  = "SELECT * FROM item_img WHERE item_id={$id}"; 
+                $image_result = mysqli_query($connection, $image_query);
+                $image_num = mysqli_num_rows($image_result);
+            if($image_num >=1){
+                echo "<div class=\"gallery\">";
                 
+                foreach($image_result as $image){ 
+                //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
+                if($image['is_img']==1){
+                    $file= "<img style=\"width:50px;\" class=\"thumbnail\" src=\"".$image['file_path']."\">";
+                
+                }else{
+                    $file= "<i class=\"fa fa-file-o\"></i>";
+                }
+                if(empty($image['title'])){ $image['title']="Untitled";}
                 echo "
-                <a href=\"#\" alt=\"View full size image\" ><img class=\"thumbnail\" src=\"http://lorempixel.com/80/80/abstract\"></a>
-                <span class=\"caption\">Caption ipsum plorem pilsubmus et tu farmer greyous muffin.</span> 
+                <a href=\"#\" alt=\"View full size image\" >".$file."</a>
+                <span class=\"caption\">".$image['title']."</span> 
                 <a href=\"#\">Edit</a>
                 <a href=\"#\">Delete</a>";
-                echo "<br/><br/>";
+                    echo "<br/><hr/><br/>";
+                }
+                echo "</div>";
+            
+            }
                 
-                  echo "
-                <a href=\"#\" alt=\"View full size image\" ><img class=\"thumbnail\" src=\"http://lorempixel.com/80/80/abstract\"></a>
-                <span class=\"caption\">Caption ipsum plorem pilsubmus et tu farmer greyous muffin.</span> 
-                <a href=\"#\">Edit</a>
-                <a href=\"#\">Delete</a>";
-                echo "<br/><br/>";
-                  echo "
-                <a href=\"#\" alt=\"View full size image\" ><img class=\"thumbnail\" src=\"http://lorempixel.com/80/80/abstract\"></a>
-                <span class=\"caption\">Caption ipsum plorem pilsubmus et tu farmer greyous muffin.</span> 
-                <a href=\"#\">Edit</a>
-                <a href=\"#\">Delete</a>";
-                echo "<br/><br/>";
-//                END EXAMPLE
-                
+              
+                //obviously, we will style this to make it a button/icon and out of the way
+                echo "<br/><br/><br/>";
                 echo $in_trash;
 
                 }else{

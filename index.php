@@ -117,11 +117,11 @@ if($_SESSION['is_employee']==0){
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
-           <li><a href="claims.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claims.php?processing">Processing</a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claims.php?pending">Pending Client Changes</a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claims.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claims.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
+           <li><a href="claims.php"><span class=""><i class="fa fa-circle"></i></span> All Claims</a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claims.php?processing"><span class=""><i class="fa fa-circle"></i></span> Processing</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claims.php?pending"><span class=""><i class="fa fa-circle"></i></span> Pending Client Changes</a> (<?php echo $cdata['total']; ?>)</li>
+           <li><a href="claims.php?approved"><span class=""><i class="fa fa-circle"></i></span> Approved</a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claims.php?denied"><span class=""><i class="fa fa-circle"></i></span> Denied</a> (<?php echo $ddata['total']; ?>)</li>
            
            
            
