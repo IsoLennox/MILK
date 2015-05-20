@@ -153,6 +153,10 @@ nav {
 		color:#90C32E;
 	}*/
 
+	nav h4 {
+		text-align: center;
+	}
+
 	.current_page ul li a:active {
 		color:#90C32E;
 	}

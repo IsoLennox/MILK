@@ -37,7 +37,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
         ?>
         <ul>
            <li><a href="claims.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claims.php?pending">Pending</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claims.php?pending">Processing</a> (<?php echo $pdata['total']; ?>)</li>
            <li><a href="claims.php?changes">Pending Changes</a> (<?php echo $wdata['total']; ?>)</li>
            <li><a href="claims.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
            <li><a href="claims.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
@@ -49,7 +49,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     if(isset($_GET['pending'])){
     
     //select all where claim type == pending   order by id ASC  
-    echo "<h1>Pending Claims</h1>";  
+    echo "<h1>Unprocessed Claims</h1>";  
         //GET ALL PENDING 
 
     $query  = "SELECT * FROM claims WHERE status_id=0 ORDER BY id DESC";  
@@ -74,7 +74,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             }  
         }  
     
-    }elseif(isset($_GET['waiting'])){
+    }elseif(isset($_GET['changes'])){
     
     //select all where claim type == pending   order by id ASC  
     echo "<h1>Awaiting Client Changes</h1>";  
