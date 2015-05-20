@@ -57,7 +57,7 @@ if($_GET['edit']){
              foreach($_SESSION['permissions'] as $key => $val){  
                  //EDIT EMPLOYEES
                 if($val==2){ 
-                    echo "<a href=\"employees.php?edit=".$show['id']."\"><i class=\"fa fa-pencil\"></i> Edit Employee</a> (Change role / Delete employee)";
+                    echo "<a href=\"employees.php?edit=".$show['id']."\"><i class=\"fa fa-pencil\"></i> Edit Employee</a>";
                 } 
             }  
             

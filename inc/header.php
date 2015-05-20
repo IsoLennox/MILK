@@ -266,7 +266,7 @@ if($_SESSION['is_employee']==0){
                      
                     ?>
                 <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages </a>(<?php echo $num_messg; ?>)</li>
-                <li><a href="claims.php"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
+                <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
                 <li><a href="employees.php"><i class="fa fa-users"></i> Employees</a></li>
                 <?php if($role == 1){ ?>
                 <li><a href="roles.php"><i class="fa fa-user-secret"></i> Roles</a></li>

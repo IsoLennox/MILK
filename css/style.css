@@ -103,8 +103,8 @@ a:hover {
 }
 
 
-
-
+.left{float: left;}
+.right{float: right;}
 
 /*.wrapper {
     margin:0 auto;
@@ -233,6 +233,7 @@ header {
     font-size: 1.75em;
     color: #ffffff;
     vertical-align: super;
+    font-style: normal;
     
 }
 .search input[type="submit"]:hover{
@@ -392,6 +393,7 @@ h3 {
     color: firebrick;
     font-size: 1.5em;
 }
+
 
 .fa-2x {
     /* search bar icons in header */
