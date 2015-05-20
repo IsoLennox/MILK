@@ -8,8 +8,8 @@
              foreach($_SESSION['permissions'] as $key => $val){  
                  //EDIT EMPLOYEES
                 if($val==2){ 
-                    echo " <a href=\"new_employee.php\">New Employee</a> <br/>";
-                    echo " <a href=\"#\">View Disabled Accounts</a> ";
+                    echo " <a href=\"new_employee.php\"><i class=\"fa fa-user-plus\"></i> New Employee</a> <br/>";
+                    echo " <a href=\"#\"><i class=\"fa fa-user-times\"></i> View Disabled Accounts</a> ";
                     //can remove this upon styling
                     echo "<hr/>";
                 } 
@@ -51,13 +51,13 @@ if($_GET['edit']){
                     }
                 }
                     
-            echo "<li><a href=\"profile.php?user=".$show['id']."\">".$show['first_name']." ".$show['last_name']."</a> ".$role['name']."</li>";
+            echo "<li><a href=\"profile.php?user=".$show['id']."\"><i class=\"fa fa-user\"></i> ".$show['first_name']." ".$show['last_name']."</a> ".$role['name']."</li>";
             
                     //GET PERMISSIONS FOR THIS PAGE
              foreach($_SESSION['permissions'] as $key => $val){  
                  //EDIT EMPLOYEES
                 if($val==2){ 
-                    echo "<a href=\"employees.php?edit=".$show['id']."\">Edit Employee</a> (Change role / Delete employee)";
+                    echo "<a href=\"employees.php?edit=".$show['id']."\"><i class=\"fa fa-pencil\"></i> Edit Employee</a> (Change role / Delete employee)";
                 } 
             }  
             

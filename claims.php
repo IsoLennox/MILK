@@ -36,11 +36,11 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
         <ul>
-           <li><a href="claims.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claims.php?pending">Processing</a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claims.php?changes">Pending Changes</a> (<?php echo $wdata['total']; ?>)</li>
-           <li><a href="claims.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claims.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
+           <li><a href="claims.php"><span class=""><i class="fa fa-circle"></i></span> All Claims</a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claims.php?pending"><span class=""><i class="fa fa-circle"></i></span> Processing</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claims.php?changes"><span class=""><i class="fa fa-circle"></i></span> Pending Changes</a> (<?php echo $wdata['total']; ?>)</li>
+           <li><a href="claims.php?approved"><span class=""><i class="fa fa-circle"></i></span> Approved</a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claims.php?denied"><span class=""><i class="fa fa-circle"></i></span> Denied</a> (<?php echo $ddata['total']; ?>)</li>
         </ul>
        
        
@@ -70,7 +70,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             echo "Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>"; 
             echo "Claim Type: ".$claim_type."<br/>";
-               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+               echo "<a href=\"claim_details.php?id=".$show['id']."\"><i class=\"fa fa-eye\"></i> View this Claim</a>";       
             }  
         }  
     
@@ -98,7 +98,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             echo "Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>"; 
             echo "Claim Type: ".$claim_type."<br/>";
-               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+               echo "<a href=\"claim_details.php?id=".$show['id']."\"><i class=\"fa fa-eye\"></i> View this Claim</a>";       
             }  
         }  
     
@@ -127,7 +127,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             echo "Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>"; 
             echo "Claim Type: ".$claim_type."<br/>";
-               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+               echo "<a href=\"claim_details.php?id=".$show['id']."\"><i class=\"fa fa-eye\"></i> View this Claim</a>";       
             }  
         }
      
@@ -156,7 +156,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             echo "Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>"; 
             echo "Claim Type: ".$claim_type."<br/>";
-               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+               echo "<a href=\"claim_details.php?id=".$show['id']."\"><i class=\"fa fa-eye\"></i> View this Claim</a>";       
             }  
         }
     }else{
@@ -191,7 +191,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             echo "Date Filed: ".$show['datetime']."<br/>";
             echo "Status: ".$status."<br/>";
             echo "Claim Type: ".$claim_type."<br/>";
-               echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
+               echo "<a href=\"claim_details.php?id=".$show['id']."\"><i class=\"fa fa-eye\"></i> View this Claim</a>";       
             }  
         }
   }//end show claims dependant on uery

@@ -88,7 +88,7 @@ if(isset($_GET['create'])){
             foreach($_SESSION['permissions'] as $key => $val){  
                 //EDIT COMPANY DETAILS
                 if($key===1){ 
-                    echo "<a href=\"company_details.php?edit\">Edit Company Details</a>";
+                    echo "<a href=\"company_details.php?edit\"><i class=\"fa fa-pencil\"></i> Edit Company Details</a>";
                 } 
             }  
  
