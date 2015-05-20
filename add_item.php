@@ -1,5 +1,6 @@
 <?php 
 $current_page="inventory";
+$sub_page="add_item";
 include("inc/header.php"); ?>
 
 
@@ -55,7 +56,7 @@ if (isset($_POST['submit'])) {
 
 <form class='add_item' method="POST" >
               
-    <p> Item Name: <input type="text" name="name" placeholder=" i.e. Samsung Television" value="" ></p> 
+    <label for="name"> Item Name: </label><input type="text" id='name' name="name" placeholder=" i.e. Samsung Television" value="" > 
      <!--    //GET ITEM CATEGORIES -->
    <?php
     $category_query  = "SELECT * FROM item_category"; 
@@ -63,13 +64,13 @@ if (isset($_POST['submit'])) {
     if($categoryresult){ 
         //CATEGORY SELECT BOX
         //OPTION VALUE -- NEEDS TO BE ADDED AS CONDITIONAL fOR EMPTY//////////////////////////////////////////
-        echo "<p>Item Category: <select  name=\"category\">";
+        echo "<label for=\"category\">Item Category: </label><select id='category' name=\"category\">";
         // echo "<option value=\"--\" >--Select Item Category--</option>";
         foreach($categoryresult as $category){
             //OPTIONS
             echo "<option value=\"".$category['id']."\" >".$category['name']."</option>"; 
         }
-        echo "</select></p>";
+        echo "</select>";
     }//end get categories
 
 ?> 
@@ -79,21 +80,24 @@ if (isset($_POST['submit'])) {
         $roomresult = mysqli_query($connection, $room_query);
         if($roomresult){ 
             //ROOM SELECT BOX
-            echo "<p>Room: <select name=\"room\" >";
+            echo "<label for=\"room\">Room: </label><select id='room' name=\"room\" >";
             foreach($roomresult as $room){
                 //OPTIONS
                 echo "<option value=\"".$room['id']."\" >".$room['name']."</option>"; 
             }
-            echo "</select></p>";
+            echo "</select>";
         }//end get rooms 
  ?>
-   
-   <p>Item Description/Notes: <textarea name="notes" id="notes" cols="30" rows="10" value=""></textarea></p>
-    <p>Purchase Date: <input type="text" name="purchase_date" placeholder="mm/dd/yyyy" value=""></p>
-    <p>Purchase Price: $<input type="text" name="purchase_price" placeholder="950.89" value=""></p>
-    <p>Declared Value: $<input type="text" name="declared_value" placeholder="950.99" value=""></p>
-   
-    <input type="submit" name="submit" value="Next: Add Files">
+    <fieldset class='form_blocks'>
+        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="10" value=""></textarea>
+    </fieldset>
+
+    <fieldset class='form_blocks'>
+        <label for="purchase_date">Purchase Date: </label><input type="text" id="purchase_date" name="purchase_date" placeholder="mm/dd/yyyy" value="">
+        <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950.89" value="">
+        <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950.99" value="">
+    </fieldset>
+    <input type="submit" name="submit" value="Add Photos &amp; Files">
  </form>
  <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');">Cancel</a> 
         

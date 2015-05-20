@@ -139,32 +139,46 @@ nav {
 		font-weight:400;
 	}
 
+	nav ul ul {
+		list-style-position: inside;
+	}
+
 	nav ul li ul li {
-		padding:5px 15px;
+		padding:7px 15px;
 		font-weight: 300;
 	}
+
 	nav ul li ul li:nth-of-type(1) {
-		padding-top:15px;
+		margin-top:5px;
 	}
-	/*nav ul li ul li a:active {
-		border-left:3px solid #90C32E;
-		background-color: #333
+
+	.sub_page a {
 		color:#90C32E;
-	}*/
+
+	}
+
+	.current_page {
+		border-left:3px solid #90C32E;
+		padding:15px 20px 15px 17px;
+		background:#fff;
+	}
+
+
 
 	nav h4 {
 		text-align: center;
 	}
 
-	.current_page ul li a:active {
+	/*.current_page ul li a:active {
 		color:#90C32E;
-	}
+	}*/
 
 .logo_user {
 	text-align: center;
 	padding-bottom:20px;
-	border-bottom: 1px solid #e1e1e1
+	border-bottom: 2px solid #e1e1e1;
 }
+
 .logo_user img{
 	margin: 20px 0;
 }
@@ -196,7 +210,6 @@ header {
         padding:5px;
         height:60px;
         float:left;
-        /*border-left: 1px solid #90C32E;*/
         text-align: center;
     }
 
@@ -230,13 +243,15 @@ header {
         margin-right: 20px;
     }*/
 
+/*label {
+	margin-bottom: 50px;
+}*/
+
+
 
 
 /*-----------------------------------------------*/
 
-.current_page{
-    background:white;
-}
 
 #page_name { 
     position: relative; 
@@ -277,44 +292,46 @@ height: 0;
 /* End hide from IE-mac */
 
  
-input,textarea {
-    border:none;
-    outline:none;
-}
+
  
 
 
 /*-------------------------------------------------*/
 /*Inventory Page FORM Styling*/
 .add_item {
-	width:900px;
+	max-width:900px;
+	width:70%;
 	margin:0 auto;
 }
 
 
-.add_item input,textarea,select {
+input,textarea,select {
     width:100%;
-    padding: 5px 20px;
+    padding: 7px 10px;
     border-radius: 5px;
     border: 1px solid #333;
     margin-bottom: 20px;
+    outline:none;
+    font-weight: 300;
+    font-style:italic;
 }
 
-.add_item input[type="submit"]:hover{
-    cursor: pointer;
-    padding: 5px 20px;
-    border-radius: 5px;
-    background-color: #90C32E;
-
+label {
+	margin-bottom: 20px;
 }
 
 .add_item input[type="submit"]{ 
     cursor: pointer;
     font-size: 20px;
-    /*padding: 5px;*/
-    /*border-radius: 5px;*/
+    padding: 7px 20px;
+    border-radius: 5px;
+    width:25%;
+    transition: all .5s ease;
 }
 
+.add_item input[type="submit"]:hover{
+    background-color: #90C32E;
+}
 
 .add_item input[type="file"]:hover{
     cursor: pointer;
@@ -331,6 +348,23 @@ input,textarea {
     color: black;
 }
  
+.form_blocks {
+	float:left;
+}
+	
+	.form_blocks textarea {
+		border: 1px solid #333;
+	}
+
+	.form_blocks:nth-of-type(1) {
+		width:70%;
+		margin-right: 4%;
+	}
+
+	.form_blocks:nth-of-type(2) {
+		width:25%;
+	}
+
 
 
 
@@ -354,14 +388,7 @@ h3 {
     color: firebrick;
     font-size: 1.5em;
 }
- 
-input[type="text"]{ 
-    background:#eee;
-    padding: 5px;
-    border:1px solid #555;
-    font-weight: 900;
-    margin: 5px;
-}
+
 
 .fa-trash-o { color:red;}
 .fa-trash-o:hover { color:grey;}

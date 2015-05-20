@@ -1,5 +1,6 @@
 <?php 
 $current_page="inventory";
+$sub_page="view_rooms";
 include("inc/header.php");  ?>
 <h1>Your Rooms</h1>
   <?php  

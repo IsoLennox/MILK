@@ -30,7 +30,7 @@ confirm_logged_in();
         <!--        link to font awesome-->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <!--         STYLE GUIDE FONT  -->
-        <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Nunito:300,300italic,400,700" rel="stylesheet" type="text/css">
         <!--   JS VERSIONS-->
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
@@ -93,23 +93,31 @@ if($_SESSION['is_employee']==0){
                 <?php
                 if($current_page=="inventory"){
                     echo "<li class=\"current_page\"><a href='inventory.php'>Inventory</a>";
-                    ?>
-                     <ul>
-                <li><a href="add_item.php">Add Item</a></li>
-                <!-- <li><a href="inventory.php">View Items</a></li> -->
-                <li><a href="rooms.php">View Rooms</a></li> 
+                    echo "<ul>";
+                    if(isset($sub_page)&&($sub_page == "add_item")) {
+                      echo "<li class=\"sub_page\"><a href='add_item.php'>Add Item</a></li>";
+                    } else {
+                      echo "<li><a href=\"add_item.php\">Add Item</a></li>";
+                    }
 
-            </ul> </li>
-               <?php
+                    if(isset($sub_page)&&($sub_page == "view_rooms")) {
+                      echo "<li class=\"sub_page\"><a href='rooms.php'>View Rooms</a></li>";
+                    } else {
+                      echo "<li><a href='rooms.php'>View Rooms</a></li>";
+                    }
+                    echo "</ul></li>";
+                ?>
+
+            <?php
                 }else{
                    echo " <li><a href='inventory.php'>Inventory</a> ";
                      ?>
-                     <ul>
+              <ul>
                 <li><a href="add_item.php">Add Item</a></li>
                 <!-- <li><a href="inventory.php">View Items</a></li> -->
                 <li><a href="rooms.php">View Rooms</a></li> 
 
-            </ul> </li>
+              </ul> </li>
                <?php
                 }
     
@@ -145,12 +153,12 @@ if($_SESSION['is_employee']==0){
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
-           <li><a href="claim_history.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claim_history.php?draft">Drafts</a> (<?php echo $drdata['total']; ?>)</li>
-           <li><a href="claim_history.php?pending">Processing</a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claim_history.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claim_history.php?changes">Pending Changes</a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claim_history.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
+           <li><a href="claim_history.php">All Claims </a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claim_history.php?draft">Drafts </a> (<?php echo $drdata['total']; ?>)</li>
+           <li><a href="claim_history.php?pending">Processing </a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?approved">Approved </a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?changes">Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+           <li><a href="claim_history.php?denied">Denied </a> (<?php echo $ddata['total']; ?>)</li>
         
                 
 <!--                <li><a href="claim_history.php">Claim History</a></li>-->
@@ -187,12 +195,12 @@ if($_SESSION['is_employee']==0){
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
-           <li><a href="claim_history.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claim_history.php?draft">Drafts</a> (<?php echo $drdata['total']; ?>)</li>
-           <li><a href="claim_history.php?pending">Processing</a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claim_history.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claim_history.php?changes">Pending Changes</a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claim_history.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
+           <li><a href="claim_history.php">All Claims </a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claim_history.php?draft">Drafts </a> (<?php echo $drdata['total']; ?>)</li>
+           <li><a href="claim_history.php?pending">Processing </a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?approved">Approved </a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?changes">Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+           <li><a href="claim_history.php?denied">Denied </a> (<?php echo $ddata['total']; ?>)</li>
         
                 
 <!--                <li><a href="claim_history.php">Claim History</a></li>-->
@@ -257,8 +265,8 @@ if($_SESSION['is_employee']==0){
                     $num_messg= $mes['messages'];
                      
                     ?>
-                <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages</a>(<?php echo $num_messg; ?>)</li>
-                <li><a href="claims.php"><i class="fa fa-file-text"></i> Claims</a>(<?php echo $total; ?>)</li> 
+                <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages </a>(<?php echo $num_messg; ?>)</li>
+                <li><a href="claims.php"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
                 <li><a href="employees.php"><i class="fa fa-users"></i> Employees</a></li>
                 <?php if($role == 1){ ?>
                 <li><a href="roles.php"><i class="fa fa-user-secret"></i> Roles</a></li>
