@@ -6,7 +6,7 @@ include("inc/header.php"); ?>
 
 //TO DO:
 
-// make each result/graph/chart in it's own file -> include it where it belongs
+// make each result/graph/chart in it's own file -> include it where it belongs (see example below)
 
 
 
@@ -18,76 +18,19 @@ if($_SESSION['is_employee']==0){
     <h2>Your Dashboard</h2> 
     
     <?php
-    //see if any alerts about claims
-    
-    $alerts_query  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id != 0 AND status_id != 1 ";  
-    $alertresult = mysqli_query($connection, $alerts_query);
-    if($alertresult){
-        
-        echo "<h1>ALERTS</h1>";
-        //show each result value
-        foreach($alertresult as $show_alert){
-                                     //GET CLAIM STATUS NAME
-            $status_query  = "SELECT * FROM status_types WHERE id={$show_alert['status_id']}";  
-            $status_result = mysqli_query($connection, $status_query);
-            if($status_result){
-                $status_array=mysqli_fetch_assoc($status_result);
-                $status=$status_array['name'];
-            } 
-             echo "<a href=\"claim_details.php?id=".$show_alert['id']."\">Claim #".$show_alert['id'].": '".$show_alert['title']."'</a> is ".$status."<br/>";
-                      
-            }
-        }
-    
-    
-    
-    
-    
+        //INCLUDE ALERTS
+        include_once('alerts.php');
     ?>
     
+<!--    SAMPLE STYLE GUIDE IMAGE : CAN REMOVE-->
     <img src="img/stats.PNG" alt="sample stats" />
-    <ul>
-        <li>Total number of items</li>
-        <?php
-    $items=0;
-    $item_count  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";  
-    $item_result = mysqli_query($connection, $item_count);
-    $num_items=mysqli_num_rows($item_result);
-    echo "You have ".$num_items." items";
-    ?>
-        
-        
-        
-        
-        <li>number of claims made &amp; Percent of resolved/denied/pending claims</li>
-        
+    
     <?php
-    $claims=0;
-    $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
-    $claim_result = mysqli_query($connection, $claim_count);
-    $num_claims=0;
-    if($claim_result){
-        foreach($claim_result as $claim){
-        $num_claims++;
-    }
-    }
-    echo "You have made ".$num_claims." claims";
+        //INCLUDE ALERTS
+        include_once('client_dashboard.php');
+
     ?>
-        
-        
-        <li>Your Rooms and items in them</li>
-        
-                <?php
-    $rooms=0;
-    $room_count  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
-    $room_result = mysqli_query($connection, $room_count);
-    $num_rooms=mysqli_num_rows($room_result);
-    echo "You have ".$num_rooms." rooms";
-    ?>
-       
-       
-        <li>Quick Add New item</li> 
-    </ul>
+    <div>Quick add item</div>
     <?php
     
 }else{  
@@ -141,29 +84,42 @@ if($_SESSION['is_employee']==0){
     
     
     <?php
+        
     
     
+            //GET COUNTS
     
-            //GET CLAIM COUNTS
+            //count total # claims
             $all_query  = "SELECT COUNT(*) as total FROM claims";   
             $all_result = mysqli_query($connection, $all_query);
             $data=mysqli_fetch_assoc($all_result);
 
-            $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=0";   
+            // total submitted but unprocessed
+            $processing_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=0";   
+            $processing_result = mysqli_query($connection, $processing_query);
+            $pdata=mysqli_fetch_assoc($processing_result); 
+
+    
+            // total awaiting client changes
+            $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=4";   
             $pending_result = mysqli_query($connection, $pending_query);
-            $pdata=mysqli_fetch_assoc($pending_result); 
+            $cdata=mysqli_fetch_assoc($pending_result); 
 
-
+    
+            // total approved claims
             $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=2";   
             $approved_result = mysqli_query($connection, $approved_query);
             $adata=mysqli_fetch_assoc($approved_result); 
 
+    
+            // total Denied claims
             $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=3";   
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
            <li><a href="claims.php">All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claims.php?pending">Pending</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claims.php?processing">Processing</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claims.php?pending">Pending Client Changes</a> (<?php echo $cdata['total']; ?>)</li>
            <li><a href="claims.php?approved">Approved</a> (<?php echo $adata['total']; ?>)</li>
            <li><a href="claims.php?denied">Denied</a> (<?php echo $ddata['total']; ?>)</li>
            
