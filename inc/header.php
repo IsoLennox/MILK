@@ -320,3 +320,4 @@ if($_SESSION['is_employee']==0){
         <div class="clearfix" id="page"> 
               <?php echo message(); ?>
               <?php echo form_errors($errors); ?>
+              <div class="content_wrapper">

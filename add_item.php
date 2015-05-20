@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
         }//end get rooms 
  ?>
     <fieldset class='form_blocks'>
-        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="10" value=""></textarea>
+        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value=""></textarea>
     </fieldset>
 
     <fieldset class='form_blocks'>

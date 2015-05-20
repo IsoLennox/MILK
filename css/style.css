@@ -193,7 +193,7 @@ header {
     /*max-width: 2000px;*/
     width: calc(100% - 250px);
     z-index: 999;
-    border-bottom: 1px solid #90C32E;
+    /*border-bottom: 1px solid #90C32E;*/
 }  
 
     header > div {
@@ -220,90 +220,43 @@ header {
 }
 
 .search input[type="submit"]{
-    width:60px; 
+    width:70px; 
     height:60px;
     background:#90C32E;
     border:none;
-    font-size: 1.3em;
-}
-
-#nav_search {
+    border-radius: 0px;
     font-family: fontAwesome;
     font-weight: bold;
     font-size: 1.75em;
     color: #ffffff;
     vertical-align: super;
-    
-}
-.search input[type="submit"]:hover{
-    background: #eee;
+    margin:0;
 }
 
 .search input[type='search'] {
 	width:95%;
-    width:calc(100% - 60px); 
+    width:calc(100% - 70px); 
     height:60px;
     border-right:1px solid #90C32E;
     background-color: #eee;
     border:none;
+    margin:0;
 }
 
 .search input {
     float:left;
 }
-    /*.search input:nth-of-type(2) {
-        margin-right: 20px;
-    }*/
-
-/*label {
-	margin-bottom: 50px;
-}*/
-
-
-
-
-/*-----------------------------------------------*/
-
-
-#page_name { 
-    position: relative; 
-    top: -30px; left: 30px;
-    font-weight: 900;
-    font-size: 22px;
-}
-
-
-#page{margin-left: 300px; margin-top: 120px;}
-footer{
-    clear: both;
-    position: absolute;
-    bottom: 0;
-} 
-.center{
-    margin: 0 auto;
-    text-align: center;
-}/*
-.left{float: left;}
-.right{float: right;}*/
-  
-
-.clearfix:after {
-visibility: hidden;
-display: block;
-}
-
-.clearfix {display: inline-block;}
-
-/* Hides from IE-mac \*/
-* html .clearfix {height: 1%;}
-.clearfix {display: block;}
-/* End hide from IE-mac */
- 
 
 
 /*-------------------------------------------------*/
 /*Inventory Page FORM Styling*/
-.add_item {
+/*form:not(.search) {
+	max-width:900px;
+	width:70%;
+	margin:0 auto;
+}*/
+
+.content_wrapper {
 	max-width:900px;
 	width:70%;
 	margin:0 auto;
@@ -313,8 +266,8 @@ input,textarea,select {
     width:100%;
     padding: 7px 10px;
     border-radius: 5px;
-    border: 1px solid #333;
-    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    margin: 10px 0 20px 0;
     outline:none;
     font-weight: 300;
     font-style:italic;
@@ -324,42 +277,28 @@ label {
 	margin-bottom: 20px;
 }
 
-.add_item input[type="submit"]{ 
+input[type="submit"]{ 
     cursor: pointer;
     font-size: 20px;
     padding: 7px 20px;
+    border:none;
     border-radius: 5px;
     width:25%;
-    transition: all .5s ease;
-}
-
-.add_item input[type="submit"]:hover{
     background-color: #90C32E;
+    -webkit-transition: all .7s ease;
+    -moz-transition: all .7s ease;
+    -o-transition: all .7s ease;
+    transition: all .7s ease;
+
 }
 
-.add_item input[type="file"]:hover{
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px; 
-    color: black;
+input[type="submit"]:hover{
+    box-shadow: inset 0 0 15px #62851F;
 }
 
-.add_item input[type="file"]{ 
-    cursor: pointer;
-    font-size: 20px;
-    padding: 5px;
-    border-radius: 5px;
-    color: black;
-}
- 
 .form_blocks {
 	float:left;
 }
-	
-	.form_blocks textarea {
-		border: 1px solid #333;
-	}
-
 	.form_blocks:nth-of-type(1) {
 		width:70%;
 		margin-right: 4%;
@@ -423,7 +362,21 @@ input[type="checkbox"]{
    width: 50px;
 
 }
- 
+.add_item input[type="file"]:hover{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px; 
+    color: black;
+}
+
+.add_item input[type="file"]{ 
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+}
+  
 
 #scrollbox{
 /* USED IN read_message.php */
@@ -436,6 +389,50 @@ input[type="checkbox"]{
     padding: 20px;
     border: 1px solid grey;
 }
+
+
+#page_name { 
+    position: relative; 
+    top: -30px; left: 30px;
+    font-weight: 900;
+    font-size: 22px;
+}
+
+
+#page{margin-left: 300px; margin-top: 120px;}
+
+footer{
+    clear: both;
+    position: absolute;
+    bottom: 0;
+} 
+.center{
+    margin: 0 auto;
+    text-align: center;
+}/*
+.left{float: left;}
+.right{float: right;}*/
+  
+
+.clearfix:after {
+visibility: hidden;
+display: block;
+}
+
+.clearfix {
+	display: inline-block;
+
+}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+ 
+
+
+
+
 
 ::-webkit-scrollbar,
 ::-mz-scrollbar
