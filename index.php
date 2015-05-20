@@ -4,7 +4,9 @@ include("inc/header.php"); ?>
 
            <?php
 
+//TO DO:
 
+// make each result/graph/chart in it's own file -> include it where it belongs
 
 
 
