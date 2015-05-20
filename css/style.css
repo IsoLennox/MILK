@@ -127,7 +127,8 @@ nav {
     color:#333;
     font-size: 1em;
     
-} 
+}
+
 
 	nav a {
 		color:#333;
@@ -205,6 +206,12 @@ header {
     height:60px;
     background:#90C32E;
     border:none;
+    font-size: 1.3em;
+}
+
+#nav_search {
+    font-family: fontAwesome;
+    
 }
 .search input[type="submit"]:hover{
     background: #eee;
@@ -259,12 +266,6 @@ footer{
 .clearfix:after {
 visibility: hidden;
 display: block;
-font-size: 0;
-content: " ";
-clear: both;
-height: 0;
-}
-
 .clearfix {display: inline-block;}
 
 /* Hides from IE-mac \*/
@@ -273,20 +274,26 @@ height: 0;
 /* End hide from IE-mac */
 
  
-input,textarea {
+/*input,textarea {
     border:none;
     outline:none;
-}
+}*/
  
 
 
 /*-------------------------------------------------*/
 /*Inventory Page FORM Styling*/
 .add_item {
-	width:900px;
-	margin:0 auto;
+    width:900px;
+    margin:0 auto;
 }
 
+
+font-size: 0;
+content: " ";
+clear: both;
+height: 0;
+}
 
 .add_item input,textarea,select {
     width:100%;

@@ -259,7 +259,7 @@ if($_SESSION['is_employee']==0){
                     ?>
                 <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages</a>(<?php echo $num_messg; ?>)</li>
                 <li><a href="claims.php"><i class="fa fa-file-text"></i> Claims</a>(<?php echo $total; ?>)</li> 
-                <li><a href="employees.php"><i class="fa fa-user"></i> Employees</a></li>
+                <li><a href="employees.php"><i class="fa fa-users"></i> Employees</a></li>
                 <?php if($role == 1){ ?>
                 <li><a href="roles.php"><i class="fa fa-user-secret"></i> Roles</a></li>
                 
@@ -288,11 +288,11 @@ if($_SESSION['is_employee']==0){
           </nav>
   
 <header>
-    <!--        USER ICONS -->
+    <!-- Search Bar -->
     <div class="search_container">
         <form class='search' action="search.php" method="POST">        	
 	        <input type="search" placeholder='Search Here' name="query" id="searchbar">
-	        <input type="submit" name="search" id="nav_search" value="">
+	        <input type="submit" name="search" id="nav_search" value="&#xf002;">
 	    </form>
 	</div>
 
