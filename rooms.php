@@ -38,7 +38,7 @@ include("inc/header.php");  ?>
       
 <!--      ADD A ROOM  -->
 <form class="right" method="POST">
-    <h2>Add A Rooms:</h2>
+    <h2>Add A Room</h2>
     Room Name: <input type="text" name="name" placeholder="e.x. Bedroom.."><br/>
     Room Notes: <br/><textarea cols="20" rows="8"  name="notes" placeholder="e.x. This room is in the guest house..."></textarea><br/> 
     <input name="submit" type="submit" value="Save Room">
@@ -47,7 +47,7 @@ include("inc/header.php");  ?>
           
 <!-- SHOW ALL ROOMS BELOGING TO LOGGED IN USER   -->
 <div id="rooms">
- <h2>Your Rooms:</h2> 
+ <h2>Your Rooms</h2> 
 <?php  
 
                 function item_array($array, $key, $value){
