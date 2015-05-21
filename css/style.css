@@ -248,6 +248,13 @@ header {
     float:left;
 }
 
+.item_display{
+    padding: 20px;
+    float: left;
+    width: 50%;
+}
+
+
 
 /*-------------------------------------------------*/
 /*Inventory Page FORM Styling*/
@@ -284,7 +291,8 @@ input[type="submit"]{
     padding: 7px 20px;
     border:none;
     border-radius: 5px;
-    width:25%;
+/*    width:25%;*/
+    width:auto;
     background-color: #90C32E;
     -webkit-transition: all .7s ease;
     -moz-transition: all .7s ease;
@@ -333,6 +341,13 @@ h3 {
     font-size: 1.5em;
 }
 
+h4 {
+    font-size: 1.4em;
+}
+
+a {text-decoration: none;}
+
+.half { width: 50%;}
 
 .message { 
     background: #222; 
@@ -397,7 +412,7 @@ input[type="checkbox"]{
 }
 
 .gallery{
-    margin: 50px;
+    margin: 5px;
     padding: 20px;
     border: 1px solid grey;
 }

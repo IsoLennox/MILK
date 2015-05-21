@@ -7,8 +7,7 @@ include("inc/header.php"); ?>
  
   <?php if(!isset($_GET['trash'])){ ?>
   <h1>Your Inventory</h1>
-  <a href="add_item.php">+ Add Item</a><br/>
-  <a href="inventory.php?trash">View Trash Can</a>
+
   
   <form method="POST">
       <h3>Refine Your Results</h3>
@@ -64,6 +63,14 @@ include("inc/header.php"); ?>
   
   
 
+
+<hr>
+
+
+<!--//SHOW ALL ITEMS-->
+
+  <a href="add_item.php"><input class="fa" type="submit" value="&#xf055; Add Item"></a><br/>
+  <a href="inventory.php?trash"><i class="fa fa-trash-o"></i> View Trash Can</a>
   <?php 
 //GET ITEMS IN ROOM/ITEM TYPE CHOSEN:
 
