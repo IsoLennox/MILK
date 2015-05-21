@@ -281,7 +281,8 @@ if(isset($_GET['id'])){
     $insert  = "UPDATE claims SET title='{$title}', notes='{$notes}', claim_type='{$claim_type}' WHERE id='{$id}'";
  }
     $insert_result = mysqli_query($connection, $insert); 
-     if ($insert_result && mysqli_affected_rows($connection) == 1) {
+//     if ($insert_result && mysqli_affected_rows($connection) == 1) {
+     if ($insert_result) {
     
     
             foreach($items_array as $item){
@@ -294,7 +295,7 @@ if(isset($_GET['id'])){
 
          }else{
          $_SESSION['message']="Could Not Save Changes!";
-         redirect_to('claim_details.php?id={$id}');
+         redirect_to('claim_details.php?id='.$id);
             }
 }elseif(isset($_GET['submit'])){
     $claim_id=$_GET['submit'];
