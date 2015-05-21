@@ -346,6 +346,7 @@ h4 {
 }
 
 a {text-decoration: none;}
+a:hover{ color: black;}
 
 .half { width: 50%;}
 
