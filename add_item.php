@@ -11,15 +11,27 @@ if (isset($_POST['submit'])) {
     $name= $_POST['name']; 
     $room= $_POST['room']; 
     $notes= $_POST['notes']; 
-    $date= $_POST['purchase_date']; 
+    $pdate= $_POST['purchase_date']; 
     $price= $_POST['purchase_price']; 
     $value= $_POST['declared_value']; 
     $cat= $_POST['category'];  
     $date = date('m/d/Y H:i');
     
+    if($cat=="--" && empty($name)){
+//        $_SESSION['message']="Item name and Category cannot be empty!";
+        echo "<div class=\"message\">Item name and Category cannot be empty!</div>";
+    
+    }elseif($cat=="--"){
+//            $_SESSION['message']="Category cannot be empty!";
+            echo "<div class=\"message\">Category cannot be empty!</div>";
+        }elseif(empty($name)){
+//            $_SESSION['message']="Category cannot be empty!";
+           echo "<div class=\"message\">Item Name cannot be empty!</div>";
+    }else{
+    
     
         //INSERT ALL DATA EXCEPT PERMISSIONS
-    $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date, updated, in_trash ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat}, '{$date}', '{$date}', 0 ) ";
+    $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date, updated, in_trash ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat}, '{$pdate}', '{$date}', 0 ) ";
     $insert_result = mysqli_query($connection, $insert);
     if($insert_result){ 
              
@@ -45,7 +57,19 @@ if (isset($_POST['submit'])) {
             $_SESSION["message"] = "Item could not be saved";
             redirect_to("inventory.php");
         }//end insert uery    
-    }//end check if form was submitted
+        
+        }//end make sure no required fields are empty
+    }else{
+
+    $name= ""; 
+    $room= ""; 
+    $notes=""; 
+    $pdate= ""; 
+    $price= ""; 
+    $value= ""; 
+    $cat= "";   
+
+}//end check if form was submitted
 ?>
 
 
@@ -56,7 +80,7 @@ if (isset($_POST['submit'])) {
 
 <form class='add_item' method="POST" >
               
-    <label for="name"> Item Name: </label><input type="text" id='name' name="name" placeholder=" i.e. Samsung Television" value="" > 
+    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="<?php echo $name; ?>" > 
      <!--    //GET ITEM CATEGORIES -->
    <?php
     $category_query  = "SELECT * FROM item_category"; 
@@ -64,11 +88,12 @@ if (isset($_POST['submit'])) {
     if($categoryresult){ 
         //CATEGORY SELECT BOX
         //OPTION VALUE -- NEEDS TO BE ADDED AS CONDITIONAL fOR EMPTY//////////////////////////////////////////
-        echo "<label for=\"category\">Item Category: </label><select id='category' name=\"category\">";
-        // echo "<option value=\"--\" >--Select Item Category--</option>";
+        echo "<label for=\"category\">Item Category: </label><select style=\"border: 2px solid #90C32E;\" id='category' name=\"category\">";
+         echo "<option value=\"--\" >--Select Item Category--</option>";
         foreach($categoryresult as $category){
             //OPTIONS
-            echo "<option value=\"".$category['id']."\" >".$category['name']."</option>"; 
+            if($cat==$category['id']){ $selected="selected"; }else{ $selected=""; }
+            echo "<option ".$selected." value=\"".$category['id']."\" >".$category['name']."</option>"; 
         }
         echo "</select>";
     }//end get categories
@@ -83,13 +108,14 @@ if (isset($_POST['submit'])) {
             echo "<label for=\"room\">Room: </label><select id='room' name=\"room\" >";
             foreach($roomresult as $room){
                 //OPTIONS
-                echo "<option value=\"".$room['id']."\" >".$room['name']."</option>"; 
+                if($room==$room['id']){ $selected2="selected"; }else{ $selected2=""; }
+                echo "<option ".$selected2." value=\"".$room['id']."\" >".$room['name']."</option>"; 
             }
             echo "</select>";
         }//end get rooms 
  ?>
     <fieldset class='form_blocks'>
-        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value=""></textarea>
+        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value="<?php echo $notes; ?>"><?php echo $notes; ?></textarea>
     </fieldset>
 
     <fieldset class='form_blocks'>
@@ -97,8 +123,39 @@ if (isset($_POST['submit'])) {
         <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950.89" value="">
         <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950.99" value="">
     </fieldset>
-    <input type="submit" name="submit" value="Add Photos &amp; Files">
+    <input type="submit" name="submit" value="Next">
  </form>
  <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');">Cancel</a> 
+  
         
+              
+    <script>
+    //make sure not empty, before submit
+        
+        
+        //CATEGORY
+           $(document).ready(function () {
+    $("#category").blur(function () {
+      var input = $(this).val();
+      if (input == '--') {
+        $("#category").css({"border": "5px solid #E43633"});
+      }else{
+        $("#category").css({"border": "1px solid grey"});
+      }
+    });
+  
+          
+     //TITLE
+    $("#name").blur(function () {
+      var input = $(this).val();
+      if (input == '') {
+        $("#name").css({"border": "5px solid #E43633"});
+      }else{
+        $("#name").css({"border": "1px solid grey"});
+      }
+    });
+  });
+ 
+     
+     </script>      
 <?php include("inc/footer.php"); ?>

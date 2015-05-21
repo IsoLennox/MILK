@@ -334,6 +334,16 @@ h3 {
 }
 
 
+.message { 
+    background: #222; 
+    border-radius: 5px; 
+/*    color: antiquewhite;*/
+    color: #90C32E;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
 .fa-2x {
     /* search bar icons in header */
     position:relative;

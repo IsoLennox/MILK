@@ -2,7 +2,7 @@
 $current_page="inventory";
 $sub_page="view_rooms";
 include("inc/header.php");  ?>
-<h1>Your Rooms</h1>
+<!--<h1>Your Rooms</h1>-->
   <?php  
 
 //INSERT NEW ROOM FROM FORM BELOW
@@ -37,8 +37,9 @@ include("inc/header.php");  ?>
 
       
 <!--      ADD A ROOM  -->
-<form method="POST">
-    Add Room: <input type="text" name="name" placeholder="e.x. Bedroom.."><br/>
+<form class="right" method="POST">
+    <h2>Add A Rooms:</h2>
+    Room Name: <input type="text" name="name" placeholder="e.x. Bedroom.."><br/>
     Room Notes: <br/><textarea cols="20" rows="8"  name="notes" placeholder="e.x. This room is in the guest house..."></textarea><br/> 
     <input name="submit" type="submit" value="Save Room">
 </form> 

@@ -118,7 +118,8 @@ if(isset($_GET['remove'])){
                 $upload_form="";
             }else{
                 $edit="<a href=\"edit_item.php?id=".$show['id']."\">Edit Item Details</a><br/>";
-                $upload="<a href=\"item_details.php?add_image&id=".$show['id']."\">+ Add Files</a>";
+                $upload="<a href=\"item_details.php?add_image&id=".$show['id']."\"><input type=\"submit\" value=\"Add Photos &amp; Files\"></a>";
+                
                 
                 $upload_form="<form action=\"upload_item_img.php\" method=\"post\" enctype=\"multipart/form-data\">
                             Upload an Image or PDF:<br/>
