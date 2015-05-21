@@ -159,7 +159,8 @@ nav {
 	}
 
 	.current_page {
-		border-left:3px solid #90C32E;
+/*		border-left:3px solid #90C32E;*/
+		border-left:5px solid #90C32E;
 		padding:15px 20px 15px 17px;
 		background:#fff;
 	}
