@@ -70,7 +70,7 @@ include("inc/header.php"); ?>
 <!--//SHOW ALL ITEMS-->
 
   <a href="add_item.php"><input class="fa" type="submit" value="&#xf055; Add Item"></a><br/>
-  <a href="inventory.php?trash"><i class="fa fa-trash-o"></i> View Trash Can</a>
+  <a href="inventory.php?trash"><i class="fa fa-trash-o"></i> View Trash Can</a><br/><br/>
   <?php 
 //GET ITEMS IN ROOM/ITEM TYPE CHOSEN:
 
@@ -92,7 +92,7 @@ include("inc/header.php"); ?>
             
             $room= $_POST['room']; 
             $room_name=get_room_name($room);
-            echo "All items in ".$room_name;
+            echo "<h3>All items in ".$room_name."</h3>";
             //show results based on refinements
             $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND in_trash=0"; 
         }
@@ -102,13 +102,14 @@ include("inc/header.php"); ?>
         if($room=$_POST['room']==="all" && $category=$_POST['category']!=="all"){ 
             $category=$_POST['category'];
             $cat_name=get_category_name($category);
-            echo "All items in category: ".$cat_name;
+            echo "<h3>All ".$cat_name." items </h3>";
             //show results based on refinements
             $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND category={$category} AND in_trash=0"; 
         }
         
         //IF both fields were "ALL"
         if($room=$_POST['room']==="all" && $category=$_POST['category']==="all"){ 
+            echo "<h3>All items </h3>";
             $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0"; 
         }
         
