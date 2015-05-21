@@ -81,8 +81,8 @@ include("inc/header.php"); ?>
             $room= $_POST['room'];
             $category=$_POST['category'];
             $room_name=get_room_name($room);
-            $cat_name=get_category_name($room);
-            echo "<h3>".$cat_name."items in ".$room_name."</h3>";
+            $cat_name=get_category_name($category);
+            echo "<h3>".$cat_name." items in ".$room_name."</h3>";
             //show results based on refinements
             $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND category={$category} AND in_trash=0"; 
         }
