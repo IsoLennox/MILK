@@ -87,10 +87,11 @@ rgba(144,195,46,.4);
 */
  /*-----------------------------------------------*/
 h1 {
-	font-size: 2em;
+	font-size: 3em;
 	font-weight: 700;
 	color:#004800;
 	text-align: center;
+	margin-bottom: 50px;
 }
 
 h2 {font-size: 2em;
@@ -120,6 +121,28 @@ ul li, ol, li {
 	padding: 5px 0;
 }
 
+button {
+	outline:none;
+	border:none;
+	width:auto;
+	padding:10px;
+	background-color:#90C32E;
+	border-radius: 5px;
+	color:#333; 
+
+}
+button a {
+	color:#333;
+	/*font-weight: 600;*/
+	font-size: 1.2em;
+}
+
+
+
+
+
+
+/*----------------------------------------------------*/
 
 .left{float: left;}
 .right{float: right;}
@@ -151,6 +174,10 @@ nav {
 	nav a {
 		color:#333;
 		text-decoration: none;
+	}
+
+	nav a:hover {
+		color:#333;
 	}
 
 	nav ul > li {
@@ -362,9 +389,12 @@ input[type="submit"]:hover{
 	.notes_container ul li a{
 		font-size: 1em;
 		font-weight: 400;
-		color:#000;
+		color:#333;
 	}
 
+	.notes_container ul li a:hover {
+		color:orange;
+	}
 
 
 /*inventory page, room & category detail styling*/
@@ -392,7 +422,9 @@ input[type="submit"]:hover{
 		margin-top: 25px;
 	}
 
-
+.fa-plus-circle {
+	color:#90C32E;
+}
 
 
 
@@ -407,7 +439,24 @@ input[type="submit"]:hover{
 
 
 /*-------------------------------------------------*/
-.half { width: 50%;}
+.half {
+	float:left; 
+	width: 50%;
+}
+
+.half_link {
+	float:left;
+	width:50%;
+	margin:10px 0;
+	color:#333;
+	font-weight: 600;
+	font-size:1.3em;
+	padding: 0 5px;
+}
+
+.half_link:nth-of-type(2){
+	text-align: right;
+}
 
 .message { 
     background: #222; 
@@ -426,7 +475,7 @@ input[type="submit"]:hover{
     width: 40px;
 }
 
-.fa-trash-o { color:red;}
+.fa-trash-o { color:firebrick;}
 .fa-trash-o:hover { color:grey;}
 
 .fake_status{

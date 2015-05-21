@@ -73,9 +73,10 @@ include("inc/header.php"); ?>
 
 
 <!--//SHOW ALL ITEMS-->
-
-  <a href="add_item.php"><input class="fa" type="submit" value="&#xf055; Add Item"></a><br/>
-  <a href="inventory.php?trash"><i class="fa fa-trash-o"></i> View Trash Can</a><br/><br/>
+    <!-- this was an input type=submit, it should just be a link? -->
+    <a href="add_item.php" class='half_link'><i class="fa fa-plus-circle"></i> Add Item</a>
+    <a href="inventory.php?trash" class='half_link'><i class="fa fa-trash-o"></i> View Trash</a>
+    <div class="clearfix"></div>
   <?php 
 //GET ITEMS IN ROOM/ITEM TYPE CHOSEN:
 
