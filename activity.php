@@ -13,27 +13,47 @@ include("inc/header.php"); ?>
                   <?php  if($_SESSION['is_employee']==1){ ?>
                   <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> All employee history</a></span> 
                   <?php  } ?>
-                
-                        <select name="filter" id="filter">
+                  
+                <form action="activity.php" method="GET">
+                        <select onChange="this.form.submit()" name="filter" id="filter">
+                           <option value="">---</option>
                            <option value="all">All Activity</option>
                            
                             <?php if($_SESSION['is_employee']==0){ ?> 
-                            <option value="new">New Items</option>
+                            <option value="added">Added Items</option>
                             <option value="removed">Removed Items</option>
                             <option value="edited">Edited Items</option>
-                            <option value="claims">Submitted Claims</option>
+                            <option value="filed claim">Submitted Claims</option>
+                            <option value="updated claim">Updated Claims</option>
                             <?php }else{ ?>
-                            <option value="new">Updated Claim</option>
+                            <option value="updated claim">Updated Claim</option>
+<!--                            NEEDS ACTUAL HISTORY TYPES   -->
                             <option value="removed">Added Employee</option>
                             <option value="edited">Updated Roles</option>
-                            <option value="claims">etc.</option>
+                            <option value="claim">etc.</option>
                             <?php } ?>
-                       </select>    
+                       </select> 
+                       </form>   
 <?php
+            
+            if(isset($_GET['filter'])){
+                echo "<h3>".strtoupper($_GET['filter'])."</h3>";
+                
+                if($_GET['filter']=="" || $_GET['filter']=="all"){
+                 //GET ALL HISTPORY FROM USER LOGGED IN
+                $query  = "SELECT * FROM history WHERE user_id={$_SESSION['user_id']} ORDER BY id DESC"; 
+                }else{
+//                $like= "AND content LIKE '%".$_POST['filter']."&' ";
+                 $query  = "SELECT * FROM history WHERE user_id={$_SESSION['user_id']} AND content LIKE '%{$_GET['filter']}%' ORDER BY id DESC"; 
+                }
+            }else{
+                
+                //GET ALL HISTPORY FROM USER LOGGED IN
+                $query  = "SELECT * FROM history WHERE user_id={$_SESSION['user_id']} ORDER BY id DESC"; 
+            
+            }
 
-//GET ALL HISTPORY FROM USER LOGGED IN
-
-    $query  = "SELECT * FROM history WHERE user_id={$_SESSION['user_id']} ORDER BY id DESC";  
+ 
     $result = mysqli_query($connection, $query);
     if($result){
         echo "<ul>";

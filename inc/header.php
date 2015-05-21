@@ -12,6 +12,8 @@ confirm_logged_in();
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Under My Roof</title>
         <meta name="description" content="An interactive PDF library">
+        <link rel="shortcut icon" href="http://isobellennox.com/team_milk/public/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="http://isobellennox.com/team_milk/public/favicon.ico" type="image/x-icon">
         <!--        Main stylesheet-->
         <?php if(isset($_SESSION['theme'])){
         if($_SESSION['theme']==1){
