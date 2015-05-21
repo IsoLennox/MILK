@@ -93,13 +93,31 @@ h1 {
 	text-align: center;
 }
 
+h2 {font-size: 2em;
+	font-weight: 700;
+	color:#004800;}
+
+h3 {
+	color:firebrick;
+    font-size: 1.5em;
+    margin-bottom: 5px
+}
+
+h4 {
+    font-size: 1.3em;
+}
 
 a {
+	text-decoration: none;
 	color:#90C32E;
 }
 
-a:hover {
+a:hover{ 
+	color: orange;
+}
 
+ul li, ol, li {
+	padding: 5px 0;
 }
 
 
@@ -292,7 +310,6 @@ input[type="submit"]{
     padding: 7px 20px;
     border:none;
     border-radius: 5px;
-/*    width:25%;*/
     width:auto;
     background-color: #90C32E;
     -webkit-transition: all .7s ease;
@@ -328,27 +345,68 @@ input[type="submit"]:hover{
 
 .notes_container{
     /* Used in 'claim_details.php' in multiple places */
-    border: 1px solid grey;
+    border: 2px solid #ddd;
+    border-radius: 10px;
     padding: 30px;
-    margin: 10px;
+    margin: 10px 0;
 }
 
-h2 {	font-size: 2em;
-	font-weight: 700;
-	color:#004800;}
-
-h3 {
-    color: firebrick;
-    font-size: 1.5em;
+/*inventory page, item title styling*/
+.notes_container a {
+	text-transform: capitalize;
+	font-weight: 600;
+	font-size: 1.2em;
 }
 
-h4 {
-    font-size: 1.4em;
+	/*li styling on rooms page, items listed in each room*/
+	.notes_container ul li a{
+		font-size: 1em;
+		font-weight: 400;
+		color:#000;
+	}
+
+
+
+/*inventory page, room & category detail styling*/
+.notes_container p {
+	line-height: 1.5em;
 }
 
-a {text-decoration: none;}
-a:hover{ color: black;}
 
+
+.inventory_search {
+	clear:both;
+}
+
+.inventory_search fieldset{
+	float:left;
+	width:35%;
+	margin-right:5%;
+}
+.inventory_search fieldset:nth-of-type(3){
+	margin-right:0;
+	width:20%;	
+
+}
+	.inventory_search input {
+		margin-top: 25px;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------------------------------*/
 .half { width: 50%;}
 
 .message { 
@@ -451,6 +509,7 @@ display: block;
 
 .clearfix {
 	display: inline-block;
+	clear:both;
 
 }
 

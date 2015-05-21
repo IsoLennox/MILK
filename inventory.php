@@ -9,7 +9,7 @@ include("inc/header.php"); ?>
   <h1>Your Inventory</h1>
 
   
-  <form method="POST">
+  <form class='inventory_search' method="POST">
       <h3>Refine Your Results</h3>
            <!--    //GET ITEM CATEGORIES TO CHOOSE FROM -->
    <?php
@@ -18,8 +18,9 @@ include("inc/header.php"); ?>
     $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";  
     $itemresult = mysqli_query($connection, $item_query);
     if($itemresult){ 
-        echo "<p>Category:  <select name=\"category\">";
-         echo "<option value=\"all\" >All Categories</option>"; 
+        echo "<fieldset>";
+        echo "<label for='category'>Category:</label>  <select name=\"category\"id='category'>";
+        echo "<option value=\"all\" >All Categories</option>"; 
         foreach($itemresult as $item){
             $categories=$item['category']; 
             
@@ -35,8 +36,8 @@ include("inc/header.php"); ?>
                 }//end get categories
             
             }//end items found with categories
-        echo "</select></p>";
-        echo "</ul>";
+        echo "</select></fieldset>";
+        // echo "</ul>";
         } 
 ?>
  
@@ -47,18 +48,22 @@ include("inc/header.php"); ?>
                 $roomresult = mysqli_query($connection, $room_query);
                 if($roomresult){ 
                     //ROOM SELECT BOX
-                    echo "<p>Room: <select name=\"room\">";
+                    echo "<fieldset>";
+                    echo "<label for='room'> Room: </label><select name=\"room\" id='room'>";
                     echo "<option value=\"all\" >All Rooms</option>"; 
                     foreach($roomresult as $room){
                         //OPTIONS
                         echo "<option name=\"room\" value=\"".$room['id']."\" >".$room['name']."</option>"; 
                     }
-                    echo "</select></p>";
+                    echo "</select></fieldset>";
                 }//end get rooms 
  ?>
-     <input type="submit" value="Find Items" name="submit">
+    <fieldset>
+        <input type="submit" value="Find Items" name="submit">
+    </fieldset>
  
   </form>
+  <div class="clearfix"></div>
   <?php } ?>
   
   
@@ -144,12 +149,12 @@ include("inc/header.php"); ?>
             
             $id=$show['id'];
             $name=$show['name'];
-            echo "<a href=\"item_details.php?id=".$id."\">".$name."</a><br/>";
+            echo "<p><a href=\"item_details.php?id=".$id."\">".$name."</a><br/>";
                 echo $claim_class;
                 $room_name=get_room_name($show['room_id']);
                 $cat_name=get_category_name($show['category']);
                 echo "Category: ".$cat_name."<br/>";
-                echo "Room: ".$room_name;
+                echo "Room: ".$room_name . "</p>";
             
             echo "</div>";
             }

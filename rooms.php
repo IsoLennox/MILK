@@ -72,7 +72,7 @@ include("inc/header.php");  ?>
                     $item_array = item_array($item_array, $item['id'], $item['name']);
                  }
             }
-            echo "<div class=\"gallery half\">";
+            echo "<div class=\"notes_container half\">";
             echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (".$item_count." items)</h4>";
            
                 if(!empty($item_array)){
