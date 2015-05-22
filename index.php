@@ -153,7 +153,7 @@ if($_SESSION['is_employee']==0){
             $total_item_query  = "SELECT * from items";   
             $total_item_result = mysqli_query($connection, $total_item_query);
             $total_items=0; 
-            $categories=array();
+            $categories;
             foreach($total_item_result as $item){
                     $total_items++;
                 
@@ -161,23 +161,26 @@ if($_SESSION['is_employee']==0){
                 $category_query  = "SELECT * from item_category WHERE id={$item['category']}";   
                 $category_result = mysqli_query($connection, $category_query);
                 foreach($category_result as $cat){
-                    array_push($categories,$cat['name']);
+//                    array_push($categories,$cat['name']);
+                    $categories=$categories.",".$cat['name'];
                 }
                 
                 
             }
     
-    print_r($categories);
-//$words = explode(",", $categories);
-//$result = array_combine($words, array_fill(0, count($words), 0));
-//
-//foreach($words as $word) {
-//    $result[$word]++;
-//}
-//
-//foreach($result as $word => $count) {
-//    echo "There are $count instances of $word.\n";
-//}
+//    echo "category:".$categories."<br/>";
+$words = explode(",", $categories);
+$result = array_combine($words, array_fill(0, count($words), 0));
+
+foreach($words as $word) {
+    $result[$word]++;
+}
+
+foreach($result as $word => $count) {
+    if($word!==""){
+        echo "There are $count instances of $word.<br/>";
+    }
+}
     
     
             echo "Total number of items: ".$total_items."<br/>";

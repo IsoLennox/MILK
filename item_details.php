@@ -137,13 +137,16 @@ if(isset($_GET['remove'])){
                     $room_name=get_room_name($show['room_id']);
                     $cat_name=get_category_name($show['category']);
                     echo "Category: ".$cat_name."<br/>";
+                  if(empty($room_name)){
+                        $room_name="Room not selected";
+                    }
                     echo "Room: ".$room_name;
 
                     echo "<br/>";
                     //GET ALL OTHER DETAILS
                     echo "Purchase Date: ".$show['purchase_date']."<br/>"; 
-                    echo "Purchase Price: ".$show['purchase_price']."<br/>"; 
-                    echo "Declared Value: ".$show['declared_value']."<br/>"; 
+                    echo "Purchase Price: $".$show['purchase_price']."<br/>"; 
+                    echo "Declared Value: $".$show['declared_value']."<br/>"; 
                     echo "Description/Notes:<br/>".$show['notes']."<br/>"; 
                 echo "</div>";//end container
                 

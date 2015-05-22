@@ -117,7 +117,7 @@ a:hover{
 	color: orange;
 }
 
-ul li, ol, li {
+ul li, ol li {
 	padding: 5px 0;
 }
 
@@ -205,9 +205,12 @@ nav {
 
 	.current_page {
 /*		border-left:3px solid #90C32E;*/
-		border-left:5px solid #90C32E;
+		
 		padding:15px 20px 15px 17px;
 		background:#fff;
+		border-bottom: 1px solid #ddd;
+		border-top: 1px solid #ddd;
+		border-left:5px solid #90C32E;
 	}
 
 
