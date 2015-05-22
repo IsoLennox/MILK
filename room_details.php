@@ -13,8 +13,8 @@ if(isset($_GET['id'])){ ?>
     if($result){
         foreach($result as $show){
             echo "<h1>".$show['name']."</h1>";
-            echo "<p>".$show['notes']."</p>";
-            echo "<a href=\"room_details.php?room=".$_GET['id']."\">Edit</a> <br/><br/>";
+            echo "<p class=\"center\">".$show['notes']."</p>";
+            echo "<a class=\"right\" href=\"room_details.php?room=".$_GET['id']."\">Edit</a> <br/><br/>";
             
                 $item_query  = "SELECT * FROM items WHERE room_id={$_GET['id']}"; 
                 $itemresult = mysqli_query($connection, $item_query);
