@@ -258,8 +258,6 @@ if($_SESSION['is_employee']==0){
    $role=0;
 //GET NAV ITEM PERMISSIONS
      foreach($_SESSION['permissions'] as $key => $val){ 
-//         echo $val;
-         
          //UPDATE ROLES
         if($val==3){ 
             //has edit roles permissions
