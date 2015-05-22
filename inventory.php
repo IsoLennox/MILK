@@ -13,38 +13,43 @@ include("inc/header.php"); ?>
       <h3>Refine Your Results</h3>
            <!--    //GET ITEM CATEGORIES TO CHOOSE FROM -->
    <?php
-
-//    get all categories this user has items in
-    $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";  
-    $itemresult = mysqli_query($connection, $item_query);
-    if($itemresult){ 
+ 
+    
+    //    get all categories this user has items in
+  
         echo "<fieldset>";
         echo "<label for='category'>Category:</label>  <select name=\"category\"id='category'>";
         echo "<option value=\"all\" >All Categories</option>"; 
-        foreach($itemresult as $item){
             $categories=$item['category']; 
             
                 //only show categories if you have items in them
-                $category_query  = "SELECT * FROM item_category WHERE id = {$categories}"; 
+                $category_query  = "SELECT * FROM item_category ORDER BY name"; 
                 $categoryresult = mysqli_query($connection, $category_query);
                 if($categoryresult){  
                    
                     foreach($categoryresult as $category){
-                        //OPTIONS
-                        echo "<option name=\"category\" value=\"".$category['id']."\" >".$category['name']."</option>"; 
-                    }//end loop through categories                    
-                }//end get categories
-            
-            }//end items found with categories
+                        
+                            $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 AND category={$category['id']}";  
+                            $itemresult = mysqli_query($connection, $item_query);
+                            $item_num = mysqli_num_rows($itemresult);
+                            if($item_num >=1){ 
+                                //OPTIONS
+                                echo "<option name=\"category\" value=\"".$category['id']."\" >".$category['name']."</option>"; 
+                            }//end loop through categories                    
+                    }//end get categories 
+                }
         echo "</select></fieldset>";
-        // echo "</ul>";
-        } 
+       
+    
+    
+    
+    
 ?>
  
  
  <!--    //GET ROOMS TO CHOOSE FROM -->
    <?php
-            $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}"; 
+            $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']} ORDER BY name"; 
                 $roomresult = mysqli_query($connection, $room_query);
                 if($roomresult){ 
                     //ROOM SELECT BOX
@@ -90,7 +95,7 @@ include("inc/header.php"); ?>
             $cat_name=get_category_name($category);
             echo "<h3>".$cat_name." items in ".$room_name."</h3>";
             //show results based on refinements
-            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND category={$category} AND in_trash=0"; 
+            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND category={$category} AND in_trash=0 ORDER BY name"; 
         }
         
         //ONLY A ROOM WAS CHOSEN
@@ -100,7 +105,7 @@ include("inc/header.php"); ?>
             $room_name=get_room_name($room);
             echo "<h3>All items in ".$room_name."</h3>";
             //show results based on refinements
-            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND in_trash=0"; 
+            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND in_trash=0 ORDER BY name"; 
         }
         
 
@@ -110,13 +115,13 @@ include("inc/header.php"); ?>
             $cat_name=get_category_name($category);
             echo "<h3>All ".$cat_name." items </h3>";
             //show results based on refinements
-            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND category={$category} AND in_trash=0"; 
+            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND category={$category} AND in_trash=0 ORDER BY name"; 
         }
         
         //IF both fields were "ALL"
         if($room=$_POST['room']==="all" && $category=$_POST['category']==="all"){ 
             echo "<h3>All items </h3>";
-            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0"; 
+            $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
         }
         
 
@@ -124,10 +129,10 @@ include("inc/header.php"); ?>
         echo "<a href=\"inventory.php\">&laquo; Back to Inventory</a>";
         echo "<h1 style=\"color:red;\">Trash Can</h1>";
         //VIEW TRASH CAN
-        $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=1"; 
+        $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=1 ORDER BY name"; 
     }else{
         //no search refinements, SHOW ALL ITEMS
-        $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0"; 
+        $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
     }
 
 
