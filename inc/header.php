@@ -284,9 +284,19 @@ if($_SESSION['is_employee']==0){
                 <?php }?>
                 
                 <li><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
-                <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
-                <li><a href="activity.php"><i class="fa fa-history"></i> Activity</a></li> 
-
+                
+                
+               <?php  if(!isset($current_page) || $current_page=="dashboard"){ ?>
+                        <li class="current_page"><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+              <?php  }else{ ?>
+                  <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+             <?php   } ?>
+                 
+                <?php if($current_page=="activity"){ ?>
+                <li class="current_page"><a href="activity.php"><i class="fa fa-history"></i> Activity</a></li> 
+                    <?php }else{ ?>
+                     <li><a href="activity.php" ><i class="fa fa-history"></i> Activity</a></li>
+                   <?php  } ?> 
             </ul>
 <?php }  ?>
          
