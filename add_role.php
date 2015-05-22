@@ -1,4 +1,5 @@
-<?php include("inc/header.php"); ?>
+<?php $current_page="roles";
+include("inc/header.php"); ?>
 <?php
  
 //SEE IF THIS USER HAS EDIT ROLE PERMISSIONS
