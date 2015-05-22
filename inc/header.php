@@ -282,8 +282,13 @@ if($_SESSION['is_employee']==0){
                 <li><a href="roles.php"><i class="fa fa-user-secret"></i> Roles</a></li>
                 
                 <?php }?>
+                 
                 
-                <li><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
+                <?php  if(!isset($current_page) || $current_page=="company"){ ?> 
+                        <li class="current_page"><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
+              <?php  }else{ ?> 
+                      <li><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
+             <?php   } ?>
                 
                 
                <?php  if(!isset($current_page) || $current_page=="dashboard"){ ?>
