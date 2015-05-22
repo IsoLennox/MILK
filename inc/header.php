@@ -84,9 +84,9 @@ if($_SESSION['is_employee']==0){
          <?php 
     //PAGE INDICATORS
     if(!isset($current_page) || $current_page=="dashboard"){
-                    echo "<li class=\"current_page\"><a href=\"index.php\">Dashboard</a></li>";
+                    echo "<li class=\"current_page\"><a href=\"index.php\"><i class=\"fa fa-tachometer\"></i> Dashboard</a></li>";
                 }else{
-                   echo " <li><a href=\"index.php\">Dashboard</a></li>";
+                   echo " <li><a href=\"index.php\"><i class=\"fa fa-tachometer\"></i> Dashboard</a></li>";
                 }
     
     // END PAGE INDICATORS
@@ -94,30 +94,30 @@ if($_SESSION['is_employee']==0){
              
                 <?php
                 if($current_page=="inventory"){
-                    echo "<li class=\"current_page\"><a href='inventory.php'>Inventory</a>";
+                    echo "<li class=\"current_page\"><a href='inventory.php'><i class=\"fa fa-cubes\"></i> Inventory</a>";
                     echo "<ul>";
                     if(isset($sub_page)&&($sub_page == "add_item")) {
-                      echo "<li class=\"sub_page\"><a href='add_item.php'>Add Item</a></li>";
+                      echo "<li class=\"sub_page\"><a href='add_item.php'><i class=\"fa fa-plus\"></i> Add Item</a></li>";
                     } else {
-                      echo "<li><a href=\"add_item.php\">Add Item</a></li>";
+                      echo "<li><a href=\"add_item.php\"><i class=\"fa fa-plus\"></i> Add Item</a></li>";
                     }
 
                     if(isset($sub_page)&&($sub_page == "view_rooms")) {
-                      echo "<li class=\"sub_page\"><a href='rooms.php'>View Rooms</a></li>";
+                      echo "<li class=\"sub_page\"><a href='rooms.php'><i class=\"fa fa-eye\"></i> View Rooms</a></li>";
                     } else {
-                      echo "<li><a href='rooms.php'>View Rooms</a></li>";
+                      echo "<li><a href='rooms.php'><i class=\"fa fa-eye\"></i> View Rooms</a></li>";
                     }
                     echo "</ul></li>";
                 ?>
 
             <?php
                 }else{
-                   echo " <li><a href='inventory.php'>Inventory</a> ";
+                   echo " <li><a href='inventory.php'><i class=\"fa fa-cubes\"></i> Inventory</a> ";
                      ?>
               <ul>
-                <li><a href="add_item.php">Add Item</a></li>
+                <li><a href="add_item.php"><i class="fa fa-plus"></i> Add Item</a></li>
                 <!-- <li><a href="inventory.php">View Items</a></li> -->
-                <li><a href="rooms.php">View Rooms</a></li> 
+                <li><a href="rooms.php"><i class="fa fa-eye"></i> View Rooms</a></li> 
 
               </ul> </li>
                <?php
