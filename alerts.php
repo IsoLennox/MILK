@@ -4,7 +4,8 @@
     
     $alerts_query  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id != 0 AND status_id != 1 ";  
     $alertresult = mysqli_query($connection, $alerts_query);
-    if($alertresult){
+    $rows = mysqli_num_rows($alertresult);
+    if($rows>=1){
         
         echo "<h1>ALERTS</h1>";
         //show each result value
@@ -19,6 +20,10 @@
              echo "<a href=\"claim_details.php?id=".$show_alert['id']."\">Claim #".$show_alert['id'].": '".$show_alert['title']."'</a> is ".$status."<br/>";
                       
             }
+        
+        echo "   <hr>";
         }
       
+
     ?>
+    

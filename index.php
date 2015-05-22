@@ -20,30 +20,19 @@ if($_SESSION['is_employee']==0){
     <?php
         //INCLUDE ALERTS
         include_once('alerts.php');
-    ?>
-    
-<!--    SAMPLE STYLE GUIDE IMAGE : CAN REMOVE-->
-    <img src="img/stats.PNG" alt="sample stats" />
-    
-    <?php
-        //INCLUDE ALERTS
-        include_once('client_dashboard.php');
 
-    ?>
+        //INCLUDE STATS
+        include_once('client_dashboard.php'); ?>
+        
     <div>Quick add item</div>
+    <div>Quick add room</div>
+    
     <?php
     
 }else{  
     
-
-    
     //IS EMPLOYEE
- 
-//    foreach($_SESSION['permissions'] as $key => $val){ 
-//        if($val==3){
-//            echo "permission granted!";
-//        }
-//    }
+
 ?>
     <h2>Statistics</h2>
     
@@ -53,40 +42,51 @@ if($_SESSION['is_employee']==0){
         // Refine Results FOR EMPLOYEES ONLY:
         if($_SESSION['is_employee']==1){
         ?>
+        
+        
+<!--        //REFINE FORM-->
+<!--
         <form action="#" method="POST">
-
             <input type="checkbox" name="results[]" value="claims">Claims
-        <!--    inside would involve total number of claims, number of items in each claims type, number involved in each claim status -->
-            <input type="checkbox" name="results[]" value="items">Items
-        <!--    inside would involve number of items total, as well as number of items in each category-->
-            <input type="checkbox" name="results[]" value="users">Users
-        <!--    inside would involve total num of users, total num of clients vs. employees, and statistics based on location and how many number of items, and claims clients have each, and on average --> 
-
+            <input type="checkbox" name="results[]" value="items">Items 
+            <input type="checkbox" name="results[]" value="users">Users 
         <input type="submit" name="refine" value="Refine">
         </form>
+-->
+        
+        
+        
 
         <?php } ?>
-    </div>
+    </div> 
     
-    
-    
-    
-    
-     <img src="img/stats.PNG" alt="sample stats" />
+<!--     <img src="img/stats.PNG" alt="sample stats" />-->
     <ul>
-        <li>Total number of clients</li>
-        <li>number of claims made &amp; Percent of resolved/denied/pending claims</li>
+       <?php
+            $client_query  = "SELECT * from users WHERE is_employee=0";   
+            $client_result = mysqli_query($connection, $client_query);
+            $total_clients=0; 
+            foreach($client_result as $client){
+                $total_clients++;
+            }
+            echo "<li>Total number of clients: ".$total_clients."</li>";
+                ?>
+                
+                
+                       <?php
+            $employee_query  = "SELECT * from users WHERE is_employee=1";   
+            $employee_result = mysqli_query($connection, $employee_query);
+            $total_employees=0; 
+            foreach($employee_result as $employee){
+                $total_employees++;
+            }
+            echo "<li>Total number of employees: ".$total_employees."</li>";
+                ?>
     </ul>
     
-    
-    
-    
-    
+    <h1>Claims</h1>
     
     <?php
-        
-    
-    
             //GET COUNTS
     
             //count total # claims that are NOT DRAFTS
@@ -122,28 +122,71 @@ if($_SESSION['is_employee']==0){
            <li><a href="claims.php?pending"><span class=""><i class="fa fa-circle"></i></span> Pending Client Changes</a> (<?php echo $cdata['total']; ?>)</li>
            <li><a href="claims.php?approved"><span class=""><i class="fa fa-circle"></i></span> Approved</a> (<?php echo $adata['total']; ?>)</li>
            <li><a href="claims.php?denied"><span class=""><i class="fa fa-circle"></i></span> Denied</a> (<?php echo $ddata['total']; ?>)</li>
-           
-           
-           
+<?php     
 
-<?php }     
+ 
 
-           
+//TOTAL VALUE OF ALL CLAIMS
+            $claim_value_query  = "SELECT * from claim_items";   
+            $claim_value_result = mysqli_query($connection, $claim_value_query);
+            $total_claim_value=0;
+            $total_claimed_items=0;
+            foreach($claim_value_result as $item){
+                    $total_claimed_items++;
+                    $item_val_query  = "SELECT * from items WHERE id={$item['item_id']}";   
+                    $item_val_result = mysqli_query($connection, $item_val_query);
+                    $item_val_data=mysqli_fetch_assoc($item_val_result);
+                    $total_claim_value=$total_claim_value+$item_val_data['declared_value'];
+            }
+            echo "Total number of items in claims: ".$total_claimed_items."<br/>";
+            echo "Total Value of all combined claims: $".$total_claim_value."<br/>";
+            echo "Average Value of all combined claims: $".$total_claim_value/$total_claimed_items."<br/>";
+    
+    
+//TOTAL CLAIMS PER CLAIM TYPE
+    
+    
+    
+    echo "<h1>Items</h1>";
+
+//TOTAL ITEMS  
+            $total_item_query  = "SELECT * from items";   
+            $total_item_result = mysqli_query($connection, $total_item_query);
+            $total_items=0; 
+            $categories=array();
+            foreach($total_item_result as $item){
+                    $total_items++;
+                
+                //TOTAL ITEMS IN EACH CATEGORY
+                $category_query  = "SELECT * from item_category WHERE id={$item['category']}";   
+                $category_result = mysqli_query($connection, $category_query);
+                foreach($category_result as $cat){
+                    array_push($categories,$cat['name']);
+                }
+                
+                
+            }
+    
+    print_r($categories);
+//$words = explode(",", $categories);
+//$result = array_combine($words, array_fill(0, count($words), 0));
+//
+//foreach($words as $word) {
+//    $result[$word]++;
+//}
+//
+//foreach($result as $word => $count) {
+//    echo "There are $count instances of $word.\n";
+//}
+    
+    
+            echo "Total number of items: ".$total_items."<br/>";
+    
+    
 
 
-//example query
 
-//    $query  = "SELECT * FROM TABLE";  
-//    $result = mysqli_query($connection, $query);
-//    if($result){
-//        //show each result value
-//        foreach($result as $show){
-//            
-//            $this_value=$show['col_name'];
-//            echo $this_value;
-//                      
-//            }
-//        }
+           } 
  ?>
      
 <?php include("inc/footer.php"); ?>
