@@ -126,8 +126,14 @@ if($_SESSION['is_employee']==0){
             if($current_page=="claims"){ ?>
             <li class="current_page"><a href="claim_history.php">Claims</a>
             <ul> 
-               <li><a href="file_new_claim.php">File Claim</a></li> 
-          <?php 
+               <!-- <li><a href="file_new_claim.php">File Claim</a></li>  -->
+          <?php
+              if(isset($sub_page)&&($sub_page == "file_claim")) {
+                echo "<li class=\"sub_page\"><a href=\"file_new_claim.php\">File Claim</a></li> ";
+              } else {
+                echo "<li><a href=\"file_new_claim.php\">File Claim</a></li>";
+              }
+
         //GET COUNTS
             $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
             $all_result = mysqli_query($connection, $all_query);
@@ -154,13 +160,15 @@ if($_SESSION['is_employee']==0){
             $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=3";   
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
+
+
         ?>
-           <li><a href="claim_history.php">All Claims </a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claim_history.php?draft">Drafts </a> (<?php echo $drdata['total']; ?>)</li>
-           <li><a href="claim_history.php?pending">Processing </a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claim_history.php?approved">Approved </a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claim_history.php?changes">Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claim_history.php?denied">Denied </a> (<?php echo $ddata['total']; ?>)</li>
+           <li><a href="claim_history.php ">All Claims </a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claim_history.php?draft ">Drafts </a> (<?php echo $drdata['total']; ?>)</li>
+           <li><a href="claim_history.php?pending ">Processing </a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?approved ">Approved </a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?changes ">Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+           <li><a href="claim_history.php?denied ">Denied </a> (<?php echo $ddata['total']; ?>)</li>
         
                 
 <!--                <li><a href="claim_history.php">Claim History</a></li>-->
