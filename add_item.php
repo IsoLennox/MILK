@@ -13,7 +13,14 @@ if (isset($_POST['submit'])) {
     $notes= $_POST['notes']; 
     $pdate= $_POST['purchase_date']; 
     $price= $_POST['purchase_price']; 
-    $value= $_POST['declared_value']; 
+    
+    //get only dollar amount INT of value
+    $value= $_POST['declared_value'];                  
+    $dollar= strtok($value, '.');
+    $value=preg_replace("/[^0-9]/","",$dollar);
+ 
+    
+    
     $cat= $_POST['category'];  
     $date = date('m/d/Y H:i');
     
@@ -120,8 +127,8 @@ if (isset($_POST['submit'])) {
 
     <fieldset class='form_blocks'>
         <label for="purchase_date">Purchase Date: </label><input type="text" id="purchase_date" name="purchase_date" placeholder="mm/dd/yyyy" value="">
-        <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950.89" value="">
-        <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950.99" value="">
+        <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950" value="">
+        <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950" value="">
     </fieldset>
     <input type="submit" name="submit" value="Next">
  </form>

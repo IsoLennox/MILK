@@ -86,13 +86,20 @@ if(isset($_GET['id'])){
             echo "Items: <ul>";
             $item_query  = "SELECT * FROM claim_items WHERE claim_id={$show['id']}";  
             $item_result = mysqli_query($connection, $item_query);
+                  $total_value=0;
             foreach($item_result as $item){ 
                   $itemname_query  = "SELECT * FROM items WHERE id={$item['item_id']}";  
                   $itemname_result = mysqli_query($connection, $itemname_query);
                   foreach($itemname_result as $itemname){
-                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a> - $".$itemname['declared_value']."</li>";
+                      
+                        $dollar= strtok($itemname['declared_value'], '.');
+                        $value=preg_replace("/[^0-9]/","",$dollar);
+
+                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a> - $".$value."</li>";
+                        $total_value=$total_value+$value;
                     } 
             }
+                  echo "Total Claim Value: $".$total_value;
             echo "</ul>";
             echo "<br/><br/>";
             echo "Notes/Description: <div class=\"notes_container\">".$show['notes']."</div><br/>"; 
@@ -171,11 +178,16 @@ if(isset($_GET['id'])){
                     //item SELECT BOX
                     echo "<p>Add Items: <br/>"; 
                     ?> <ul id="form_id" style="list-style: none;">
+<!--
                         <li>
                           <label for="select_input">
-                            <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> Select all
-                          </label>
-                        </li> <?php
+-->
+                          
+<!--                          someone removed this script, cannot find it-->
+<!--                            <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> Select all-->
+<!--                          </label>-->
+<!--                        </li> -->
+                         <?php
                           
                     foreach($itemresult as $item){
                         
@@ -270,7 +282,7 @@ if(isset($_GET['id'])){
         $claim=mysqli_fetch_assoc($result); 
         $old_notes=$claim['notes'];
     }
-    
+ 
     
     
  if($claim['status_id']==4){
@@ -291,7 +303,7 @@ if(isset($_GET['id'])){
             }
          
          $_SESSION['message']="Changes Saved!";
-          header('Location: ' . $_SERVER['HTTP_REFERER']);
+         redirect_to('claim_details.php?id='.$id);
 
          }else{
          $_SESSION['message']="Could Not Save Changes!";
