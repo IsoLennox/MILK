@@ -133,18 +133,12 @@ echo "<a href=\"profile.php?user=$user_id\"><h3>".$name."</h3></a> ";
 
             
             
-            
-            
-            
 ////            =======================================================
 //            
 //                        //ITEM SEARCH
 //            
 ////            =======================================================
-//            
-            //if employee only: search poilicy numbers, names, and emails
-//            
-        
+ 
            
            if($_SESSION['is_employee']==0){
                //is client, only search YOUR items
@@ -161,11 +155,26 @@ echo "<a href=\"profile.php?user=$user_id\"><h3>".$name."</h3></a> ";
             if(!empty($item_result_array)){
                 echo "<h2>Items that contain \"". $query_string ."\":</h2>"; 
                    foreach($item_result as $item_match){
-                        $name  =$item_match['name'];
-                        $email  =$item_match['email']; 
-                        $item_id  =$item_match['id'];
-                 //STYLE OUTPUT       
-echo "<a href=\"item_details.php?id=$item_id\"><h3>".$name."</h3></a> ";
+                       echo "<div class=\"notes_container\">";
+                         //Check to see if involved in claim
+                        $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$item_match['id']}"; 
+                        $item_claim_result = mysqli_query($connection, $item_claim_query);
+                        $claim_item_rows=mysqli_num_rows($item_claim_result);
+                        if($claim_item_rows >= 1){ 
+                            $claim_class="<p style=\"color:red;\"> Involved in claim </p>"; 
+                        }else{
+                            $claim_class="";
+                        }
+
+                        $id=$item_match['id'];
+                        $name=$item_match['name'];
+                        echo "<p><a href=\"item_details.php?id=".$id."\">".$name."</a><br/>";
+                            echo $claim_class;
+                            $room_name=get_room_name($item_match['room_id']);
+                            $cat_name=get_category_name($item_match['category']);
+                            echo "Category: ".$cat_name."<br/>";
+                            echo "Room: ".$room_name . "</p>";
+                            echo "</div>";
                     }//end foreach item found with name match
                 
                 echo "<hr/>";
@@ -188,7 +197,7 @@ echo "<a href=\"item_details.php?id=$item_id\"><h3>".$name."</h3></a> ";
            if($_SESSION['is_employee']==0){
                //is client, only search YOUR claims
                 
-               $claim_search="SELECT * FROM claims WHERE (title LIKE '%" . $query_string .  "%' OR notes LIKE '%" . $query_string .  "%') user_id={$_SESSION['user_id']} ";
+               $claim_search="SELECT * FROM claims WHERE (title LIKE '%" . $query_string .  "%' OR notes LIKE '%" . $query_string .  "%') AND user_id={$_SESSION['user_id']} ";
            }else{
               $claim_search="SELECT * FROM claims WHERE title LIKE '%" . $query_string .  "%' OR notes LIKE '%" . $query_string .  "%' ".$yours." ";
            }
@@ -203,8 +212,25 @@ echo "<a href=\"item_details.php?id=$item_id\"><h3>".$name."</h3></a> ";
             if(!empty($claim_result_array)){
                 echo "<h2>Claims that contain \"". $query_string ."\":</h2>"; 
                    foreach($claim_result as $claim_match){
-                        $name  =$claim_match['title']; 
-                        $claim_id  =$claim_match['id'];
+                       
+                       
+            echo "<div class=\"notes_container\">";
+                        //GET CLAIM TYPE NAME
+            $type_query  = "SELECT * FROM claim_types WHERE id={$claim_match['claim_type']}";  
+            $type_result = mysqli_query($connection, $type_query);
+            if($type_result){
+                $type_array=mysqli_fetch_assoc($type_result);
+                $claim_type=$type_array['name'];
+            }
+            
+            
+            echo "<h2>".$claim_match['title']."</h2>"; 
+            echo "Date Filed: ".$claim_match['datetime']."<br/>";
+            echo "Status: Pending<br/>";
+            echo "Claim Type: ".$claim_type."<br/>"; 
+             echo "<a href=\"claim_details.php?id=".$claim_match['id']."\">View this Claim</a>"; 
+            
+            echo "</div>"; 
                  //STYLE OUTPUT       
 echo "<a href=\"claim_details.php?id=$claim_id\"><h3>".$name."</h3></a> ";
                     }//end foreach claim found with name match
