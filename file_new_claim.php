@@ -1,5 +1,6 @@
 <?php  
 $current_page="claims";
+$sub_page='file_claim';
 include("inc/header.php"); 
 
 //PROCESS/INSERT CLAIM INTO TABLE
@@ -77,7 +78,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
            
  <form class="add_item" method="POST"> 
       <div class="fake_status"><span id="current_status">Add Details</span> > Add Images/Revise Draft > Submit Claim</div>
-          <p>Title: <input type="text" name="title"></p>
+          <label for="title">Title: </label> <input id='title' type="text" name="title">
        <?php
         
             $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
@@ -89,8 +90,8 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                     echo "<p>Items: <br/>"; 
                     ?> <ul id="form_id" style="list-style: none;">
                         <li>
-                          <label for="select_input">
-                            <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> Select all
+                          
+                            <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all
                           </label>
                         </li> <?php
                           $next=0;
@@ -102,7 +103,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                         $claim_item_rows=mysqli_num_rows($item_claim_result);
                         if($claim_item_rows < 1){ 
                             //OPTIONS
-                            echo "<li><input type=\"checkbox\" name=\"items[]\" value=\"".$item['id']."\" >".$item['name']."</option></li>"; 
+                            echo "<li><input type=\"checkbox\" name=\"items[]\" id=\"" . $item['id'] . "\" value=\"".$item['id']."\" ><label for='". $item['id'] . "'>" .$item['name']."</label></li>"; 
                             $next=1;
                         }
                         

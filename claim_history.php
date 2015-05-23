@@ -4,6 +4,7 @@ include("inc/header.php"); ?>
   <?php
 //get type of claim queried
     if(isset($_GET['draft'])){
+        $sub_page='draft';
     echo "<h2>Unsubmitted Claims</h2>";  
         //GET ALL PENDING FROM USER LOGGED IN
 
@@ -35,6 +36,7 @@ include("inc/header.php"); ?>
             echo "<Br/>";  
     
     }elseif(isset($_GET['pending'])){
+        $sub_page='pending';
     echo "<h2>Pending Claims</h2>";  
         //GET ALL PENDING FROM USER LOGGED IN
 
@@ -69,7 +71,7 @@ include("inc/header.php"); ?>
     
     }elseif(isset($_GET['approved'])){
      
-        
+    $sub_page='approved';    
     echo "<h2>Approved Claims</h2>";  
         //GET ALL PENDING FROM USER LOGGED IN
 
@@ -97,7 +99,7 @@ include("inc/header.php"); ?>
         }
     
     }elseif(isset($_GET['denied'])){
-    
+    $sub_page='denied';
     echo "<h2>Denied Claims</h2>";  
         //GET ALL PENDING FROM USER LOGGED IN
 
@@ -132,7 +134,7 @@ include("inc/header.php"); ?>
         
         
     }elseif(isset($_GET['changes'])){
-    
+    $sub_page='changes';
     echo "<h2>Pending Changes / Awaiting Resubmittal</h2>";  
         //GET ALL PENDING FROM USER LOGGED IN
 
@@ -161,7 +163,7 @@ include("inc/header.php"); ?>
             }
         }
     }else{
- 
+    $sub_page='all_claims';
     //select all claims order by id DESC  
         ?>
         <h2>All Claims</h2>

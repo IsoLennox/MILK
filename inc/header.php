@@ -123,11 +123,17 @@ if($_SESSION['is_employee']==0){
                <?php
                 }
     
-            if($current_page=="claims"){ ?>
-            <li class="current_page"><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a>
+            if($current_page=="claims"){ 
+               $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
+              $all_result = mysqli_query($connection, $all_query);
+              $data=mysqli_fetch_assoc($all_result);
+            ?>
+            <li class="current_page"><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> (<?php echo $data['total']; ?>)
             <ul> 
                <!-- <li><a href="file_new_claim.php">File Claim</a></li>  -->
           <?php
+            // if(isset($sub_page)&&{
+
               if(isset($sub_page)&&($sub_page == "file_claim")) {
                 echo "<li class=\"sub_page\"><a href=\"file_new_claim.php\"><i class=\"fa fa-file-text\"></i> File Claim</a></li> ";
               } else {
@@ -135,9 +141,7 @@ if($_SESSION['is_employee']==0){
               }
 
         //GET COUNTS
-            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
-            $all_result = mysqli_query($connection, $all_query);
-            $data=mysqli_fetch_assoc($all_result);
+           
 
             $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
             $pending_result = mysqli_query($connection, $pending_query);
@@ -161,14 +165,54 @@ if($_SESSION['is_employee']==0){
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
 
+            
+              // if(isset($sub_page)&&($sub_page == "all_claims")) {
+              //   echo "<li class=\"sub_page\"><a href=\"claim_history.php \"><i class=\"fa fa-list\"></i> All Claims </a>(" . $data['total'] .")</li>";
+              // } else {
+              //   echo "<li><a href=\"claim_history.php \"><i class=\"fa fa-list\"></i> All Claims </a>(" . $data['total'] .")</li>";
+              // }
+
+
+              if(isset($_GET['draft'])) {
+                echo "<li class=\"sub_page\"><a href=\"claim_history.php?draft \"><i class=\"fa fa-file-o\"></i> Drafts </a>(" . $drdata['total'] .")</li>";
+              } else {
+                echo "<li><a href=\"claim_history.php?draft\"><i class=\"fa fa-file-o\"></i> Drafts </a>(" . $drdata['total'] .")</li>";
+              }
+
+
+              if(isset($_GET['pending'])) {
+                echo "<li class=\"sub_page\"><a href=\"claim_history.php?pending \"><i class=\"fa fa-file-o\"></i> Processing </a>(" . $pdata['total'] .")</li>";
+              } else {
+                echo "<li><a href=\"claim_history.php?pending \"><i class=\"fa fa-file-o\"></i> Processing </a>(" . $pdata['total'] .")</li>";
+              }
+
+
+              if(isset($_GET['approved'])) {
+                echo "<li class=\"sub_page\"><a href=\"claim_history.php?approved  \"><i class=\"fa fa-file-o\"></i> Approved </a>(" . $adata['total'] .")</li>";
+              } else {
+                echo "<li><a href=\"claim_history.php?approved  \"><i class=\"fa fa-file-o\"></i> Approved </a>(" . $adata['total'] .")</li>";
+              }
+
+              if(isset($_GET['denied'])) {
+                echo "<li class=\"sub_page\"><a href=\"claim_history.php?denied \"><i class=\"fa fa-file-o\"></i> Denied </a>(" . $ddata['total'] .")</li>";
+              } else {
+                echo "<li><a href=\"claim_history.php?denied \"><i class=\"fa fa-file-o\"></i> Denied </a>(" . $ddata['total'] .")</li>";
+              }
+
+              if(isset($_GET['changes'])) {
+                echo "<li class=\"sub_page\"><a href=\"claim_history.php?changes \"><i class=\"fa fa-file-o\"></i> Pending Changes </a>(" . $cdata['total'] .")</li>";
+              } else {
+                echo "<li><a href=\"claim_history.php?changes \"><i class=\"fa fa-file-o\"></i> Pending Changes </a>(" . $cdata['total'] .")</li>";
+              }
+            // }//end if isset $sub_page
 
         ?>
-           <li><a href="claim_history.php "><i class="fa fa-list"></i> All Claims </a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claim_history.php?draft "><i class="fa fa-file-o"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
+           <!-- <li><a href="claim_history.php "><i class="fa fa-list"></i> All Claims </a> (<?php echo $data['total']; ?>)</li> -->
+          <!--  <li><a href="claim_history.php?draft "><i class="fa fa-file-o"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
            <li><a href="claim_history.php?pending "><i class="fa fa-file-o"></i>Processing </a> (<?php echo $pdata['total']; ?>)</li>
            <li><a href="claim_history.php?approved "><i class="fa fa-file-o"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
            <li><a href="claim_history.php?changes "><i class="fa fa-file-o"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claim_history.php?denied "><i class="fa fa-file-o"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
+           <li><a href="claim_history.php?denied "><i class="fa fa-file-o"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li> -->
         
                 
 <!--                <li><a href="claim_history.php">Claim History</a></li>-->
