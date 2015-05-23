@@ -23,11 +23,11 @@ include("inc/header.php"); ?>
             }
             
             
-            echo "Title: ".$show['title']."<br/>"; 
+            echo "<p>Title: ".$show['title']."<br/>"; 
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status: Pending<br/>";
+            echo "Status: <span style=\"color:red;\">Draft</span><br/>";
             echo "Claim Type: ".$claim_type."<br/>";
-            echo "Notes/Description: ".$show['notes']."<br/>"; 
+            echo "Notes/Description: ".$show['notes']."</p><br/>"; 
              echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>"; 
             
             echo "</div>";
@@ -37,7 +37,7 @@ include("inc/header.php"); ?>
     
     }elseif(isset($_GET['pending'])){
         $sub_page='pending';
-    echo "<h2>Pending Claims</h2>";  
+    echo "<h2>Processing Claims</h2>";  
         //GET ALL PENDING FROM USER LOGGED IN
 
     $query  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0 ORDER BY id DESC";  
@@ -57,17 +57,17 @@ include("inc/header.php"); ?>
             }
             
             
-            echo "Title: ".$show['title']."<br/>";
+            echo "<p>Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status: Pending<br/>";
+            echo "Status:<span style=\"color:red;\">Processing</span><br/>";
             echo "Claim Type: ".$claim_type."<br/>";
-            echo "Notes/Description: ".$show['notes']."<br/>"; 
-             echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>"; 
+            echo "Notes/Description: ".$show['notes']."</p><br/>"; 
+            echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>"; 
             
             echo "</div>";
             }  
         }
-            echo "<Br/>";  
+            echo "<br/>";  
     
     }elseif(isset($_GET['approved'])){
      
@@ -90,10 +90,10 @@ include("inc/header.php"); ?>
     }
             
             
-            echo "Title: ".$show['title']."<br/>";
+            echo "<p>Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status: Approved<br/>";
-            echo "Claim Type: ".$claim_type."<br/>";
+            echo "Status: <span style=\"color:red;\">Approved</span><br/>";
+            echo "Claim Type: ".$claim_type."</p><br/>";
                echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";       
             }  
         }
@@ -120,10 +120,10 @@ include("inc/header.php"); ?>
     }
             
             
-            echo "Title: ".$show['title']."<br/>";
+            echo "<p>Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status: Denied<br/>";
-            echo "Claim Type: ".$claim_type."<br/>";
+            echo "Status: <span style=\"color:red;\">Denied</span><br/>";
+            echo "Claim Type: ".$claim_type."</p><br/>";
                echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";  
             
             echo "</div>";
@@ -153,10 +153,10 @@ include("inc/header.php"); ?>
     }
             
             
-            echo "Title: ".$show['title']."<br/>";
+            echo "<p>Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status: Pending Changes<br/>";
-            echo "Claim Type: ".$claim_type."<br/>";
+            echo "Status:<span style=\"color:red;\">Pending Changes</span><br/>";
+            echo "Claim Type: ".$claim_type."</p><br/>";
                echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";  
             
             echo "</div>";
@@ -192,10 +192,10 @@ include("inc/header.php"); ?>
         $status_array=mysqli_fetch_assoc($status_result);
         $status=$status_array['name'];
     } 
-            echo "Title: ".$show['title']."<br/>";
+            echo "<p>Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
             echo "Status: <span style=\"color:red;\">".$status."</span><br/>";
-            echo "Claim Type: ".$claim_type."<br/>";
+            echo "Claim Type: ".$claim_type."</p><br/>";
                echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";  
             
             
