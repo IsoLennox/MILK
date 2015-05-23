@@ -1,4 +1,5 @@
-<?php include("inc/header.php"); ?>
+<?php $current_page="roles";
+include("inc/header.php"); ?>
 <?php
  
 //SEE IF THIS USER HAS EDIT ROLE PERMISSIONS
@@ -12,9 +13,9 @@
 
 
 //REDIRECT IF NO PERMISSIONS TO VIEW THIS PAGE
-if($permission!==1){
-    redirect_to('index.php');
-}else{ 
+//if($permission!==1){
+//    redirect_to('index.php');
+//}else{ 
 ?>
 
 <h1>New Role</h1> 
@@ -88,5 +89,5 @@ if (isset($_POST['submit'])) {
   
         
 <?php
-    }
+//    }
 include("inc/footer.php"); ?>

@@ -258,8 +258,6 @@ if($_SESSION['is_employee']==0){
    $role=0;
 //GET NAV ITEM PERMISSIONS
      foreach($_SESSION['permissions'] as $key => $val){ 
-//         echo $val;
-         
          //UPDATE ROLES
         if($val==3){ 
             //has edit roles permissions
@@ -275,18 +273,68 @@ if($_SESSION['is_employee']==0){
                     $num_messg= $mes['messages'];
                      
                     ?>
-                <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages </a>(<?php echo $num_messg; ?>)</li>
-                <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
-                <li><a href="employees.php"><i class="fa fa-users"></i> Employees</a></li>
-                <?php if($role == 1){ ?>
+                
+                
+                <?php  if( $current_page=="messages"){ ?>   
+                        <li class="current_page"><a href="messages.php"><i class="fa fa-envelope"></i> Messages </a>(<?php echo $num_messg; ?>)</li>
+              <?php  }else{ ?>   
+                      <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages </a>(<?php echo $num_messg; ?>)</li>
+             <?php   } ?>
+                
+                
+                
+                <?php  if($current_page=="claims"){ ?>  
+                        <li class="current_page"><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
+              <?php  }else{ ?>  
+                      <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
+             <?php   } ?>
+               
+               
+               
+                <?php  if( $current_page=="employees"){ ?>   
+                        <li class="current_page"><a href="employees.php"><i class="fa fa-users"></i> Employees</a></li>
+              <?php  }else{ ?>   
+                     <li><a href="employees.php"><i class="fa fa-users"></i> Employees</a></li>
+             <?php   } ?>
+                
+                
+                
+                
+                
+                <?php  if( $current_page=="roles"){ 
+                        if($role == 1){ ?>
+                            <li class="current_page"><a href="roles.php"><i class="fa fa-user-secret"></i> Roles</a></li>
+                        <?php }?>
+                
+                
+              <?php  }else{ 
+                        if($role == 1){ ?>
                 <li><a href="roles.php"><i class="fa fa-user-secret"></i> Roles</a></li>
                 
                 <?php }?>
+             <?php   } ?>
                 
-                <li><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
-                <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
-                <li><a href="activity.php"><i class="fa fa-history"></i> Activity</a></li> 
 
+                 
+                
+            <?php  if($current_page=="company"){ ?> 
+                        <li class="current_page"><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
+              <?php  }else{ ?> 
+                      <li><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
+             <?php   } ?>
+                
+                
+               <?php  if(!isset($current_page) || $current_page=="dashboard"){ ?>
+                        <li class="current_page"><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+              <?php  }else{ ?>
+                  <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+             <?php   } ?>
+                 
+                <?php if($current_page=="activity"){ ?>
+                <li class="current_page"><a href="activity.php"><i class="fa fa-history"></i> Activity</a></li> 
+                    <?php }else{ ?>
+                     <li><a href="activity.php" ><i class="fa fa-history"></i> Activity</a></li>
+                   <?php  } ?> 
             </ul>
 <?php }  ?>
          

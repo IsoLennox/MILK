@@ -1,4 +1,5 @@
-<?php include("inc/header.php"); ?>
+<?php $current_page="employees";
+include("inc/header.php"); ?>
 
 
 <h1>Employees</h1>

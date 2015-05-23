@@ -80,7 +80,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
           <p>Title: <input type="text" name="title"></p>
        <?php
         
-            $item_query  = "SELECT * FROM items WHERE in_trash=0 ORDER BY name"; 
+            $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
                 $itemresult = mysqli_query($connection, $item_query);
                 if($itemresult){ 
                     
@@ -93,7 +93,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                             <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> Select all
                           </label>
                         </li> <?php
-                          
+                          $next=0;
                     foreach($itemresult as $item){
                         
                         //Check to see that item is not already involved in claim
@@ -104,8 +104,6 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                             //OPTIONS
                             echo "<li><input type=\"checkbox\" name=\"items[]\" value=\"".$item['id']."\" >".$item['name']."</option></li>"; 
                             $next=1;
-                        }else{
-                            $next=0;
                         }
                         
                         
