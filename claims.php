@@ -36,11 +36,11 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
         <ul>
-           <li><a href="claims.php"><span class=""><i class="fa fa-circle"></i></span> All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claims.php?pending"><span class=""><i class="fa fa-circle"></i></span> Processing</a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claims.php?changes"><span class=""><i class="fa fa-circle"></i></span> Pending Changes</a> (<?php echo $wdata['total']; ?>)</li>
-           <li><a href="claims.php?approved"><span class=""><i class="fa fa-circle"></i></span> Approved</a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claims.php?denied"><span class=""><i class="fa fa-circle"></i></span> Denied</a> (<?php echo $ddata['total']; ?>)</li>
+           <li><a href="claims.php"><i class="fa fa-list black"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claims.php?pending"><i class="fa fa-circle blue"></i> Processing</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claims.php?changes"><i class="fa fa-circle yellow"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>)</li>
+           <li><a href="claims.php?approved"><i class="fa fa-circle green"></i> Approved</a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claims.php?denied"><i class="fa fa-circle red"></i> Denied</a> (<?php echo $ddata['total']; ?>)</li>
         </ul>
        
        
