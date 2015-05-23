@@ -134,7 +134,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
             echo "You do not have any items to submit in this claim";
          } ?>
  </form> 
-<a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');">Cancel</a> 
+<a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');"><i class="fa fa-times"></i> Cancel</a> 
        
         
         

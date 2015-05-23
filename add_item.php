@@ -132,7 +132,7 @@ if (isset($_POST['submit'])) {
     </fieldset>
     <input type="submit" name="submit" value="Next">
  </form>
- <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');">Cancel</a> 
+ <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');"><i class="fa fa-times"></i> Cancel</a> 
   
         
               

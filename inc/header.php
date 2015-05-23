@@ -36,6 +36,7 @@ confirm_logged_in();
         <!--   JS VERSIONS-->
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+        
     </head>
        
 <body>
@@ -250,11 +251,11 @@ if($_SESSION['is_employee']==0){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
            <li><a href="claim_history.php"><i class="fa fa-list"></i> All Claims </a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claim_history.php?draft"><i class="fa fa-file-o"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
-           <li><a href="claim_history.php?pending"><i class="fa fa-file-o"></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claim_history.php?approved"><i class="fa fa-file-o"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claim_history.php?changes"><i class="fa fa-file-o"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claim_history.php?denied"><i class="fa fa-file-o"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
+           <li><a href="claim_history.php?draft"><i class="fa fa-file-o orange"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
+           <li><a href="claim_history.php?pending"><i class="fa fa-file-o blue"></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?approved"><i class="fa fa-file-o green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?changes"><i class="fa fa-file-o yellow"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+           <li><a href="claim_history.php?denied"><i class="fa fa-file-o red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
         
                 
 <!--                <li><a href="claim_history.php">Claim History</a></li>-->
@@ -408,7 +409,7 @@ if($_SESSION['is_employee']==0){
 
     <div class="account_links">
         <div>
-        	<a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i class="fa fa-cog fa-2x"></i></a>
+        	<a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i id="spinCog" class="fa fa-cog fa-2x"></i></a>
         </div>
         <div>
         	<a title="Log Out" href="logout.php"><i class="fa fa-sign-out fa-2x"></i></a>

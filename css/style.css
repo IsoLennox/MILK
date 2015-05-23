@@ -252,7 +252,29 @@ input[type="submit"]:hover{
 	margin:0 auto 70px;
 }
 
+.red {
+    color:red;
+}
 
+.blue {
+    color:blue;
+}
+
+.green {
+    color:green;
+}
+
+.yellow {
+    color:yellow;
+}
+
+.orange {
+    color:orange;
+}
+
+.black {
+    color:black;
+}
 
 
 /*---------------------------------------------*\
@@ -394,6 +416,11 @@ header {
 
 .search input {
     float:left;
+}
+
+#spinCog:hover {
+    -webkit-animation:fa-spin 2s infinite linear;
+    animation:fa-spin 2s infinite linear;
 }
 
 .item_display{
