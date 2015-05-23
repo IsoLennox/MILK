@@ -125,11 +125,11 @@ if($_SESSION['is_employee']==0){
                 }
     
             if(isset($current_page) && $current_page=="claims"){ 
-               $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
-              $all_result = mysqli_query($connection, $all_query);
-              $data=mysqli_fetch_assoc($all_result);
+//               $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
+//              $all_result = mysqli_query($connection, $all_query);
+//              $data=mysqli_fetch_assoc($all_result);
             ?>
-            <li class="current_page"><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> (<?php echo $data['total']; ?>)
+            <li class="current_page"><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> 
             <ul> 
                <!-- <li><a href="file_new_claim.php">File Claim</a></li>  -->
           <?php
@@ -220,26 +220,26 @@ if($_SESSION['is_employee']==0){
         //GET COUNTS
              
 
-            $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
-            $pending_result = mysqli_query($connection, $pending_query);
-            $pdata=mysqli_fetch_assoc($pending_result); 
-                
-            $draft_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1";   
-            $draft_result = mysqli_query($connection, $draft_query);
-            $drdata=mysqli_fetch_assoc($draft_result); 
-                
-            $changes_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
-            $changes_result = mysqli_query($connection, $changes_query);
-            $cdata=mysqli_fetch_assoc($changes_result); 
-
-
-            $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=2";   
-            $approved_result = mysqli_query($connection, $approved_query);
-            $adata=mysqli_fetch_assoc($approved_result); 
-
-            $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=3";   
-            $denied_result = mysqli_query($connection, $denied_query);
-            $ddata=mysqli_fetch_assoc($denied_result); 
+//            $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
+//            $pending_result = mysqli_query($connection, $pending_query);
+//            $pdata=mysqli_fetch_assoc($pending_result); 
+//                
+//            $draft_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1";   
+//            $draft_result = mysqli_query($connection, $draft_query);
+//            $drdata=mysqli_fetch_assoc($draft_result); 
+//                
+//            $changes_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
+//            $changes_result = mysqli_query($connection, $changes_query);
+//            $cdata=mysqli_fetch_assoc($changes_result); 
+//
+//
+//            $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=2";   
+//            $approved_result = mysqli_query($connection, $approved_query);
+//            $adata=mysqli_fetch_assoc($approved_result); 
+//
+//            $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=3";   
+//            $denied_result = mysqli_query($connection, $denied_query);
+//            $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
 
            <!-- <li><a href="claim_history.php"><i class="fa fa-list"></i> All Claims </a> (<?php //echo $data['total']; ?>)</li> -->
