@@ -168,21 +168,20 @@ if($_SESSION['is_employee']==0){
                 
             }
     
-//    echo "category:".$categories."<br/>";
-$words = explode(",", $categories);
-$result = array_combine($words, array_fill(0, count($words), 0));
+            //    echo "category:".$categories."<br/>";
+            $words = explode(",", $categories);
+            $result = array_combine($words, array_fill(0, count($words), 0));
 
-foreach($words as $word) {
-    $result[$word]++;
-}
+            foreach($words as $word) {
+            $result[$word]++;
+            }
 
-foreach($result as $word => $count) {
-    if($word!==""){
-        echo "There are $count instances of $word.<br/>";
-    }
-}
-    
-    
+            foreach($result as $word => $count) {
+                if($word!==""){
+                    echo "There are $count instances of $word.<br/>";
+                }
+            }
+
             echo "Total number of items: ".$total_items."<br/>";
     
     
