@@ -175,41 +175,39 @@ if($_SESSION['is_employee']==0){
 
 
               if(isset($_GET['draft'])) {
-                echo "<li class=\"sub_page\"><a href=\"claim_history.php?draft \"><i class=\"fa fa-file-o\"></i> Drafts </a>(" . $drdata['total'] .")</li>";
+                echo "<li class=\"sub_page\"><a href=\"claim_history.php?draft \"><i class=\"fa fa-caret-square-o-right orange\"></i> Drafts </a>(" . $drdata['total'] .")</li>";
               } else {
-                echo "<li><a href=\"claim_history.php?draft\"><i class=\"fa fa-file-o\"></i> Drafts </a>(" . $drdata['total'] .")</li>";
+                echo "<li><a href=\"claim_history.php?draft\"><i class=\"fa fa-caret-square-o-right orange\"></i> Drafts </a>(" . $drdata['total'] .")</li>";
               }
 
 
               if(isset($_GET['pending'])) {
-                echo "<li class=\"sub_page\"><a href=\"claim_history.php?pending \"><i class=\"fa fa-file-o\"></i> Processing </a>(" . $pdata['total'] .")</li>";
+                echo "<li class=\"sub_page\"><a href=\"claim_history.php?pending \"><i class=\"fa fa-caret-square-o-right blue\"></i> Processing </a>(" . $pdata['total'] .")</li>";
               } else {
-                echo "<li><a href=\"claim_history.php?pending \"><i class=\"fa fa-file-o\"></i> Processing </a>(" . $pdata['total'] .")</li>";
+                echo "<li><a href=\"claim_history.php?pending \"><i class=\"fa fa-caret-square-o-right blue\"></i> Processing </a>(" . $pdata['total'] .")</li>";
               }
 
 
               if(isset($_GET['approved'])) {
-                echo "<li class=\"sub_page\"><a href=\"claim_history.php?approved  \"><i class=\"fa fa-file-o\"></i> Approved </a>(" . $adata['total'] .")</li>";
+                echo "<li class=\"sub_page\"><a href=\"claim_history.php?approved  \"><i class=\"fa fa-caret-square-o-right green\"></i> Approved </a>(" . $adata['total'] .")</li>";
               } else {
-                echo "<li><a href=\"claim_history.php?approved  \"><i class=\"fa fa-file-o\"></i> Approved </a>(" . $adata['total'] .")</li>";
+                echo "<li><a href=\"claim_history.php?approved  \"><i class=\"fa fa-caret-square-o-right green\"></i> Approved </a>(" . $adata['total'] .")</li>";
               }
 
               if(isset($_GET['denied'])) {
-                echo "<li class=\"sub_page\"><a href=\"claim_history.php?denied \"><i class=\"fa fa-file-o\"></i> Denied </a>(" . $ddata['total'] .")</li>";
+                echo "<li class=\"sub_page\"><a href=\"claim_history.php?denied \"><i class=\"fa fa-caret-square-o-right red\"></i> Denied </a>(" . $ddata['total'] .")</li>";
               } else {
-                echo "<li><a href=\"claim_history.php?denied \"><i class=\"fa fa-file-o\"></i> Denied </a>(" . $ddata['total'] .")</li>";
+                echo "<li><a href=\"claim_history.php?denied \"><i class=\"fa fa-caret-square-o-right red\"></i> Denied </a>(" . $ddata['total'] .")</li>";
               }
 
               if(isset($_GET['changes'])) {
-                echo "<li class=\"sub_page\"><a href=\"claim_history.php?changes \"><i class=\"fa fa-file-o\"></i> Pending Changes </a>(" . $cdata['total'] .")</li>";
+                echo "<li class=\"sub_page\"><a href=\"claim_history.php?changes \"><i class=\"fa fa-caret-square-o-right yellow\"></i> Pending Changes </a>(" . $cdata['total'] .")</li>";
               } else {
-                echo "<li><a href=\"claim_history.php?changes \"><i class=\"fa fa-file-o\"></i> Pending Changes </a>(" . $cdata['total'] .")</li>";
+                echo "<li><a href=\"claim_history.php?changes \"><i class=\"fa fa-caret-square-o-right yellow\"></i> Pending Changes </a>(" . $cdata['total'] .")</li>";
               }
             // }//end if isset $sub_page
 
         ?>
-          
-            <!-- <li><a href="claim_history.php">Claim History</a></li> -->
             </ul></li> 
            
 <?php }else{ 
@@ -246,12 +244,21 @@ if($_SESSION['is_employee']==0){
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
-           <!-- <li><a href="claim_history.php"><i class="fa fa-list"></i> All Claims </a> (<?php echo $data['total']; ?>)</li> -->
-           <li><a href="claim_history.php?draft"><i class="fa fa-file-o orange"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
-           <li><a href="claim_history.php?pending"><i class="fa fa-file-o blue"></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claim_history.php?approved"><i class="fa fa-file-o green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claim_history.php?changes"><i class="fa fa-file-o yellow"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claim_history.php?denied"><i class="fa fa-file-o red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
+
+           <!-- <li><a href="claim_history.php"><i class="fa fa-list"></i> All Claims </a> (<?php //echo $data['total']; ?>)</li> -->
+           <!-- <li><a href="claim_history.php?draft"><i class="fa fa-file-o orange"></i> Drafts </a> (<?php //echo $drdata['total']; ?>)</li>
+           <li><a href="claim_history.php?pending"><i class="fa fa-file-o blue"></i> Processing </a> (<?php //echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?approved"><i class="fa fa-file-o green"></i> Approved </a> (<?php //echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?changes"><i class="fa fa-file-o yellow"></i> Pending Changes </a> (<?php //echo $cdata['total']; ?>)</li>
+           <li><a href="claim_history.php?denied"><i class="fa fa-file-o red"></i> Denied </a> (<?php //echo $ddata['total']; ?>)</li>
+ -->
+           <!-- <li><a href="claim_history.php"><i class="fa fa-list"></i> All Claims </a> (<?php //echo $data['total']; ?>)</li> -->
+           <li><a href="claim_history.php?draft"><i class="fa fa-caret-square-o-right orange"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
+           <li><a href="claim_history.php?pending"><i class="fa fa-caret-square-o-right blue"></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?approved"><i class="fa fa-caret-square-o-right green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?changes"><i class="fa fa-caret-square-o-right yellow"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+           <li><a href="claim_history.php?denied"><i class="fa fa-caret-square-o-right red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
+
         
                 
 <!--                <li><a href="claim_history.php">Claim History</a></li>-->

@@ -37,10 +37,10 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
         ?>
         <ul>
            <li><a href="claims.php"><i class="fa fa-list black"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claims.php?pending"><i class="fa fa-circle blue"></i> Processing</a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claims.php?changes"><i class="fa fa-circle yellow"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>)</li>
-           <li><a href="claims.php?approved"><i class="fa fa-circle green"></i> Approved</a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claims.php?denied"><i class="fa fa-circle red"></i> Denied</a> (<?php echo $ddata['total']; ?>)</li>
+           <li><a href="claims.php?pending"><i class="fa fa-caret-square-o-right blue"></i> Processing</a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claims.php?changes"><i class="fa fa-caret-square-o-right yellow"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>)</li>
+           <li><a href="claims.php?approved"><i class="fa fa-caret-square-o-right green"></i> Approved</a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claims.php?denied"><i class="fa fa-caret-square-o-right red"></i> Denied</a> (<?php echo $ddata['total']; ?>)</li>
         </ul>
        
        
