@@ -137,12 +137,8 @@ if($_SESSION['is_employee']==0){
             </li> 
            
 <?php }else{ 
-            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
-            $all_result = mysqli_query($connection, $all_query);
-            $data=mysqli_fetch_assoc($all_result);
-
           ?>
-            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> (<?php echo $data['total']; ?>)
+            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> 
                 <ul> 
                  <li><a href="file_new_claim.php"><i class="fa fa-file-text"></i> File Claim</a></li>  
                 </ul>

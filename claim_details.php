@@ -94,6 +94,7 @@ if(isset($_GET['id'])){
                       
                         $dollar= strtok($itemname['declared_value'], '.');
                         $value=preg_replace("/[^0-9]/","",$dollar);
+                      if(empty($value)){ $value="0"; }
 
                         echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a> - $".$value."</li>";
                         $total_value=$total_value+$value;
@@ -102,17 +103,23 @@ if(isset($_GET['id'])){
                   echo "Total Claim Value: $".$total_value;
             echo "</ul>";
             echo "<br/><br/>";
+                  if(empty($show['notes'])){$show['notes']="<em>No Description</em>";}
             echo "Notes/Description: <div class=\"notes_container\">".$show['notes']."</div><br/>"; 
                   
                   
                 if($draft==1){
-                        echo "<a href=\"claim_details.php?edit={$show['id']}\">Edit Claim Details</a><br/>";
+//                        echo "<a href=\"claim_details.php?edit={$show['id']}\">Edit Claim Details</a><br/>";
+                        echo "<a class=\"green_submit\" href=\"claim_details.php?edit={$show['id']}\"><i class=\"fa fa-pencil\"></i> Edit Details</a><br/>";
+                    
+                        echo "<br/><a onclick=\"return confirm('Permanently DELETE this claim?');\" href=\"claim_details.php?delete=".$show['id']."&title=".$show['title']."\"><i class=\"fa fa-trash-o\"></i> Delete Claim </a><br/>";
                     
                         echo "<br/><br/>";
                         echo "Add Attachments<br/>";
                         echo "<p> Attach Images or PDFs of Reports, Damages, Reciepts, or any other details that may help our progress in Approving your claim.</p>"; 
                         echo "<br/><br/>";
-                        echo "<a onclick=\"return confirm('Submit this claim? You cannot edit this claim after submitting');\" href=\"claim_details.php?submit=".$show['id']."&title=".$show['title']."\">Submit Claim </a><br/>";
+                        echo "<a class=\"red_submit\" onclick=\"return confirm('Submit this claim? You cannot edit this claim after submitting');\" href=\"claim_details.php?submit=".$show['id']."&title=".$show['title']."\">Submit Claim </a><br/>";
+                    
+                        
                   }
                   
     
@@ -334,12 +341,37 @@ if(isset($_GET['id'])){
             $_SESSION["message"] = "Claim could not be submitted";
             redirect_to("file_new_claim.php");
         }//end insert uery    
+}elseif(isset($_GET['delete'])){
+        $claim_id=$_GET['delete']; 
+    
+    //REMOVE ITEMS FROM CLAIM_ITEMS
+    
+    $delete_items  = "DELETE FROM claim_items WHERE claim_id={$claim_id} ";
+    $delete_items_result = mysqli_query($connection, $delete_items);
+    if($delete_items_result){ 
+        
+            $delete_claims  = "DELETE FROM claims WHERE id={$claim_id} ";
+            $delete_claims_result = mysqli_query($connection, $delete_claims);
+            if($delete_claims_result){ 
+
+                $_SESSION["message"] = "Claim Draft Removed!";
+                redirect_to("claim_history.php"); 
+            }else{
+                $_SESSION["message"] = "Claim could not be removed"; 
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+            }//end delete_claims uery 
+
+        }else{
+            $_SESSION["message"] = "Claim items could not be removed"; 
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }//end delete_items uery 
+    
+    
 }else{
 
     echo "This claim does not exist!";
 }
- ?>
-     
+ ?> 
         
       
         

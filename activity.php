@@ -13,6 +13,7 @@ include("inc/header.php"); ?>
                   <?php  if($_SESSION['is_employee']==1){ ?>
                   <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> All employee history</a></span> 
                   <?php  } ?>
+<!--
                   
                 <form action="activity.php" method="GET">
                         <select onChange="this.form.submit()" name="filter" id="filter">
@@ -26,14 +27,14 @@ include("inc/header.php"); ?>
                             <option value="filed claim">Submitted Claims</option>
                             <option value="updated claim">Updated Claims</option>
                             <?php }else{ ?>
-                            <option value="updated claim">Updated Claim</option>
-<!--                            NEEDS ACTUAL HISTORY TYPES   -->
+                            <option value="updated claim">Updated Claim</option> 
                             <option value="removed">Added Employee</option>
                             <option value="edited">Updated Roles</option>
                             <option value="claim">etc.</option>
                             <?php } ?>
                        </select> 
                        </form>   
+-->
 <?php
             
             if(isset($_GET['filter'])){

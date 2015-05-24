@@ -35,6 +35,7 @@ include("inc/header.php"); ?>
                             if($item_num >=1){ 
                                 //OPTIONS
                                 echo "<option name=\"category\" value=\"".$category['id']."\" >".$category['name']."</option>"; 
+                
                             }//end loop through categories                    
                     }//end get categories 
                 }
@@ -171,7 +172,9 @@ include("inc/header.php"); ?>
                 $room_name="Room not selected";
             }
                 echo "Room: ".$room_name . "</p>";
-            
+//            if($show['in_trash']==1){
+//                   echo "<a href=\"item_details.php?restore=".$show['id']."&item=".$show['name']."\">Restore item</a>";
+//                }
             echo "</div>";
             }
             echo "<div class=\"clearfix\"></div>";
