@@ -116,13 +116,30 @@ if(isset($_POST['search'])){
             $user_result_array=mysqli_fetch_assoc($user_result);
  
             if(!empty($user_result_array)){
-                echo "<h2>Users that contain \"". $query_string ."\":</h2>"; 
+                echo "<h2>Users that contain \"". $query_string ."\":</h2><br/><br/>"; 
                    foreach($user_result as $contact_match){
                         $name  =$contact_match['first_name']." ".$contact_match['last_name'];
                         $email  =$contact_match['email']; 
                         $user_id  =$contact_match['id'];
                  //STYLE OUTPUT       
-echo "<a href=\"profile.php?user=$user_id\"><h3>".$name."</h3></a> ";
+                        echo "<a href=\"profile.php?user=$user_id\"><h3>".$name."</h3></a> ";
+                        //GET PERMISSIONS FOR THIS PAGE
+                         foreach($_SESSION['permissions'] as $key => $val){  
+                             //EDIT EMPLOYEES
+                            if($val==2){ 
+                                echo "<a href=\"employees.php?edit_role=".$user_id."\"><i class=\"fa fa-user-secret\"></i> Edit Role </a>";
+                                echo "<a href=\"employees.php?edit_pass=".$user_id."\"><i class=\"fa fa-unlock-alt\"></i> Change Password </a>"; 
+
+                                //See if user account is active
+                                if($contact_match['account_disabled']=="0"){
+                                    echo "<a class=\"right \" href=\"employees.php?disable=1&user=".$user_id."\"><i class=\"fa fa-times red\"></i>Disable Account</a>";
+                                }else{
+                                    //endable account
+                                     echo "<a class=\"right \" href=\"employees.php?disable=0&user=".$user_id."\"><i class=\"fa fa-check green\"></i>Reactivate Account</a>";
+                                        }  
+                                    }//end check permission array 
+                                }//end see if has permissions to edit employees 
+                       
                     }//end foreach user found with name match
                 
                 echo "<hr/>";
