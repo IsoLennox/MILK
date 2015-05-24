@@ -8,3 +8,6 @@ header a, nav a {
     color: beige; 
 /*    color: rgba(154,179,35,1);*/
 }
+
+.current_page a{ color: #222;}
+.current_page a:hover{ color: #555;}

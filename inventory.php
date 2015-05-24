@@ -66,22 +66,24 @@ include("inc/header.php"); ?>
     <fieldset>
         <input type="submit" value="Find Items" name="submit">
     </fieldset>
- 
-  </form>
-  <div class="clearfix"></div>
+    <div class="clearfix"></div>
+    </form>
+    
+    <hr>
+    <div class="half_link">
+        <a href="add_item.php"><i class="fa fa-plus-circle"></i> Add Item</a>
+        <a href="inventory.php?trash"><i class="fa fa-trash-o"></i> View Trash</a>
+    </div>
+    <div class="half_link">
+        <a href="inventory.php"><i class="fa fa-bars"></i></a>
+        <a href="inventory.php?grid"><i class="fa fa-th"></i></a>
+    </div>
+    <div class="clearfix"></div>
   <?php } ?>
-  
-  
-
-
-<hr>
-
 
 <!--//SHOW ALL ITEMS-->
     <!-- this was an input type=submit, it should just be a link? -->
-    <a href="add_item.php" class='half_link'><i class="fa fa-plus-circle"></i> Add Item</a>
-    <a href="inventory.php?trash" class='half_link'><i class="fa fa-trash-o"></i> View Trash</a>
-    <div class="clearfix"></div>
+    
   <?php 
 //GET ITEMS IN ROOM/ITEM TYPE CHOSEN:
 
@@ -139,16 +141,21 @@ include("inc/header.php"); ?>
      
     $result = mysqli_query($connection, $query);
     if($result){
-        //SHOW ITEMS
+
+        if(isset($_GET['grid'])){
+            $class='grid_container';
+        } else {
+            $class='notes_container';
+        }
         
         foreach($result as $show){
-            echo "<div class=\"notes_container\">";
+            echo "<div class=\"{$class}\">";
                          //Check to see if involved in claim
                         $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$show['id']}"; 
                         $item_claim_result = mysqli_query($connection, $item_claim_query);
                         $claim_item_rows=mysqli_num_rows($item_claim_result);
                         if($claim_item_rows >= 1){ 
-                            $claim_class="<p style=\"color:red;\"> Involved in claim </p>"; 
+                            $claim_class="<span style=\"color:red;\"> Involved In Claim</span><br>"; 
                         }else{
                             $claim_class="";
                         }

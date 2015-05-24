@@ -80,16 +80,30 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
       <div class="fake_status"><span id="current_status">Add Details</span> > Add Images/Revise Draft > Submit Claim</div>
           <label for="title">Title: </label> <input id='title' type="text" name="title">
        <?php
-        
+            $claim_type_query  = "SELECT * FROM claim_types ORDER BY name"; 
+            $claim_typeresult = mysqli_query($connection, $claim_type_query);
+            if($claim_typeresult){ 
+                //claim_type SELECT BOX
+                echo "<p>Claim Type: <select name=\"claim_type\">"; 
+                foreach($claim_typeresult as $claim_type){
+                    //OPTIONS
+                    echo "<option value=\"".$claim_type['id']."\" >".$claim_type['name']."</option>"; 
+                }
+                echo "</select></p>";
+            }//end get claim_types 
+            echo "<p>Notes and Details:</p>";
+            echo "<textarea name=\"notes\" id=\"notes\" cols=\"30\" rows=\"10\" maxlength=\"250\" placeholder=\"Describe the nature of the claim...\"></textarea>";
+     
+
             $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
                 $itemresult = mysqli_query($connection, $item_query);
                 if($itemresult){ 
                     
                     
                     //item SELECT BOX
-                    echo "<p>Items: <br/>"; 
-                    ?> <ul id="form_id" style="list-style: none;">
-                        <li>
+                    echo "<p>Items: </p><br/>"; 
+                    ?><div class='select_container'> <ul id="form_id">
+                        <li class='block'>
                           
                             <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all
                           </label>
@@ -109,32 +123,19 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                         
                         
                     }
-                    echo "</ul></p>";
+                    echo "</ul><div class=\"clearfix\"></div></div>";
                 }//end get items  
-
-                    $claim_type_query  = "SELECT * FROM claim_types ORDER BY name"; 
-                        $claim_typeresult = mysqli_query($connection, $claim_type_query);
-                        if($claim_typeresult){ 
-                            //claim_type SELECT BOX
-                            echo "<p>Claim Type: <select name=\"claim_type\">"; 
-                            foreach($claim_typeresult as $claim_type){
-                                //OPTIONS
-                                echo "<option value=\"".$claim_type['id']."\" >".$claim_type['name']."</option>"; 
-                            }
-                            echo "</select></p>";
-                        }//end get claim_types 
          ?>
    
     
-    <p>Notes and Details:</p>
-    <textarea name="notes" id="notes" cols="30" rows="10" maxlength="250" placeholder="Describe the nature of the claim..."></textarea>
-     <?php if($next==1){ ?>
-    <input type="submit" name="submit" value="Next"> 
+    <?php if($next==1){ ?>
+    <input type="submit" name="submit" value="Next">
+    <a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');"><i class="fa fa-times"> </i> Cancel</a> 
+ 
     <?php }else{
             echo "You do not have any items to submit in this claim";
          } ?>
  </form> 
-<a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');"><i class="fa fa-times"></i> Cancel</a> 
        
         
         

@@ -1,22 +1,90 @@
-    <ul> 
-        <?php
-    $items=0;
-    $item_count  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";  
-    $item_result = mysqli_query($connection, $item_count);
-    $num_items=mysqli_num_rows($item_result);
-    echo "<li>You have ".$num_items." items</li>";
-    ?>
-                        <?php //NUMBER OF ROOMS
+    <ul>  
+<?php //NUMBER OF ROOMS
     $rooms=0;
     $room_count  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
     $room_result = mysqli_query($connection, $room_count);
     $num_rooms=mysqli_num_rows($room_result);
-    echo "<li>You have ".$num_rooms." rooms</li>";
+    echo "<li>You have ".$num_rooms." rooms: </li>";
     //get items for each room
-    ?>
+
+function item_array($array, $key, $value){
+                    $array[$key] = $value;
+                    return $array;
+                }
+  
+    $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
+    $roomresult = mysqli_query($connection, $roomquery);
+    if($roomresult){
+        //show each result value
+        foreach($roomresult as $show){
+                $item_count=0;
+                $item_array=array();
+
+            
+                $item_query  = "SELECT * FROM items WHERE room_id={$show['id']} AND in_trash=0";  
+                $item_result = mysqli_query($connection, $item_query);
+            if($item_result){
+                foreach($item_result as $item){  
+                    $item_count++; 
+                    $item_array = item_array($item_array, $item['id'], $item['name']);
+                 }
+            }
+            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (".$item_count." items)</h4>";
+           
+                if(!empty($item_array)){
+                     echo "<ul>";
+                    foreach($item_array as $id=>$name){
+                        echo "<li><a href=\"item_details.php?id=".$id."\" >".$name."</a></li>";
+                    }
+                    echo "</ul>";
+                }
+ 
+            }
+        }
         
         
-    <?php
+           echo "<hr>";
+
+//TOTAL ITEMS  
+            $total_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";   
+            $total_item_result = mysqli_query($connection, $total_item_query);
+            $total_items=0; 
+            $categories;
+            foreach($total_item_result as $item){
+                    $total_items++;
+                
+                //TOTAL ITEMS IN EACH CATEGORY
+                $category_query  = "SELECT * from item_category WHERE id={$item['category']}";   
+                $category_result = mysqli_query($connection, $category_query);
+                foreach($category_result as $cat){
+//                    array_push($categories,$cat['name']);
+                    $categories=$categories.",".$cat['name'];
+                }
+                
+                
+            }
+            echo "You have ".$total_items." items<br/>";
+            //    echo "category:".$categories."<br/>";
+            $words = explode(",", $categories);
+            $result = array_combine($words, array_fill(0, count($words), 0));
+
+            foreach($words as $word) {
+            $result[$word]++;
+            }
+
+            foreach($result as $word => $count) {
+                if($word!==""){
+                    echo "There are $count instances of $word.<br/>";
+                }
+            }
+
+            
+    
+    
+       
+       
+        
+   
     $claims=0;
     $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
     $claim_result = mysqli_query($connection, $claim_count);
