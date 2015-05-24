@@ -174,7 +174,7 @@ include("inc/header.php"); ?>
             
             echo "</div>";
             }
-        
+            echo "<div class=\"clearfix\"></div>";
         }
  ?>
      
