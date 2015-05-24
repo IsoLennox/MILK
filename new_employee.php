@@ -237,7 +237,7 @@ if (isset($_POST['submit'])) {
     }
                 ?>
          
-            </select>
+            </select> 
             </p>
 
         <p id="p1-error">Temporary Password:

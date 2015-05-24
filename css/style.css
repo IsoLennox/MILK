@@ -90,6 +90,9 @@ body{
     margin-right: 100px;
 }
 
+h1,h2,h3,h4,h5,h6 {
+	text-transform: capitalize;
+}
 
 h1 {
 	font-size: 3em;
@@ -222,6 +225,7 @@ input[type="submit"]{
     -moz-transition: all .7s ease;
     -o-transition: all .7s ease;
     transition: all .7s ease;
+    margin-top: 35px;
 
 }
 
@@ -233,6 +237,9 @@ input[type="submit"]:hover{
 input[type="submit"] ~ a {
 	margin-left: 25px;
 	color:#a6a6a6;
+	font-size: 1em;
+	font-weight: 300;
+	text-decoration: underline;
 }
 
 
@@ -261,7 +268,56 @@ input[type="submit"] ~ a {
 	max-width:900px;
 	width:70%;
 	margin:0 auto 70px;
+
 }
+
+.login_wrapper {
+	max-width: 500px;
+	width:85%;
+	margin:0 auto;
+	text-align: center;
+	padding:35px 0;
+}
+
+	.login_wrapper form {
+		text-align: left;
+	}
+
+	.login_wrapper h2 {
+		font-weight: 400;
+		color:#333;
+		font-size: 1.5em;
+		margin-bottom: 35px;
+	}
+
+	.login_wrapper h3 {
+		margin-top: 35px;
+		color:#333;
+		text-align: left;
+	}
+
+#loginform {
+	margin-bottom: 50px;
+}
+
+.milk {
+	/*margin-top: 35px;*/
+	width:175px;
+	margin:0 auto;
+}
+
+.milk img{
+	width:175px;
+}
+
+
+
+
+
+
+
+
+
 
 .red {
     color:red;

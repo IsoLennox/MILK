@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
 		$found_user = attempt_login($email, $password);
 
     if ($found_user) {
-      // Success : Create session varabes
+      // Success : Create session variables
 	   $_SESSION["user_id"] = $found_user["id"]; 
 	   $_SESSION["username"] = $found_user["first_name"]." ".$found_user["last_name"];  
 	   $_SESSION["is_employee"] = $found_user["is_employee"]; 
@@ -85,29 +85,34 @@ if (isset($_POST['submit'])) {
   <head>
     <title>UnderMyRoof - Login</title>
     <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Nunito:300,300italic,400,700" rel="stylesheet" type="text/css"> 
   </head>
   <body>
  
  
- <div style="margin: 0 auto; width:600px;">
-    <img src="img/login_temp.PNG" alt="TEMPORARY LOGIN IMAGE"> 
-     <p>Log In</p>
+ <div class="login_wrapper">
+      <img src="img/under_my_roof.png" alt="Under My Roof Logo">
+
+      <h2>Comprehensive Protection <br>For the things you treasure</h2> 
+<hr>
+     <h3>Log In</h3>
      
     <?php echo message(); ?>
     <?php echo form_errors($errors); ?>
       
         <form id="loginform" action="login.php" method="post">
-            <p><input placeholder="EMAIL" type="text" name="email" value="<?php echo htmlentities($email); ?>" />
-            </p>
-            <p><input placeholder="PASSWORD" type="password" name="password" value="" />
+            <input placeholder="Email" type="text" name="email" value="<?php echo htmlentities($email); ?>" />
+            
+            <p><input placeholder="Password" type="password" name="password" value="" />
+            <a title="Forgot Your Password?" href="forgot_password.php"><i title="Forgot Your Password?" class="fa fa-question-circle"> Forgot Your Password?</i></a></p> 
 
-            </p>
-            <input id="loginButton" type="submit" name="submit" value="Log In" /><br/>
-            <br /> 
+    
+            <input id="loginButton" type="submit" name="submit" value="Log In" /><a href="new_user.php"><!-- <div id="createButton"> -->Create New Account<!-- </div> --></a>
+            <div class="clearfix"></div>
         </form>
-     <a title="Forgot Your Password?" href="forgot_password.php"><i title="Forgot Your Password?" class="fa fa-question-circle"> Forgot Your Password?</i></a> 
-        <a href="new_user.php"><div id="createButton">Create New Account</div></a>
+     
+      <div class="milk"><img src="img/milk_logo.png" alt="Powered by MILK apps."></div>  
      </div> 
       
  
