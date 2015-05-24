@@ -168,26 +168,7 @@ if($_SESSION['is_employee']==0){
 
             
          
-
-<<<<<<< HEAD
-              if(isset($_GET['changes'])) {
-                echo "<li class=\"sub_page\"><a href=\"claim_history.php?changes \"><i class=\"fa fa-caret-square-o-right yellow\"></i> Action Needed </a>(" . $cdata['total'] .")</li>";
-              } else {
-                echo "<li><a href=\"claim_history.php?changes \"><i class=\"fa fa-caret-square-o-right yellow\"></i> Action Needed </a>(" . $cdata['total'] .")</li>";
-              }
-            // }//end if isset $sub_page
-
-        ?>
-           <!-- <li><a href="claim_history.php "><i class="fa fa-list"></i> All Claims </a> (<?php echo $data['total']; ?>)</li> -->
-          <!--  <li><a href="claim_history.php?draft "><i class="fa fa-caret-square-o-right orange"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
-           <li><a href="claim_history.php?pending "><i class="fa fa-caret-square-o-right blue"></i>Processing </a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claim_history.php?approved "><i class="fa fa-caret-square-o-right green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claim_history.php?changes "><i class="fa fa-caret-square-o-right yellow"></i> Action Needed </a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claim_history.php?denied "><i class="fa fa-caret-square-o-right red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li> -->
-        
-                
-<!--                <li><a href="claim_history.php">Claim History</a></li>-->
-=======
+ 
 //              if(isset($_GET['draft'])) {
 ////                echo "<li class=\"sub_page\"><a href=\"claim_history.php?draft \"><i class=\"fa fa-caret-square-o-right orange\"></i> Drafts </a>(" . $drdata['total'] .")</li>";
 //                echo "<li class=\"sub_page\"><a href=\"claim_history.php?draft \"><i class=\"fa fa-file-o-right \"></i> Drafts </a>(" . $drdata['total'] .")</li>";
@@ -224,7 +205,7 @@ if($_SESSION['is_employee']==0){
             // }//end if isset $sub_page
 
         ?>
->>>>>>> 7142613560f161b2604ac28c030d71366da4f498
+ 
             </ul></li> 
            
 <?php }else{ 
