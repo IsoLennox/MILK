@@ -268,42 +268,18 @@ input[type="submit"] ~ a {
 	max-width:900px;
 	width:70%;
 	margin:0 auto 70px;
-
+	position: relative;
 }
 
-.login_wrapper {
-	max-width: 500px;
-	width:85%;
-	margin:0 auto;
-	text-align: center;
-	padding:35px 0;
-}
 
-	.login_wrapper form {
-		text-align: left;
-	}
-
-	.login_wrapper h2 {
-		font-weight: 400;
-		color:#333;
-		font-size: 1.5em;
-		margin-bottom: 35px;
-	}
-
-	.login_wrapper h3 {
-		margin-top: 35px;
-		color:#333;
-		text-align: left;
-	}
-
-#loginform {
-	margin-bottom: 50px;
-}
-
+/*MILK LOGO AT BOTTOM OF EVERYPAGE - NEEDS SOME WORK*/
 .milk {
 	/*margin-top: 35px;*/
 	width:175px;
-	margin:0 auto;
+	margin:50px auto;
+	/*position: absolute;
+	bottom:-100px;
+	left:40%;*/
 }
 
 .milk img{
@@ -342,6 +318,51 @@ input[type="submit"] ~ a {
 .black {
     color:black;
 }
+
+
+
+
+
+
+/*---------------------------------------------*\
+		LOGIN PAGE AND CREATE NEW USER
+\*---------------------------------------------*/
+
+.login_wrapper {
+	max-width: 500px;
+	width:85%;
+	margin:0 auto;
+	text-align: center;
+	padding:35px 0;
+	position: relative;
+}
+
+	.login_wrapper form {
+		text-align: left;
+	}
+
+	.login_wrapper h2 {
+		font-weight: 400;
+		color:#333;
+		font-size: 1.5em;
+		margin-bottom: 35px;
+	}
+
+	.login_wrapper h3 {
+		margin-top: 35px;
+		color:#333;
+		text-align: left;
+	}
+
+#loginform {
+	margin-bottom: 50px;
+}
+
+
+
+
+
+
 
 
 /*---------------------------------------------*\
@@ -630,6 +651,7 @@ header {
  margin-right: 15px;
 }
 
+/*FILE CLAIM SELECTING ITEMS*/
 .select_container {
 	max-height:400px;
 	/*border:2px solid #aaa;
@@ -638,6 +660,24 @@ header {
 	overflow-y:scroll;
 	margin-bottom: 25px;
 }
+
+.claim_filters {
+	font-weight: 400;
+	margin:25px 0;
+	text-align: center;
+	color:#333;
+}
+	.claim_filters a {
+		color:#333;
+	}
+
+
+
+
+
+
+
+
 
 
 /*---------------------------------------------*\

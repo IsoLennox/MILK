@@ -1,7 +1,8 @@
 
-</div> <!-- END CONTENT WRAPPER -->
 <div class="milk"><img src="img/milk_logo.png" alt="Powered by MILK apps."></div>  
-</div> <!-- END WRAPPER --> 
+</div> <!-- END CONTENT WRAPPER -->
+
+<!-- </div> END WRAPPER  -->
 </body>
 <!--   <footer>&copy; 2015 
 <br/>
