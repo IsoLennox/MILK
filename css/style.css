@@ -263,12 +263,15 @@ input[type="submit"] ~ a {
 .left{float: left;}
 .right{float: right;}
 
+.wrapper {
+
+}
 
 .content_wrapper {
 	max-width:900px;
 	width:70%;
 	margin:0 auto 70px;
-
+	position: relative;
 }
 
 .login_wrapper {
@@ -277,6 +280,7 @@ input[type="submit"] ~ a {
 	margin:0 auto;
 	text-align: center;
 	padding:35px 0;
+	position: relative;
 }
 
 	.login_wrapper form {
@@ -303,7 +307,10 @@ input[type="submit"] ~ a {
 .milk {
 	/*margin-top: 35px;*/
 	width:175px;
-	margin:0 auto;
+	margin:50px auto;
+	/*position: absolute;
+	bottom:-100px;
+	left:40%;*/
 }
 
 .milk img{

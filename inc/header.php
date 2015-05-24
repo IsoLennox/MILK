@@ -52,7 +52,7 @@ confirm_logged_in();
     
 <!--    FULL SITE  -->
 
-<div class="wrapper">        
+<!-- <div class="wrapper">         -->
 <nav>
 	<div class= 'logo_user'>
     <?php 
