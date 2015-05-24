@@ -17,9 +17,9 @@ include("inc/header.php");
  
  
 
- <a href="add_role.php">New Role</a><br/>
+ <a href="add_role.php" class='large_link'><i class="fa fa-plus-circle"></i> New Role</a><br/>
   
- 
+ <hr>
  <?php
 
 
@@ -32,12 +32,12 @@ include("inc/header.php");
     if($role_result){
         $role=mysqli_fetch_assoc($role_result);
     }
-     echo "<h1>Editing: ".$role['name']." </h1>";
+     echo "<h3>Editing: ".$role['name']." </h3>";
      ?>
      
 <form action="roles.php?save_role" method="POST">
-    Name: <input type="text" name="name" id="name" value="<?php echo $role['name']; ?>" > <br/>
-    Permissions:
+    <label for="name">Name: </label><input type="text" name="name" id="name" value="<?php echo $role['name']; ?>" > <br/>
+    <p>Permissions:</p>
                <?php
 
 // Get permissions for roles
@@ -63,7 +63,7 @@ include("inc/header.php");
            $permission_id = $show['id'];
            $permission_name = $show['name']; 
            //put each permission in a check box
-           echo "<input ".$checked." type=\"checkbox\" name=\"permission[]\" value=\"".$permission_id."\"  >".$permission_name."<br/>"; 
+           echo "<input ".$checked." type=\"checkbox\" name=\"permission[]\" value=\"".$permission_id."\" id=\"" . $permission_id . "\" ><label for=\"" . $permission_id . "\">".$permission_name."</label><br/>"; 
                      
            }//end loop through permissions
        }//end call all site permissions
@@ -72,11 +72,6 @@ include("inc/header.php");
         <input type="submit" name="save_role" id="submit" value="Save Role">
 </form>
 
-<br>
-<br>
-<br>
-<hr>
-<br>
  <?php
  }//end edit role
 
@@ -116,7 +111,7 @@ include("inc/header.php");
                     }//end get permissions from joint table
             if($role_id!=="1"){
                  if(!isset($_GET['role'])){
-                echo "<a href=\"roles.php?role=".$role_id."\">Edit Role</a><br/>"; 
+                echo "<a href=\"roles.php?role=".$role_id."\"><i class=\"fa fa-pencil\"></i>  Edit Role</a><br/>"; 
                  }
             }
              echo "<br/>";

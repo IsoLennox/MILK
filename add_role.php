@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
            $role_id = $show['id'];
            $role_name = $show['name']; 
            //put each permission in a check box
-           echo "<input type=\"checkbox\" name=\"permission[]\" value=\"".$role_id."\"  >".$role_name."<br/>"; 
+           echo "<input type=\"checkbox\" name=\"permission[]\" id=\"". $role_id . "\" value=\"".$role_id."\"> <label for=\"". $role_id . "\">".$role_name."</label><br/>";
                      
            }//end loop through permissions
        }//end call all site permissions
