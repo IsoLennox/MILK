@@ -99,7 +99,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             echo "Status: ".$status."<br/>";
             echo "Claim Type: ".$claim_type."<br/>";
                echo "<a href=\"claim_details.php?id=".$show['id']."\"><i class=\"fa fa-eye\"></i> View this Claim</a>";  
-            echo "<div>";
+            echo "</div>";
             }  
         echo "</div>";
         }
