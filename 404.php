@@ -1,1 +1,1 @@
-<?php echo "Not found!"; ?>
+<?php header("Location: http://milk.isobellennox.com"); ?>
