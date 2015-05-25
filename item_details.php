@@ -90,20 +90,11 @@ if(isset($_GET['remove'])){
                 
                 //SEE IF ITEM IS IN TRASH
                 if($show['in_trash']==1){
-                   $in_trash= "This item was removed. <a href=\"item_details.php?restore=".$show['id']."&item=".$show['name']."\">Restore it?</a>";
+                   $in_trash= "<p class='alert_message'><a class='large_link' href=\"item_details.php?restore=".$show['id']."&item=".$show['name']."\">This item was removed. Restore it?</a></p><br>";
                 }else{
-                    $in_trash=" <a onclick=\"return confirm('DELETE this item?')\" href=\"item_details.php?remove=".$show['id']."&item=".$show['name']."\"><i class=\"fa fa-trash-o\"></i> Remove Item</a>";
-                }
-                
-                      
-            
-                
-                
-                
-                
-                echo "<h1>".$show['name']."</h1>"; 
-                  echo "<div class=\"item_display\">";
-                     echo "<h3>Item Details</h3>";
+                    $in_trash=" <a class='large_link text_right ' onclick=\"return confirm('DELETE this item?')\" href=\"item_details.php?remove=".$show['id']."&item=".$show['name']."\"><i class=\"fa fa-trash-o\"></i> Remove Item</a>";
+                } 
+
                     //IF IS INVOLDED IN CLAIM, SHOW CLAIM ID/LINK AND REMOVE TRASH/EDIT OPTION
                     $claim_query  = "SELECT * FROM claim_items WHERE item_id={$id}"; 
                     $claim_result = mysqli_query($connection, $claim_query);
@@ -111,15 +102,33 @@ if(isset($_GET['remove'])){
     //            if($claim_result){
                 if($claim_num >=1){
                     $claim_array=mysqli_fetch_assoc($claim_result);
-                    echo "This item is invloved in <a href=\"claim_details.php?id=".$claim_array['claim_id']."\">CLAIM #".$claim_array['claim_id']."</a><br/>";
-                    $in_trash="";
-                    $edit="";
-                    $upload="";
+                    $in_trash=" <p class='disabled text_right'> <i class=\"fa fa-trash-o\"></i> Cannot Remove Item</p>";
+                    $edit="<p class='disabled text_left' href=\"edit_item.php?id=".$show['id']."\"><i class=\"fa fa-pencil\"></i> Cannot Edit</p>";
+                    $upload="<button type=\"button\" disabled>Add Photos &amp; Files</button>";
                     $upload_form="";
+                    echo "<h1>".$show['name']."</h1>"; 
+                    echo $edit;
+                    echo $in_trash;
+                    echo "<hr>";
+                    echo "<div class=\"item_display\">";              
+                    echo "<h3>Item Details</h3>";
+                    echo "<p><strong>This item is involved in <a href=\"claim_details.php?id=".$claim_array['claim_id']."\">CLAIM #".$claim_array['claim_id']."</a></strong></p>";
+                    
+
                 }else{
-                    $edit="<a href=\"edit_item.php?id=".$show['id']."\"><i class=\"fa fa-pencil\"></i> Edit Item Details</a><br/>";
+                    $edit="<a class='large_link text_left' href=\"edit_item.php?id=".$show['id']."\"><i class=\"fa fa-pencil\"></i> Edit Item</a>";
                     $upload="<a href=\"item_details.php?add_image&id=".$show['id']."\"><input type=\"submit\" value=\"Add Photos &amp; Files\"></a>";
 
+                    echo "<h1>".$show['name']."</h1>"; 
+                    if($show['in_trash']==0){
+                        echo $edit;
+                    }
+                    echo $in_trash;
+                    echo "<hr>";
+                    echo "<div class=\"item_display\">";
+                  
+                    echo "<h3>Item Details</h3>";
+                    
 
                     $upload_form="<form action=\"upload_item_img.php\" method=\"post\" enctype=\"multipart/form-data\">
                                 Upload an Image or PDF:<br/>
@@ -130,31 +139,27 @@ if(isset($_GET['remove'])){
                                 </form>";
                 }
 
-                    if($show['in_trash']==0){
-                        echo $edit;
-                    }
-
                     $room_name=get_room_name($show['room_id']);
                     $cat_name=get_category_name($show['category']);
-                    echo "Category: ".$cat_name."<br/>";
+                    echo "<p>Category: ".$cat_name."</p>";
                   if(empty($room_name)){
                         $room_name="Room not selected";
                     }
-                    echo "Room: ".$room_name;
-
-                    echo "<br/>";
+                    echo "<p>Room: ".$room_name . "</p>";
                     //GET ALL OTHER DETAILS
-                    echo "Purchase Date: ".$show['purchase_date']."<br/>"; 
-                    echo "Purchase Price: $".$show['purchase_price']."<br/>"; 
-                    echo "Declared Value: $".$show['declared_value']."<br/>"; 
-                    echo "Description/Notes:<br/>".$show['notes']."<br/>"; 
+                    echo "<p>Purchase Date: ".$show['purchase_date']."</p>"; 
+                    echo "<p>Purchase Price: $".$show['purchase_price']."</p>"; 
+                    echo "<p>Declared Value: $".$show['declared_value']."</p>"; 
+                    echo "<p>Description/Notes:<br/>".$show['notes']."</p>";
+
+                
+
                 echo "</div>";//end container
                 
                 echo "<div class=\"item_display\">";
                 
                     echo "<h3>File Attachments</h3>";
                     echo "<p>Images, Reciepts, Appraisals, and other documents that prove the condition, value, and ownership of this item.</p>";
-
                     if(isset($_GET['add_image'])){ 
                         $item_id=$_GET['add_image']; 
                         if($show['in_trash']==0){
@@ -189,7 +194,6 @@ if(isset($_GET['remove'])){
                         <span class=\"right\">
                         <a href=\"#\"><i class=\"fa fa-pencil\"></i> Edit</a>
                         <a href=\"#\"><i class=\"fa fa-trash-o\"></i> Delete</a></span>";
-                            echo "<br/><hr/><br/>";
                         }
                     echo "</div>";//end gallery
                 echo "</div>"; //end container
@@ -198,23 +202,24 @@ if(isset($_GET['remove'])){
                 
               
                 //obviously, we will style this to make it a button/icon and out of the way
-                echo "<br/><br/><br/>";
-                echo $in_trash;
+                
+                // echo $in_trash;
 
                 }else{
                 //No permission to view this item
-                echo "<br/><br/>Oops! It seems this is not your item.";
+                echo "<p>Oops! It seems this is not your item.</p>";
             }
         }
     }else{
-        echo "This item seems to have been removed!";
+        echo "<p>This item seems to have been removed!</p>";
     }
     
     
     
 }else{
-    echo "This item seems to have been removed!";
+    echo "<p>This item seems to have been removed!</p>";
 }
+echo "<div class=\"clearfix\"></div>";
 ?>
  
  

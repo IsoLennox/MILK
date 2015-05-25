@@ -157,6 +157,17 @@ button a {
 	font-size: 1.2em;
 }
 
+button:disabled{
+	font-size: 20px;
+    padding: 7px 20px;
+    border:none;
+    border-radius: 5px;
+    width:auto;
+    background-color: #eee;
+    color:#ccc;
+    margin-top: 35px;
+}
+
 
 /*CUSTOM RADIO AND CHECKBOX STYLING*/
 input[type="radio"], 
@@ -234,6 +245,9 @@ input[type="submit"], .green_submit, .red_submit{
     margin-top: 35px;
 
 }
+
+
+
 .red_submit{ background-color: firebrick; color: #eee; }
 .green_submit:hover{ color:#eee;}
 
@@ -300,7 +314,18 @@ input[type="submit"] ~ a {
 	font-size:1.2em;
 }
 
-
+.text_left {
+	text-align: left;
+	width:50%;
+	float:left;
+	padding: 0 20px 10px 20px;
+}
+.text_right {
+	text-align: right;
+	float:left;
+	width:50%;
+	padding: 0 20px 10px 20px;
+}
 
 
 
@@ -330,9 +355,22 @@ input[type="submit"] ~ a {
     color:black;
 }
 
+.alert_message {
+	text-align: center;
+	padding:10px 0;
+}
+	/*.alert_message a {
+		font-size: 1.2em;
+	}*/
 
-
-
+.disabled {
+	color: #ccc;
+	font-weight: 400;
+	font-size: 1.2em;
+}
+	.disabled .fa {
+		color:#ccc;
+	}
 
 
 /*---------------------------------------------*\
@@ -583,7 +621,7 @@ header {
 
 /*inventory page, room & category detail styling*/
 .notes_container img, .grid_container img {
-	max-width: 300px;
+	max-width: 75px;
 }
 
 
@@ -694,16 +732,30 @@ header {
 /*---------------------------------------------*\
 		RANDOM SHIT?
 \*---------------------------------------------*/
+
+.half_div {
+	float:left;
+	width:48%;
+}
+	.half_div:first-child{
+		margin-right: 4%;
+	}
+
 .half {
 	float:left; 
 	width: 50%;
+	text-align: right;
+	padding: 0 20px 10px 20px;
 }
+
+	.half:nth-of-type(2){
+		text-align: left;
+	}
 
 .half_link {
 	float:left;
 	width:50%;
 	margin:10px 0;
-	color:#333;
 	font-weight: 600;
 	font-size:1.2em;
 	padding: 0 5px;
