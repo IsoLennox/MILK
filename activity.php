@@ -4,15 +4,29 @@ include("inc/header.php"); ?>
     
          <?php  if(isset($_GET['all'])){ ?>
                 <h1>All Activity</h1>
-                  <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> View your history</a></span> 
+                  <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> View your history</a></span> <br><br>
+                  <?php
+         //GET ALL HISTPORY 
+                $query  = "SELECT * FROM history ORDER BY id DESC"; 
+                $result = mysqli_query($connection, $query);
+                if($result){
+                    echo "<ul>";
+                    //show each result value
+                    foreach($result as $show){
+                        $user=find_user_by_id($show['user_id']);
+                        echo "<li><a href=\"profile.php?user=".$user['id']."\">".$user['first_name']." ".$user['last_name']."</a> ".$show['content']." ".$show['datetime']."</li>";
 
+                        }
+                    echo "</ul>";
+                }
     
 
-<?php }else{ ?>
+  }else{ ?>
                   <h1>Your Activity</h1>
                   <?php  if($_SESSION['is_employee']==1){ ?>
                   <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> All employee history</a></span> 
                   <?php  } ?>
+<!--
                   
                 <form action="activity.php" method="GET">
                         <select onChange="this.form.submit()" name="filter" id="filter">
@@ -26,14 +40,14 @@ include("inc/header.php"); ?>
                             <option value="filed claim">Submitted Claims</option>
                             <option value="updated claim">Updated Claims</option>
                             <?php }else{ ?>
-                            <option value="updated claim">Updated Claim</option>
-<!--                            NEEDS ACTUAL HISTORY TYPES   -->
+                            <option value="updated claim">Updated Claim</option> 
                             <option value="removed">Added Employee</option>
                             <option value="edited">Updated Roles</option>
                             <option value="claim">etc.</option>
                             <?php } ?>
                        </select> 
                        </form>   
+-->
 <?php
             
             if(isset($_GET['filter'])){

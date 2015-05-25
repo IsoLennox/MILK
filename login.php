@@ -35,6 +35,11 @@ if (isset($_POST['submit'])) {
 		$found_user = attempt_login($email, $password);
 
     if ($found_user) {
+        //check that account is not disabled
+        if($found_user['account_disabled']==1){
+            $_SESSION["message"] = "Your account has been disabled.";
+            redirect_to('login.php');
+        }
       // Success : Create session variables
 	   $_SESSION["user_id"] = $found_user["id"]; 
 	   $_SESSION["username"] = $found_user["first_name"]." ".$found_user["last_name"];  

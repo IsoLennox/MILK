@@ -157,9 +157,13 @@ if(isset($_GET['remove'])){
 
                     if(isset($_GET['add_image'])){ 
                         $item_id=$_GET['add_image']; 
-                        echo $upload_form;
+                        if($show['in_trash']==0){
+                            echo $upload_form;
+                        }
                     }else{
-                        echo $upload;
+                        if($show['in_trash']==0){
+                            echo $upload;
+                        }
                     }
 
     //            GET GALLERY

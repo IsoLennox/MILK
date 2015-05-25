@@ -110,14 +110,18 @@ include("inc/header.php"); ?>
 
         if(isset($_GET['edit_pass'])){
             $user_id=$_GET['edit_pass'];  
-            $user_data=find_user_by_id($emp_id);  
-                $ID=$user_data['id'];
-                $username=$user_data['username'];
-                $email=$user_data['email'];
-             
+//            $user_data=find_user_by_id($emp_id); 
+                $query  = "SELECT * FROM users WHERE id = {$user_id} ";
+                $result = mysqli_query($connection, $query); 
+                if ($result) { 
+                    $user_data=mysqli_fetch_assoc($result);
+                    $ID=$user_data['id'];
+                    $username=$user_data['username'];
+                    $email=$user_data['email'];
+                }else{ echo "User not found";}
              ?> 
             <h2>Reset <?php echo $user_data['first_name']." ".$user_data['last_name']; ?>'s Password</h2>
-            <form action="reset_password.php?user_id=<?php echo $user_id; ?>&token=<?php echo $token; ?>" method="post">
+            <form method="post">
             <p>Password reset for login:<?php echo $username; ?></p>
             <p><?php echo $email; ?></p>
               <p>New Password:

@@ -34,19 +34,8 @@ include("inc/header.php");  ?>
             
             }
     }  ?>
-
-      
-<!--      ADD A ROOM  -->
-<form class="right" method="POST">
-    <h2>Add A Room</h2>
-    <label for="room_name">Room Name: </label><input id='room_name' type="text" name="name" placeholder="e.x. Bedroom.."><br/>
-    <label for="room_notes">Room Notes:</label><textarea id='room_notes' cols="20" rows="8"  name="notes" placeholder="e.x. This room is in the guest house..."></textarea><br/> 
-    <input name="submit" type="submit" value="Save Room">
-</form> 
-          
-          
 <!-- SHOW ALL ROOMS BELOGING TO LOGGED IN USER   -->
-<div id="rooms">
+<div id="rooms" class="left half">
  <h2>Your Rooms</h2> 
 <?php  
 
@@ -72,7 +61,7 @@ include("inc/header.php");  ?>
                     $item_array = item_array($item_array, $item['id'], $item['name']);
                  }
             }
-            echo "<div class=\"notes_container half\">";
+            echo "<div class=\"notes_container \">";
             echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (".$item_count." items)</h4>";
            
                 if(!empty($item_array)){
@@ -88,6 +77,17 @@ include("inc/header.php");  ?>
         }
  ?> 
 </div> <!-- END ROOMS -->
+      
+<!--      ADD A ROOM  -->
+<form class="right" method="POST">
+    <h2>Add A Room</h2>
+    <label for="room_name">Room Name: </label><input id='room_name' type="text" name="name" placeholder="e.x. Bedroom.."><br/>
+    <label for="room_notes">Room Notes:</label><textarea id='room_notes' cols="20" rows="8"  name="notes" placeholder="e.x. This room is in the guest house..."></textarea><br/> 
+    <input name="submit" type="submit" value="Save Room">
+</form> 
+          
+          
+
 
 <div class="clearfix"></div>
         
