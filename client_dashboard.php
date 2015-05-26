@@ -1,4 +1,10 @@
+<section>
+    <div id="circle1" height: "50px" width: "5%"></div>
+    <div id="circle2" height: "50px" width: "5%"></div>
+</section>
+   
    <div id="chart_container" height="400px" width="100%"></div>
+
     
       <ul>  
       
@@ -16,7 +22,7 @@ function item_array($array, $key, $value){
                     return $array;
                 }
 
- echo "<div class=\"one_third\">";
+ echo "<div class=\"one-third\">";
 echo "<li>You have ".$num_rooms." rooms: </li>";
 if($num_rooms==0){
 ?>
@@ -54,7 +60,6 @@ if($num_rooms==0){
             
             //PUT ALL ROOMS INTO ARRAY TO USSE IN HIGHCHARTS
             array_push($rooms , "{name: '".$show['name']."', data: [5, 3, 4, 7, 2] }");
-            
            
                 if(!empty($item_array)){
                      echo "<ul>";
@@ -66,9 +71,7 @@ if($num_rooms==0){
  
             }
         }
-
- 
-        print_r($rooms);
+        
 
         //COUNT ROOMS FOR FOR LOOP TO ECHO EACH OUT IN HIGH CHARTS
         $count_rooms=0;
@@ -78,7 +81,7 @@ if($num_rooms==0){
         }
                    
             echo "</div>";
-          echo "<div class=\"one_third\">";
+          echo "<div class=\"one-third\">";
 
 //TOTAL ITEMS  
             $total_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";   
@@ -173,7 +176,7 @@ if($num_rooms==0){
     
        
        echo "</div>";
-        echo "<div class=\"one_third\">";
+        echo "<div class=\"one-third\">";
    
     $claims=0;
     $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
@@ -217,26 +220,26 @@ if($num_rooms==0){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
           
-            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
-            <li><a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
-            <li><a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
-            <li><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
-            <li><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
-            <li><a href="claim_history.php?draft"><i class="fa fa-file-o "></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
-        
-    </ul>
-    </div>
-    <!-- </div> -->
+          <li><a href="claim_history.php"><i class="fa fa-list black"></i> All Claims </a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claim_history.php?draft"><i class="fa fa-caret-square-o-right orange"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
+           <li><a href="claim_history.php?pending"><i class="fa fa-caret-square-o-right blue"></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?approved"><i class="fa fa-caret-square-o-right green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?changes"><i class="fa fa-caret-square-o-right yellow"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+           <li><a href="claim_history.php?denied"><i class="fa fa-caret-square-o-right red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
 
-    <!-- function for high charts -->
+    </ul>
+    </div></div>
+
+
         <script>
+    // -------> Begin Vertical Bar chart <--------------
         $(function () {
             $('#chart_container').highcharts({
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: 'Items In Inventory'
+                    text: 'Stacked column chart'
                 },
                 xAxis: {
                     categories: ['Living Room', 'Kitchen', 'Bathroom', 'Bed Room', 'Other']
@@ -314,10 +317,86 @@ if($num_rooms==0){
                         ]
             });
         });
+   // -------> End of Vertical Bar chart <--------------
 
 
+   // -------> Begin Circle Charts for Views <--------------
+        
+    // begin chart 1
+        $(function () {
+            $('#circle1').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: false,
+                    }
+                },
+                title: {
+                    text: 'Total Number of Website Views'
+                },
+                subtitle: {
+                    text: ''
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 175,
+                        depth: 45
+                    }
+                },
+                series: [{
+                    name: 'Total Views',
+                    data: [
+                        ['Applicants (3154)', 3154],
+                        ['Forwards (912)', 912],
+                        ['Interviews (1546)', 1546]
+                    ]
+                }]
+            });
+        });
+
+    // begin circle 2
+        $(function () {
+            $('#circle2').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: false,
+                    }
+                },
+                title: {
+                    text: 'Current Week\'s Claims'
+                },
+                subtitle: {
+                    text: 'Current Claims Status'
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 175,
+                        depth: 45
+                    }
+                },
+                series: [{
+                    name: 'Claims',
+                    data: [
+                        ['Pending (200)', 200],
+                        ['Finalized (400)', 400],
+                        ['In Process (100)', 100]
+                    ]
+                }]
+            });
+        });
+
+
+
+
+   //--------> End Circle Charts for Views <----------------
  
     </script>
     
-    <div id="chart_container"></div>
+   
+    
+    <br>
+    <br>
+    <br>
 
+    
