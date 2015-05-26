@@ -104,12 +104,12 @@ if(isset($_GET['remove'])){
         $insert_item_img = mysqli_query($connection, $item_img); 
     if($insert_item_img){
 
-        $_SESSION["message"] = "Item Renamed!";
+        $_SESSION["message"] = "Image Renamed!";
         redirect_to('item_details.php?id='.$item_id);
 
         } else {
         // Failure
-        $_SESSION["message"] = "Could not rename item";
+        $_SESSION["message"] = "Could not rename image";
        redirect_to('item_details.php?id='.$item_id);
 
         }//END REMOVE ITEM
@@ -252,7 +252,7 @@ if(isset($_GET['remove'])){
                         
                         }else{
                             echo "<a href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Rename</a>
-                            <a href=\"item_details.php?remove_img=".$image['id']."\"><i class=\"fa fa-trash-o\"></i> Delete</a></span>";
+                            <a onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"><i class=\"fa fa-trash-o\"></i> Delete</a></span>";
                         }
                     }
                     echo "</div>";//end gallery
