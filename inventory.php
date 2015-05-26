@@ -169,12 +169,18 @@ include("inc/header.php"); ?>
                 $cat_name=get_category_name($show['category']);
                 echo "Category: ".$cat_name."<br/>";
             if(empty($room_name)){
-                $room_name="Room not selected";
+                $room_name="Room not selected<br/>";
             }
-                echo "Room: ".$room_name . "</p>";
-//            if($show['in_trash']==1){
-//                   echo "<a href=\"item_details.php?restore=".$show['id']."&item=".$show['name']."\">Restore item</a>";
-//                }
+                echo "Room: ".$room_name . "";
+            
+            //get number of items in rooms ]
+            
+                $item_count  = "SELECT count(*) as total FROM item_img WHERE item_id={$id}"; 
+                $item_count_result = mysqli_query($connection, $item_count);
+                $total_array=mysqli_fetch_assoc($item_count_result);
+                $total=$total_array['total'];
+                echo "<br/>".$total." uploads</p>";
+ 
             echo "</div>";
             }
             echo "<div class=\"clearfix\"></div>";
