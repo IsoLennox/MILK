@@ -207,3 +207,81 @@ if($num_rooms==0){
 
     </ul>
     </div></div>
+
+    <!-- function for high charts -->
+        <script>
+        $(function () {
+            $('#chart_container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Stacked column chart'
+                },
+                xAxis: {
+                    categories: ['Living Room', 'Kitchen', 'Bathroom', 'Bed Room', 'Other']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Items Claimed'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
+                    }
+                },
+                legend: {
+                    align: 'right',
+                    x: -30,
+                    verticalAlign: 'top',
+                    y: 25,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 1,
+                    shadow: false
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.x + '</b><br/>' +
+                            this.series.name + ': ' + this.y + '<br/>' +
+                            'Total: ' + this.point.stackTotal;
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Jewelry',
+                    data: [5, 3, 4, 7, 2]
+                }, {
+                    name: 'Electronics',
+                    data: [2, 2, 3, 2, 1]
+                }, {
+                    name: 'Furniture',
+                    data: [3, 4, 4, 2, 5]
+                }, {
+                    name: 'Musical Instruments',
+                    data: [3, 4, 4, 2, 5]
+                }, {
+                    name: 'Other',
+                    data: [3, 4, 4, 2, 5]
+                }]
+            });
+        });
+    </script>
+
+    <div id="chart_container" height="400px" width="100%"></div>
