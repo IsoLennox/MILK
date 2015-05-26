@@ -882,11 +882,17 @@ display: block;
 .claims h4 { margin: 0; margin-top: 20px; font-weight: 900; font-size: 1.1em;}
 
 
-#update_claim {
-    
+.temp{  position: relative;
+  left: -210px;
+  width: 161%;}
+
+.one-third{
+    width: 27%;
+  float: left;
+  margin: 20px;
+  padding: 20px;
+    border: 1px solid grey;
 }
-
-
 
 
 

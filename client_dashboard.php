@@ -4,17 +4,33 @@
     $room_count  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
     $room_result = mysqli_query($connection, $room_count);
     $num_rooms=mysqli_num_rows($room_result);
-    echo "<li>You have ".$num_rooms." rooms: </li>";
+    
     //get items for each room
 
 function item_array($array, $key, $value){
                     $array[$key] = $value;
                     return $array;
                 }
+
+ echo "<div class=\"one-third\">";
+echo "<li>You have ".$num_rooms." rooms: </li>";
+if($num_rooms==0){
+?>
+        
+    
+        <!--      ADD A ROOM  -->
+<form  method="POST" action="rooms.php">
+    <h2>Add A Room</h2>
+    <label for="room_name">Room Name: </label><input id='room_name' type="text" name="name" placeholder="e.x. Bedroom.."><br/>
+    <label for="room_notes">Room Notes:</label><textarea id='room_notes' cols="20" rows="8"  name="notes" placeholder="e.x. This room is in the guest house..."></textarea><br/> 
+    <input name="submit" type="submit" value="Save Room">
+</form> 
+            
+            <?php }
   
     $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
     $roomresult = mysqli_query($connection, $roomquery);
-    if($roomresult){
+    if($roomresult){ 
         //show each result value
         foreach($roomresult as $show){
                 $item_count=0;
@@ -42,8 +58,8 @@ function item_array($array, $key, $value){
             }
         }
         
-        
-           echo "<hr>";
+            echo "</div>";
+          echo "<div class=\"one-third\">";
 
 //TOTAL ITEMS  
             $total_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";   
@@ -64,7 +80,62 @@ function item_array($array, $key, $value){
                 
             }
             echo "You have ".$total_items." items<br/>";
-            //    echo "category:".$categories."<br/>";
+            
+            if($total_items==0){
+//                echo "<a href=\"add_item.php\">Add your first item!</a>";
+                ?>
+                <br/>
+                <h2>Add Item</h2>
+                <form class='add_item' action="add_item.php" method="POST" >
+              
+    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="<?php echo $name; ?>" > 
+     <!--    //GET ITEM CATEGORIES -->
+   <?php
+    $category_query  = "SELECT * FROM item_category"; 
+    $categoryresult = mysqli_query($connection, $category_query);
+    if($categoryresult){  
+        echo "<label for=\"category\">Item Category: </label><select style=\"border: 2px solid #90C32E;\" id='category' name=\"category\">";
+         echo "<option value=\"--\" >--Select Item Category--</option>";
+        foreach($categoryresult as $category){
+            //OPTIONS
+            if($cat==$category['id']){ $selected="selected"; }else{ $selected=""; }
+            echo "<option ".$selected." value=\"".$category['id']."\" >".$category['name']."</option>"; 
+        }
+        echo "</select>";
+    }//end get categories
+
+?> 
+<!--    //GET ROOMS TO CHOOSE FROM -->
+   <?php
+        $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}"; 
+        $roomresult = mysqli_query($connection, $room_query);
+        if($roomresult){ 
+            //ROOM SELECT BOX
+            echo "<label for=\"room\">Room: </label><select id='room' name=\"room\" >";
+            foreach($roomresult as $room){
+                //OPTIONS
+                if($room==$room['id']){ $selected2="selected"; }else{ $selected2=""; }
+                echo "<option ".$selected2." value=\"".$room['id']."\" >".$room['name']."</option>"; 
+            }
+            echo "</select>";
+        }//end get rooms 
+ ?>
+    <fieldset class='form_blocks'>
+        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value="<?php echo $notes; ?>"><?php echo $notes; ?></textarea>
+    </fieldset>
+
+<!--    <fieldset class='form_blocks'>-->
+        <label for="purchase_date">Purchase Date: </label><input type="text" id="purchase_date" name="purchase_date" placeholder="mm/dd/yyyy" value="">
+        <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950" value="">
+        <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950" value="">
+<!--    </fieldset>-->
+    <input type="submit" name="submit" value="Next"> 
+ </form>
+           
+           
+           <?php
+            }
+
             $words = explode(",", $categories);
             $result = array_combine($words, array_fill(0, count($words), 0));
 
@@ -82,8 +153,8 @@ function item_array($array, $key, $value){
     
     
        
-       
-        
+       echo "</div>";
+        echo "<div class=\"one-third\">";
    
     $claims=0;
     $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
@@ -94,7 +165,7 @@ function item_array($array, $key, $value){
         $num_claims++;
     }
     }
-    echo "<li>You have made ".$num_claims." claims</li>";
+//    echo "<li>You have made ".$num_claims." claims</li>";
 
 
 
@@ -127,11 +198,7 @@ function item_array($array, $key, $value){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
           
-          </ul>
-          
-          <h2>Claim Status Counts</h2>
-    <ul>
-           <li><a href="claim_history.php"><i class="fa fa-list black"></i> All Claims </a> (<?php echo $data['total']; ?>)</li>
+          <li><a href="claim_history.php"><i class="fa fa-list black"></i> All Claims </a> (<?php echo $data['total']; ?>)</li>
            <li><a href="claim_history.php?draft"><i class="fa fa-caret-square-o-right orange"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
            <li><a href="claim_history.php?pending"><i class="fa fa-caret-square-o-right blue"></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
            <li><a href="claim_history.php?approved"><i class="fa fa-caret-square-o-right green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
@@ -139,3 +206,4 @@ function item_array($array, $key, $value){
            <li><a href="claim_history.php?denied"><i class="fa fa-caret-square-o-right red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
 
     </ul>
+    </div></div>

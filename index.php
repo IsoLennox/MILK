@@ -15,18 +15,27 @@ include("inc/header.php"); ?>
 if($_SESSION['is_employee']==0){
     //CLIENT
     ?>
-    <h2>Your Dashboard</h2> 
+<!--    <h2>Your Dashboard</h2> -->
     
     <?php
         //INCLUDE ALERTS
         include_once('alerts.php');
 
+     echo "<img class=\"temp\" src=\"img/graph.PNG\" alt=\"sample stats\" />";
         //INCLUDE STATS
         include_once('client_dashboard.php'); ?>
         
+<!--
     <div>Quick add item</div>
     <div>Quick add room</div>
-    
+-->
+   
+<!--   //TASK SUGGESTIONS-->
+   
+<!--   If no items, suggest adding one-->
+<!--    else, if item with no files suggest adding some-->
+   
+   
     <?php
     
 }else{  
@@ -60,7 +69,7 @@ if($_SESSION['is_employee']==0){
         <?php } ?>
     </div> 
     
-<!--     <img src="img/stats.PNG" alt="sample stats" />-->
+     <img class="temp" src="img/graph.PNG" alt="sample stats" />
     <ul>
        <?php
             $client_query  = "SELECT * from users WHERE is_employee=0";   
