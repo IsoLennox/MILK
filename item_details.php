@@ -24,7 +24,7 @@ if(isset($_GET['remove'])){
             $insert_history = mysqli_query($connection, $history); 
             
             
-            $_SESSION["message"] = "Item Removed!";
+        $_SESSION["message"] = "Item Removed!";
         redirect_to('inventory.php');
 
         } else {
