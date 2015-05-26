@@ -216,9 +216,9 @@ if($_SESSION['is_employee']==0){
                 <?php  
                       //?pending removed from link, not sure if we want it to go to all or just the new claims first
                       if(isset($current_page) && $current_page=="claims"){ ?>  
-                        <li class="current_page"><a href="claims.php"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
+                        <li class="current_page"><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
               <?php  }else{ ?>  
-                      <li><a href="claims.php"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
+                      <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
              <?php   } ?>
                
                
