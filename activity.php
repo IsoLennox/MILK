@@ -4,10 +4,10 @@ include("inc/header.php"); ?>
     
          <?php  if(isset($_GET['all'])){ ?>
                 <h1>All Activity</h1>
-                  <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> View your history</a></span> <br><br>
+                  <span class="left"><a href="activity.php"><i class="fa fa-eye"></i> View your history</a></span> <br><br>
                   <?php
          //GET ALL HISTPORY 
-                $query  = "SELECT * FROM history ORDER BY id DESC"; 
+                $query  = "SELECT * FROM history WHERE is_employee=1 ORDER BY id DESC"; 
                 $result = mysqli_query($connection, $query);
                 if($result){
                     echo "<ul>";
@@ -26,6 +26,8 @@ include("inc/header.php"); ?>
                   <?php  if($_SESSION['is_employee']==1){ ?>
                   <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> All employee history</a></span> 
                   <?php  } ?>
+                  <br>
+                  <br>
 <!--
                   
                 <form action="activity.php" method="GET">

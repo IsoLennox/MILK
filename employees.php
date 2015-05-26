@@ -40,9 +40,26 @@ include("inc/header.php"); ?>
                         $result = mysqli_query($connection, $query);
 
                         if ($result && mysqli_affected_rows($connection) == 1) {
-                        // Success  
-                        $_SESSION["message"] = "Account Updated.";
-                        redirect_to("employees.php");
+                            
+                            $user_query  = "SELECT * FROM users WHERE id = {$ID} "; 
+                            $user_result = mysqli_query($connection, $user_query);
+
+                            if ($user_result) {
+                                $username=mysqli_fetch_assoc($user_result);
+
+                                        //ADD TO HISTORY
+                                $date = date('m/d/Y H:i'); 
+                                $content = "Changed <a href=\"profile.php?user=".$ID."\">".$username['first_name']." ".$username['last_name']."</a>'s Password";
+                                $content= addslashes($content);
+
+                                $history  = "INSERT INTO history ( user_id, content, datetime, is_employee ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}', 1 ) ";
+                                $insert_history = mysqli_query($connection, $history); 
+                                    if($insert_history){ 
+                                        $_SESSION["message"] = "Account Updated.";
+                                        redirect_to("employees.php");
+                                    }else {  $_SESSION["message"] = "Could not insert history";  }
+
+                                }else{$_SESSION["message"] = "Could not find user."; redirect_to("employees.php"); }
                         } else {
                         // Failure
                         $_SESSION["message"] = "Account update failed."; 
@@ -144,8 +161,28 @@ include("inc/header.php"); ?>
                 $query .= "WHERE id = {$user_id} "; 
                 $result = mysqli_query($connection, $query); 
                 if ($result && mysqli_affected_rows($connection) == 1) { 
-                    $_SESSION["message"] = "Account Updated.";
-                    redirect_to("employees.php");
+                    
+                    
+                    
+                       $user_query  = "SELECT * FROM users WHERE id = {$user_id} LIMIT 1";
+                        $user_result = mysqli_query($connection, $user_query);
+                    if($user_result){
+                        $username=mysqli_fetch_assoc($user_result);
+                        
+                            //ADD TO HISTORY
+                        $date = date('m/d/Y H:i');
+                        if($_GET['disable']==1){ $action="Disabled"; }else{ $action="Reactivated";}
+                        $content = $action." <a href=\"profile.php?user=".$user_id."\">".$username['first_name']." ".$username['last_name']."</a>'s Account";
+                        $content= addslashes($content);
+                        
+                        $history  = "INSERT INTO history ( user_id, content, datetime, is_employee ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}', 1 ) ";
+                        $insert_history = mysqli_query($connection, $history); 
+                            if($insert_history){ 
+                                $_SESSION["message"] = "Account Updated.";
+                                redirect_to("employees.php");
+                            }else {  $_SESSION["message"] = "Could not insert history";  }
+                        
+                    }else {  $_SESSION["message"] = "Could not find user";  }
                 } else {  $_SESSION["message"] = "Account update failed.";  }
          
         }

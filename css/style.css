@@ -175,6 +175,10 @@ input[type="checkbox"] {
     display:none;
 }
 
+#update_claim{
+    display:inline;
+}
+
 input[type="radio"] + label:before, 
 input[type="checkbox"] + label:before { 
     content:'';  
@@ -878,7 +882,9 @@ display: block;
 .claims h4 { margin: 0; margin-top: 20px; font-weight: 900; font-size: 1.1em;}
 
 
-
+#update_claim {
+    
+}
 
 
 
