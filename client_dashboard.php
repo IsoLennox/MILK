@@ -1,20 +1,41 @@
-    <ul>  
+   <div id="chart_container" height="400px" width="100%"></div>
+    
+      <ul>  
+      
+      
 <?php //NUMBER OF ROOMS
     $rooms=0;
     $room_count  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
     $room_result = mysqli_query($connection, $room_count);
     $num_rooms=mysqli_num_rows($room_result);
-    echo "<li>You have ".$num_rooms." rooms: </li>";
+    
     //get items for each room
 
 function item_array($array, $key, $value){
                     $array[$key] = $value;
                     return $array;
                 }
+
+ echo "<div class=\"one_third\">";
+echo "<li>You have ".$num_rooms." rooms: </li>";
+if($num_rooms==0){
+?>
+        
+    
+        <!--      ADD A ROOM  -->
+<form  method="POST" action="rooms.php">
+    <h2>Add A Room</h2>
+    <label for="room_name">Room Name: </label><input id='room_name' type="text" name="name" placeholder="e.x. Bedroom.."><br/>
+    <label for="room_notes">Room Notes:</label><textarea id='room_notes' cols="20" rows="8"  name="notes" placeholder="e.x. This room is in the guest house..."></textarea><br/> 
+    <input name="submit" type="submit" value="Save Room">
+</form> 
+            
+            <?php }
   
     $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
     $roomresult = mysqli_query($connection, $roomquery);
-    if($roomresult){
+    if($roomresult){ 
+        $rooms=array();
         //show each result value
         foreach($roomresult as $show){
                 $item_count=0;
@@ -30,6 +51,9 @@ function item_array($array, $key, $value){
                  }
             }
             echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (".$item_count." items)</h4>";
+            
+            //PUT ALL ROOMS INTO ARRAY TO USSE IN HIGHCHARTS
+            array_push($rooms , "{name: '".$show['name']."', data: [5, 3, 4, 7, 2] }");
            
                 if(!empty($item_array)){
                      echo "<ul>";
@@ -42,8 +66,16 @@ function item_array($array, $key, $value){
             }
         }
         
-        
-           echo "<hr>";
+
+        //COUNT ROOMS FOR FOR LOOP TO ECHO EACH OUT IN HIGH CHARTS
+        $count_rooms=0;
+        foreach($rooms as $room_array){
+            $count_rooms++;
+        //    echo $room_array; 
+        }
+                   
+            echo "</div>";
+          echo "<div class=\"one_third\">";
 
 //TOTAL ITEMS  
             $total_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";   
@@ -64,7 +96,62 @@ function item_array($array, $key, $value){
                 
             }
             echo "You have ".$total_items." items<br/>";
-            //    echo "category:".$categories."<br/>";
+            
+            if($total_items==0){
+//                echo "<a href=\"add_item.php\">Add your first item!</a>";
+                ?>
+                <br/>
+                <h2>Add Item</h2>
+                <form class='add_item' action="add_item.php" method="POST" >
+              
+    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="<?php echo $name; ?>" > 
+     <!--    //GET ITEM CATEGORIES -->
+   <?php
+    $category_query  = "SELECT * FROM item_category"; 
+    $categoryresult = mysqli_query($connection, $category_query);
+    if($categoryresult){  
+        echo "<label for=\"category\">Item Category: </label><select style=\"border: 2px solid #90C32E;\" id='category' name=\"category\">";
+         echo "<option value=\"--\" >--Select Item Category--</option>";
+        foreach($categoryresult as $category){
+            //OPTIONS
+            if($cat==$category['id']){ $selected="selected"; }else{ $selected=""; }
+            echo "<option ".$selected." value=\"".$category['id']."\" >".$category['name']."</option>"; 
+        }
+        echo "</select>";
+    }//end get categories
+
+?> 
+<!--    //GET ROOMS TO CHOOSE FROM -->
+   <?php
+        $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}"; 
+        $roomresult = mysqli_query($connection, $room_query);
+        if($roomresult){ 
+            //ROOM SELECT BOX
+            echo "<label for=\"room\">Room: </label><select id='room' name=\"room\" >";
+            foreach($roomresult as $room){
+                //OPTIONS
+                if($room==$room['id']){ $selected2="selected"; }else{ $selected2=""; }
+                echo "<option ".$selected2." value=\"".$room['id']."\" >".$room['name']."</option>"; 
+            }
+            echo "</select>";
+        }//end get rooms 
+ ?>
+    <fieldset class='form_blocks'>
+        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value="<?php echo $notes; ?>"><?php echo $notes; ?></textarea>
+    </fieldset>
+
+<!--    <fieldset class='form_blocks'>-->
+        <label for="purchase_date">Purchase Date: </label><input type="text" id="purchase_date" name="purchase_date" placeholder="mm/dd/yyyy" value="">
+        <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950" value="">
+        <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950" value="">
+<!--    </fieldset>-->
+    <input type="submit" name="submit" value="Next"> 
+ </form>
+           
+           
+           <?php
+            }
+
             $words = explode(",", $categories);
             $result = array_combine($words, array_fill(0, count($words), 0));
 
@@ -82,8 +169,8 @@ function item_array($array, $key, $value){
     
     
        
-       
-        
+       echo "</div>";
+        echo "<div class=\"one_third\">";
    
     $claims=0;
     $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
@@ -94,7 +181,7 @@ function item_array($array, $key, $value){
         $num_claims++;
     }
     }
-    echo "<li>You have made ".$num_claims." claims</li>";
+//    echo "<li>You have made ".$num_claims." claims</li>";
 
 
 
@@ -127,15 +214,107 @@ function item_array($array, $key, $value){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
           
-          </ul>
-          
-          <h2>Claim Status Counts</h2>
-    <ul>
-           <li><a href="claim_history.php"><i class="fa fa-list black"></i> All Claims </a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claim_history.php?draft"><i class="fa fa-caret-square-o-right orange"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
-           <li><a href="claim_history.php?pending"><i class="fa fa-caret-square-o-right blue"></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claim_history.php?approved"><i class="fa fa-caret-square-o-right green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claim_history.php?changes"><i class="fa fa-caret-square-o-right yellow"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claim_history.php?denied"><i class="fa fa-caret-square-o-right red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
-
+            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
+            <li><a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
+            <li><a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
+            <li><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
+            <li><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+            <li><a href="claim_history.php?draft"><i class="fa fa-file-o "></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
+        
     </ul>
+    </div>
+    <!-- </div> -->
+
+    <!-- function for high charts -->
+        <script>
+        $(function () {
+            $('#chart_container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Items In Inventory'
+                },
+                xAxis: {
+                    categories: ['Living Room', 'Kitchen', 'Bathroom', 'Bed Room', 'Other']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Items Claimed'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
+                    }
+                },
+                legend: {
+                    align: 'right',
+                    x: -30,
+                    verticalAlign: 'top',
+                    y: 25,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 1,
+                    shadow: false
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.x + '</b><br/>' +
+                            this.series.name + ': ' + this.y + '<br/>' +
+                            'Total: ' + this.point.stackTotal;
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
+                    }
+                },
+                series: [
+                  
+                    <?php
+            // $loop_count=0;
+            // foreach($rooms as $room_array){
+            //     $loop_count++;
+            //             if($loop_count < $room_count){
+            //             echo $room_array.", ";
+            //             }else{ echo $room_array; }
+                    ?>
+                    {
+                    name: 'Jewelry',
+                    data: [5, 3, 4, 7, 2]
+                }, {
+                    name: 'Electronics',
+                    data: [2, 2, 3, 2, 1]
+                }, {
+                    name: 'Furniture',
+                    data: [3, 4, 4, 2, 5]
+                }, {
+                    name: 'Musical Instruments',
+                    data: [3, 4, 4, 2, 5]
+                }, {
+                    name: 'Other',
+                    data: [3, 4, 4, 2, 5]
+                }
+                     <?php //} ?>
+                        ]
+            });
+        });
+
+
+ 
+    </script>
+    
+    <div id="chart_container"></div>
+

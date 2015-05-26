@@ -35,7 +35,9 @@ confirm_logged_in();
         <!--   JS VERSIONS-->
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
-        
+        <!-- For High Charts -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="http://code.highcharts.com/highcharts.js"></script>
     </head>
        
 <body>
@@ -212,7 +214,9 @@ if($_SESSION['is_employee']==0){
                 
                 
                 
-                <?php  if(isset($current_page) && $current_page=="claims"){ ?>  
+                <?php  
+                      //?pending removed from link, not sure if we want it to go to all or just the new claims first
+                      if(isset($current_page) && $current_page=="claims"){ ?>  
                         <li class="current_page"><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
               <?php  }else{ ?>  
                       <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
