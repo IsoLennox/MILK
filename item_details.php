@@ -193,8 +193,7 @@ if(isset($_GET['remove'])){
                         }
                     }
 
-    //            GET GALLERY
-                    //HOW TO COMPRESS IMAGES???
+    //            GET GALLERY  
                     $image_query  = "SELECT * FROM item_img WHERE item_id={$id}"; 
                     $image_result = mysqli_query($connection, $image_query);
                     $image_num = mysqli_num_rows($image_result);
