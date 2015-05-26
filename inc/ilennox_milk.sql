@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 26, 2015 at 02:14 PM
+-- Generation Time: May 26, 2015 at 06:51 PM
 -- Server version: 5.5.42-37.1
 -- PHP Version: 5.4.23
 
@@ -271,18 +271,18 @@ CREATE TABLE IF NOT EXISTS `item_img` (
   `item_id` int(7) NOT NULL,
   `file_path` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `is_img` int(1) NOT NULL,
-  `title` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `title` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `thumb_path` varchar(500) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `item_img`
 --
 
-INSERT INTO `item_img` (`id`, `item_id`, `file_path`, `is_img`, `title`) VALUES
-(1, 6, 'item_images/2/banjo.PNG', 0, ''),
-(2, 6, 'item_images/2/banjo2.PNG', 1, 'Picture of Banjo'),
-(3, 21, 'item_images/2/398e0314-2cd6-44de-bc98-7075e3ef6c7b.png', 1, 'Backwards man '),
-(4, 19, 'item_images/12/front_shoe.jpg', 1, 'Totes a Diamond Neck');
+INSERT INTO `item_img` (`id`, `item_id`, `file_path`, `is_img`, `title`, `thumb_path`) VALUES
+(3, 21, 'item_images/2/398e0314-2cd6-44de-bc98-7075e3ef6c7b.png', 1, 'Backwards man ', ''),
+(4, 19, 'item_images/12/front_shoe.jpg', 1, 'Totes a Diamond Neck', ''),
+(5, 2, 'item_images/2/keep-calm-and-please-hold-2.png', 1, 'Television', '');
 
 -- --------------------------------------------------------
 
@@ -737,7 +737,7 @@ ALTER TABLE `item_category`
 -- AUTO_INCREMENT for table `item_img`
 --
 ALTER TABLE `item_img`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `messages`
 --
