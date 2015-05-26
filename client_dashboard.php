@@ -54,6 +54,7 @@ if($num_rooms==0){
             
             //PUT ALL ROOMS INTO ARRAY TO USSE IN HIGHCHARTS
             array_push($rooms , "{name: '".$show['name']."', data: [5, 3, 4, 7, 2] }");
+            
            
                 if(!empty($item_array)){
                      echo "<ul>";
@@ -67,7 +68,7 @@ if($num_rooms==0){
         }
 
  
-        
+        print_r($rooms);
 
         //COUNT ROOMS FOR FOR LOOP TO ECHO EACH OUT IN HIGH CHARTS
         $count_rooms=0;
