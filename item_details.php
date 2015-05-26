@@ -130,7 +130,7 @@ if(isset($_GET['remove'])){
                     echo "<h3>Item Details</h3>";
                     
 
-                    $upload_form="<form action=\"upload_item_img.php\" method=\"post\" enctype=\"multipart/form-data\">
+                    $upload_form="<form action=\"image_handling1.php\" method=\"post\" enctype=\"multipart/form-data\">
                                 Upload an Image or PDF:<br/>
                                 <input type=\"file\" name=\"image\" id=\"fileToUpload\"><br/>
                                 <input type=\"hidden\" value=\"".$_GET['id']."\" name=\"item_id\">

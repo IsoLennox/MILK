@@ -24,7 +24,6 @@ confirm_logged_in();
                     //   light theme  ?> 
                     <link rel="stylesheet" href="css/style.css">
             <?php   }
-
         }else{ ?>
             <link rel="stylesheet" href="css/style.css">
         <?php } ?>
@@ -56,7 +55,7 @@ confirm_logged_in();
 
 <!-- <div class="wrapper">         -->
 <nav>
-	<div class= 'logo_user'>
+  <div class= 'logo_user'>
     <?php 
         $logo_query="SELECT * FROM company_details";
         $logo_found=mysqli_query($connection, $logo_query);;
@@ -104,7 +103,6 @@ if($_SESSION['is_employee']==0){
                     } else {
                       echo "<li><a href=\"add_item.php\"><i class=\"fa fa-plus\"></i> Add Item</a></li>";
                     }
-
                     if(isset($sub_page)&&($sub_page == "view_rooms")) {
                       echo "<li class=\"sub_page\"><a href='rooms.php'><i class=\"fa fa-eye\"></i> View Rooms</a></li>";
                     } else {
@@ -139,8 +137,11 @@ if($_SESSION['is_employee']==0){
             </li> 
            
 <?php }else{ 
+            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
+            $all_result = mysqli_query($connection, $all_query);
+            $data=mysqli_fetch_assoc($all_result);
           ?>
-            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> 
+            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> (<?php echo $data['total']; ?>)
                 <ul> 
                  <li><a href="file_new_claim.php"><i class="fa fa-file-text"></i> File Claim</a></li>  
                 </ul>
@@ -213,7 +214,9 @@ if($_SESSION['is_employee']==0){
                 
                 
                 
-                <?php  if(isset($current_page) && $current_page=="claims"){ ?>  
+                <?php  
+                      //?pending removed from link, not sure if we want it to go to all or just the new claims first
+                      if(isset($current_page) && $current_page=="claims"){ ?>  
                         <li class="current_page"><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
               <?php  }else{ ?>  
                       <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
@@ -286,18 +289,18 @@ if($_SESSION['is_employee']==0){
 <header>
     <!-- Search Bar -->
     <div class="search_container">
-        <form class='search' action="search.php" method="POST">        	
-	        <input type="search" placeholder='Search Here' name="query" id="searchbar">
-	        <input type="submit" name="search" id="nav_search" value="&#xf002;">
-	    </form>
-	</div>
+        <form class='search' action="search.php" method="POST">         
+          <input type="search" placeholder='Search Here' name="query" id="searchbar">
+          <input type="submit" name="search" id="nav_search" value="&#xf002;">
+      </form>
+  </div>
 
     <div class="account_links">
         <div>
-        	<a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i id="spinCog" class="fa fa-cog fa-2x"></i></a>
+          <a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i id="spinCog" class="fa fa-cog fa-2x"></i></a>
         </div>
         <div>
-        	<a title="Log Out" href="logout.php"><i class="fa fa-sign-out fa-2x"></i></a>
+          <a title="Log Out" href="logout.php"><i class="fa fa-sign-out fa-2x"></i></a>
         </div> 
     </div>
 </header> 
