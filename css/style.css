@@ -936,7 +936,13 @@ display: block;
 
 
 
-
+.claim_alert{
+    background: red;
+    color: #eee; 
+    border-radius: 100px;
+width: 20px;
+padding: 5px;
+}
 
 
 

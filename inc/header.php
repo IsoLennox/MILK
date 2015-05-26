@@ -141,7 +141,7 @@ if($_SESSION['is_employee']==0){
             $all_result = mysqli_query($connection, $all_query);
             $data=mysqli_fetch_assoc($all_result);
           ?>
-            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> (<?php echo $data['total']; ?>)
+            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> <div class="claim_alert"><?php echo $data['total']; ?></div>
                 <ul> 
                  <li><a href="file_new_claim.php"><i class="fa fa-file-text"></i> File Claim</a></li>  
                 </ul>
@@ -217,9 +217,9 @@ if($_SESSION['is_employee']==0){
                 <?php  
                       //?pending removed from link, not sure if we want it to go to all or just the new claims first
                       if(isset($current_page) && $current_page=="claims"){ ?>  
-                        <li class="current_page"><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
+                <li class="current_page"><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a><div class="claim_alert"><?php echo $total; ?></div></li> 
               <?php  }else{ ?>  
-                      <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a>(<?php echo $total; ?>)</li> 
+                <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a><div class="claim_alert"><?php echo $total; ?></div></li> 
              <?php   } ?>
                
                
