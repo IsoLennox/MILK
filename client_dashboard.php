@@ -12,7 +12,7 @@ function item_array($array, $key, $value){
                     return $array;
                 }
 
- echo "<div class=\"one-third\">";
+ echo "<div class=\"one_third\">";
 echo "<li>You have ".$num_rooms." rooms: </li>";
 if($num_rooms==0){
 ?>
@@ -59,7 +59,7 @@ if($num_rooms==0){
         }
         
             echo "</div>";
-          echo "<div class=\"one-third\">";
+          echo "<div class=\"one_third\">";
 
 //TOTAL ITEMS  
             $total_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";   
@@ -154,7 +154,7 @@ if($num_rooms==0){
     
        
        echo "</div>";
-        echo "<div class=\"one-third\">";
+        echo "<div class=\"one_third\">";
    
     $claims=0;
     $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
@@ -198,15 +198,16 @@ if($num_rooms==0){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
           
-          <li><a href="claim_history.php"><i class="fa fa-list black"></i> All Claims </a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claim_history.php?draft"><i class="fa fa-caret-square-o-right orange"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
-           <li><a href="claim_history.php?pending"><i class="fa fa-caret-square-o-right blue"></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claim_history.php?approved"><i class="fa fa-caret-square-o-right green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claim_history.php?changes"><i class="fa fa-caret-square-o-right yellow"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claim_history.php?denied"><i class="fa fa-caret-square-o-right red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
-
+            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
+            <li><a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
+            <li><a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
+            <li><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
+            <li><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+            <li><a href="claim_history.php?draft"><i class="fa fa-file-o "></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
+        
     </ul>
-    </div></div>
+    </div>
+    <!-- </div> -->
 
     <!-- function for high charts -->
         <script>
@@ -216,7 +217,7 @@ if($num_rooms==0){
                     type: 'column'
                 },
                 title: {
-                    text: 'Stacked column chart'
+                    text: 'Items In Inventory'
                 },
                 xAxis: {
                     categories: ['Living Room', 'Kitchen', 'Bathroom', 'Bed Room', 'Other']
@@ -284,4 +285,4 @@ if($num_rooms==0){
         });
     </script>
 
-    <div id="chart_container" height="400px" width="100%"></div>
+    <div id="chart_container"></div>

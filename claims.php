@@ -10,62 +10,34 @@ TO DO:
 ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
 -->
 
-<h1>Claims</h1>
-
-         <?php  
-            //GET CLAIM COUNTS
-            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id != 1";   
-            $all_result = mysqli_query($connection, $all_query);
-            $data=mysqli_fetch_assoc($all_result);
-
-            $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=0";   
-            $pending_result = mysqli_query($connection, $pending_query);
-            $pdata=mysqli_fetch_assoc($pending_result); 
-
-            $waiting_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=4";   
-            $waiting_result = mysqli_query($connection, $waiting_query);
-            $wdata=mysqli_fetch_assoc($waiting_result); 
- 
-
-            $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=2";   
-            $approved_result = mysqli_query($connection, $approved_query);
-            $adata=mysqli_fetch_assoc($approved_result); 
-
-            $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=3";   
-            $denied_result = mysqli_query($connection, $denied_query);
-            $ddata=mysqli_fetch_assoc($denied_result); 
-        ?>
-        <ul>
-           <li><a href="claims.php"><i class="fa fa-list black"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claims.php?pending"><i class="fa fa-caret-square-o-right blue"></i> Processing</a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claims.php?changes"><i class="fa fa-caret-square-o-right yellow"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>)</li>
-           <li><a href="claims.php?approved"><i class="fa fa-caret-square-o-right green"></i> Approved</a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claims.php?denied"><i class="fa fa-caret-square-o-right red"></i> Denied</a> (<?php echo $ddata['total']; ?>)</li>
-        </ul>
-       
-       
        <?php
+       
 //get type of claim queried
     if(isset($_GET['pending'])){
         
-        echo "<h1>Unprocessed Claims</h1>";  
+        echo "<h1>Unprocessed Claims</h1>";
+        include 'inc/claims_queries.php';  
         $query  = "SELECT * FROM claims WHERE status_id=0 ORDER BY id DESC";  
    
     }elseif(isset($_GET['changes'])){  
-        echo "<h1>Awaiting Client Changes</h1>";  
+        echo "<h1>Awaiting Client Changes</h1>";
+        include 'inc/claims_queries.php';  
         $query  = "SELECT * FROM claims WHERE status_id=4 ORDER BY id DESC";  
   
     }elseif(isset($_GET['approved'])){
-        echo "<h1>Approved Claims</h1>";  
+        echo "<h1>Approved Claims</h1>"; 
+        include 'inc/claims_queries.php'; 
        $query  = "SELECT * FROM claims WHERE status_id=2 ORDER BY id DESC";  
         
     }elseif(isset($_GET['denied'])){
-        echo "<h1>Denied Claims</h1>";  
+        echo "<h1>Denied Claims</h1>"; 
+        include 'inc/claims_queries.php'; 
         $query  = "SELECT * FROM claims WHERE status_id=3 ORDER BY id DESC";  
 
     }else{
   
   echo "<h1>All Claims</h1>";
+  include 'inc/claims_queries.php';
     $query  = "SELECT * FROM claims WHERE status_id != 1 ORDER BY id DESC";  
         
     }
