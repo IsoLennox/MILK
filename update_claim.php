@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
     $new_status=$_POST['status'];
     $notes=$_POST['notes'];
     $append_prefix= "<br><hr/><br><strong>Claim Adjuster Notes: </strong>";
-    $date = date('d/m/Y H:i');
+    $date = date('m/d/Y H:i');
     
                             //GET CLAIM NOTES
     $note_query  = "SELECT * FROM claims WHERE id={$claim_id}";  
@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
     
         //ADD TO HISTORY        
             $content = "Updated <a href=\"claim_details.php?id=".$claim_id."\">Claim #".$claim_id."</a>";
-            $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
+            $history  = "INSERT INTO history ( user_id, content, datetime, is_employee ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}', 1 ) ";
             $insert_history = mysqli_query($connection, $history); 
          //REDIRECT
             $_SESSION['message']= "Claim #".$claim_id." Updated";
@@ -118,7 +118,7 @@ if(isset($_POST['submit'])){
             $status_result = mysqli_query($connection, $status_query);
             foreach($status_result as $status){ 
                 if($status['id']==$show['status_id']){ $checked="checked";}else{ $checked="";}
-                   echo "<input ".$checked." type=\"radio\" name=\"status\" value=\"".$status['id']."\">".$status['name'];
+                   echo "<input ".$checked." id=\"update_claim\" type=\"radio\" name=\"status\" value=\"".$status['id']."\">".$status['name'];
             }
             ?> 
                 <br/>
