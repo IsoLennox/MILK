@@ -62,7 +62,7 @@ include("inc/header.php");  ?>
                  }
             }
             echo "<div class=\"notes_container \">";
-            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (".$item_count." items)</h4>";
+            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> <br/>(".$item_count." items)</h4>";
            
                 if(!empty($item_array)){
                      echo "<ul>";
