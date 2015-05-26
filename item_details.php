@@ -37,7 +37,7 @@ if(isset($_GET['remove'])){
     
    
     
-}if(isset($_GET['remove_img'])){ 
+}elseif(isset($_GET['remove_img'])){ 
     $item_id=$_GET['remove_img'];  
     
         $update_item  = "DELETE FROM item_img WHERE id = {$item_id} LIMIT 1";
@@ -213,8 +213,8 @@ if(isset($_GET['remove'])){
                         <a href=\"#\" alt=\"View full size image\" >".$file."</a>
                         <span class=\"caption\">".$image['title']."</span> 
                         <span class=\"right\">
-                        <a href=\"item_details?remove_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit</a>
-                        <a href=\"#\"><i class=\"fa fa-trash-o\"></i> Delete</a></span>";
+                        <a href=\"item_details?edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit</a>
+                        <a href=\"item_details?remove_img=".$image['id']."\"><i class=\"fa fa-trash-o\"></i> Delete</a></span>";
                         }
                     echo "</div>";//end gallery
                 echo "</div>"; //end container
