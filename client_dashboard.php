@@ -1,4 +1,8 @@
-    <ul>  
+   <div id="chart_container" height="400px" width="100%"></div>
+    
+      <ul>  
+      
+      
 <?php //NUMBER OF ROOMS
     $rooms=0;
     $room_count  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
@@ -31,6 +35,7 @@ if($num_rooms==0){
     $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
     $roomresult = mysqli_query($connection, $roomquery);
     if($roomresult){ 
+        $rooms=array();
         //show each result value
         foreach($roomresult as $show){
                 $item_count=0;
@@ -46,6 +51,9 @@ if($num_rooms==0){
                  }
             }
             echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (".$item_count." items)</h4>";
+            
+            //PUT ALL ROOMS INTO ARRAY TO USSE IN HIGHCHARTS
+            array_push($rooms , "{name: '".$show['name']."', data: [5, 3, 4, 7, 2] }");
            
                 if(!empty($item_array)){
                      echo "<ul>";
@@ -58,6 +66,14 @@ if($num_rooms==0){
             }
         }
         
+
+        //COUNT ROOMS FOR FOR LOOP TO ECHO EACH OUT IN HIGH CHARTS
+        $count_rooms=0;
+        foreach($rooms as $room_array){
+            $count_rooms++;
+        //    echo $room_array; 
+        }
+                   
             echo "</div>";
           echo "<div class=\"one-third\">";
 
@@ -264,7 +280,17 @@ if($num_rooms==0){
                         }
                     }
                 },
-                series: [{
+                series: [
+                  
+                    <?php
+            // $loop_count=0;
+            // foreach($rooms as $room_array){
+            //     $loop_count++;
+            //             if($loop_count < $room_count){
+            //             echo $room_array.", ";
+            //             }else{ echo $room_array; }
+                    ?>
+                    {
                     name: 'Jewelry',
                     data: [5, 3, 4, 7, 2]
                 }, {
@@ -279,9 +305,20 @@ if($num_rooms==0){
                 }, {
                     name: 'Other',
                     data: [3, 4, 4, 2, 5]
-                }]
+                }
+                     <?php //} ?>
+                        ]
             });
         });
-    </script>
 
-    <div id="chart_container" height="400px" width="100%"></div>
+
+ 
+    </script>
+    
+   
+    
+    <br>
+    <br>
+    <br>
+
+    
