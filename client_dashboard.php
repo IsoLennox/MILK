@@ -65,6 +65,8 @@ if($num_rooms==0){
  
             }
         }
+
+ 
         
 
         //COUNT ROOMS FOR FOR LOOP TO ECHO EACH OUT IN HIGH CHARTS
