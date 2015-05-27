@@ -8,7 +8,7 @@
 
 //GET NUMBER OF ROOMS
     $rooms=0;
-    $room_count  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
+    $room_count  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']} ORDER BY name";  
     $room_result = mysqli_query($connection, $room_count);
     $num_rooms=mysqli_num_rows($room_result);
     
@@ -21,7 +21,7 @@ function item_array($array, $key, $value){
 
  echo "<div class=\"stats\"> ";
 //echo "<h3>You have ".$num_rooms." rooms <h3>";
-echo "<h3>You have ".$num_rooms." rooms </h3> <br/>";
+echo "<h3>You have ".$num_rooms." rooms </h3> <p>Showing 3</p><br/>";
 if($num_rooms==0){
 ?>
         
