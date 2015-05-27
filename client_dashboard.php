@@ -143,7 +143,7 @@ if($num_rooms==0){
         }//end get rooms 
  ?>
     <fieldset class='form_blocks'>
-        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value=""><?php echo $notes; ?></textarea>
+        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value=""></textarea>
     </fieldset>
 
 <!--    <fieldset class='form_blocks'>-->
