@@ -749,6 +749,7 @@ header {
 #form_id li:not(.block){
  float:left;
  margin-right: 15px;
+ width:175px;
 }
 
 /*FILE CLAIM SELECTING ITEMS*/

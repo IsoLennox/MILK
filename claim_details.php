@@ -184,7 +184,7 @@ if(isset($_GET['id'])){
                 if($itemresult){ 
                     //item SELECT BOX
                     echo "<p>Add Items: <br/>"; 
-                    ?> <ul id="form_id" style="list-style: none;">
+                    ?> <ul id="form_id">
 <!--
                         <li>
                           <label for="select_input">
