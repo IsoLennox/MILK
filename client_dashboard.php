@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <section class="circle_charts">
     <div id="circle1"></div>
     <div id="circle2"></div>
