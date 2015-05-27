@@ -1,42 +1,30 @@
 <?php 
 $current_page="dashboard";
-include("inc/header.php"); ?>
-
-           <?php
-
-//TO DO:
-
-// make each result/graph/chart in it's own file -> include it where it belongs (see example below)
-
-
-
+include("inc/header.php"); 
 
  
 if($_SESSION['is_employee']==0){
     //CLIENT
-    ?>
-<!--    <h2>Your Dashboard</h2> -->
-    
-    <?php
+ 
         //INCLUDE ALERTS
         include_once('alerts.php');
- 
-     // echo "<img class=\"temp\" src=\"img/graph.PNG\" alt=\"sample stats\" />";
         //INCLUDE STATS
-        include_once('client_dashboard.php'); ?>
-        
-<!--
-    <div>Quick add item</div>
-    <div>Quick add room</div>
--->
-   
-<!--   //TASK SUGGESTIONS-->
-   
-<!--   If no items, suggest adding one-->
-<!--    else, if item with no files suggest adding some-->
-   
-   
-    <?php
+        include_once('client_dashboard.php'); 
+    //INCLUDE CHARTS
+    echo "<div class=\"clear\"></div>";
+        include_once('dashboard_charts.php'); 
+    
+    
+    //MARK ALERTS AS READ
+    if(isset($_GET['read'])){
+        $mark_read  = "UPDATE claims SET hidden=1 WHERE id={$_GET['read']} LIMIT 1";  
+        $readresult = mysqli_query($connection, $mark_read);
+        if($readresult){
+        $_SESSION['message']="Marked as read!";
+        redirect_to('index.php');
+        }
+
+}
     
 }else{  
     

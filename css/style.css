@@ -369,6 +369,10 @@ img {
     color:green;
 }
 
+.green a{
+    color:limegreen;
+}
+
 .yellow {
     color:gold;
 }
@@ -959,6 +963,32 @@ display: block;
     float: left;
 }
 */
+
+#alerts{
+    background: rgba(178,38,38,.2);
+    border-radius: 20px;
+    padding: 30px;
+}
+#alerts a {
+    color: firebrick;
+}
+#alerts a:hover {
+    color: red;
+}
+
+#alerts h1 {
+    color: darkred;
+    
+}
+
+.alert_node:hover{
+    background: rgba(0,0,0,0.1);
+}
+
+.clear{
+    clear: both;
+    margin: 10px;
+}
 
 
 
