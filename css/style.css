@@ -345,14 +345,14 @@ img {
     width: 30%;
 	float: left;
 	margin-bottom: 25px;
-	margin-right: 5%;
+	margin-right: 5px;
     padding: 20px;
     border-radius: 10px;
     border: 2px solid #ddd;
     min-height: 275px;
 }
 	.stats:nth-of-type(3){
-		margin-right: 0;
+/*		margin-right: 0;*/
 	}
 
 
@@ -940,10 +940,16 @@ display: block;
 
 .claim_alert{
     background: red;
-    color: #eee; 
-    border-radius: 100px;
-width: 20px;
-padding: 5px;
+    color: #EEE;
+    border-radius: 200px;
+    width: 20px;
+    padding: 3px;
+    overflow: hidden;
+    position: relative;
+    left: -100px;
+    top: -10px;
+    height: 20px;
+    float: right;
 }
 
 

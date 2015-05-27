@@ -105,58 +105,8 @@ if($num_rooms==0){
             echo "You have ".$total_items." items<br/>";
             
             if($total_items==0){
-//                echo "<a href=\"add_item.php\">Add your first item!</a>";
-                ?>
-                <br/>
-                <h2>Add Item</h2>
-                <form class='add_item' action="add_item.php" method="POST" >
-              
-    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="" > 
-     <!--    //GET ITEM CATEGORIES -->
-   <?php
-    $category_query  = "SELECT * FROM item_category"; 
-    $categoryresult = mysqli_query($connection, $category_query);
-    if($categoryresult){  
-        echo "<label for=\"category\">Item Category: </label><select style=\"border: 2px solid #90C32E;\" id='category' name=\"category\">";
-         echo "<option value=\"--\" >--Select Item Category--</option>";
-        foreach($categoryresult as $category){
-            //OPTIONS
-            if($cat==$category['id']){ $selected="selected"; }else{ $selected=""; }
-            echo "<option ".$selected." value=\"".$category['id']."\" >".$category['name']."</option>"; 
-        }
-        echo "</select>";
-    }//end get categories
-
-?> 
-<!--    //GET ROOMS TO CHOOSE FROM -->
-   <?php
-        $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}"; 
-        $roomresult = mysqli_query($connection, $room_query);
-        if($roomresult){ 
-            //ROOM SELECT BOX
-            echo "<label for=\"room\">Room: </label><select id='room' name=\"room\" >";
-            foreach($roomresult as $room){
-                //OPTIONS
-                if($room==$room['id']){ $selected2="selected"; }else{ $selected2=""; }
-                echo "<option ".$selected2." value=\"".$room['id']."\" >".$room['name']."</option>"; 
-            }
-            echo "</select>";
-        }//end get rooms 
- ?>
-    <fieldset class='form_blocks'>
-        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value=""></textarea>
-    </fieldset>
-
-<!--    <fieldset class='form_blocks'>-->
-        <label for="purchase_date">Purchase Date: </label><input type="text" id="purchase_date" name="purchase_date" placeholder="mm/dd/yyyy" value="">
-        <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950" value="">
-        <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950" value="">
-<!--    </fieldset>-->
-    <input type="submit" name="submit" value="Next"> 
- </form>
-           
-           
-           <?php
+                echo "<a href=\"add_item.php\">Add your first item!</a>";
+               
             }
             if(!empty($categories)){
             $words = explode(",", $categories);
