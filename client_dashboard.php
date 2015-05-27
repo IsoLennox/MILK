@@ -110,7 +110,7 @@ if($num_rooms==0){
                 <h2>Add Item</h2>
                 <form class='add_item' action="add_item.php" method="POST" >
               
-    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="<?php echo $name; ?>" > 
+    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="" > 
      <!--    //GET ITEM CATEGORIES -->
    <?php
     $category_query  = "SELECT * FROM item_category"; 
@@ -143,7 +143,7 @@ if($num_rooms==0){
         }//end get rooms 
  ?>
     <fieldset class='form_blocks'>
-        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value="<?php echo $notes; ?>"><?php echo $notes; ?></textarea>
+        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value=""><?php echo $notes; ?></textarea>
     </fieldset>
 
 <!--    <fieldset class='form_blocks'>-->
