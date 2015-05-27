@@ -184,7 +184,7 @@ include("inc/header.php"); ?>
     $alertresult = mysqli_query($connection, $alerts_query);
     $rows = mysqli_num_rows($alertresult);
     if($rows>=1){
-        
+         echo "<div id=\"alerts\">";
         echo "<h1>ALERTS</h1>";
         //show each result value
         foreach($alertresult as $show_alert){
@@ -199,7 +199,7 @@ include("inc/header.php"); ?>
                       
             }
         
-        echo "   <hr>";
+        echo "  </div> <hr>";
         }
         
         
