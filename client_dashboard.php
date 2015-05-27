@@ -157,7 +157,7 @@ if($num_rooms==0){
            
            <?php
             }
-
+            if(!empty($categories)){
             $words = explode(",", $categories);
             $result = array_combine($words, array_fill(0, count($words), 0));
 
@@ -170,7 +170,7 @@ if($num_rooms==0){
                     echo "There are $count instances of $word.<br/>";
                 }
             }
-
+            }
             
     
     
