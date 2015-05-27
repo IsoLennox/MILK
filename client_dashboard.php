@@ -5,7 +5,7 @@
     <div id="circle3"></div>
 </section>
    
-   <div id="chart_container"></div>
+   <div id="chart_container" height="400px" width="100%"></div>
 
     
       <ul>  
@@ -112,7 +112,7 @@ if($num_rooms==0){
                 <h2>Add Item</h2>
                 <form class='add_item' action="add_item.php" method="POST" >
               
-    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="<?php echo $name; ?>" > 
+    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="" > 
      <!--    //GET ITEM CATEGORIES -->
    <?php
     $category_query  = "SELECT * FROM item_category"; 
@@ -145,7 +145,7 @@ if($num_rooms==0){
         }//end get rooms 
  ?>
     <fieldset class='form_blocks'>
-        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value="<?php echo $notes; ?>"><?php echo $notes; ?></textarea>
+        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value=""></textarea>
     </fieldset>
 
 <!--    <fieldset class='form_blocks'>-->
@@ -159,7 +159,7 @@ if($num_rooms==0){
            
            <?php
             }
-
+            if(!empty($categories)){
             $words = explode(",", $categories);
             $result = array_combine($words, array_fill(0, count($words), 0));
 
@@ -172,7 +172,7 @@ if($num_rooms==0){
                     echo "There are $count instances of $word.<br/>";
                 }
             }
-
+            }
             
     
     
@@ -388,39 +388,6 @@ if($num_rooms==0){
             });
         });
 
-    // begin circle 3
-        $(function () {
-            $('#circle3').highcharts({
-                chart: {
-                    type: 'pie',
-                    options3d: {
-                        enabled: false,
-                    }
-                },
-                title: {
-                    text: 'Claim Types Filed'
-                },
-                subtitle: {
-                    text: 'Types of Claim'
-                },
-                plotOptions: {
-                    pie: {
-                        innerSize: 175,
-                        depth: 45
-                    }
-                },
-                series: [{
-                    name: 'Claims',
-                    data: [
-                        ['Fire (150)', 150],
-                        ['Theft (300)', 300],
-                        ['Flood (100)', 100],
-                        ['Act of God (250)', 250],
-                        ['Earthquake (20)', 20]
-                    ]
-                }]
-            });
-        });
 
 
 
@@ -434,6 +401,7 @@ if($num_rooms==0){
     <br>
     <br>
 
+<<<<<<< HEAD
 =======
 <section>
     <div id="circle1" height: "50px" width: "5%"></div>
@@ -837,4 +805,6 @@ if($num_rooms==0){
     <br>
 
 >>>>>>> e6de38b568b26329bd4fed5636c68798e9bdfd6f
+=======
+>>>>>>> b5162b871a046e5130f20deead0918d16fa19f56
     
