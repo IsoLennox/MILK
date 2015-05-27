@@ -251,7 +251,7 @@ if(isset($_GET['remove'])){
                                 <input type="hidden" name="image_id" value="<?php echo $image['id']; ?>"> 
                                 <input type="submit" name="save_title" value="Save Title">
                             </form>
-                            <a href="item_details.php?id=<?php echo $image['id']; ?>">Cancel</a>
+                            <a href="item_details.php?id=<?php echo $id; ?>">Cancel</a>
                             <hr/>
                             <?php
                         
