@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 26, 2015 at 06:51 PM
+-- Generation Time: May 26, 2015 at 10:46 PM
 -- Server version: 5.5.42-37.1
 -- PHP Version: 5.4.23
 
@@ -34,19 +34,20 @@ CREATE TABLE IF NOT EXISTS `claims` (
   `notes` varchar(999) COLLATE utf8_unicode_ci NOT NULL,
   `claim_type` int(7) NOT NULL,
   `user_id` int(7) NOT NULL,
-  `updated` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+  `updated` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `hidden` int(1) NOT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `claims`
 --
 
-INSERT INTO `claims` (`id`, `status_id`, `datetime`, `title`, `notes`, `claim_type`, `user_id`, `updated`) VALUES
-(3, 4, '13/05/2015 13:22', 'Robbery', '(uploaded police report)<hr/>fs <br><hr/><br><strong>Claim Adjuster Notes: </strong> Needs more information. Please write out a detailed description.<hr/><hr/><br/><br/><br/><br/><br/><br/><br/><br/><br/>', 4, 2, '16/05/2015'),
-(8, 1, '15/05/2015 20:46', 'They Broke it!', 'Vandals came in and broke my romulan necklace. Specists.', 2, 2, ''),
-(9, 2, '16/05/2015 17:34', 'Tornado', 'Lost the pieces to my monopoly set. <br><hr/><br><strong>Claim Adjuster Notes: </strong> Your Claims has been approved!', 1, 2, '25/05/2015'),
-(10, 1, '22/05/2015 17:02', '', '', 3, 12, ''),
-(12, 0, '26/05/2015 13:56', 'yo man', 'my stuff is burned', 3, 12, '');
+INSERT INTO `claims` (`id`, `status_id`, `datetime`, `title`, `notes`, `claim_type`, `user_id`, `updated`, `hidden`) VALUES
+(3, 4, '13/05/2015 13:22', 'Robbery', '(uploaded police report)<hr/>fs <br><hr/><br><strong>Claim Adjuster Notes: </strong> Needs more information. Please write out a detailed description.<hr/><hr/><br/><br/><br/><br/><br/><br/><br/><br/><br/>', 4, 2, '16/05/2015', 0),
+(8, 1, '15/05/2015 20:46', 'They Broke it!', 'Vandals came in and broke my romulan necklace. Specists.', 2, 2, '', 0),
+(9, 2, '16/05/2015 17:34', 'Tornado', 'Lost the pieces to my monopoly set. <br><hr/><br><strong>Claim Adjuster Notes: </strong> Your Claims has been approved!', 1, 2, '25/05/2015', 1),
+(10, 1, '22/05/2015 17:02', '', '', 3, 12, '', 0),
+(12, 0, '26/05/2015 13:56', 'yo man', 'my stuff is burned', 3, 12, '', 0);
 
 -- --------------------------------------------------------
 
@@ -79,7 +80,6 @@ CREATE TABLE IF NOT EXISTS `claim_items` (
 INSERT INTO `claim_items` (`id`, `item_id`, `claim_id`) VALUES
 (15, 14, 3),
 (14, 7, 3),
-(7, 12, 8),
 (6, 13, 9),
 (22, 19, 12);
 
