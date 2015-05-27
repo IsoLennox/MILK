@@ -6,6 +6,7 @@ include("inc/header.php");
 if($_SESSION['is_employee']==0){
     //CLIENT
  
+        echo "<h1>Welcome Back, ".$_SESSION['username']."</h1>";
         //INCLUDE ALERTS
         include_once('alerts.php');
         //INCLUDE STATS
