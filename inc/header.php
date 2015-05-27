@@ -146,7 +146,7 @@ if($_SESSION['is_employee']==0){
             $all_result = mysqli_query($connection, $all_query);
             $data=mysqli_fetch_assoc($all_result);
           ?>
-            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> <div class="claim_alert"><?php echo $data['total']; ?></div>
+            <li class='alert_container'><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> <div class="claim_alert"><?php echo $data['total']; ?></div>
                 <ul> 
                  <li><a href="file_new_claim.php"><i class="fa fa-file-text"></i> File Claim</a></li>  
                 </ul>
