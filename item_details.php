@@ -24,13 +24,35 @@ if(isset($_GET['remove'])){
             $insert_history = mysqli_query($connection, $history); 
             
             
-            $_SESSION["message"] = "Item Removed!";
+        $_SESSION["message"] = "Item Removed!";
         redirect_to('inventory.php');
 
         } else {
         // Failure
         $_SESSION["message"] = "Could not delete item";
        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        }//END REMOVE ITEM
+    
+    
+   
+    
+}elseif(isset($_GET['remove_img'])){ 
+    $item_id=$_GET['remove_img'];  
+    
+        $update_item  = "DELETE FROM item_img WHERE id = {$item_id} LIMIT 1";
+        $result = mysqli_query($connection, $update_item);
+
+        if ($result && mysqli_affected_rows($connection) == 1) {
+        // Success 
+
+            $_SESSION["message"] = "Item Document Removed!";
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        } else {
+        // Failure
+            $_SESSION["message"] = "Could not delete item document";
+           header('Location: ' . $_SERVER['HTTP_REFERER']);
 
         }//END REMOVE ITEM
     
@@ -69,6 +91,31 @@ if(isset($_GET['remove'])){
     
     
    
+    
+}elseif(isset($_POST['save_title'])){ 
+    
+     
+    
+    $item_id=$_GET['id'];
+    $image_id=$_GET['edit_img'];
+    $new_title=$_POST['new_title'];
+    
+        $item_img  = "UPDATE item_img SET title = '{$new_title}' WHERE id={$image_id} ";
+        $insert_item_img = mysqli_query($connection, $item_img); 
+    if($insert_item_img){
+
+        $_SESSION["message"] = "Image Renamed!";
+        redirect_to('item_details.php?id='.$item_id);
+
+        } else {
+        // Failure
+        $_SESSION["message"] = "Could not rename image";
+       redirect_to('item_details.php?id='.$item_id);
+
+        }//END REMOVE ITEM
+    
+
+
     
 }elseif(isset($_GET['id'])){ 
     $id=$_GET['id'];
@@ -130,7 +177,7 @@ if(isset($_GET['remove'])){
                     echo "<h3>Item Details</h3>";
                     
 
-                    $upload_form="<form action=\"upload_item_img.php\" method=\"post\" enctype=\"multipart/form-data\">
+                    $upload_form="<form action=\"image_handling1.php\" method=\"post\" enctype=\"multipart/form-data\">
                                 Upload an Image or PDF:<br/>
                                 <input type=\"file\" name=\"image\" id=\"fileToUpload\"><br/>
                                 <input type=\"hidden\" value=\"".$_GET['id']."\" name=\"item_id\">
@@ -171,8 +218,7 @@ if(isset($_GET['remove'])){
                         }
                     }
 
-    //            GET GALLERY
-                    //HOW TO COMPRESS IMAGES???
+    //            GET GALLERY  
                     $image_query  = "SELECT * FROM item_img WHERE item_id={$id}"; 
                     $image_result = mysqli_query($connection, $image_query);
                     $image_num = mysqli_num_rows($image_result);
@@ -182,19 +228,33 @@ if(isset($_GET['remove'])){
                         foreach($image_result as $image){ 
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
                         if($image['is_img']==1){
-                            $file= "<img style=\"width:50px;\" class=\"thumbnail\" src=\"".$image['file_path']."\">";
+                            $file= "<img style=\"width:50px;\" class=\"thumbnail\" src=\"".$image['thumb_path']."\">";
 
                         }else{
                             $file= "<i class=\"fa fa-file-o\"></i>";
                         }
                         if(empty($image['title'])){ $image['title']="Untitled";}
-                        echo "
-                        <a href=\"#\" alt=\"View full size image\" >".$file."</a>
-                        <span class=\"caption\">".$image['title']."</span> 
-                        <span class=\"right\">
-                        <a href=\"#\"><i class=\"fa fa-pencil\"></i> Edit</a>
-                        <a href=\"#\"><i class=\"fa fa-trash-o\"></i> Delete</a></span>";
+                        echo "<br/>
+                        <a href=\"#\" alt=\"View full size image\" >".$file."<br/>
+                        <span class=\"caption\">".$image['title']."</span></a> 
+                        <span class=\"right\">";  
+                        if(isset($_GET['edit_img']) && $_GET['edit_img']==$image['id']){
+                            //Show edit title form
+                            ?>
+                            <form method="POST">
+                                <input type="text" name="new_title" value="<?php echo $image['title']; ?>">
+                                <input type="hidden" name="image_id" value="<?php echo $image['id']; ?>"> 
+                                <input type="submit" name="save_title" value="Save Title">
+                            </form>
+                            <a href="item_details.php?id=<?php echo $image['id']; ?>">Cancel</a>
+                            <hr/>
+                            <?php
+                        
+                        }else{
+                            echo "<a href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Rename</a>
+                            <a onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"><i class=\"fa fa-trash-o\"></i> Delete</a></span>";
                         }
+                    }
                     echo "</div>";//end gallery
                 echo "</div>"; //end container
             

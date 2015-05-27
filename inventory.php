@@ -169,7 +169,7 @@ include("inc/header.php"); ?>
                 $cat_name=get_category_name($show['category']);
                 echo "Category: ".$cat_name."<br/>";
             if(empty($room_name)){
-                $room_name="Room not selected<br/>";
+                $room_name="Room not selected";
             }
                 echo "Room: ".$room_name . "";
             

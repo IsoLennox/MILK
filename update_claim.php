@@ -118,7 +118,7 @@ if(isset($_POST['submit'])){
             $status_result = mysqli_query($connection, $status_query);
             foreach($status_result as $status){ 
                 if($status['id']==$show['status_id']){ $checked="checked";}else{ $checked="";}
-                   echo "<input ".$checked." id=\"update_claim\" type=\"radio\" name=\"status\" value=\"".$status['id']."\">".$status['name'];
+                   echo "<input ".$checked." type=\"radio\" name=\"status\" id=\"".$status['id']."\" value=\"".$status['id']."\"> <label for='".$status['id']."'> ".$status['name'] . "</label>";
             }
             ?> 
                 <br/>

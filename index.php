@@ -20,7 +20,11 @@ if($_SESSION['is_employee']==0){
     <?php
         //INCLUDE ALERTS
         include_once('alerts.php');
+<<<<<<< HEAD
 
+=======
+        echo "<h1>Dashboard</h1>";
+>>>>>>> e6de38b568b26329bd4fed5636c68798e9bdfd6f
      // echo "<img class=\"temp\" src=\"img/graph.PNG\" alt=\"sample stats\" />";
         //INCLUDE STATS
         include_once('client_dashboard.php'); ?>
@@ -43,7 +47,7 @@ if($_SESSION['is_employee']==0){
     //IS EMPLOYEE
 
 ?>
-    <h2>Statistics</h2>
+    <h1>Statistics</h1>
     
     <div id="refine">
         <?php
@@ -126,12 +130,14 @@ if($_SESSION['is_employee']==0){
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
-           <li><a href="claims.php"><i class="fa fa-list black"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claims.php?processing"><i class="fa fa-caret-square-o-right blue"></i> Processing</a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claims.php?pending"><i class="fa fa-caret-square-o-right yellow"></i>  Pending Client Changes</a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claims.php?approved"><i class="fa fa-caret-square-o-right green"></i> Approved</a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claims.php?denied"><i class="fa fa-caret-square-o-right red"></i> Denied</a> (<?php echo $ddata['total']; ?>)</li>
-<?php     
+        <ul>
+            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
+            <li><a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
+            <li><a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
+            <li><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
+            <li><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+        </ul>
+        <?php     
 
  
 
@@ -199,5 +205,80 @@ if($_SESSION['is_employee']==0){
 
            } 
  ?>
-     
+      <script>
+        $(function () {
+            $('#chart_container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Types of Items Being Claimed'
+                },
+                xAxis: {
+                    categories: ['Living Room', 'Kitchen', 'Bathroom', 'Bed Room', 'Other']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Items Claimed'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
+                    }
+                },
+                legend: {
+                    align: 'right',
+                    x: -30,
+                    verticalAlign: 'top',
+                    y: 25,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 1,
+                    shadow: false
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.x + '</b><br/>' +
+                            this.series.name + ': ' + this.y + '<br/>' +
+                            'Total: ' + this.point.stackTotal;
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Jewelry',
+                    data: [5, 3, 4, 7, 2]
+                }, {
+                    name: 'Electronics',
+                    data: [2, 2, 3, 2, 1]
+                }, {
+                    name: 'Furniture',
+                    data: [3, 4, 4, 2, 5]
+                }, {
+                    name: 'Musical Instruments',
+                    data: [3, 4, 4, 2, 5]
+                }, {
+                    name: 'Other',
+                    data: [3, 4, 4, 2, 5]
+                }]
+            });
+        });
+    </script>
+
+    <div id="chart_container"></div>
 <?php include("inc/footer.php"); ?>
