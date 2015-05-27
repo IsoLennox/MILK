@@ -229,7 +229,7 @@ if(isset($_GET['remove'])){
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
                         echo "<div>";
                         if($image['is_img']==1){
-                            $file= "<div class=\"img_container\"><img class=\"thumbnail\" src=\"".$image['thumb_path']."\"></div>";
+                            $file= "<div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div>";
 
                         }else{
                             // doesnt work, i think logic is missing in the image optimizer////////////////////////////////////////////////////////////
