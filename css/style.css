@@ -342,8 +342,9 @@ img {
 }
 
 .stats {
-    width: 30%;
-	float: left;
+    width: 99%; 
+/*    width: 30%; */
+    float: left;
 	margin-bottom: 25px;
 	margin-right: 5px;
     padding: 20px;
@@ -355,7 +356,10 @@ img {
 /*		margin-right: 0;*/
 	}
 
-
+.one-third {
+    width: 30%;
+	float: left;
+}
 
 .red {
     color:red;

@@ -22,7 +22,9 @@ if($alertresult){
             } 
             if($status=="Approved"){ $class="class=\"green\"";}else{ $class="";}
             
-             echo "<span class=\"alert_node\" $class ><a href=\"claim_details.php?id=".$show_alert['id']."\">Claim #".$show_alert['id'].": '".$show_alert['title']."'</a> is ".$status." <a title=\"Mark as read\" href=\"index.php?read=".$show_alert['id']."\"><i class=\"fa fa-times right\"></i></s></span><br/>";
+             echo "<span class=\"alert_node\" $class >
+             <a href=\"claim_details.php?id=".$show_alert['id']."\">Claim #".$show_alert['id'].": '".$show_alert['title']."'</a> is ".$status." <a title=\"Mark as read\" href=\"index.php?read=".$show_alert['id']."\"><i class=\"fa fa-times right\"></i></a>
+             </span><br/>";
                       
             }
         

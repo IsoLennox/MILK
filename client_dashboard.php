@@ -19,9 +19,9 @@ function item_array($array, $key, $value){
                     return $array;
                 }
 
- echo "<div class=\"stats\"> <ul>";
+ echo "<div class=\"stats\"> ";
 //echo "<h3>You have ".$num_rooms." rooms <h3>";
-echo "<h3>".$num_rooms." rooms <h3>";
+echo "<h3>You have ".$num_rooms." rooms </h3> <br/>";
 if($num_rooms==0){
 ?>
         
@@ -41,36 +41,40 @@ if($num_rooms==0){
     if($roomresult){ 
         $rooms=array();
         //show each result value
+       
         foreach($roomresult as $show){
+              echo "<span class=\"one-third\"> ";
                 $item_count=0;
                 $item_array=array();
 
             
                 $item_query  = "SELECT * FROM items WHERE room_id={$show['id']} AND in_trash=0";  
                 $item_result = mysqli_query($connection, $item_query);
-            if($item_result){
-                foreach($item_result as $item){  
-                    $item_count++; 
-                    $item_array = item_array($item_array, $item['id'], $item['name']);
-                 }
-            }
+                if($item_result){
+                    foreach($item_result as $item){  
+                        $item_count++; 
+                        $item_array = item_array($item_array, $item['id'], $item['name']);
+                     }
+                }
             echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a><br/> (".$item_count." items)</h4>";
             
             //PUT ALL ROOMS INTO ARRAY TO USSE IN HIGHCHARTS
-            array_push($rooms , "{name: '".$show['name']."', data: [5, 3, 4, 7, 2] }");
+//            array_push($rooms , "{name: '".$show['name']."', data: [5, 3, 4, 7, 2] }");
            
                 if(!empty($item_array)){
                      echo "<ul>";
-                    foreach($item_array as $id=>$name){
-                        echo "<li><a href=\"item_details.php?id=".$id."\" >".$name."</a></li>";
-                    }
-                    echo "</ul>";
+                        foreach($item_array as $id=>$name){
+                            echo "<li><a href=\"item_details.php?id=".$id."\" >".$name."</a></li>";
+                        }
+                    echo "</ul>"; //end item list
                 }
- 
+            
+            echo "</span>"; //end one-third
             }
+       
+        echo "<br/><a class=\"right\" href=\"rooms.php\">View all rooms</a>";
         
-        echo "<a href=\"rooms.php\">View all rooms</a>";
-        }
+        }//END SHOW 3 ROOMS AND ITEMS IN THEM
         
 
         //COUNT ROOMS FOR FOR LOOP TO ECHO EACH OUT IN HIGH CHARTS
@@ -113,28 +117,50 @@ if($num_rooms==0){
                 
                 
             }
-            echo "<h3>You have ".$total_items." items</h3><br/>";
+            
             
             if($total_items==0){
                 echo "<a href=\"add_item.php\">Add your first item!</a>";
                
             }
-            if(!empty($categories)){
-            $words = explode(",", $categories);
-            $result = array_combine($words, array_fill(0, count($words), 0));
 
-            foreach($words as $word) {
-            $result[$word]++;
-            }
-                    echo "<ul>";
-            foreach($result as $word => $count) {
-                if($word!==""){
-                    echo "<li>$count items in $word.</li><br/>";
+
+//            GET 10 ITEMS ORDER BY LAST ADDED
+            echo "<span class=\"half_div\">";
+                echo "<h3>You have ".$total_items." items</h3><br/>";
+
+    //            SHOW ITEM TYPES
+
+                if(!empty($categories)){
+                $words = explode(",", $categories);
+                $result = array_combine($words, array_fill(0, count($words), 0));
+
+                foreach($words as $word) {
+                $result[$word]++;
                 }
-            }
-                echo "</ul>";
-            }
-            
+                        echo "<ul>";
+                foreach($result as $word => $count) {
+                    if($word!==""){
+                        echo "<li>$count items in $word.</li><br/>";
+                    }
+                }
+                    echo "</ul>";
+                }
+
+            echo "</span>"; //end half
+            echo "<span class=\"half_div\">"; 
+                //SHOW RECENTLY ADDED ITEMS
+                $recent_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY id DESC LIMIT 10";   
+                $recent_item_result = mysqli_query($connection, $recent_item_query);
+                if($recent_item_result){
+                    echo "<h3>Recently Added Items</h3>";
+                    echo "<ul>";
+                foreach($recent_item_result as $item){ echo "<li><a href=\"item_details.php?id=".$item['id']."\">".$item['name']."</a></li>"; }
+                    echo "</ul>";
+                    echo "<br/><a class=\"right\" href=\"inventory.php\">View all items</a>";
+                    }//end get recent items
+
+            echo "</span>"; //end half
     
     
        
