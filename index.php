@@ -20,11 +20,7 @@ if($_SESSION['is_employee']==0){
     <?php
         //INCLUDE ALERTS
         include_once('alerts.php');
-<<<<<<< HEAD
-
-=======
-        echo "<h1>Dashboard</h1>";
->>>>>>> e6de38b568b26329bd4fed5636c68798e9bdfd6f
+ 
      // echo "<img class=\"temp\" src=\"img/graph.PNG\" alt=\"sample stats\" />";
         //INCLUDE STATS
         include_once('client_dashboard.php'); ?>
