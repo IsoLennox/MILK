@@ -217,7 +217,7 @@ if(isset($_GET['remove'])){
                             echo $upload;
                         }
                     }
-
+                    echo "</div>"; //end container
     //            GET GALLERY  
                     $image_query  = "SELECT * FROM item_img WHERE item_id={$id}"; 
                     $image_result = mysqli_query($connection, $image_query);
@@ -227,17 +227,22 @@ if(isset($_GET['remove'])){
 
                         foreach($image_result as $image){ 
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
+                        echo "<div>";
                         if($image['is_img']==1){
-                            $file= "<img style=\"width:50px;\" class=\"thumbnail\" src=\"".$image['thumb_path']."\">";
+                            $file= "<div class=\"img_container\"><img class=\"thumbnail\" src=\"".$image['thumb_path']."\"></div>";
 
                         }else{
-                            $file= "<i class=\"fa fa-file-o\"></i>";
+                            // doesnt work, i think logic is missing in the image optimizer////////////////////////////////////////////////////////////
+                            $file= "<p><i class=\"fa fa-file-o\"></i></p>";
                         }
+
                         if(empty($image['title'])){ $image['title']="Untitled";}
-                        echo "<br/>
-                        <a href=\"#\" alt=\"View full size image\" >".$file."<br/>
-                        <span class=\"caption\">".$image['title']."</span></a> 
-                        <span class=\"right\">";  
+
+                        echo "
+                        <a href=\"#\" alt=\"View full size image\" >".$file."
+                        <h5>".$image['title']."</h5></a>"; 
+                        // <span class=\"right\">"; 
+
                         if(isset($_GET['edit_img']) && $_GET['edit_img']==$image['id']){
                             //Show edit title form
                             ?>
@@ -251,12 +256,13 @@ if(isset($_GET['remove'])){
                             <?php
                         
                         }else{
-                            echo "<a href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Rename</a>
-                            <a onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"><i class=\"fa fa-trash-o\"></i> Delete</a></span>";
+                            echo "<a class='img_edit' href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>
+                             <a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
                         }
+                        echo "</div>"; //end each container
                     }
                     echo "</div>";//end gallery
-                echo "</div>"; //end container
+                
             
             }
                 
