@@ -21,7 +21,7 @@ if($_SESSION['is_employee']==0){
         //INCLUDE ALERTS
         include_once('alerts.php');
 
-     echo "<img class=\"temp\" src=\"img/graph.PNG\" alt=\"sample stats\" />";
+     // echo "<img class=\"temp\" src=\"img/graph.PNG\" alt=\"sample stats\" />";
         //INCLUDE STATS
         include_once('client_dashboard.php'); ?>
         
@@ -69,7 +69,7 @@ if($_SESSION['is_employee']==0){
         <?php } ?>
     </div> 
     
-     <img class="temp" src="img/graph.PNG" alt="sample stats" />
+     <!-- <img class="temp" src="img/graph.PNG" alt="sample stats" /> -->
     <ul>
        <?php
             $client_query  = "SELECT * from users WHERE is_employee=0";   

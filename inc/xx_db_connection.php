@@ -15,9 +15,9 @@
 //REPLACE '******'  WITH YOUR LOCALHOST DATA
 
 define("DB_SERVER","localhost");
-define("DB_USER","*********");
-define("DB_PASS","************");
-define("DB_NAME","*************");
+define("DB_USER","root");
+define("DB_PASS","");
+define("DB_NAME","MILK");
 
 $connection= mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 

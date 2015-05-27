@@ -1,4 +1,15 @@
-    <ul>  
+<section class="circle_charts">
+    <div id="circle1"></div>
+    <div id="circle2"></div>
+    <div id="circle3"></div>
+</section>
+   
+   <div id="chart_container"></div>
+
+    
+      <ul>  
+      
+      
 <?php //NUMBER OF ROOMS
     $rooms=0;
     $room_count  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
@@ -31,6 +42,7 @@ if($num_rooms==0){
     $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
     $roomresult = mysqli_query($connection, $roomquery);
     if($roomresult){ 
+        $rooms=array();
         //show each result value
         foreach($roomresult as $show){
                 $item_count=0;
@@ -46,6 +58,9 @@ if($num_rooms==0){
                  }
             }
             echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (".$item_count." items)</h4>";
+            
+            //PUT ALL ROOMS INTO ARRAY TO USSE IN HIGHCHARTS
+            array_push($rooms , "{name: '".$show['name']."', data: [5, 3, 4, 7, 2] }");
            
                 if(!empty($item_array)){
                      echo "<ul>";
@@ -58,6 +73,14 @@ if($num_rooms==0){
             }
         }
         
+
+        //COUNT ROOMS FOR FOR LOOP TO ECHO EACH OUT IN HIGH CHARTS
+        $count_rooms=0;
+        foreach($rooms as $room_array){
+            $count_rooms++;
+        //    echo $room_array; 
+        }
+                   
             echo "</div>";
           echo "<div class=\"one-third\">";
 
@@ -208,8 +231,9 @@ if($num_rooms==0){
     </ul>
     </div></div>
 
-    <!-- function for high charts -->
+
         <script>
+    // -------> Begin Vertical Bar chart <--------------
         $(function () {
             $('#chart_container').highcharts({
                 chart: {
@@ -264,7 +288,17 @@ if($num_rooms==0){
                         }
                     }
                 },
-                series: [{
+                series: [
+                  
+                    <?php
+            // $loop_count=0;
+            // foreach($rooms as $room_array){
+            //     $loop_count++;
+            //             if($loop_count < $room_count){
+            //             echo $room_array.", ";
+            //             }else{ echo $room_array; }
+                    ?>
+                    {
                     name: 'Jewelry',
                     data: [5, 3, 4, 7, 2]
                 }, {
@@ -279,9 +313,124 @@ if($num_rooms==0){
                 }, {
                     name: 'Other',
                     data: [3, 4, 4, 2, 5]
+                }
+                     <?php //} ?>
+                        ]
+            });
+        });
+   // -------> End of Vertical Bar chart <--------------
+
+
+   // -------> Begin Circle Charts for Views <--------------
+        
+    // begin chart 1
+        $(function () {
+            $('#circle1').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: false,
+                    }
+                },
+                title: {
+                    text: 'Total Number of Website Views'
+                },
+                subtitle: {
+                    text: ''
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 175,
+                        depth: 45
+                    }
+                },
+                series: [{
+                    name: 'Total Views',
+                    data: [
+                        ['Applicants (3154)', 3154],
+                        ['Forwards (912)', 912],
+                        ['Interviews (1546)', 1546]
+                    ]
                 }]
             });
         });
-    </script>
 
-    <div id="chart_container" height="400px" width="100%"></div>
+    // begin circle 2
+        $(function () {
+            $('#circle2').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: false,
+                    }
+                },
+                title: {
+                    text: 'Current Week\'s Claims'
+                },
+                subtitle: {
+                    text: 'Current Claims Status'
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 175,
+                        depth: 45
+                    }
+                },
+                series: [{
+                    name: 'Claims',
+                    data: [
+                        ['Pending (200)', 200],
+                        ['Finalized (400)', 400],
+                        ['In Process (100)', 100]
+                    ]
+                }]
+            });
+        });
+
+    // begin circle 3
+        $(function () {
+            $('#circle3').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: false,
+                    }
+                },
+                title: {
+                    text: 'Claim Types Filed'
+                },
+                subtitle: {
+                    text: 'Types of Claim'
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 175,
+                        depth: 45
+                    }
+                },
+                series: [{
+                    name: 'Claims',
+                    data: [
+                        ['Fire (150)', 150],
+                        ['Theft (300)', 300],
+                        ['Flood (100)', 100],
+                        ['Act of God (250)', 250],
+                        ['Earthquake (20)', 20]
+                    ]
+                }]
+            });
+        });
+
+
+
+   //--------> End Circle Charts for Views <----------------
+ 
+    </script>
+    
+   
+    
+    <br>
+    <br>
+    <br>
+
+    
