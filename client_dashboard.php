@@ -148,6 +148,7 @@ if($num_rooms==0){
                 }
 
             echo "</span>"; //end half
+if(!empty($total_items)){
             echo "<span class=\"half_div\">"; 
                 //SHOW RECENTLY ADDED ITEMS
                 $recent_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY id DESC LIMIT 10";   
@@ -161,7 +162,7 @@ if($num_rooms==0){
                     }//end get recent items
 
             echo "</span>"; //end half
-    
+}
     
        
        echo "</div>";
@@ -219,7 +220,7 @@ if($num_rooms==0){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
           
-          <li><a href="claim_history.php">
+          <span class="half_div">
               
             <a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)<br/>
             <a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>)<br/>
@@ -228,10 +229,43 @@ if($num_rooms==0){
             <a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>) <br/>
             <a href="claim_history.php?draft"><i class="fa fa-file-o "></i> Drafts </a> (<?php echo $drdata['total']; ?>) <br/>
             
+            </span>
             
             
+            <span class="half_div">
+<!--            IF ANY DRAFTS, SHOW BY ID ASC-->
+   <?php
+    $get_draft  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1 ORDER BY id LIMIT 1";  
+    $draft_result = mysqli_query($connection, $get_draft); 
+    $draft_rows=mysqli_num_rows($draft_result);
+    if($draft_rows >=1){
+        echo "<h2>Finish This Draft</h2><br/>";
+         $draft_details=mysqli_fetch_assoc($draft_result);
+        echo "<h4>".$draft_details['title']."</h4>";
+        echo "<p>".$draft_details['notes']."</p>";
+        echo "<a href=\"claim_details.php?id=".$draft_details['id']."\">Edit Claim</a>";
+    }else{
+//    IF NO DRAFTS, SHOW LAST CLAIM SUBMITTED, AND ITS STATUS
+        echo "<h2>Most Recent Claim</h2><br/>";
+        $get_claim  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} ORDER BY id LIMIT 1";  
+        $claim_result = mysqli_query($connection, $get_claim); 
+        $claim_rows=mysqli_num_rows($claim_result);
+        if($claim_rows >=1){
+             $claim_details=mysqli_fetch_assoc($claim_result);
+            echo "<h4>".$claim_details['title']."</h4>";
+            echo "<p>".$claim_details['notes']."</p>";
+            echo "<a href=\"claim_details.php?id=".$claim_details['id']."\">View Claim</a>";
+
+        }else{
+
+            //IF NO CLAIMS SUBMITTED, SHOW...
+            echo "<h2>You have made no claims!</h2>";
+        }
+    
+    }
+?> 
             
-            
+</span>
             
             
 <!--            MOST RECENTLY ADDED ITEMS -->
