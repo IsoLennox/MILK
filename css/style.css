@@ -332,6 +332,9 @@ input[type="submit"] ~ a {
 	/*position: absolute;
 	bottom:-100px;
 	left:40%;*/
+    
+/*    Isobel's ghetto fix */
+    margin-top: 500px;
 }
 
 .milk img{
