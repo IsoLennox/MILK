@@ -146,10 +146,10 @@ if($_SESSION['is_employee']==0){
             $all_result = mysqli_query($connection, $all_query);
             $data=mysqli_fetch_assoc($all_result);
         
-        if($data['total']==0){ $claim_alert=""; }else{ $claim_alert="claim_alert"; }
+        if($data['total']==0){ $claim_alert=""; $total_alerts=""; }else{ $claim_alert="claim_alert"; $total_alerts=$data['total']; }
           ?>
            
-            <li class='alert_container'><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> <div class="<?php echo $claim_alert; ?>"><?php if($data['total']!==0){ echo $data['total']; } ?></div>
+            <li class='alert_container'><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> <div class="<?php echo $claim_alert; ?>"><?php echo $total_alerts; ?></div>
                 <ul> 
                  <li><a href="file_new_claim.php"><i class="fa fa-file-text"></i> File Claim</a></li>  
                 </ul>
