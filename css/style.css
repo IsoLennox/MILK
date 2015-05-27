@@ -987,6 +987,7 @@ display: block;
     
 }
 
+.alert_node{ padding: 5px;}
 .alert_node:hover{
     background: rgba(0,0,0,0.1);
 }
