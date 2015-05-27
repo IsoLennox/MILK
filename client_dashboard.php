@@ -1,19 +1,3 @@
-<section class="circle_charts">
-    <div class="pie-chart" id="circle1"></div>
-<!--
-    <div class="pie-chart" id="circle2"></div>
-    <div class="pie-chart" id="circle3"></div>
--->
-</section>
-   
-   
-<!--  BAR GRAPH-->
-   <div id="chart_container" height="400px" width="100%"></div>
-
-    
-       
-      
-      
 <?php 
 
                     //*****************
@@ -222,7 +206,23 @@ if($num_rooms==0){
     </div>
 
 
+  
+  
+<!--  CHARTS -->
+  
+  
+  
+   <section class="circle_charts">
+    <div class="pie-chart" id="circle1"></div>
+<!--
+    <div class="pie-chart" id="circle2"></div>
+    <div class="pie-chart" id="circle3"></div>
+-->
+</section>
    
+   
+<!--  BAR GRAPH-->
+   <div id="chart_container" height="400px" width="100%"></div>
  
 
         <script>
