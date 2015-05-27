@@ -6,6 +6,7 @@
     
     $alerts_query  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id != 0 AND status_id != 1 AND hidden=0";  
     $alertresult = mysqli_query($connection, $alerts_query);
+if($alertresult){
     $rows = mysqli_num_rows($alertresult);
     if($rows>=1){
         echo "<div id=\"alerts\">";
@@ -27,7 +28,7 @@
         
         echo "</div>   <hr>";
         }
-      
+}
 
     ?>
     

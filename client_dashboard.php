@@ -126,12 +126,13 @@ if($num_rooms==0){
             foreach($words as $word) {
             $result[$word]++;
             }
-
+                    echo "<ul>";
             foreach($result as $word => $count) {
                 if($word!==""){
-                    echo "$count items in $word.<br/>";
+                    echo "<li>$count items in $word.</li><br/>";
                 }
             }
+                echo "</ul>";
             }
             
     
@@ -200,10 +201,18 @@ if($num_rooms==0){
             <a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)<br/>            
             <a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>) <br/>
             <a href="claim_history.php?draft"><i class="fa fa-file-o "></i> Drafts </a> (<?php echo $drdata['total']; ?>) <br/>
+            
+            
+            
+            
+            
+            
+            
+<!--            MOST RECENTLY ADDED ITEMS -->
 
     </ul>
     </div>
-    </div>
+<!--    </div>-->
 
 
 
