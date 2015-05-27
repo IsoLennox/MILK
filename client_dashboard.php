@@ -1,3 +1,408 @@
+
+<section class="circle_charts">
+    <div id="circle1"></div>
+    <div id="circle2"></div>
+    <div id="circle3"></div>
+</section>
+   
+   <div id="chart_container" height="400px" width="100%"></div>
+
+    
+      <ul>  
+      
+      
+<?php //NUMBER OF ROOMS
+    $rooms=0;
+    $room_count  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
+    $room_result = mysqli_query($connection, $room_count);
+    $num_rooms=mysqli_num_rows($room_result);
+    
+    //get items for each room
+
+function item_array($array, $key, $value){
+                    $array[$key] = $value;
+                    return $array;
+                }
+
+ echo "<div class=\"one-third\">";
+echo "<li>You have ".$num_rooms." rooms: </li>";
+if($num_rooms==0){
+?>
+        
+    
+        <!--      ADD A ROOM  -->
+<form  method="POST" action="rooms.php">
+    <h2>Add A Room</h2>
+    <label for="room_name">Room Name: </label><input id='room_name' type="text" name="name" placeholder="e.x. Bedroom.."><br/>
+    <label for="room_notes">Room Notes:</label><textarea id='room_notes' cols="20" rows="8"  name="notes" placeholder="e.x. This room is in the guest house..."></textarea><br/> 
+    <input name="submit" type="submit" value="Save Room">
+</form> 
+            
+            <?php }
+  
+    $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
+    $roomresult = mysqli_query($connection, $roomquery);
+    if($roomresult){ 
+        $rooms=array();
+        //show each result value
+        foreach($roomresult as $show){
+                $item_count=0;
+                $item_array=array();
+
+            
+                $item_query  = "SELECT * FROM items WHERE room_id={$show['id']} AND in_trash=0";  
+                $item_result = mysqli_query($connection, $item_query);
+            if($item_result){
+                foreach($item_result as $item){  
+                    $item_count++; 
+                    $item_array = item_array($item_array, $item['id'], $item['name']);
+                 }
+            }
+            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (".$item_count." items)</h4>";
+            
+            //PUT ALL ROOMS INTO ARRAY TO USSE IN HIGHCHARTS
+            array_push($rooms , "{name: '".$show['name']."', data: [5, 3, 4, 7, 2] }");
+           
+                if(!empty($item_array)){
+                     echo "<ul>";
+                    foreach($item_array as $id=>$name){
+                        echo "<li><a href=\"item_details.php?id=".$id."\" >".$name."</a></li>";
+                    }
+                    echo "</ul>";
+                }
+ 
+            }
+        }
+        
+
+        //COUNT ROOMS FOR FOR LOOP TO ECHO EACH OUT IN HIGH CHARTS
+        $count_rooms=0;
+        foreach($rooms as $room_array){
+            $count_rooms++;
+        //    echo $room_array; 
+        }
+                   
+            echo "</div>";
+          echo "<div class=\"one-third\">";
+
+//TOTAL ITEMS  
+            $total_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";   
+            $total_item_result = mysqli_query($connection, $total_item_query);
+            $total_items=0; 
+            $categories;
+            foreach($total_item_result as $item){
+                    $total_items++;
+                
+                //TOTAL ITEMS IN EACH CATEGORY
+                $category_query  = "SELECT * from item_category WHERE id={$item['category']}";   
+                $category_result = mysqli_query($connection, $category_query);
+                foreach($category_result as $cat){
+//                    array_push($categories,$cat['name']);
+                    $categories=$categories.",".$cat['name'];
+                }
+                
+                
+            }
+            echo "You have ".$total_items." items<br/>";
+            
+            if($total_items==0){
+//                echo "<a href=\"add_item.php\">Add your first item!</a>";
+                ?>
+                <br/>
+                <h2>Add Item</h2>
+                <form class='add_item' action="add_item.php" method="POST" >
+              
+    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="" > 
+     <!--    //GET ITEM CATEGORIES -->
+   <?php
+    $category_query  = "SELECT * FROM item_category"; 
+    $categoryresult = mysqli_query($connection, $category_query);
+    if($categoryresult){  
+        echo "<label for=\"category\">Item Category: </label><select style=\"border: 2px solid #90C32E;\" id='category' name=\"category\">";
+         echo "<option value=\"--\" >--Select Item Category--</option>";
+        foreach($categoryresult as $category){
+            //OPTIONS
+            if($cat==$category['id']){ $selected="selected"; }else{ $selected=""; }
+            echo "<option ".$selected." value=\"".$category['id']."\" >".$category['name']."</option>"; 
+        }
+        echo "</select>";
+    }//end get categories
+
+?> 
+<!--    //GET ROOMS TO CHOOSE FROM -->
+   <?php
+        $room_query  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}"; 
+        $roomresult = mysqli_query($connection, $room_query);
+        if($roomresult){ 
+            //ROOM SELECT BOX
+            echo "<label for=\"room\">Room: </label><select id='room' name=\"room\" >";
+            foreach($roomresult as $room){
+                //OPTIONS
+                if($room==$room['id']){ $selected2="selected"; }else{ $selected2=""; }
+                echo "<option ".$selected2." value=\"".$room['id']."\" >".$room['name']."</option>"; 
+            }
+            echo "</select>";
+        }//end get rooms 
+ ?>
+    <fieldset class='form_blocks'>
+        <label for="notes">Item Description/Notes: </label><textarea name="notes" id="notes" cols="30" rows="12" value=""></textarea>
+    </fieldset>
+
+<!--    <fieldset class='form_blocks'>-->
+        <label for="purchase_date">Purchase Date: </label><input type="text" id="purchase_date" name="purchase_date" placeholder="mm/dd/yyyy" value="">
+        <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950" value="">
+        <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950" value="">
+<!--    </fieldset>-->
+    <input type="submit" name="submit" value="Next"> 
+ </form>
+           
+           
+           <?php
+            }
+            if(!empty($categories)){
+            $words = explode(",", $categories);
+            $result = array_combine($words, array_fill(0, count($words), 0));
+
+            foreach($words as $word) {
+            $result[$word]++;
+            }
+
+            foreach($result as $word => $count) {
+                if($word!==""){
+                    echo "There are $count instances of $word.<br/>";
+                }
+            }
+            }
+            
+    
+    
+       
+       echo "</div>";
+        echo "<div class=\"one-third\">";
+   
+    $claims=0;
+    $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
+    $claim_result = mysqli_query($connection, $claim_count);
+    $num_claims=0;
+    if($claim_result){
+        foreach($claim_result as $claim){
+        $num_claims++;
+    }
+    }
+//    echo "<li>You have made ".$num_claims." claims</li>";
+
+
+
+ 
+        //GET COUNTS
+            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
+            $all_result = mysqli_query($connection, $all_query);
+            $data=mysqli_fetch_assoc($all_result);
+
+            $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
+            $pending_result = mysqli_query($connection, $pending_query);
+            $pdata=mysqli_fetch_assoc($pending_result); 
+                
+            $draft_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1";   
+            $draft_result = mysqli_query($connection, $draft_query);
+            $drdata=mysqli_fetch_assoc($draft_result); 
+
+                
+            $changes_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
+            $changes_result = mysqli_query($connection, $changes_query);
+            $cdata=mysqli_fetch_assoc($changes_result); 
+
+
+            $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=2";   
+            $approved_result = mysqli_query($connection, $approved_query);
+            $adata=mysqli_fetch_assoc($approved_result); 
+
+            $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=3";   
+            $denied_result = mysqli_query($connection, $denied_query);
+            $ddata=mysqli_fetch_assoc($denied_result); 
+        ?>
+          
+          <li><a href="claim_history.php"><i class="fa fa-list black"></i> All Claims </a> (<?php echo $data['total']; ?>)</li>
+           <li><a href="claim_history.php?draft"><i class="fa fa-caret-square-o-right orange"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
+           <li><a href="claim_history.php?pending"><i class="fa fa-caret-square-o-right blue"></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
+           <li><a href="claim_history.php?approved"><i class="fa fa-caret-square-o-right green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
+           <li><a href="claim_history.php?changes"><i class="fa fa-caret-square-o-right yellow"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+           <li><a href="claim_history.php?denied"><i class="fa fa-caret-square-o-right red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
+
+    </ul>
+    </div></div>
+
+
+        <script>
+    // -------> Begin Vertical Bar chart <--------------
+        $(function () {
+            $('#chart_container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Stacked column chart'
+                },
+                xAxis: {
+                    categories: ['Living Room', 'Kitchen', 'Bathroom', 'Bed Room', 'Other']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Items Claimed'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
+                    }
+                },
+                legend: {
+                    align: 'right',
+                    x: -30,
+                    verticalAlign: 'top',
+                    y: 25,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 1,
+                    shadow: false
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.x + '</b><br/>' +
+                            this.series.name + ': ' + this.y + '<br/>' +
+                            'Total: ' + this.point.stackTotal;
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
+                    }
+                },
+                series: [
+                  
+                    <?php
+            // $loop_count=0;
+            // foreach($rooms as $room_array){
+            //     $loop_count++;
+            //             if($loop_count < $room_count){
+            //             echo $room_array.", ";
+            //             }else{ echo $room_array; }
+                    ?>
+                    {
+                    name: 'Jewelry',
+                    data: [5, 3, 4, 7, 2]
+                }, {
+                    name: 'Electronics',
+                    data: [2, 2, 3, 2, 1]
+                }, {
+                    name: 'Furniture',
+                    data: [3, 4, 4, 2, 5]
+                }, {
+                    name: 'Musical Instruments',
+                    data: [3, 4, 4, 2, 5]
+                }, {
+                    name: 'Other',
+                    data: [3, 4, 4, 2, 5]
+                }
+                     <?php //} ?>
+                        ]
+            });
+        });
+   // -------> End of Vertical Bar chart <--------------
+
+
+   // -------> Begin Circle Charts for Views <--------------
+        
+    // begin chart 1
+        $(function () {
+            $('#circle1').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: false,
+                    }
+                },
+                title: {
+                    text: 'Total Number of Website Views'
+                },
+                subtitle: {
+                    text: ''
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 175,
+                        depth: 45
+                    }
+                },
+                series: [{
+                    name: 'Total Views',
+                    data: [
+                        ['Applicants (3154)', 3154],
+                        ['Forwards (912)', 912],
+                        ['Interviews (1546)', 1546]
+                    ]
+                }]
+            });
+        });
+
+    // begin circle 2
+        $(function () {
+            $('#circle2').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: false,
+                    }
+                },
+                title: {
+                    text: 'Current Week\'s Claims'
+                },
+                subtitle: {
+                    text: 'Current Claims Status'
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 175,
+                        depth: 45
+                    }
+                },
+                series: [{
+                    name: 'Claims',
+                    data: [
+                        ['Pending (200)', 200],
+                        ['Finalized (400)', 400],
+                        ['In Process (100)', 100]
+                    ]
+                }]
+            });
+        });
+
+
+
+
+   //--------> End Circle Charts for Views <----------------
+ 
+    </script>
+    
+   
+    
+    <br>
+    <br>
+    <br>
+
+<<<<<<< HEAD
+=======
 <section>
     <div id="circle1" height: "50px" width: "5%"></div>
     <div id="circle2" height: "50px" width: "5%"></div>
@@ -399,4 +804,7 @@ if($num_rooms==0){
     <br>
     <br>
 
+>>>>>>> e6de38b568b26329bd4fed5636c68798e9bdfd6f
+=======
+>>>>>>> b5162b871a046e5130f20deead0918d16fa19f56
     

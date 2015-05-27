@@ -35,9 +35,13 @@ confirm_logged_in();
         <!--   JS VERSIONS-->
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
-        <!-- For High Charts -->
+        <!-- For High Charts: Vertical Bar Charts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
+        <!-- For High Charts: Circular View Charts -->
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/highcharts-3d.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>
     </head>
        
 <body>
