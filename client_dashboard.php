@@ -1,16 +1,28 @@
 <section class="circle_charts">
-    <div id="circle1"></div>
-    <div id="circle2"></div>
-    <div id="circle3"></div>
+    <div class="pie-chart" id="circle1"></div>
+<!--
+    <div class="pie-chart" id="circle2"></div>
+    <div class="pie-chart" id="circle3"></div>
+-->
 </section>
    
+   
+<!--  BAR GRAPH-->
    <div id="chart_container" height="400px" width="100%"></div>
 
     
        
       
       
-<?php //NUMBER OF ROOMS
+<?php 
+
+                    //*****************
+                    //    ROOMS
+                    //*****************
+
+
+
+//GET NUMBER OF ROOMS
     $rooms=0;
     $room_count  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
     $room_result = mysqli_query($connection, $room_count);
@@ -24,7 +36,8 @@ function item_array($array, $key, $value){
                 }
 
  echo "<div class=\"stats\"> <ul>";
-echo "<li>You have ".$num_rooms." rooms: </li>";
+//echo "<h3>You have ".$num_rooms." rooms <h3>";
+echo "<h3>".$num_rooms." rooms <h3>";
 if($num_rooms==0){
 ?>
         
@@ -57,7 +70,7 @@ if($num_rooms==0){
                     $item_array = item_array($item_array, $item['id'], $item['name']);
                  }
             }
-            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a> (".$item_count." items)</h4>";
+            echo "<h4><a href=\"room_details.php?id=".$show['id']."\">".$show['name']."</a><br/> (".$item_count." items)</h4>";
             
             //PUT ALL ROOMS INTO ARRAY TO USSE IN HIGHCHARTS
             array_push($rooms , "{name: '".$show['name']."', data: [5, 3, 4, 7, 2] }");
@@ -82,6 +95,18 @@ if($num_rooms==0){
         }
                    
             echo "</div>";
+
+
+
+
+                    //*****************
+                    //    ITEMS
+                    //*****************
+
+
+
+
+
           echo "<div class=\"stats\">";
 
 //TOTAL ITEMS  
@@ -102,7 +127,7 @@ if($num_rooms==0){
                 
                 
             }
-            echo "You have ".$total_items." items<br/>";
+            echo "<h3>You have ".$total_items." items</h3><br/>";
             
             if($total_items==0){
                 echo "<a href=\"add_item.php\">Add your first item!</a>";
@@ -127,6 +152,16 @@ if($num_rooms==0){
     
        
        echo "</div>";
+
+
+
+                    //*****************
+                    //    CLAIMS
+                    //*****************
+
+
+
+
         echo "<div class=\"stats\">";
    
     $claims=0;
@@ -171,15 +206,18 @@ if($num_rooms==0){
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
           
-          <li><a href="claim_history.php"><i class="fa fa-list black"></i> All Claims </a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claim_history.php?draft"><i class="fa fa-caret-square-o-right orange"></i> Drafts </a> (<?php echo $drdata['total']; ?>)</li>
-           <li><a href="claim_history.php?pending"><i class="fa fa-caret-square-o-right blue"></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claim_history.php?approved"><i class="fa fa-caret-square-o-right green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claim_history.php?changes"><i class="fa fa-caret-square-o-right yellow"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
-           <li><a href="claim_history.php?denied"><i class="fa fa-caret-square-o-right red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
+          <li><a href="claim_history.php">
+              
+            <a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)<br/>
+            <a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>)<br/>
+            <a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddata['total']; ?>)<br/>             
+            <a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)<br/>            
+            <a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>) <br/>
+            <a href="claim_history.php?draft"><i class="fa fa-file-o "></i> Drafts </a> (<?php echo $drdata['total']; ?>) <br/>
 
     </ul>
-    </div></div>
+    </div>
+    </div>
 
 
    
@@ -286,7 +324,7 @@ if($num_rooms==0){
                     }
                 },
                 title: {
-                    text: 'Total Number of Website Views'
+                    text: 'Claim Status'
                 },
                 subtitle: {
                     text: ''
@@ -311,6 +349,38 @@ if($num_rooms==0){
     // begin circle 2
         $(function () {
             $('#circle2').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: false,
+                    }
+                },
+                title: {
+                    text: 'Current Week\'s Claims'
+                },
+                subtitle: {
+                    text: 'Current Claims Status'
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 175,
+                        depth: 45
+                    }
+                },
+                series: [{
+                    name: 'Claims',
+                    data: [
+                        ['Pending (200)', 200],
+                        ['Finalized (400)', 400],
+                        ['In Process (100)', 100]
+                    ]
+                }]
+            });
+        });
+            
+                // begin circle 3
+        $(function () {
+            $('#circle3').highcharts({
                 chart: {
                     type: 'pie',
                     options3d: {
