@@ -21,7 +21,7 @@ function item_array($array, $key, $value){
 
  echo "<div class=\"stats\"> ";
 //echo "<h3>You have ".$num_rooms." rooms <h3>";
-echo "<h3>You have ".$num_rooms." rooms </h3> <p>Showing 3</p><br/>";
+echo "<h3>You have ".$num_rooms." rooms </h3> <p>Showing 3 of ".$num_rooms."</p><br/>";
 if($num_rooms==0){
 ?>
         
