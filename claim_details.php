@@ -159,7 +159,7 @@ if(isset($_GET['id'])){
     
      <form action="claim_details.php?save_changes=<?php echo $claim_id; ?>" method="POST"> 
       
-          <p>Title: <input type="text" name="title" value="<?php echo $old_title; ?>"></p> <br> 
+          <label for="title"> Title: </label><input type="text" id='title' name="title" value="<?php echo $old_title; ?>">
        <?php
     
     
@@ -204,13 +204,14 @@ if(isset($_GET['id'])){
                         $claim_item_rows=mysqli_num_rows($item_claim_result);
                         if($claim_item_rows < 1){ 
                             //OPTIONS
-                            echo "<li><input type=\"checkbox\" name=\"items[]\" value=\"".$item['id']."\" >".$item['name']."</option></li>"; 
+                            echo "<li><input type=\"checkbox\" name=\"items[]\" id=\"".$item['id']."\" value=\"".$item['id']."\" ><label for='".$item['id'] . "'>". $item['name']."</label></li>"; 
+                            
                         }else{
 //                            echo "<li>".$item['name']." is in a claim</li>";
                         } 
                     }
                     echo "</ul></p>";
-                     
+                    echo "<div class=\"clearfix\"></div>";
                 }//end get items  
     
     echo "<br/><br/>";
