@@ -781,6 +781,15 @@ header {
 
 
 
+#edit_img_title {
+    background: white;
+    z-index: 9999;
+    box-shadow: 0 5px 25px #000;
+    position: absolute;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 
 
 

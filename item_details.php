@@ -246,12 +246,14 @@ if(isset($_GET['remove'])){
                         if(isset($_GET['edit_img']) && $_GET['edit_img']==$image['id']){
                             //Show edit title form
                             ?>
+                            <div id="edit_img_title">
                             <form method="POST">
                                 <input type="text" name="new_title" value="<?php echo $image['title']; ?>">
                                 <input type="hidden" name="image_id" value="<?php echo $image['id']; ?>"> 
                                 <input type="submit" name="save_title" value="Save Title">
                             </form>
                             <a href="item_details.php?id=<?php echo $id; ?>">Cancel</a>
+                            </div>
                             <hr/>
                             <?php
                         
