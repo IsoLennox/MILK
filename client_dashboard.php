@@ -7,7 +7,7 @@
    <div id="chart_container" height="400px" width="100%"></div>
 
     
-      <ul>  
+       
       
       
 <?php //NUMBER OF ROOMS
@@ -23,7 +23,7 @@ function item_array($array, $key, $value){
                     return $array;
                 }
 
- echo "<div class=\"one-third\">";
+ echo "<div class=\"stats\"> <ul>";
 echo "<li>You have ".$num_rooms." rooms: </li>";
 if($num_rooms==0){
 ?>
@@ -82,7 +82,7 @@ if($num_rooms==0){
         }
                    
             echo "</div>";
-          echo "<div class=\"one-third\">";
+          echo "<div class=\"stats\">";
 
 //TOTAL ITEMS  
             $total_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";   
@@ -177,7 +177,7 @@ if($num_rooms==0){
     
        
        echo "</div>";
-        echo "<div class=\"one-third\">";
+        echo "<div class=\"stats\">";
    
     $claims=0;
     $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  

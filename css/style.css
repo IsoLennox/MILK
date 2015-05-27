@@ -341,7 +341,7 @@ img {
 	max-width: 900px;
 }
 
-.one_third {
+.stats {
     width: 30%;
 	float: left;
 	margin-bottom: 25px;
@@ -351,7 +351,7 @@ img {
     border: 2px solid #ddd;
     min-height: 275px;
 }
-	.one_third:nth-of-type(3){
+	.stats:nth-of-type(3){
 		margin-right: 0;
 	}
 
