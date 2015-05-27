@@ -52,7 +52,7 @@ if($num_rooms==0){
             
             <?php }
   
-    $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']}";  
+    $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']} LIMIT 3";  
     $roomresult = mysqli_query($connection, $roomquery);
     if($roomresult){ 
         $rooms=array();
@@ -84,6 +84,8 @@ if($num_rooms==0){
                 }
  
             }
+        
+        echo "<a href=\"rooms.php\">View all rooms</a>";
         }
         
 
@@ -143,7 +145,7 @@ if($num_rooms==0){
 
             foreach($result as $word => $count) {
                 if($word!==""){
-                    echo "There are $count instances of $word.<br/>";
+                    echo "$count items in $word.<br/>";
                 }
             }
             }

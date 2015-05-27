@@ -128,7 +128,7 @@ if($_SESSION['is_employee']==0){
                <?php
                 }
     
-            if(isset($current_page) && $current_page=="claims"){  ?>
+    if(isset($current_page) && $current_page=="claims"){  ?>
             <li class="current_page"><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> 
             <ul>  
           <?php 
@@ -141,7 +141,8 @@ if($_SESSION['is_employee']==0){
             </li> 
            
 <?php }else{ 
-            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
+        //SHOW ALERT IF ANY CLAIMS ARE PENDING CHANGES
+            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
             $all_result = mysqli_query($connection, $all_query);
             $data=mysqli_fetch_assoc($all_result);
           ?>
