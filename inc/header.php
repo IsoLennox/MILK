@@ -214,20 +214,27 @@ if($_SESSION['is_employee']==0){
                     ?>
                 
                 
+                <?php  if(!isset($current_page) || $current_page=="dashboard"){ ?>
+                        <li class="current_page"><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+                <?php  }else{ ?>
+                    <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+                <?php   } ?>
+
+
                 <?php  if(isset($current_page) &&  $current_page=="messages"){ ?>   
-                        <li class="current_page"><a href="messages.php"><i class="fa fa-envelope"></i> Messages </a>(<?php echo $num_messg; ?>)</li>
-              <?php  }else{ ?>   
-                      <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages </a>(<?php echo $num_messg; ?>)</li>
-             <?php   } ?>
+                        <li class="current_page"><a href="messages.php" class='alert_container'><i class="fa fa-envelope"></i> Messages <div class="claim_alert"><?php echo $num_messg; ?></div></a></li>
+                <?php  }else{ ?>   
+                        <li><a href="messages.php" class='alert_container'><i class="fa fa-envelope"></i> Messages <div class="claim_alert"><?php echo $num_messg; ?></div></a></li>
+                <?php   } ?>
                 
                 
                 
                 <?php  
                       //?pending removed from link, not sure if we want it to go to all or just the new claims first
                       if(isset($current_page) && $current_page=="claims"){ ?>  
-                <li class="current_page"><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a><div class="claim_alert"><?php echo $total; ?></div></li> 
+                <li class="current_page"><a class='alert_container' href="claims.php?pending"><i class="fa fa-file-text"></i> Claims <div class="claim_alert"><?php echo $total; ?></div></a></li> 
               <?php  }else{ ?>  
-                <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a><div class="claim_alert"><?php echo $total; ?></div></li> 
+                <li><a class='alert_container' href="claims.php?pending"><i class="fa fa-file-text"></i> Claims <div class="claim_alert"><?php echo $total; ?></div></a></li> 
              <?php   } ?>
                
                
@@ -264,12 +271,7 @@ if($_SESSION['is_employee']==0){
                       <li><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
              <?php   } ?>
                 
-                
-               <?php  if(!isset($current_page) || $current_page=="dashboard"){ ?>
-                        <li class="current_page"><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
-              <?php  }else{ ?>
-                  <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
-             <?php   } ?>
+              
                  
                 <?php if(isset($current_page) && $current_page=="activity"){ ?>
                 <li class="current_page"><a href="activity.php"><i class="fa fa-history"></i> Activity</a></li> 

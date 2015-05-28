@@ -1003,8 +1003,11 @@ display: block;
     padding: 3px;
     overflow: hidden;
     position: absolute;
-    right: 115px;
-     top: 310px;
+    /*right: 115px;
+     top: 310px;*/
+     top: -5px;
+     right:-35px;
+     display:inline-block;
     font-size: .7em;
     text-align: center;
    
