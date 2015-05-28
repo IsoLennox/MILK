@@ -10,7 +10,7 @@ TO DO:
 ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
 -->
 
-<h1>Claims</h1>
+<!-- <h1>Claims</h1> -->
 
          <?php  
             //GET CLAIM COUNTS
@@ -35,37 +35,80 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
         ?>
-        <ul>
-           <li><a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
-           <li><a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>)</li>
-           <li><a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>)</li>
-           <li><a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>)</li>
-           <li><a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>)</li>
-        </ul>
-       
+
        
        <?php
 //get type of claim queried
     if(isset($_GET['pending'])){
         
-        echo "<h1>Unprocessed Claims</h1>";  
+        echo "<h1>Unprocessed Claims</h1>";
+        ?>
+        <div class="claim_filters">
+           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
+           <a href="claims.php?pending"><i class="fa fa-file-text"></i> Inactive </a>(<?php echo $total; ?>) |           
+           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
+           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
+           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
+           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>) 
+        </div>
+        <?php 
         $query  = "SELECT * FROM claims WHERE status_id=0 ORDER BY id DESC";  
    
     }elseif(isset($_GET['changes'])){  
-        echo "<h1>Awaiting Client Changes</h1>";  
+        echo "<h1>Awaiting Client Changes</h1>";
+         ?>
+        <div class="claim_filters">
+           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
+           <a href="claims.php?pending"><i class="fa fa-file-text"></i> Inactive </a>(<?php echo $total; ?>) |           
+           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
+           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
+           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
+           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>) 
+        </div>
+        <?php  
         $query  = "SELECT * FROM claims WHERE status_id=4 ORDER BY id DESC";  
   
     }elseif(isset($_GET['approved'])){
-        echo "<h1>Approved Claims</h1>";  
+        echo "<h1>Approved Claims</h1>";
+         ?>
+        <div class="claim_filters">
+           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
+           <a href="claims.php?pending"><i class="fa fa-file-text"></i> Inactive </a>(<?php echo $total; ?>) |           
+           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
+           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
+           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
+           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>) 
+        </div>
+        <?php  
        $query  = "SELECT * FROM claims WHERE status_id=2 ORDER BY id DESC";  
         
     }elseif(isset($_GET['denied'])){
-        echo "<h1>Denied Claims</h1>";  
+        echo "<h1>Denied Claims</h1>";
+         ?>
+        <div class="claim_filters">
+           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
+           <a href="claims.php?pending"><i class="fa fa-file-text"></i> Inactive </a>(<?php echo $total; ?>) |           
+           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
+           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
+           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
+           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>) 
+        </div>
+        <?php  
         $query  = "SELECT * FROM claims WHERE status_id=3 ORDER BY id DESC";  
 
     }else{
   
   echo "<h1>All Claims</h1>";
+   ?>
+        <div class="claim_filters">
+           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
+           <a href="claims.php?pending"><i class="fa fa-file-text"></i> Inactive </a>(<?php echo $total; ?>) |           
+           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
+           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
+           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
+           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>) 
+        </div>
+        <?php
     $query  = "SELECT * FROM claims WHERE status_id != 1 ORDER BY id DESC";  
         
     }
