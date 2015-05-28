@@ -109,11 +109,18 @@ h2 {font-size: 2em;
 h3 {
 	color:firebrick;
     font-size: 1.5em;
-    margin-bottom: 5px
+    margin-bottom: 5px;
 }
 
 h4 {
     font-size: 1.3em;
+}
+
+h5 {
+	/*color:#004800;*/
+	font-weight: 400;
+	font-size: 1.3em;
+	margin-bottom: 15px;
 }
 
 a {
@@ -256,6 +263,19 @@ input[type="submit"], .green_submit, .red_submit{
 
 }
 
+input[type="file"]{ 
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    border:none;
+    color: #333;
+    font-size: 1em;
+}
+
+input[type="file"]:hover{
+    
+}
+
 
 
 .red_submit{ background-color: firebrick; color: #eee; }
@@ -312,6 +332,9 @@ input[type="submit"] ~ a {
 	/*position: absolute;
 	bottom:-100px;
 	left:40%;*/
+    
+/*    Isobel's ghetto fix */
+    margin-top: 500px;
 }
 
 .milk img{
@@ -642,9 +665,40 @@ header {
 	}
 
 
+/*ITEM DETAILS IMAGE GALLERY*/
+.gallery{
+    margin: 5px;
+    padding: 20px;
+    max-width: 900px;
+    width:100%;
+    text-align: center;
+    /*overflow: hidden;*/
+}
 
+	.gallery > div {
+		float:left;
+		width:32%;
+		padding:20px;
+		height:250px;
+		
+	}
 
+.img_edit {
+	text-align: right;
+	padding-left:10px;
+}
 
+.img_container {
+	width:150px;
+	height:150px;
+	overflow: hidden;
+	margin:0 auto 10px;
+	border:1px solid #eee;
+}
+
+.thumbnail {
+	width:150px;
+}
 
 
 
@@ -726,6 +780,15 @@ header {
 }
 
 
+
+#edit_img_title {
+    background: white;
+    z-index: 9999;
+    box-shadow: 0 5px 25px #000;
+    position: absolute;
+    padding: 10px;
+    border-radius: 10px;
+}
 
 
 
@@ -855,21 +918,6 @@ header {
 .fa-trash-o { color:firebrick;}
 .fa-trash-o:hover { color:grey;}
 
-
-.add_item input[type="file"]:hover{
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px; 
-    color: #333;
-}
-
-.add_item input[type="file"]{ 
-    cursor: pointer;
-    font-size: 20px;
-    padding: 5px;
-    border-radius: 5px;
-    color: #333;
-}
   
 
 #scrollbox{
@@ -878,12 +926,7 @@ header {
     overflow: scroll;
 }
 
-.gallery{
-    margin: 5px;
-    padding: 20px;
-    border: 1px solid grey;
-    overflow: hidden;
-}
+
 
 
 
@@ -960,8 +1003,28 @@ display: block;
     padding: 3px;
     overflow: hidden;
     position: absolute;
-    right: 115px;
-    top: 5px;
+    /*right: 115px;
+     top: 310px;*/
+     top: -5px;
+     right:-35px;
+     display:inline-block;
+    font-size: .7em;
+    text-align: center;
+   
+}
+.claim_alert_client{
+    
+    color: #333;
+    /*background-color:#90C32E; */
+    border:2px solid #90C32E;
+    border-radius: 11px;
+    width: 22px;
+    height: 22px;
+    padding: 3px;
+    overflow: hidden;
+    position: absolute;
+    top: -5px;
+    right:-35px;
     font-size: .7em;
     text-align: center;
    

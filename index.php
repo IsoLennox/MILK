@@ -21,11 +21,31 @@ if($_SESSION['is_employee']==0){
         $mark_read  = "UPDATE claims SET hidden=1 WHERE id={$_GET['read']} LIMIT 1";  
         $readresult = mysqli_query($connection, $mark_read);
         if($readresult){
-        $_SESSION['message']="Marked as read!";
-        redirect_to('index.php');
+            $_SESSION['message']="Marked as read!"; 
+            $link="<a href='index.php?undo={$_GET['read']}'>Undo</a>"; 
+            $_SESSION['errors']=$link; 
+            redirect_to('index.php');
         }
+    }
+        
+        if(isset($_GET['undo'])){
+            
+                echo "You Undid this item!";
+                $mark_read  = "UPDATE claims SET hidden=0 WHERE id={$_GET['undo']} LIMIT 1";  
+                $readresult = mysqli_query($connection, $mark_read);
+                if($readresult){ 
+                    $_SESSION['message']="Marked as Unread!"; 
+//                    echo "Marked as Unread!"; 
+                redirect_to('index.php');
+            }else{
+                $_SESSION['message']="Could not revive alert"; 
+//                    echo "Marked as Unread!"; 
+                redirect_to('index.php');
+            }
 
-}
+        }
+   
+
     
 }else{  
     
@@ -202,9 +222,9 @@ if($_SESSION['is_employee']==0){
                     $item_val_data=mysqli_fetch_assoc($item_val_result);
                     $total_claim_value=$total_claim_value+$item_val_data['declared_value'];
             }
-            echo "Total number of items in claims: ".$total_claimed_items."<br/>";
-            echo "Total Value of all combined claims: $".$total_claim_value."<br/>";
-            echo "Average Value of all combined claims: $".$total_claim_value/$total_claimed_items."<br/>";
+            echo "<p>Total number of items in claims: ".$total_claimed_items."</p>";
+            echo "<p>Total Value of all combined claims: $".$total_claim_value."</p>";
+            echo "<p>Average Value of all combined claims: $".$total_claim_value/$total_claimed_items."</p>";
     
     
 //TOTAL CLAIMS PER CLAIM TYPE
@@ -235,6 +255,7 @@ if($_SESSION['is_employee']==0){
             //    echo "category:".$categories."<br/>";
             $words = explode(",", $categories);
             $result = array_combine($words, array_fill(0, count($words), 0));
+            echo "<p><strong>Total number of items: ".$total_items."</strong></p><br>";
 
             foreach($words as $word) {
             $result[$word]++;
@@ -242,9 +263,10 @@ if($_SESSION['is_employee']==0){
 
             foreach($result as $word => $count) {
                 if($word!==""){
-                    echo "There are $count instances of $word.<br/>";
+                    echo "<p><strong> $count</strong> items in $word</p>";
                 }
             }
+
 
             echo "Total number of items: ".$total_items."<br/>";    
 
@@ -252,6 +274,9 @@ if($_SESSION['is_employee']==0){
             echo "<p>";
             echo  'CLIENT:', $client_json, '<br />', 'EMPLOYEE:',$employee_json, '<br />', 'ALL:', $all_result_json, '<br />', 'PROCESSING:',$processing_result_json, '<br />', 'PENDING:', $pending_result_json, '<br />', 'APPROVED:',$approved_result_json, '<br />', 'DENIED:',$denied_result_json, '<br />';
             echo "</p>";
+
+           } 
+
  ?>
       <script>
         $(function () {

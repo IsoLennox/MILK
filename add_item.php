@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
     $dollar= strtok($value, '.');
     $value=preg_replace("/[^0-9]/","",$dollar);
  
-    
+     
     
     $cat= $_POST['category'];  
     $date = date('m/d/Y H:i');

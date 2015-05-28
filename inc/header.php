@@ -128,8 +128,16 @@ if($_SESSION['is_employee']==0){
                <?php
                 }
     
-    if(isset($current_page) && $current_page=="claims"){  ?>
-            <li class="current_page"><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> 
+    if(isset($current_page) && $current_page=="claims"){ 
+      // ADDED THIS UP HERE SO THE ALERT SHOWS WHEN ON CLAIMS PAGE TOO
+      $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
+      $all_result = mysqli_query($connection, $all_query);
+      $data=mysqli_fetch_assoc($all_result); 
+      if($data['total']==0){ $claim_alert=""; $total_alerts=""; }else{ $claim_alert="claim_alert_client"; $total_alerts=$data['total']; }
+      
+      ?>
+
+            <li class="current_page"><a class='alert_container' href="claim_history.php"><i class="fa fa-folder-open"></i> Claims <div class="<?php echo $claim_alert; ?>"><?php echo $total_alerts; ?></div></a>  
             <ul>  
           <?php 
               if(isset($sub_page)&&($sub_page == "file_claim")) {
@@ -144,12 +152,12 @@ if($_SESSION['is_employee']==0){
         //SHOW ALERT IF ANY CLAIMS ARE PENDING CHANGES
             $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
             $all_result = mysqli_query($connection, $all_query);
-            $data=mysqli_fetch_assoc($all_result);
-        
-        if($data['total']==0){ $claim_alert=""; $total_alerts=""; }else{ $claim_alert="claim_alert"; $total_alerts=$data['total']; }
+            $data=mysqli_fetch_assoc($all_result); 
+            if($data['total']==0){ $claim_alert=""; $total_alerts=""; }else{ $claim_alert="claim_alert_client"; $total_alerts=$data['total']; }
+               
           ?>
            
-            <li class='alert_container'><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> <div class="<?php echo $claim_alert; ?>"><?php echo $total_alerts; ?></div>
+            <li><a class='alert_container' href="claim_history.php"><i class="fa fa-folder-open"></i> Claims <div class="<?php echo $claim_alert; ?>"><?php echo $total_alerts; ?></div></a> 
                 <ul> 
                  <li><a href="file_new_claim.php"><i class="fa fa-file-text"></i> File Claim</a></li>  
                 </ul>
@@ -214,20 +222,27 @@ if($_SESSION['is_employee']==0){
                     ?>
                 
                 
+                <?php  if(!isset($current_page) || $current_page=="dashboard"){ ?>
+                        <li class="current_page"><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+                <?php  }else{ ?>
+                    <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
+                <?php   } ?>
+
+
                 <?php  if(isset($current_page) &&  $current_page=="messages"){ ?>   
-                        <li class="current_page"><a href="messages.php"><i class="fa fa-envelope"></i> Messages </a>(<?php echo $num_messg; ?>)</li>
-              <?php  }else{ ?>   
-                      <li><a href="messages.php"><i class="fa fa-envelope"></i> Messages </a>(<?php echo $num_messg; ?>)</li>
-             <?php   } ?>
+                        <li class="current_page"><a href="messages.php" class='alert_container'><i class="fa fa-envelope"></i> Messages <div class="claim_alert"><?php echo $num_messg; ?></div></a></li>
+                <?php  }else{ ?>   
+                        <li><a href="messages.php" class='alert_container'><i class="fa fa-envelope"></i> Messages <div class="claim_alert"><?php echo $num_messg; ?></div></a></li>
+                <?php   } ?>
                 
                 
                 
                 <?php  
                       //?pending removed from link, not sure if we want it to go to all or just the new claims first
                       if(isset($current_page) && $current_page=="claims"){ ?>  
-                <li class="current_page"><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a><div class="claim_alert"><?php echo $total; ?></div></li> 
+                <li class="current_page"><a class='alert_container' href="claims.php?pending"><i class="fa fa-file-text"></i> Claims <div class="claim_alert"><?php echo $total; ?></div></a></li> 
               <?php  }else{ ?>  
-                <li><a href="claims.php?pending"><i class="fa fa-file-text"></i> Claims </a><div class="claim_alert"><?php echo $total; ?></div></li> 
+                <li><a class='alert_container' href="claims.php?pending"><i class="fa fa-file-text"></i> Claims <div class="claim_alert"><?php echo $total; ?></div></a></li> 
              <?php   } ?>
                
                
@@ -264,12 +279,7 @@ if($_SESSION['is_employee']==0){
                       <li><a href="company_details.php"><i class="fa fa-building"></i> Company Details</a></li>
              <?php   } ?>
                 
-                
-               <?php  if(!isset($current_page) || $current_page=="dashboard"){ ?>
-                        <li class="current_page"><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
-              <?php  }else{ ?>
-                  <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
-             <?php   } ?>
+              
                  
                 <?php if(isset($current_page) && $current_page=="activity"){ ?>
                 <li class="current_page"><a href="activity.php"><i class="fa fa-history"></i> Activity</a></li> 
@@ -318,5 +328,6 @@ if($_SESSION['is_employee']==0){
 
         <div class="clearfix" id="page"> 
               <?php echo message(); ?>
+              <?php echo errors(); ?>
               <?php echo form_errors($errors); ?>
               <div class="content_wrapper">
