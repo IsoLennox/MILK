@@ -39,7 +39,7 @@ if(isset($_GET['id'])){
                     //GET PERMISSIONS 
                     if($_SESSION['is_employee']==1){  
                         //show status of claim
-                        echo $status;
+                        echo "<h2>".$status."</h2>";
 
                         //SEE IF HAS PERMISSIONS TO UPDATE CLAIMS
                      foreach($_SESSION['permissions'] as $key => $val){ 
@@ -48,8 +48,8 @@ if(isset($_GET['id'])){
                             }//end show link if has claims permissions 
                         }//end check permissions 
                         if($permission==1){
-                        //has permissions to update claim, show link
-                        echo "<br/><a href=\"update_claim.php?id=".$_GET['id']."\">Update This Claim</a><br/>";
+                        //has permissions to update claim, show link 
+                             echo "<a class=\"green_submit right\" href=\"update_claim.php?id=".$_GET['id']."\"><i class=\"fa fa-pencil\"></i> Update This Claim</a><br/>";
                         }
                     } //end check if employee
 
@@ -60,7 +60,11 @@ if(isset($_GET['id'])){
                              if($status=="Draft"){
                                 $status="Add Images/Revise Draft";
                              }
-                             echo "<div class=\"fake_status\">Draft > <span id=\"current_status\">".$status."</span> > Approved/Denied </div>"; 
+                             
+                             if($status=="Approved" || $status=="Denied"){
+                                $next_step="";
+                             }else{ $next_step="> Approved/Denied";}
+                             echo "<div class=\"fake_status\">Draft > <span id=\"current_status\">".$status."</span> ".$next_step." </div>"; 
                         //                 echo "<a href=\"claim_details.php?revoke=".$_GET['id']."\">Revoke this claim</a><br/>";
                              //IF A DRAFT, OPTIONS TO EDIT OR SUBMIT
                              if($show['status_id']==1 || $show['status_id']==4){

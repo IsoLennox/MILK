@@ -146,7 +146,7 @@ if($_SESSION['is_employee']==0){
             $all_result = mysqli_query($connection, $all_query);
             $data=mysqli_fetch_assoc($all_result);
         
-        if($data['total']==0){ $claim_alert=""; $total_alerts=""; }else{ $claim_alert="claim_alert"; $total_alerts=$data['total']; }
+        if($data['total']==0){ $claim_alert=""; $total_alerts=""; }else{ $claim_alert="claim_alert_client"; $total_alerts=$data['total']; }
           ?>
            
             <li class='alert_container'><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> <div class="<?php echo $claim_alert; ?>"><?php echo $total_alerts; ?></div>
