@@ -52,6 +52,7 @@ if($_SESSION['is_employee']==0){
     //IS EMPLOYEE
 
 ?>
+    <div class="stats">
     <h1>Statistics</h1>
     
     <div id="refine">
@@ -118,10 +119,14 @@ if($_SESSION['is_employee']==0){
                 ?>
               
     </ul>
-    
+    </div>
+
+
+    <div class="half_dashboard"> 
     <h1>Claims</h1>
     
     <?php
+     
             //GET COUNTS
     
             //count total # claims that are NOT DRAFTS
@@ -206,6 +211,7 @@ if($_SESSION['is_employee']==0){
             <li><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
             <li><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
         </ul>
+
         <?php     
 
  
@@ -226,11 +232,11 @@ if($_SESSION['is_employee']==0){
             echo "<p>Total Value of all combined claims: $".$total_claim_value."</p>";
             echo "<p>Average Value of all combined claims: $".$total_claim_value/$total_claimed_items."</p>";
     
-    
+            echo "</div>";
 //TOTAL CLAIMS PER CLAIM TYPE
     
     
-    
+    echo "<div class=\"half_dashboard\">"; 
     echo "<h1>Items</h1>";
 
 //TOTAL ITEMS  
@@ -255,6 +261,7 @@ if($_SESSION['is_employee']==0){
             //    echo "category:".$categories."<br/>";
             $words = explode(",", $categories);
             $result = array_combine($words, array_fill(0, count($words), 0));
+            
             echo "<p><strong>Total number of items: ".$total_items."</strong></p><br>";
 
             foreach($words as $word) {
@@ -267,13 +274,14 @@ if($_SESSION['is_employee']==0){
                 }
             }
 
-
-            echo "Total number of items: ".$total_items."<br/>";    
+           
+            // echo "Total number of items: ".$total_items."<br/>";    
 
         }
-            echo "<p>";
-            echo  'CLIENT:', $client_json, '<br />', 'EMPLOYEE:',$employee_json, '<br />', 'ALL:', $all_json, '<br />', 'PROCESSING:',$processing_json, '<br />', 'PENDING:', $pending_json, '<br />', 'APPROVED:',$approved_json, '<br />', 'DENIED:',$denied_json, '<br />';
-            echo "</p>";
+         echo "</div>";
+            // echo "<p>";
+            // echo  'CLIENT:', $client_json, '<br />', 'EMPLOYEE:',$employee_json, '<br />', 'ALL:', $all_json, '<br />', 'PROCESSING:',$processing_json, '<br />', 'PENDING:', $pending_json, '<br />', 'APPROVED:',$approved_json, '<br />', 'DENIED:',$denied_json, '<br />';
+            // echo "</p>";
 
             
 
