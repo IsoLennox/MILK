@@ -21,11 +21,31 @@ if($_SESSION['is_employee']==0){
         $mark_read  = "UPDATE claims SET hidden=1 WHERE id={$_GET['read']} LIMIT 1";  
         $readresult = mysqli_query($connection, $mark_read);
         if($readresult){
-        $_SESSION['message']="Marked as read!";
-        redirect_to('index.php');
+            $_SESSION['message']="Marked as read!"; 
+            $link="<a href='index.php?undo={$_GET['read']}'>Undo</a>"; 
+            $_SESSION['errors']=$link; 
+            redirect_to('index.php');
         }
+    }
+        
+        if(isset($_GET['undo'])){
+            
+                echo "You Undid this item!";
+                $mark_read  = "UPDATE claims SET hidden=0 WHERE id={$_GET['undo']} LIMIT 1";  
+                $readresult = mysqli_query($connection, $mark_read);
+                if($readresult){ 
+                    $_SESSION['message']="Marked as Unread!"; 
+//                    echo "Marked as Unread!"; 
+                redirect_to('index.php');
+            }else{
+                $_SESSION['message']="Could not revive alert"; 
+//                    echo "Marked as Unread!"; 
+                redirect_to('index.php');
+            }
 
-}
+        }
+   
+
     
 }else{  
     
