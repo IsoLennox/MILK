@@ -128,8 +128,16 @@ if($_SESSION['is_employee']==0){
                <?php
                 }
     
-    if(isset($current_page) && $current_page=="claims"){  ?>
-            <li class="current_page"><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> 
+    if(isset($current_page) && $current_page=="claims"){ 
+      // ADDED THIS UP HERE SO THE ALERT SHOWS WHEN ON CLAIMS PAGE TOO
+      $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
+      $all_result = mysqli_query($connection, $all_query);
+      $data=mysqli_fetch_assoc($all_result); 
+      if($data['total']==0){ $claim_alert=""; $total_alerts=""; }else{ $claim_alert="claim_alert_client"; $total_alerts=$data['total']; }
+      
+      ?>
+
+            <li class="current_page"><a class='alert_container' href="claim_history.php"><i class="fa fa-folder-open"></i> Claims <div class="<?php echo $claim_alert; ?>"><?php echo $total_alerts; ?></div></a>  
             <ul>  
           <?php 
               if(isset($sub_page)&&($sub_page == "file_claim")) {
@@ -144,12 +152,12 @@ if($_SESSION['is_employee']==0){
         //SHOW ALERT IF ANY CLAIMS ARE PENDING CHANGES
             $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
             $all_result = mysqli_query($connection, $all_query);
-            $data=mysqli_fetch_assoc($all_result);
-        
-        if($data['total']==0){ $claim_alert=""; $total_alerts=""; }else{ $claim_alert="claim_alert_client"; $total_alerts=$data['total']; }
+            $data=mysqli_fetch_assoc($all_result); 
+            if($data['total']==0){ $claim_alert=""; $total_alerts=""; }else{ $claim_alert="claim_alert_client"; $total_alerts=$data['total']; }
+               
           ?>
            
-            <li class='alert_container'><a href="claim_history.php"><i class="fa fa-folder-open"></i> Claims</a> <div class="<?php echo $claim_alert; ?>"><?php echo $total_alerts; ?></div>
+            <li><a class='alert_container' href="claim_history.php"><i class="fa fa-folder-open"></i> Claims <div class="<?php echo $claim_alert; ?>"><?php echo $total_alerts; ?></div></a> 
                 <ul> 
                  <li><a href="file_new_claim.php"><i class="fa fa-file-text"></i> File Claim</a></li>  
                 </ul>
