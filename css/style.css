@@ -640,7 +640,17 @@ header {
 	margin:0 auto;
 }
 
+.claims_dashboard {
+	text-align: left;
+}
 
+.claims_dashboard p {
+	padding-bottom: 15px;
+}
+
+.claims_dashboard a {
+	color: #333;
+}
 
 
 
