@@ -22,6 +22,7 @@ if($_SESSION['is_employee']==0){
         $readresult = mysqli_query($connection, $mark_read);
         if($readresult){
         $_SESSION['message']="Marked as read!";
+        $_SESSION['error']="undo";
         redirect_to('index.php');
         }
 
