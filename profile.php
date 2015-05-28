@@ -1,4 +1,5 @@
-<?php include("inc/header.php"); 
+<?php include("inc/header.php");
+$sub_page = 'profile'; 
 
 //determine whose profile we are looking at 
 if(isset($_GET['user'])){
@@ -61,14 +62,13 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         
 <!--        ACCOUNT DETAILS  -->
        <?php
-        echo "<br/><Br/>";
-        echo "Phone: ".$profile_array['phone']."<br/>";
-        echo "Email: ".$profile_array['email']."<br/>";
-        echo "Address: ".$profile_array['address']."<br/>";
-        echo "City: ".$profile_array['city']."<br/>";
-        echo "State: ".$profile_array['state']."<br/>";
-        echo "Zip: ".$profile_array['zip']."<br/>";
-        echo "Policy Number: ".$profile_array['policy_number']."<br/>"; 
+        echo "<p>Phone: ".$profile_array['phone']."</p>";
+        echo "<p>Email: ".$profile_array['email']."</p>";
+        echo "<p>Address: ".$profile_array['address']."</p>";
+        echo "<p>City: ".$profile_array['city']."</p>";
+        echo "<p>State: ".$profile_array['state']."</p>";
+        echo "<p>Zip: ".$profile_array['zip']."</p>";
+        echo "<p>Policy Number: ".$profile_array['policy_number']."</p>"; 
         ?>
         
         </section>

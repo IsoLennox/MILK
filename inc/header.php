@@ -71,11 +71,17 @@ confirm_logged_in();
         }
         ?>
     <a href="index.php"><img src="<?php echo $logo; ?>" alt="Greenwell Bank Logo"></a><br>
-    <i class="fa fa-user"> </i> <a title="Your Profile" href="profile.php"><?php echo $_SESSION['username']; ?></a>
-  </div>
+
 
 <?php 
     
+if(isset($sub_page) && $sub_page=="profile"){
+    echo "<p class=\"sub_page\"><i class=\"fa fa-user\"> </i><a href=\"profile.php\"> " . $_SESSION['username'] ."</a></p>";
+}else{
+   echo " <p><i class=\"fa fa-user\"> </i><a href=\"profile.php\">". $_SESSION['username'] . "</a></p>";
+}
+echo "</div>";
+
     //CHECK IF CLIENT OR EMPLOYEE 
     
 if($_SESSION['is_employee']==0){
@@ -89,16 +95,12 @@ if($_SESSION['is_employee']==0){
            
          <?php 
     //PAGE INDICATORS
-                if(!isset($current_page) || $current_page=="dashboard"){
+                if(isset($current_page) && $current_page=="dashboard"){
                     echo "<li class=\"current_page\"><a href=\"index.php\"><i class=\"fa fa-tachometer\"></i> Dashboard</a></li>";
                 }else{
                    echo " <li><a href=\"index.php\"><i class=\"fa fa-tachometer\"></i> Dashboard</a></li>";
                 }
     
-    // END PAGE INDICATORS
-            ?>
-             
-                <?php
                 if(isset($current_page) && $current_page=="inventory"){
                     echo "<li class=\"current_page\"><a href='inventory.php'><i class=\"fa fa-cubes\"></i> Inventory</a>";
                     echo "<ul>";
@@ -222,7 +224,7 @@ if($_SESSION['is_employee']==0){
                     ?>
                 
                 
-                <?php  if(!isset($current_page) || $current_page=="dashboard"){ ?>
+                <?php  if(isset($current_page) && $current_page=="dashboard"){ ?>
                         <li class="current_page"><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
                 <?php  }else{ ?>
                     <li><a href="index.php"><i class="fa fa-pie-chart"></i> Statistics</a></li>
