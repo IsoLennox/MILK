@@ -365,7 +365,7 @@ img {
 }
 
 .stats {
-    width: 99%; 
+    width: 100%; 
 /*    width: 30%; */
     float: left;
 	margin-bottom: 25px;
@@ -374,15 +374,17 @@ img {
     border-radius: 10px;
     border: 2px solid rgba(245,245,245,0.5);
     background: rgba(245,245,245,0.3);
-    min-height: 275px;
+	text-align: center;
+    /*min-height: 275px;*/
 }
 	.stats:nth-of-type(3){
 /*		margin-right: 0;*/
 	}
 
 .one-third {
-    width: 30%;
+    width: 25%;
 	float: left;
+	margin-bottom: 15px;
 }
 
 .red {

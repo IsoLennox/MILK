@@ -21,7 +21,7 @@ function item_array($array, $key, $value){
 
  echo "<div class=\"stats\"> ";
 //echo "<h3>You have ".$num_rooms." rooms <h3>";
-echo "<h3>You have ".$num_rooms." rooms </h3> <p>Showing colors: ['#157AA3','#575611','#E3E22C'],".$num_rooms."</p><br/>";
+echo "<h3>You have ".$num_rooms." rooms </h3> <p>Showing 4 of ".$num_rooms." Rooms</p><br/>";
 if($num_rooms==0){
 ?>
         
@@ -35,15 +35,15 @@ if($num_rooms==0){
 </form> 
             
             <?php }
-  
-    $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']} LIMIT 3";  
+    //ordered by most recent and added room for another room!//////////////////////////////////////////////////////////////
+    $roomquery  = "SELECT * FROM rooms WHERE user_id={$_SESSION['user_id']} ORDER BY id DESC LIMIT 4";  
     $roomresult = mysqli_query($connection, $roomquery);
     if($roomresult){ 
         $rooms=array();
         //show each result value
        
         foreach($roomresult as $show){
-              echo "<span class=\"one-third\"> ";
+              echo "<div class=\"one-third\"> ";
                 $item_count=0;
                 $item_array=array();
 
@@ -69,10 +69,10 @@ if($num_rooms==0){
                     echo "</ul>"; //end item list
                 }
             
-            echo "</span>"; //end one-third
+            echo "</div>"; //end one-third
             }
-       
-        echo "<br/><a class=\"right\" href=\"rooms.php\">View all rooms</a>";
+        echo "<div class=\"clearfix\"></div>";
+        echo "<br><p><a class=\"right\" href=\"rooms.php\">View all rooms <i class=\"fa fa-angle-double-right\"></i></a></p>";
         
         }//END SHOW 3 ROOMS AND ITEMS IN THEM
         
@@ -126,8 +126,8 @@ if($num_rooms==0){
 
 
 //            GET 10 ITEMS ORDER BY LAST ADDED
-            echo "<span class=\"half_div\">";
-                echo "<h3>You have ".$total_items." items</h3><br/>";
+            echo "<div class=\"half_div\">";
+                echo "<h3>You have ".$total_items." items</h3>";
 
     //            SHOW ITEM TYPES
 
@@ -141,13 +141,13 @@ if($num_rooms==0){
                         echo "<ul>";
                 foreach($result as $word => $count) {
                     if($word!==""){
-                        echo "<li>$count items in $word.</li><br/>";
+                        echo "<li>$count items in $word.</li>";
                     }
                 }
                     echo "</ul>";
                 }
 
-            echo "</span>"; //end half
+            echo "</div>"; //end half
 if(!empty($total_items)){
             echo "<span class=\"half_div\">"; 
                 //SHOW RECENTLY ADDED ITEMS
@@ -158,7 +158,7 @@ if(!empty($total_items)){
                     echo "<ul>";
                 foreach($recent_item_result as $item){ echo "<li><a href=\"item_details.php?id=".$item['id']."\">".$item['name']."</a></li>"; }
                     echo "</ul>";
-                    echo "<br/><a class=\"right\" href=\"inventory.php\">View all items</a>";
+                    echo "<br/><p><a class=\"right\" href=\"inventory.php\">View all items <i class=\"fa fa-angle-double-right\"></i></a></p>";
                     }//end get recent items
 
             echo "</span>"; //end half

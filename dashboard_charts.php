@@ -76,6 +76,7 @@
                 series: [
                   
                     <?php
+            //#4571CD,#9F2EC3,
             // $loop_count=0;
             // foreach($rooms as $room_array){
             //     $loop_count++;
@@ -85,7 +86,7 @@
                     ?>
 
                     {
-                    colors: ['#157AA3','#575611','#E3E22C'],
+                    // colors: ['#157AA3','#575611','#E3E22C'],
                     name: 'Jewelry',
                     data: [5, 3, 4, 7, 2]
                 }, {
