@@ -6,10 +6,10 @@
   
    <section class="circle_charts">
     <div class="pie-chart" id="circle1"></div>
-<!--
+
     <div class="pie-chart" id="circle2"></div>
     <div class="pie-chart" id="circle3"></div>
--->
+
 </section>
    
    
@@ -118,7 +118,7 @@
                     }
                 },
                 title: {
-                    text: 'Claim Status'
+                    text: 'Claim Types'
                 },
                 subtitle: {
                     text: ''
@@ -130,83 +130,73 @@
                     }
                 },
                 series: [{
-                    name: 'Total Views',
+                    name: 'Claim Types',
                     data: [
-                        ['Applicants (3154)', 3154],
-                        ['Forwards (912)', 912],
-                        ['Interviews (1546)', 1546]
+                        ['Acts of God (515)', 515],
+                        ['Floods (600)', 600],
+                        ['Fires (300)', 300],
+                        ['Earthquakes (200)', 200],
+                        ['Hail (80)', 80],
+                        ['Snow/Ice (151)', 151]
                     ]
                 }]
             });
         });
 
-    // begin circle 2
+    //---------- begin half-circle chart ----------------//
         $(function () {
             $('#circle2').highcharts({
                 chart: {
-                    type: 'pie',
-                    options3d: {
-                        enabled: false,
-                    }
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false
                 },
                 title: {
-                    text: 'Current Week\'s Claims'
+                    text: 'Browser<br>shares',
+                    align: 'center',
+                    verticalAlign: 'middle',
+                    y: 50
                 },
-                subtitle: {
-                    text: 'Current Claims Status'
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                 },
                 plotOptions: {
                     pie: {
-                        innerSize: 175,
-                        depth: 45
+                        dataLabels: {
+                            enabled: true,
+                            distance: -50,
+                            style: {
+                                fontWeight: 'bold',
+                                color: 'white',
+                                textShadow: '0px 1px 2px black'
+                            }
+                        },
+                        startAngle: -90,
+                        endAngle: 90,
+                        center: ['50%', '75%']
                     }
                 },
                 series: [{
-                    name: 'Claims',
+                    type: 'pie',
+                    name: 'Claims Status',
+                    innerSize: '50%',
                     data: [
-                        ['Pending (200)', 200],
-                        ['Finalized (400)', 400],
-                        ['In Process (100)', 100]
+                        ['Approved', 45],
+                        ['Denied',  27],
+                        ['Pending', 15],
+                        ['Processing', 10],
+                        {
+                            name: 'Others',
+                            y: 0.7,
+                            dataLabels: {
+                                enabled: false
+                            }
+                        }
                     ]
                 }]
             });
         });
             
-                // begin circle 3
-        $(function () {
-            $('#circle3').highcharts({
-                chart: {
-                    type: 'pie',
-                    options3d: {
-                        enabled: false,
-                    }
-                },
-                title: {
-                    text: 'Current Week\'s Claims'
-                },
-                subtitle: {
-                    text: 'Current Claims Status'
-                },
-                plotOptions: {
-                    pie: {
-                        innerSize: 175,
-                        depth: 45
-                    }
-                },
-                series: [{
-                    name: 'Claims',
-                    data: [
-                        ['Pending (200)', 200],
-                        ['Finalized (400)', 400],
-                        ['In Process (100)', 100]
-                    ]
-                }]
-            });
-        });
-
-
-
-
    //--------> End Circle Charts for Views <----------------
  
     </script>
