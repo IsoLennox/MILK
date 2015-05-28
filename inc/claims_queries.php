@@ -30,7 +30,6 @@
 ?>          
         <div class="claim_filters">
             <a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>) | 
-            <a href="claims.php?pending"><i class="fa fa-file-text"></i> Unprocessed (<?php echo $total; ?>)</a>
             <a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>) | 
             <a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddata['total']; ?>) |              
             <a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>) |             

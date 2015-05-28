@@ -45,7 +45,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
         ?>
         <div class="claim_filters">
            <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
-           <a href="claims.php?pending"><i class="fa fa-file-text"></i> Inactive </a>(<?php echo $total; ?>) |           
+                    
            <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
            <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
            <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
@@ -59,7 +59,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
          ?>
         <div class="claim_filters">
            <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
-           <a href="claims.php?pending"><i class="fa fa-file-text"></i> Inactive </a>(<?php echo $total; ?>) |           
+                    
            <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
            <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
            <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
@@ -73,7 +73,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
          ?>
         <div class="claim_filters">
            <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
-           <a href="claims.php?pending"><i class="fa fa-file-text"></i> Inactive </a>(<?php echo $total; ?>) |           
+                    
            <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
            <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
            <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
@@ -87,7 +87,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
          ?>
         <div class="claim_filters">
            <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
-           <a href="claims.php?pending"><i class="fa fa-file-text"></i> Inactive </a>(<?php echo $total; ?>) |           
+                    
            <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
            <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
            <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
@@ -102,7 +102,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
    ?>
         <div class="claim_filters">
            <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
-           <a href="claims.php?pending"><i class="fa fa-file-text"></i> Inactive </a>(<?php echo $total; ?>) |           
+                    
            <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
            <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
            <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
