@@ -63,43 +63,45 @@ class ImageUpload {
 		// print_r($upload);
 		// echo '</pre>';
 
-		// assign file upload info to properties			
-		$this->file_upload = $upload;
-		$this->upload_err = $upload['error'];
-		$this->filename = $upload['name'];
-		$this->tmp_file = $upload['tmp_name'];
-
-		// build array for upload error reporting, based on built in error handling of file upload
-		$upload_errors = array(
-			UPLOAD_ERR_OK => 	"No Errors",
-			UPLOAD_ERR_INI_SIZE => "File uploaded was  larger than allowed by server",
-			UPLOAD_ERR_FORM_SIZE => "File uploaded was larger than allowed by form",
-			UPLOAD_ERR_PARTIAL => "Partial file upload",
-			UPLOAD_ERR_NO_FILE => "No file selected",
-			UPLOAD_ERR_NO_TMP_DIR => "No temp directory found",
-			UPLOAD_ERR_CANT_WRITE => "Can't write file to the server",
-			UPLOAD_ERR_EXTENSION => "File upload of this type not allowed"
-		);
-
-		$this->item_id = $_POST['item_id'];
-		$this->img_title = $_POST['title'];
-
-		// makes sure a file was uploaded prior to checking exif_imagetype (which cannot be empty)		
-		if(empty($this->tmp_file)) { 
-			// if $tmp_file is empty, an error occured, print error to screen			
-			if($this->upload_err != 0) {
-				// $error = $_FILES['file_upload']['error'];
-				$_SESSION['message'] .= $upload_errors[$this->upload_err] . " please try again.";
-				header("Location: ".$_SERVER['HTTP_REFERER']);
-			} // end if (errors)
-		} else {
+		// makes sure a file was uploaded prior to checking exif_imagetype (which cannot be empty)
+		if($upload['tmp_name']) {
 			// NOTE: exif_imagetype validates file as image, returns type of image
-			$this->img_type = exif_imagetype($this->tmp_file);
-			if(empty($this->img_type)) {
-			$_SESSION['message'] .= "Please only JPG, PNG, GIF or PDF files!";
+			$this->img_type = exif_imagetype($upload['tmp_name']);
+
+			if($this->img_type ==  IMAGETYPE_GIF || $this->img_type == IMAGETYPE_PNG || $this->img_type == IMAGETYPE_JPEG ) {
+				// assign file upload info to properties			
+				$this->file_upload = $upload;
+				$this->upload_err = $upload['error'];
+				$this->filename = $upload['name'];
+				$this->tmp_file = $upload['tmp_name'];
+
+				$this->item_id = $_POST['item_id'];
+				$this->img_title = $_POST['title'];
+			} else {
+				$_SESSION['message'] .= "Please only JPG, PNG, GIF or PDF files!";
+				header("Location: ".$_SERVER['HTTP_REFERER']);
+			}
+
+		} else {
+			$this->upload_err = $upload['error'];
+			// build array for upload error reporting, based on built in error handling of file upload
+			$upload_errors = array(
+				UPLOAD_ERR_OK => 	"No Errors",
+				UPLOAD_ERR_INI_SIZE => "File uploaded was  larger than allowed by server",
+				UPLOAD_ERR_FORM_SIZE => "File uploaded was larger than allowed by form",
+				UPLOAD_ERR_PARTIAL => "Partial file upload",
+				UPLOAD_ERR_NO_FILE => "No file selected",
+				UPLOAD_ERR_NO_TMP_DIR => "No temp directory found",
+				UPLOAD_ERR_CANT_WRITE => "Can't write file to the server",
+				UPLOAD_ERR_EXTENSION => "File upload of this type not allowed"
+			);			
+		} // end if
+					
+		if($this->upload_err != 0) {
+			// $error = $_FILES['file_upload']['error'];
+			$_SESSION['message'] .= $upload_errors[$this->upload_err] . " please try again.";
 			header("Location: ".$_SERVER['HTTP_REFERER']);
-			} // end if
-		}// end if (empty check)	
+		} // end if (errors)				
 	} // end __construct
 
 	public function optimizeImage($path, $quality=40) {
