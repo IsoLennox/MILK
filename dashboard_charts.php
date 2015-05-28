@@ -83,7 +83,9 @@
             //             echo $room_array.", ";
             //             }else{ echo $room_array; }
                     ?>
+
                     {
+                    colors: ['#157AA3','#575611','#E3E22C'],
                     name: 'Jewelry',
                     data: [5, 3, 4, 7, 2]
                 }, {
