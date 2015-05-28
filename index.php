@@ -108,7 +108,7 @@ if($_SESSION['is_employee']==0){
             }
             echo "<li>Total number of employees: ".$total_employees."</li>";
             // json employee query
-            $employee_query1  = "SELECT * from users WHERE is_employee=0";   
+            $employee_query1  = "SELECT * from users WHERE is_employee=1";   
             $employee_result1 = mysqli_query($connection, $employee_query1);
             $employee_rows1 = array();
             while ($row = mysqli_fetch_assoc($employee_result1)) {
@@ -130,13 +130,13 @@ if($_SESSION['is_employee']==0){
             $data=mysqli_fetch_assoc($all_result);
 
             // json all_query
-            $all_query1  = "SELECT * FROM claims WHERE status_id!=1";   
+            $all_query1  = "SELECT * FROM claims WHERE status_id !=1";   
             $all_result1 = mysqli_query($connection, $all_query1);
-            $all_result_rows1 = array();
+            $all_rows1 = array();
             while($data=mysqli_fetch_assoc($all_result1)){
-                $all_result_rows1[] = $data;
+                $all_rows1[] = $data;
             }
-             $all_result_json = json_encode($all_result_rows1);
+             $all_json = json_encode($all_rows1);
 
 
             // total submitted but unprocessed
@@ -147,11 +147,11 @@ if($_SESSION['is_employee']==0){
             // json processing query
              $processing_query1  = "SELECT * FROM claims WHERE status_id = 0";   
             $processing_result1 = mysqli_query($connection, $processing_query1);
-            $processing_result_rows1 = array();
-            while($pdata=mysqli_fetch_assoc($processing_result_rows1)) {
-                $processing_result_rows1[] = $pdata;
+            $processing_rows1 = array();
+            while($pdata=mysqli_fetch_assoc($processing_result1)) {
+                $processing_rows1[] = $pdata;
             }
-            $processing_result_json = json_encode($processing_result_rows1);
+            $processing_json = json_encode($processing_rows1);
 
 
     
@@ -163,11 +163,11 @@ if($_SESSION['is_employee']==0){
             // json pending query
             $pending_query1  = "SELECT * FROM claims WHERE status_id=4";   
             $pending_result1 = mysqli_query($connection, $pending_query1);
-            $pending_result_rows1 = array();
-            while($cdata=mysqli_fetch_assoc($pending_result_rows1)) {
-                $pending_result_rows1[] = $cdata;
+            $pending_rows1 = array();
+            while($cdata=mysqli_fetch_assoc($pending_result1)) {
+                $pending_rows1[] = $cdata;
             }
-            $pending_result_json = json_encode($pending_result_rows1); 
+            $pending_json = json_encode($pending_rows1); 
 
     
             // total approved claims
@@ -176,13 +176,13 @@ if($_SESSION['is_employee']==0){
             $adata=mysqli_fetch_assoc($approved_result); 
 
             // json approved query
-            $approved_query1  = "SELECT * FROM `claims` WHERE status_id=4";   
+            $approved_query1  = "SELECT * FROM claims WHERE status_id=4";   
             $approved_result1 = mysqli_query($connection, $approved_query1);
-            $approved_result_rows1 = array();
-            while($adata=mysqli_fetch_assoc($approved_result_rows1)) {
-                $approved_result_rows1[] = $adata;
+            $approved_rows1 = array();
+            while($adata=mysqli_fetch_assoc($approved_result1)) {
+                $approved_rows1[] = $adata;
             }
-            $approved_result_json = json_encode($pending_result_rows1); 
+            $approved_json = json_encode($pending_rows1); 
 
     
             // total Denied claims
@@ -193,11 +193,11 @@ if($_SESSION['is_employee']==0){
             // json denied query
             $denied_query1  = "SELECT * FROM claims WHERE status_id=4";   
             $denied_result1 = mysqli_query($connection, $denied_query1);
-            $denied_result_rows1 = array();
-            while($ddata=mysqli_fetch_assoc($denied_result_rows1)) {
-                $denied_result_rows1[] = $ddata;
+            $denied_rows1 = array();
+            while($ddata=mysqli_fetch_assoc($denied_result1)) {
+                $denied_rows1[] = $ddata;
             }
-            $denied_result_json = json_encode($denied_result_rows1); 
+            $denied_json = json_encode($denied_rows1); 
         ?>
         <ul>
             <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
@@ -237,7 +237,7 @@ if($_SESSION['is_employee']==0){
             $total_item_query  = "SELECT * from items";   
             $total_item_result = mysqli_query($connection, $total_item_query);
             $total_items=0; 
-            $categories;
+            $categories = '';
             foreach($total_item_result as $item){
                     $total_items++;
                 
@@ -272,10 +272,10 @@ if($_SESSION['is_employee']==0){
 
         }
             echo "<p>";
-            echo  'CLIENT:', $client_json, '<br />', 'EMPLOYEE:',$employee_json, '<br />', 'ALL:', $all_result_json, '<br />', 'PROCESSING:',$processing_result_json, '<br />', 'PENDING:', $pending_result_json, '<br />', 'APPROVED:',$approved_result_json, '<br />', 'DENIED:',$denied_result_json, '<br />';
+            echo  'CLIENT:', $client_json, '<br />', 'EMPLOYEE:',$employee_json, '<br />', 'ALL:', $all_json, '<br />', 'PROCESSING:',$processing_json, '<br />', 'PENDING:', $pending_json, '<br />', 'APPROVED:',$approved_json, '<br />', 'DENIED:',$denied_json, '<br />';
             echo "</p>";
 
-           } 
+            
 
  ?>
       <script>
