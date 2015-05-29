@@ -26,4 +26,16 @@
     }
   }
   
+
+  function walkthrough() {
+    if (isset($_SESSION["walkthrough"])) {
+    $errors = "<div class=\"walkthrough\"><h4>Walkthrough</h4><br/>";
+      $errors .= $_SESSION["walkthrough"];
+      $errors .= "<br/><br/><a href=\"#\">Skip for now</a> <a class=\"right\" href=\"#\">No, Thanks!</a></div>";
+      // clear message after use
+      $_SESSION["walkthrough"] = null;
+      
+      return $errors;
+    }
+  }
 ?>

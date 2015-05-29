@@ -1089,6 +1089,14 @@ display: block;
 }
  
 
+.walkthrough{
+    border: 1px solid red;
+    padding: 10px;
+    width: 500px;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
 
 /******************************
         /MEDIA QUERIES
