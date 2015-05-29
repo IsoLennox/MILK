@@ -1,12 +1,19 @@
 <?php include("inc/header.php");  
 
-     $query  = "SELECT * FROM users WHERE id={$_SESSION['user_id']}";  
+    $query  = "SELECT * FROM users WHERE id={$_SESSION['user_id']}";  
     $result = mysqli_query($connection, $query);
      
     if($result){
         $profile_array=mysqli_fetch_assoc($result);
         $old_content=$profile_array['profile_content'];
         $avatar=$profile_array['avatar'];
+        $first = $profile_array["first_name"];
+        $last = $profile_array["last_name"];
+        $phone = $profile_array["phone"];
+        $address = $profile_array["address"];
+        $city = $profile_array["city"];
+        $state = $profile_array["state"];
+        $zip = $profile_array["zip"];
         if(empty($avatar)){
             $avatar="http://lorempixel.com/250/250/abstract";
         }
@@ -23,13 +30,27 @@ if (isset($_POST['submit'])) {
   
    
   $content = mysql_prep($_POST["content"]); 
- 
-      
+  $first = ($_POST["first"]);
+  $last = ($_POST["last"]);
+  $phone = ($_POST["phone"]);
+  $address = ($_POST["address"]);
+  $city = ($_POST["city"]);
+  $state = ($_POST["state"]);
+  $zip = ($_POST["zip"]);
+
     
    // Perform Update BOOK
       
     $update_profile  = "UPDATE users SET ";
-    $update_profile .= "profile_content = '{$content}' ";
+    $update_profile .= "profile_content = '{$content}', ";
+    $update_profile .= "first_name = '{$first}', ";
+    $update_profile .= "last_name = '{$last}', ";
+    $update_profile .= "phone = '{$phone}', ";
+    $update_profile .= "address = '{$address}', ";
+    $update_profile .= "city = '{$city}', ";
+    $update_profile .= "state = '{$state}', ";
+    $update_profile .= "zip = '{$zip}' ";
+
     $update_profile .= "WHERE id = {$_SESSION['user_id']} ";
     $result = mysqli_query($connection, $update_profile);
 
@@ -59,9 +80,9 @@ if (isset($_POST['submit'])) {
     <section class="left">
     <img src="<?php echo $avatar; ?>" alt="Current Profile Image" />
     </section>
-   <section class="left_padding"> 
+   <section class="right"> 
 <form action="upload_profile_img.php" method="post" enctype="multipart/form-data">
-    Select New Image:<br/>
+    <h3>Select New Image:</h3>
     <input type="file" name="image" id="fileToUpload"><br/>
  
     <input type="submit" value="Upload File" name="submit">
@@ -69,29 +90,30 @@ if (isset($_POST['submit'])) {
    <?php if($avatar!="http://lorempixel.com/250/250/abstract"){ ?>
     <a href="delete.php?avatar=<?php echo $_SESSION['user_id']; ?>"> <i class="fa fa-trash-o"> Delete Profile Image</i></a>
  <?php } ?>
-  </section> 
-  <div class="clear"></div>
+  </section>
+  <div class="clearfix"></div> 
   <hr/>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
+  
    <h2>Edit Profile Content</h2>
     <form action="edit_profile.php" method="post">
    
-        <p>Profile Content:<br/>
-        <textarea cols="100" rows="5" name="content" value="<?php echo htmlentities($content); ?>" ><?php echo htmlentities($old_content); ?></textarea>
-      </p>
-   
-      <input type="submit" name="submit" value="Save" />
+        <label for="content">Profile Content:</label><br/>
+        <textarea cols="100" rows="5" name="content" id='content' value="<?php echo htmlentities($content); ?>" ><?php echo htmlentities($old_content); ?></textarea>
+      
+        <label for="first">First Name: </label><input type="text" name="first" id="first" value="<?php echo htmlentities($first); ?>" />
+        <label for="last">Last Name:</label><input type="text" name="last" id="last" value="<?php echo htmlentities($last); ?>" />
+        <label for="phone">Phone: </label><input type="text" placeholder='(360)800-1234' id='phone' name='phone'value='<?php echo htmlentities($phone); ?>'/>
+        <label for="address">Address: </label><input type="text" id='address' name='address'value='<?php echo htmlentities($address); ?>'/>
+        <label for="city">City: </label><input type="text" id='city' name='city'value='<?php echo htmlentities($city); ?>'/>
+        <label for="state">State: </label><input type="text" id='state' name='state'value='<?php echo htmlentities($state); ?>'/>
+        <label for="zip">Zip: </label><input type="text" id='zip' name='zip'value='<?php echo htmlentities($zip); ?>'/>
+      <input type="submit" name="submit" value="Save" />  <a href="profile.php">Cancel</a>
     </form>
-    <br />
-    <a href="profile.php">Cancel</a>
-    
-    <br/>
-    <br/>
-    <p>Not what you're looking for? <a href="settings.php">Edit Account Settings</a></p>
+  <hr/>
+
+
+  
+   
+    <p>Not what you're looking for?<br> <a href="settings.php">Edit Account Settings</a></p>
  
 <?php include("inc/footer.php"); ?> 

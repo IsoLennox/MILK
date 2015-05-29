@@ -875,6 +875,30 @@ header {
 
 
 
+/*---------------------------------------------*\
+		PROFILE PAGE AND COMPANY DETAILS
+\*---------------------------------------------*/
+
+.profile {
+	max-width: 900px;
+	width:100%;
+	margin:0 auto 25px;
+}
+
+	.avatar {
+		float: left;
+		width:50%;
+	}
+
+	.profile_content {
+		float:right;
+		width:50%;
+	}
+
+
+
+
+
 
 
 
