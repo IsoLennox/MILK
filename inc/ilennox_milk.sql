@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 26, 2015 at 10:46 PM
+-- Generation Time: May 29, 2015 at 05:55 PM
 -- Server version: 5.5.42-37.1
 -- PHP Version: 5.4.23
 
@@ -36,18 +36,21 @@ CREATE TABLE IF NOT EXISTS `claims` (
   `user_id` int(7) NOT NULL,
   `updated` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `hidden` int(1) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `claims`
 --
 
 INSERT INTO `claims` (`id`, `status_id`, `datetime`, `title`, `notes`, `claim_type`, `user_id`, `updated`, `hidden`) VALUES
-(3, 4, '13/05/2015 13:22', 'Robbery', '(uploaded police report)<hr/>fs <br><hr/><br><strong>Claim Adjuster Notes: </strong> Needs more information. Please write out a detailed description.<hr/><hr/><br/><br/><br/><br/><br/><br/><br/><br/><br/>', 4, 2, '16/05/2015', 0),
+(3, 4, '13/05/2015 13:22', 'Robbery', '(uploaded police report)<hr/>fs <br><hr/><br><strong>Claim Adjuster Notes: </strong> Needs more information. Please write out a detailed description.<hr/><hr/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>', 4, 2, '16/05/2015', 0),
 (8, 1, '15/05/2015 20:46', 'They Broke it!', 'Vandals came in and broke my romulan necklace. Specists.', 2, 2, '', 0),
 (9, 2, '16/05/2015 17:34', 'Tornado', 'Lost the pieces to my monopoly set. <br><hr/><br><strong>Claim Adjuster Notes: </strong> Your Claims has been approved!', 1, 2, '25/05/2015', 1),
 (10, 1, '22/05/2015 17:02', '', '', 3, 12, '', 0),
-(12, 0, '26/05/2015 13:56', 'yo man', 'my stuff is burned', 3, 12, '', 0);
+(12, 0, '26/05/2015 13:56', 'yo man', 'my stuff is burned', 3, 12, '', 0),
+(13, 3, '27/05/2015 19:40', 'It broke', 'My daughter jumped on it, give me money to replace it. <br><hr/><br><strong>Claim Adjuster Notes: </strong> This is not covered in our policy.', 6, 2, '05/27/2015', 0),
+(14, 0, '28/05/2015 16:43', 'Antique Shower Curtain', 'Police Report# 1234\r\n\r\nBurglars broke in and took the shower curtain.', 4, 16, '', 0),
+(15, 4, '28/05/2015 19:35', 'blah', 'my stuff was burned <br><hr/><br><strong>Claim Adjuster Notes: </strong> You need to add images of your damages', 3, 17, '05/28/2015', 0);
 
 -- --------------------------------------------------------
 
@@ -71,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `claim_items` (
   `id` int(11) NOT NULL,
   `item_id` int(7) NOT NULL,
   `claim_id` int(7) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `claim_items`
@@ -80,7 +83,11 @@ CREATE TABLE IF NOT EXISTS `claim_items` (
 INSERT INTO `claim_items` (`id`, `item_id`, `claim_id`) VALUES
 (15, 14, 3),
 (14, 7, 3),
+(23, 18, 13),
 (6, 13, 9),
+(26, 23, 15),
+(25, 22, 14),
+(24, 15, 3),
 (22, 19, 12);
 
 -- --------------------------------------------------------
@@ -143,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `history` (
   `content` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `datetime` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `is_employee` int(1) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `history`
@@ -188,7 +195,20 @@ INSERT INTO `history` (`id`, `user_id`, `content`, `datetime`, `is_employee`) VA
 (44, 1, 'Changed <a href="profile.php?user=9">Claims Adjuster</a>''s Password', '25/05/2015 22:18', 1),
 (45, 1, 'Disabled <a href="profile.php?user=9">Claims Adjuster</a>''s Account', '25/05/2015 22:22', 0),
 (46, 1, 'Reactivated <a href="profile.php?user=9">Claims Adjuster</a>''s Account', '05/25/2015 22:27', 1),
-(47, 12, 'Filed Claim: <a href="claim_details.php?id=12">yo man</a>', '26/05/2015 13:56', 0);
+(47, 12, 'Filed Claim: <a href="claim_details.php?id=12">yo man</a>', '26/05/2015 13:56', 0),
+(48, 2, 'Edited item: <a href="item_details.php?id=2">Sampsung Television</a>', '05/27/2015 19:13', 0),
+(49, 2, 'Filed Claim: <a href="claim_details.php?id=13">It broke</a>', '27/05/2015 19:40', 0),
+(50, 1, 'Updated <a href="claim_details.php?id=13">Claim #13</a>', '05/27/2015 19:53', 1),
+(51, 2, 'Removed item: <a href="item_details.php?id=17">tyrtyrt</a>', '05/27/2015 20:01', 0),
+(52, 2, 'Removed item: <a href="item_details.php?id=21">Stereo system</a>', '05/27/2015 20:01', 0),
+(53, 16, 'Added item: <a href="item_details.php?id=22">Antique Shower Curtain</a>', '05/28/2015 16:30', 0),
+(54, 16, 'Filed Claim: <a href="claim_details.php?id=14">Antique Shower Curtain</a>', '28/05/2015 16:43', 0),
+(55, 17, 'Added item: <a href="item_details.php?id=23">Antique Mideival Bedroom Wardrobe</a>', '05/28/2015 19:32', 0),
+(56, 17, 'Removed item: <a href="item_details.php?id=23">Antique Mideival Bedroom Wardrobe</a>', '05/28/2015 19:34', 0),
+(57, 17, 'Restored item: <a href="item_details.php?id=23">Antique Mideival Bedroom Wardrobe</a>', '05/28/2015 19:34', 0),
+(58, 17, 'Filed Claim: <a href="claim_details.php?id=15">blah</a>', '28/05/2015 19:36', 0),
+(59, 6, 'Updated <a href="claim_details.php?id=15">Claim #15</a>', '05/28/2015 19:40', 1),
+(60, 2, 'Added item: <a href="item_details.php?id=24">Sam''s Club TV</a>', '05/29/2015 17:42', 0);
 
 -- --------------------------------------------------------
 
@@ -209,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `upload_date` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `updated` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `in_trash` int(2) DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `items`
@@ -217,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `items` (
 
 INSERT INTO `items` (`id`, `user_id`, `category`, `room_id`, `name`, `purchase_date`, `purchase_price`, `declared_value`, `notes`, `upload_date`, `updated`, `in_trash`) VALUES
 (7, 2, 1, 5, 'Diamond Watch', '12/23/1989', '15,000', '16000', 'In the safe', '0', '', 0),
-(2, 2, 2, 2, 'Sampsung Television', '12/23/1989', '2000.00', '1800', 'Family heirloom!', '0', '', 0),
+(2, 2, 2, 2, 'Sampsung Television', '12/23/1986', '2000.00', '1800', 'Family heirloom!', '0', '05/27/2015 19:13', 0),
 (6, 2, 4, 1, 'Sheep Skin Banjo', '10/01/1929', '5.00', '21000', 'Appraised 10/07/1997', '18/03/2015 19:37', '18/05/2015 19:37', 0),
 (8, 2, 1, 1, 'test', '12052015', '2000', '2100', 'tet', '12052015', '', 1),
 (9, 2, 1, 1, 'Test again', '12052015', '2000', '2100', 'lorem', '12052015', '', 1),
@@ -227,11 +247,14 @@ INSERT INTO `items` (`id`, `user_id`, `category`, `room_id`, `name`, `purchase_d
 (13, 2, 7, 1, 'Vintage Monopoly Set', '16/05/2015 16:10', '15', '200', 'Keeping this safe', '16/05/2015 16:10', '16/05/2015 16:10', 0),
 (14, 2, 10, 5, 'Old Book', '05/18/2015 20:12', '0.05', '950', 'Priceless antique', '05/18/2015 20:12', '05/18/2015 20:12', 0),
 (15, 2, 5, 1, 'PHP', '05/18/2015 20:14', '5.00', '2100', 'Lorem', '05/18/2015 20:14', '05/18/2015 20:14', 0),
-(17, 2, 3, 1, 'tyrtyrt', '05/20/2015 18:18', '', '', '', '05/20/2015 18:18', '05/20/2015 18:18', 0),
-(21, 2, 2, 1, 'Stereo system ', '05/24/2015 21:36', '300', '300', 'Bose', '', '05/24/2015 21:36', 0),
+(17, 2, 3, 1, 'tyrtyrt', '05/20/2015 18:18', '', '', '', '05/20/2015 18:18', '05/20/2015 18:18', 1),
+(21, 2, 2, 1, 'Stereo system ', '05/24/2015 21:36', '300', '300', 'Bose', '', '05/24/2015 21:36', 1),
 (18, 2, 4, 5, 'Piano Bench', '05/21/2015 19:05', '2,000', '2000', '', '', '05/21/2015 19:05', 0),
 (19, 12, 1, 6, 'Diamond Necklace', '05/22/2015 16:42', '950', '950', 'ghbtrb', '02/01/2000', '05/22/2015 16:42', 0),
-(20, 12, 2, 6, 'Samsung TV', '05/22/2015 16:57', '1500', '1500', 'Stuff', '02/01/2000', '05/22/2015 16:57', 1);
+(20, 12, 2, 6, 'Samsung TV', '05/22/2015 16:57', '1500', '1500', 'Stuff', '02/01/2000', '05/22/2015 16:57', 1),
+(22, 16, 10, 8, 'Antique Shower Curtain', '05/28/2015 16:30', '10000', '12000', 'Antique Shower Curtain belonging to the Honorable Sir Peter Preston. It was made in 1846 and is white with interlacing gold trim and etchings.', '01/07/1988', '05/28/2015 16:30', 0),
+(23, 17, 3, 9, 'Antique Mideival Bedroom Wardrobe', '05/28/2015 19:32', '100', '15000', 'See appraisal', '01/07/1988', '05/28/2015 19:32', 0),
+(24, 2, 2, 2, 'Sam''s Club TV', '05/29/2015 17:42', '950', '1000', 'I like to poop and watch.', '12/23/2013', '05/29/2015 17:42', 0);
 
 -- --------------------------------------------------------
 
@@ -273,16 +296,22 @@ CREATE TABLE IF NOT EXISTS `item_img` (
   `is_img` int(1) NOT NULL,
   `title` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `thumb_path` varchar(500) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `item_img`
 --
 
 INSERT INTO `item_img` (`id`, `item_id`, `file_path`, `is_img`, `title`, `thumb_path`) VALUES
+(9, 2, 'images/img_1432768827.jpg', 1, 'Jellies', 'thumbs/tn_img_1432768827.jpg'),
 (3, 21, 'item_images/2/398e0314-2cd6-44de-bc98-7075e3ef6c7b.png', 1, 'Backwards man ', ''),
 (4, 19, 'item_images/12/front_shoe.jpg', 1, 'Totes a Diamond Neck', ''),
-(5, 2, 'item_images/2/keep-calm-and-please-hold-2.png', 1, 'Television', '');
+(5, 2, 'item_images/2/keep-calm-and-please-hold-2.png', 1, 'Television', ''),
+(8, 2, 'images/img_1432768176.jpg', 1, 'Screensaver', 'thumbs/tn_img_1432768176.jpg'),
+(10, 2, 'images/img_1432768837.jpg', 1, 'Koala', 'thumbs/tn_img_1432768837.jpg'),
+(11, 22, 'images/img_1432848746.jpg', 1, 'Antique Shower Curta', 'thumbs/tn_img_1432848746.jpg'),
+(12, 23, 'images/img_1432859609.jpg', 1, 'hergkbjg', 'thumbs/tn_img_1432859609.jpg'),
+(13, 23, 'images/img_1432859652.jpg', 1, 'blahe', 'thumbs/tn_img_1432859652.jpg');
 
 -- --------------------------------------------------------
 
@@ -400,7 +429,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `name` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `notes` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` int(7) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `rooms`
@@ -411,7 +440,9 @@ INSERT INTO `rooms` (`id`, `name`, `notes`, `user_id`) VALUES
 (2, 'Upstairs Bathroom', 'Upstairs Bathroom', 2),
 (5, 'Master Bedroom', '', 2),
 (6, 'Bedroom', 'my bedroom', 12),
-(7, 'Holodeck', 'The Holosuites and holodecks use two major subsystems: the holographic image and the conversion of matter. The holographic imaging system creates realistic environments and landscapes. The conversion system of matter creates physical objects from the central supply of raw materials from the ship. Under normal conditions, a participant in a holographic simulation should not be able to distinguish a real object from a simulated one.', 14);
+(7, 'Holodeck', 'The Holosuites and holodecks use two major subsystems: the holographic image and the conversion of matter. The holographic imaging system creates realistic environments and landscapes. The conversion system of matter creates physical objects from the central supply of raw materials from the ship. Under normal conditions, a participant in a holographic simulation should not be able to distinguish a real object from a simulated one.', 14),
+(8, 'Bathroom', 'This is the Master Bathroom.', 16),
+(9, 'B edroom', 'This is where we sleep at night and when we nap.', 17);
 
 -- --------------------------------------------------------
 
@@ -543,7 +574,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `is_employee` int(1) NOT NULL,
   `role` int(7) NOT NULL,
-  `is_verified` int(1) NOT NULL,
+  `walkthrough_complete` int(1) NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `first_name` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
@@ -558,15 +589,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `profile_content` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `account_disabled` int(1) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `is_employee`, `role`, `is_verified`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `state`, `zip`, `phone`, `theme`, `policy_number`, `profile_content`, `avatar`, `account_disabled`) VALUES
-(1, 1, 1, 0, 'isolennox@gmail.com', '$2y$10$UbMiItxXdXK6HrgukgLUPe8R8g5L8IObAgYy2ESW6iEfnBksjoFXK', 'Isobel C', 'Lennox', '', '', 0, '', '', 1, '', 'Hi Kris!', 'profile_img/1/regina.gif', 0),
-(2, 0, 0, 0, 'lennoxfiles@gmail.com', '$2y$10$m9raYcb0d8nZdvNL1dBs9.L3hKNlKqp2mSA0mUEzUPeyYRoYeIUpu', 'Izzy', 'Bee', '987 Mullberry Lane', 'Anchorage', 1, '96544', '6098404145', 0, '9898785-545-654001', 'kjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjg', 'profile_img/2/bruce.gif', 0),
+INSERT INTO `users` (`id`, `is_employee`, `role`, `walkthrough_complete`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `state`, `zip`, `phone`, `theme`, `policy_number`, `profile_content`, `avatar`, `account_disabled`) VALUES
+(1, 1, 1, 0, 'isolennox@gmail.com', '$2y$10$UbMiItxXdXK6HrgukgLUPe8R8g5L8IObAgYy2ESW6iEfnBksjoFXK', 'Isobel C', 'Lennox', '', '', 0, '', '', 0, '', 'Hi Kris!', 'profile_img/1/regina.gif', 0),
+(2, 0, 0, 0, 'lennoxfiles@gmail.com', '$2y$10$m9raYcb0d8nZdvNL1dBs9.L3hKNlKqp2mSA0mUEzUPeyYRoYeIUpu', 'Izzy', 'Bee', '987 Mullberry Lane', 'Anchorage', 1, '96544', '6098404145', 1, '9898785-545-654001', 'kjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjgkjdsfhshgjwebhrgehriughkejrgkjenfkjgnkdfjg', 'profile_img/2/bruce.gif', 0),
 (6, 1, 1, 0, 'larhea@gmail.com', '$2y$10$WCI96qcP1mfOI7hz0/Gq0eRh4dbSub0hE.svLWGChJFyXjVfKXmde', 'LaRhea', 'Phillips', '', '', 0, '', '', 0, '', '', '', 0),
 (7, 1, 1, 0, 'matt@gmail.com', '$2y$10$XTxBelwLV6o9lIF9nOBSieAyP5KbQeAqNBpjnZ1dJGkwi87eU.PLG', 'Matt', 'Browne', '', '', 0, '', '', 1, '', '', '', 0),
 (8, 0, 0, 0, 'g@me.com', '$2y$10$Ukl2SMPPgyj6MuBJE7YSt.8Ucmq.QvvMEq8eema309l9RG2C.0gue', 'Guest', 'guy', '', '', 0, '', '', 0, '', '', '', 0),
@@ -575,7 +606,9 @@ INSERT INTO `users` (`id`, `is_employee`, `role`, `is_verified`, `email`, `passw
 (13, 1, 3, 0, 'guest@gmail.com', '$2y$10$k43tptownD9QGxVEIBtHm.gBIc5zoH9jC0a/D5tfrDtkEnN4RSQgi', 'Guest ', 'Employee', '', '', 0, '', '', 1, '', '', '', 0),
 (12, 0, 0, 0, 'l.phillips@students.clark.edu', '$2y$10$2XWe/Au65Dd0NOWQrYol/.MX3WQPqAcdaiJoHojvhHNjjXD6KWSli', 'LaRhea', 'Phillips', '', '', 0, '', '', 0, '', '', '', 0),
 (14, 0, 0, 0, 'guest2@gmail.com', '$2y$10$JjZn.f9DfvwMbvCvstvfHu6btNNR0GpuEco4xLYIG.LuiYJTD5R96', 'Guest', 'Client', '', '', 0, '', '', 0, '', '', '', 0),
-(15, 0, 0, 0, 'kriskuchinka@gmail.com', '$2y$10$hT2AGn1ff95jE0EGr3e5uuiCAUJx0Cl6DlZyVWjU397ABvbgP0YZC', 'Kris', 'Kuchinka', '', '', 0, '', '', 0, '', '', '', 0);
+(17, 0, 0, 0, 'faker.person@gmail.com', '$2y$10$Wgyg.kvL68CKYjib8bUP7uwPOL/LHXR.SyYclBPr7vCo5DWvh80tm', 'Faker', 'Person', '', '', 0, '', '', 0, '', '', '', 0),
+(15, 0, 0, 0, 'kriskuchinka@gmail.com', '$2y$10$hT2AGn1ff95jE0EGr3e5uuiCAUJx0Cl6DlZyVWjU397ABvbgP0YZC', 'Kris', 'Kuchinka', '', '', 0, '', '', 0, '', '', '', 0),
+(16, 0, 0, 0, 'fake.person@gmail.com', '$2y$10$1NolbbP2JNy1pCbG4T/XCuWqv7KFjxPTseka2xGeNQ47sksHuDGVa', 'Fake', 'Person', '', '', 0, '', '', 0, '', '', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -697,7 +730,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `claims`
 --
 ALTER TABLE `claims`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `claims_img`
 --
@@ -707,7 +740,7 @@ ALTER TABLE `claims_img`
 -- AUTO_INCREMENT for table `claim_items`
 --
 ALTER TABLE `claim_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `claim_types`
 --
@@ -722,12 +755,12 @@ ALTER TABLE `company_details`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `item_category`
 --
@@ -737,7 +770,7 @@ ALTER TABLE `item_category`
 -- AUTO_INCREMENT for table `item_img`
 --
 ALTER TABLE `item_img`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `messages`
 --
@@ -762,7 +795,7 @@ ALTER TABLE `roles_permissions`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `state`
 --
@@ -782,7 +815,7 @@ ALTER TABLE `thread`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

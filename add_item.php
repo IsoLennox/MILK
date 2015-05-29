@@ -8,7 +8,10 @@ include("inc/header.php"); ?>
 
 <?php
 if (isset($_POST['submit'])) {
-    $name= $_POST['name']; 
+    $name= $_POST['name'];
+    $name=addslashes($name);
+    $name= htmlentities($name);
+    
     $room= $_POST['room']; 
     $notes= $_POST['notes']; 
     $pdate= $_POST['purchase_date']; 
