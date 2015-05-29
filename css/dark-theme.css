@@ -11,3 +11,7 @@ header a, nav a {
 
 .current_page a{ color: #222;}
 .current_page a:hover{ color: #555;}
+
+.claim_alert , .claim_alert_client {     
+    color: #eee;
+}
