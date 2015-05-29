@@ -14,23 +14,28 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
 
          <?php  
             //GET CLAIM COUNTS
+
+         	//ALL CLAIMS EXCEPT FOR DRAFT = (1)
             $all_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id != 1";   
             $all_result = mysqli_query($connection, $all_query);
             $data=mysqli_fetch_assoc($all_result);
 
+            //PROCESSING CLAIMS = (0)
             $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=0";   
             $pending_result = mysqli_query($connection, $pending_query);
             $pdata=mysqli_fetch_assoc($pending_result); 
 
+            //PENDING CHANGES (4)
             $waiting_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=4";   
             $waiting_result = mysqli_query($connection, $waiting_query);
             $wdata=mysqli_fetch_assoc($waiting_result); 
  
-
+            //APPROVED CLAIMS (2)
             $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=2";   
             $approved_result = mysqli_query($connection, $approved_query);
             $adata=mysqli_fetch_assoc($approved_result); 
 
+            //DENIED CLAIMS (3)
             $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=3";   
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
@@ -113,12 +118,14 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
         
     }
     $result = mysqli_query($connection, $query);
+    //DEPENDING ON LINK PARAMETER - ?PENDING etc 
+    //$SHOW displays
     if($result){ 
         echo "<div class=\"claims_list\">";
         //show each result value
         foreach($result as $show){
             echo "<div class=\"claims\">";
-            //GET CLAIM TYPE NAME
+    //GET CLAIM TYPE NAME IE(FIRE FLOOD EARTHQUAKE)
     $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
     $type_result = mysqli_query($connection, $type_query);
     if($type_result){
@@ -127,15 +134,13 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     }
             
             
-                        //GET CLAIM STATUS NAME
+   	//GET CLAIM STATUS NAME (DRAFT APPROVED DENIED)
     $status_query  = "SELECT * FROM status_types WHERE id={$show['status_id']}";  
     $status_result = mysqli_query($connection, $status_query);
     if($status_result){
         $status_array=mysqli_fetch_assoc($status_result);
         $status=$status_array['name'];
-    }
-        
-            
+    }           
             
             echo "<a href=\"claim_details.php?id=".$show['id']."\"><h4>".$show['title']."</h4></a><br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
