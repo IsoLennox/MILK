@@ -103,7 +103,7 @@ if($num_rooms==0){
             $total_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";   
             $total_item_result = mysqli_query($connection, $total_item_query);
             $total_items=0; 
-            $categories;
+            $categories= '';
             foreach($total_item_result as $item){
                     $total_items++;
                 
