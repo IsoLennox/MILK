@@ -778,6 +778,18 @@ header {
 	}
 
 
+	.item_content {
+		width:70%;
+		float:left;
+	}
+	.item_img_content {
+		width:30%;
+		float:right;
+		text-align: right;
+	}
+
+
+
 
 
 
