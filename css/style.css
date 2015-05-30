@@ -655,8 +655,8 @@ header {
 	margin-right: 5px;
     padding: 20px;
     border-radius: 10px;
-    border: 2px solid rgba(245,245,245,0.5);
-    background: rgba(245,245,245,0.3);
+    border: 2px solid rgba(245,245,245,0.99);
+    background: rgba(245,245,245,0.7);
 	text-align: center;
     /*min-height: 275px;*/
 }
