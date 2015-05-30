@@ -24,8 +24,20 @@ include("inc/header.php");  ?>
 //                $num_rows=mysqli_num_rows($result);
 //                if($num_rows>=1){
                 if(!empty($result)){
-                    $_SESSION["message"] = "Added ".$name."!";
-                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    
+                    
+                  if(isset($_GET['walkthrough'])){
+                      $update_profile  = "UPDATE users SET walkthrough_complete=2 WHERE id={$_SESSION['user_id']}";
+                       $updated = mysqli_query($connection, $update_profile);
+                        $_SESSION["walkthrough"] = "Added ".$name."! Let's add your first item!"; 
+                        redirect_to('add_item.php?walkthrough');
+                    }else{
+                        $_SESSION["message"] = "Added ".$name."!"; 
+                        redirect_to('rooms.php');
+                    }
+                    
+                    
+                    
                     }else{
                         echo "Could not add this room";
                     }

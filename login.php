@@ -71,9 +71,15 @@ if (isset($_POST['submit'])) {
                 
                 
                 //if user has not taken walkthrough, start walkthrough
-                if($user['walkthrough_complete']==0){
+                if($user['walkthrough_complete']==0 && $_SESSION['is_employee']==0){
                 $_SESSION["walkthrough"] = "Welcome To Under My Roof! First, Please complete your profile!";
                 redirect_to("edit_profile.php?walkthrough");
+                }elseif($user['walkthrough_complete']==1 && $_SESSION['is_employee']==0){
+                $_SESSION["walkthrough"] = "Welcome Back! Let's add your first room!";
+                redirect_to("rooms.php?walkthrough");
+                }elseif($user['walkthrough_complete']==2 && $_SESSION['is_employee']==0){
+                $_SESSION["walkthrough"] = "Welcome Back! Let's add your first item!";
+                redirect_to("add_item.php?walkthrough");
                 }else{
                 redirect_to("index.php");
                 }

@@ -2,6 +2,12 @@
 $current_page="dashboard";
 include("inc/header.php"); 
 
+if(isset($_GET['no-walkthrough'])){
+        $no_walkthrough  = "UPDATE users SET walkthrough_complete=3 WHERE id={$_SESSION['user_id']} ";  
+        $walkthrough_skipped = mysqli_query($connection, $no_walkthrough);
+}
+
+
  
 if($_SESSION['is_employee']==0){
     //CLIENT
