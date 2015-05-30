@@ -28,18 +28,20 @@ if($_SESSION['is_employee']==0){
     <div class="chart_link">
         
        <?php if(isset($_GET['graphs'])){ ?>
-            <a href="index.php"><i class="fa fa-bars"></i></a>
+            <a href="index.php"><i class="fa right fa-bars"></i></a>
 <!--             <i class="fa fa-bar-chart"></i>     -->
         <?php }else{ ?>
 <!--             <i class="fa fa-bars"></i>-->
-             <a href="index.php?graphs"><i class="fa fa-bar-chart"></i></a>
+             <a href="index.php?graphs"><i class="fa right fa-bar-chart"></i></a>
        <?php } ?>
     </div>
        
        <?php
 if(isset($_GET['graphs'])){
-    //INCLUDE CHARTS
+    //INCLUDE CHARTS 
+    echo "<div class=\"stats\"><h1>Statistics</h1>";
     include_once('dashboard_charts.php'); 
+    echo "</div>";
 }else{
     //INCLUDE STATS
         include_once('client_dashboard.php'); 
