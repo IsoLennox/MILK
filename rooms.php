@@ -29,7 +29,7 @@ include("inc/header.php");  ?>
                   if(isset($_GET['walkthrough'])){
                       $update_profile  = "UPDATE users SET walkthrough_complete=2 WHERE id={$_SESSION['user_id']}";
                        $updated = mysqli_query($connection, $update_profile);
-                        $_SESSION["walkthrough"] = "Added ".$name."! Let's add your first item!"; 
+                        $_SESSION["walkthrough"] = "Added ".$name."! <br/>Last Step: Let's add your first item!"; 
                         redirect_to('add_item.php?walkthrough');
                     }else{
                         $_SESSION["message"] = "Added ".$name."!"; 

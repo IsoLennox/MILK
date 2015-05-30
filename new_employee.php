@@ -13,7 +13,14 @@ include("inc/header.php"); ?>
 } 
 </style>
 <?php
- 
+  if(isset($_GET['walkthrough'])){ 
+     $update_walkthrough  = "UPDATE users SET walkthrough_complete=3 WHERE id={$_SESSION['user_id']} ";  
+    $walkthrough_updated = mysqli_query($connection, $update_walkthrough);
+  
+     echo "<div class=\"walkthrough\"><h4>Walkthrough</h4><br/><strong>Last Step: Creating an Employee Account</strong><br/>An employee with permissions to edit employees will have the ability to create a new employee. Employees can only be created internally, and will be able to change their email and password after they log in. <br/><a class=\"right\" href=\"index.php?walkthrough\">Got It!</a></div>";
+       
+      
+ }
 
 //Creating New Employee
 if (isset($_POST['submit'])) {

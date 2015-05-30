@@ -63,9 +63,15 @@ if (isset($_POST['submit'])) {
     if ($result && mysqli_affected_rows($connection) == 1) {
       // Success
         
-    if(isset($_POST['walkthrough'])){
-         $_SESSION["walkthrough"] = "Profile updated! Next let's add a room!";
+    if(isset($_POST['walkthrough']) && $_SESSION['is_employee']==0){
+         $_SESSION["walkthrough"] = "Profile updated! Step 2 of 3: Next let's add a room!";
         redirect_to("rooms.php?walkthrough");
+    }elseif(isset($_POST['walkthrough']) && $_SESSION['is_employee']==1){
+         $_SESSION["walkthrough"] = "Profile updated! <br/><strong>Step 2 of 4: Employee Roles</strong><br/>Each Employee or group of employees can be given specific permissions based on their role. The Super User has full permissions.<br/><a class=\"right\" href=\"add_role.php?walkthrough\">NEXT</a></div>";
+        redirect_to("roles.php?walkthrough");
+         
+        
+        
     }else{
          $_SESSION["message"] = "profile updated.";
         redirect_to("profile.php");

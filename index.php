@@ -7,6 +7,14 @@ if(isset($_GET['no-walkthrough'])){
         $walkthrough_skipped = mysqli_query($connection, $no_walkthrough);
 }
 
+if(isset($_GET['walkthrough'])){ 
+     echo "<div class=\"message\"><h4>Walkthrough Complete!</h4><br/>You can take the walkthrough again by going to your Settings!<br/></div>";
+     $update_walkthrough  = "UPDATE users SET walkthrough_complete=4 WHERE id={$_SESSION['user_id']} ";  
+    $walkthrough_updated = mysqli_query($connection, $update_walkthrough);
+       
+      
+ }
+
 
  
 if($_SESSION['is_employee']==0){

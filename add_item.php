@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
         if(isset($_GET['walkthrough'])){
                       $update_profile  = "UPDATE users SET walkthrough_complete=3 WHERE id={$_SESSION['user_id']}";
                         $updated = mysqli_query($connection, $update_profile);
-                        $_SESSION["walkthrough"] = "Saved your item! Welcome to your dashboard! You can take the walkthrough again by going to 'help'."; 
+                        $_SESSION["walkthrough"] = "Saved your item! Walkthrough Complete!<br/>Welcome to your dashboard! You can take the walkthrough again by going to 'help'."; 
                         redirect_to('dashboard.php?walkthrough');
                     }else{
                         $_SESSION["message"] = "Item Saved!";
