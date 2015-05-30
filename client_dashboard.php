@@ -73,7 +73,7 @@
             echo "<p><a href=\"claim_details.php?id=".$draft_details['id']."\"><i class=\"fa fa-pencil\"></i> Edit Claim</a></p></div>";
         }else{
     //    IF NO DRAFTS, SHOW LAST CLAIM SUBMITTED, AND ITS STATUS
-            echo "<h2>Most Recent Claim</h2>";
+            echo "<h2>Most Recent Claim</h2><div id=\"draft_container\">";
             $get_claim  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} ORDER BY id LIMIT 1";  
             $claim_result = mysqli_query($connection, $get_claim); 
             $claim_rows=mysqli_num_rows($claim_result);
@@ -81,7 +81,7 @@
                  $claim_details=mysqli_fetch_assoc($claim_result);
                 echo "<h3>".$claim_details['title']."</h3>";
                 echo "<p>".$claim_details['notes']."</p><br>";
-                echo "<p><a href=\"claim_details.php?id=".$claim_details['id']."\">View Claim</a></p>";
+                echo "<p><a href=\"claim_details.php?id=".$claim_details['id']."\">View Claim</a></p></div>";
 
             }else{
 

@@ -11,8 +11,9 @@ if(isset($_POST['submit'])){
     $claim_id=$_GET['id'];
     $new_status=$_POST['status'];
     $notes=$_POST['notes'];
-    $append_prefix= "<br><hr/><br><strong>Claim Adjuster Notes: </strong>";
     $date = date('m/d/Y H:i');
+    $append_prefix= "<br><hr/><br><strong>(".$date.") Claim Adjuster Notes: </strong>";
+    
     
                             //GET CLAIM NOTES
     $note_query  = "SELECT * FROM claims WHERE id={$claim_id}";  
