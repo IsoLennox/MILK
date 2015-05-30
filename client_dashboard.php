@@ -1,4 +1,101 @@
-<?php 
+<?php
+
+                    //*****************
+                    //    CLAIMS
+                    //*****************
+ 
+   
+    $claims=0;
+    $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
+    $claim_result = mysqli_query($connection, $claim_count);
+    $num_claims=0;
+    if($claim_result){
+        foreach($claim_result as $claim){
+        $num_claims++;
+    }
+    }
+//    echo "<li>You have made ".$num_claims." claims</li>";
+
+
+
+ 
+        //GET COUNTS
+            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
+            $all_result = mysqli_query($connection, $all_query);
+            $data=mysqli_fetch_assoc($all_result);
+
+            $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
+            $pending_result = mysqli_query($connection, $pending_query);
+            $pdata=mysqli_fetch_assoc($pending_result); 
+                
+            $draft_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1";   
+            $draft_result = mysqli_query($connection, $draft_query);
+            $drdata=mysqli_fetch_assoc($draft_result); 
+
+                
+            $changes_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
+            $changes_result = mysqli_query($connection, $changes_query);
+            $cdata=mysqli_fetch_assoc($changes_result); 
+
+
+            $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=2";   
+            $approved_result = mysqli_query($connection, $approved_query);
+            $adata=mysqli_fetch_assoc($approved_result); 
+
+            $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=3";   
+            $denied_result = mysqli_query($connection, $denied_query);
+            $ddata=mysqli_fetch_assoc($denied_result); 
+        ?>
+    <div class="stats">
+        <div class="claims_dashboard half_div">
+
+                <p><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)</p>
+                <p><a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>)</p>
+                <p><a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</p>             
+                <p><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)</p>            
+                <p><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>) </p>
+                <p><a href="claim_history.php?draft"><i class="fa fa-file-o "></i> Drafts </a> (<?php echo $drdata['total']; ?>) </p>
+
+            </div>
+
+
+                <div class="half_div">
+    <!--            IF ANY DRAFTS, SHOW BY ID ASC-->
+       <?php
+        $get_draft  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1 ORDER BY id LIMIT 1";  
+        $draft_result = mysqli_query($connection, $get_draft); 
+        $draft_rows=mysqli_num_rows($draft_result);
+        if($draft_rows >=1){
+            echo "<h2>Finish This Draft</h2>";
+             $draft_details=mysqli_fetch_assoc($draft_result);
+            echo "<h3>".$draft_details['title']."</h3>";
+            echo "<p>".$draft_details['notes']."</p><br>";
+            echo "<p><a href=\"claim_details.php?id=".$draft_details['id']."\"><i class=\"fa fa-pencil\"></i> Edit Claim</a></p>";
+        }else{
+    //    IF NO DRAFTS, SHOW LAST CLAIM SUBMITTED, AND ITS STATUS
+            echo "<h2>Most Recent Claim</h2>";
+            $get_claim  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} ORDER BY id LIMIT 1";  
+            $claim_result = mysqli_query($connection, $get_claim); 
+            $claim_rows=mysqli_num_rows($claim_result);
+            if($claim_rows >=1){
+                 $claim_details=mysqli_fetch_assoc($claim_result);
+                echo "<h3>".$claim_details['title']."</h3>";
+                echo "<p>".$claim_details['notes']."</p><br>";
+                echo "<p><a href=\"claim_details.php?id=".$claim_details['id']."\">View Claim</a></p>";
+
+            }else{
+
+                //IF NO CLAIMS SUBMITTED, SHOW...
+                echo "<h2>You have made no claims!</h2>";
+            }
+
+        }
+    ?> 
+
+        </div>
+    </div><?php
+                    
+                    
 
                     //*****************
                     //    ROOMS
@@ -168,110 +265,12 @@ if(!empty($total_items)){
        echo "</div>";
 
 
-
-                    //*****************
-                    //    CLAIMS
-                    //*****************
-
-
-
-
-        echo "<div class=\"stats\">";
-   
-    $claims=0;
-    $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
-    $claim_result = mysqli_query($connection, $claim_count);
-    $num_claims=0;
-    if($claim_result){
-        foreach($claim_result as $claim){
-        $num_claims++;
-    }
-    }
-//    echo "<li>You have made ".$num_claims." claims</li>";
-
-
-
- 
-        //GET COUNTS
-            $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
-            $all_result = mysqli_query($connection, $all_query);
-            $data=mysqli_fetch_assoc($all_result);
-
-            $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=0";   
-            $pending_result = mysqli_query($connection, $pending_query);
-            $pdata=mysqli_fetch_assoc($pending_result); 
-                
-            $draft_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1";   
-            $draft_result = mysqli_query($connection, $draft_query);
-            $drdata=mysqli_fetch_assoc($draft_result); 
-
-                
-            $changes_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=4";   
-            $changes_result = mysqli_query($connection, $changes_query);
-            $cdata=mysqli_fetch_assoc($changes_result); 
-
-
-            $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=2";   
-            $approved_result = mysqli_query($connection, $approved_query);
-            $adata=mysqli_fetch_assoc($approved_result); 
-
-            $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=3";   
-            $denied_result = mysqli_query($connection, $denied_query);
-            $ddata=mysqli_fetch_assoc($denied_result); 
-        ?>
-          
-        <div class="claims_dashboard half_div">
-              
-            <p><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)</p>
-            <p><a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>)</p>
-            <p><a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</p>             
-            <p><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)</p>            
-            <p><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>) </p>
-            <p><a href="claim_history.php?draft"><i class="fa fa-file-o "></i> Drafts </a> (<?php echo $drdata['total']; ?>) </p>
-            
-        </div>
-            
-            
-            <div class="half_div">
-<!--            IF ANY DRAFTS, SHOW BY ID ASC-->
-   <?php
-    $get_draft  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} AND status_id=1 ORDER BY id LIMIT 1";  
-    $draft_result = mysqli_query($connection, $get_draft); 
-    $draft_rows=mysqli_num_rows($draft_result);
-    if($draft_rows >=1){
-        echo "<h2>Finish This Draft</h2>";
-         $draft_details=mysqli_fetch_assoc($draft_result);
-        echo "<h3>".$draft_details['title']."</h3>";
-        echo "<p>".$draft_details['notes']."</p><br>";
-        echo "<p><a href=\"claim_details.php?id=".$draft_details['id']."\"><i class=\"fa fa-pencil\"></i> Edit Claim</a></p>";
-    }else{
-//    IF NO DRAFTS, SHOW LAST CLAIM SUBMITTED, AND ITS STATUS
-        echo "<h2>Most Recent Claim</h2>";
-        $get_claim  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']} ORDER BY id LIMIT 1";  
-        $claim_result = mysqli_query($connection, $get_claim); 
-        $claim_rows=mysqli_num_rows($claim_result);
-        if($claim_rows >=1){
-             $claim_details=mysqli_fetch_assoc($claim_result);
-            echo "<h3>".$claim_details['title']."</h3>";
-            echo "<p>".$claim_details['notes']."</p><br>";
-            echo "<p><a href=\"claim_details.php?id=".$claim_details['id']."\">View Claim</a></p>";
-
-        }else{
-
-            //IF NO CLAIMS SUBMITTED, SHOW...
-            echo "<h2>You have made no claims!</h2>";
-        }
-    
-    }
-?> 
-            
-</div>
+?>
             
             
 <!--            MOST RECENTLY ADDED ITEMS -->
 
-    </ul>
-    </div>
+  
 <!--    </div>-->
 
  

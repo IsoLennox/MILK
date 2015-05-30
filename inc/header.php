@@ -175,9 +175,9 @@ if($_SESSION['is_employee']==0){
            <?php  } 
             
             if(isset($current_page) && $current_page=="help"){?>
-            <li class="current_page"><a href="help.php"><i class="fa fa-question"></i> Help</a></li> 
+<!--            <li class="current_page"><a href="help.php"><i class="fa fa-question"></i> Help</a></li> -->
              <?php }else{ ?>
-              <li><a href="help.php"><i class="fa fa-question"></i> Help</a></li> 
+<!--              <li><a href="help.php"><i class="fa fa-question"></i> Help</a></li> -->
               <?php  } ?>
         </ul>
     

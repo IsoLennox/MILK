@@ -657,7 +657,7 @@ header {
     border-radius: 10px;
     border: 2px solid rgba(245,245,245,0.99);
     background: rgba(245,245,245,0.7);
-	text-align: center;
+/*	text-align: center;*/
     /*min-height: 275px;*/
 }
 	.stats:nth-of-type(3){
@@ -668,6 +668,7 @@ header {
     width: 25%;
 	float: left;
 	margin-bottom: 15px;
+    text-align: left;
 }
 
 
@@ -927,6 +928,7 @@ header {
 .half_div {
 	float:left;
 	width:48%;
+    text-align: left;
 }
 	.half_div:first-child{
 		margin-right: 4%;
@@ -943,7 +945,7 @@ header {
 		text-align: left;
 	}
 
-.half_link {
+.half_link, .chart_link {
 	float:left;
 	width:50%;
 	margin:10px 0;
@@ -953,12 +955,14 @@ header {
 	text-align:left;
 }
 
-.half_link:nth-of-type(2){
+.chart_link {float: right;}
+
+.half_link:nth-of-type(2), .chart_link:nth-of-type(2){
 	text-align: right;
 	font-size: 1.5em;
 }
 
-	.half_link a {
+	.half_link a, .chart_link a {
 		margin-right: 25px;
 	}
 

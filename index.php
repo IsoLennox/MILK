@@ -19,15 +19,28 @@ if(isset($_GET['walkthrough'])){
  
 if($_SESSION['is_employee']==0){
     //CLIENT
- 
+
         echo "<h1>Welcome Back, ".$_SESSION['username']."</h1>";
         //INCLUDE ALERTS
         include_once('alerts.php');
-        //INCLUDE STATS
-        include_once('client_dashboard.php'); 
+     ?>
+    
+    <div class="chart_link">
+        <a href="index.php"><i class="fa fa-bars"></i></a>
+        <a href="index.php?graphs"><i class="fa fa-bar-chart"></i></a>
+    </div>
+       
+       <?php
+if(isset($_GET['graphs'])){
     //INCLUDE CHARTS
-    echo "<div class=\"clear\"></div>";
-        include_once('dashboard_charts.php'); 
+    include_once('dashboard_charts.php'); 
+}else{
+    //INCLUDE STATS
+        include_once('client_dashboard.php'); 
+}
+        
+     
+       
     
     
     //MARK ALERTS AS READ
@@ -68,30 +81,7 @@ if($_SESSION['is_employee']==0){
 ?>
     <div class="stats">
     <h1>Statistics</h1>
-    
-    <div id="refine">
-        <?php
-        // TO DO:
-        // Refine Results FOR EMPLOYEES ONLY:
-        if($_SESSION['is_employee']==1){
-        ?>
-        
-        
-<!--        //REFINE FORM-->
-<!--
-        <form action="#" method="POST">
-            <input type="checkbox" name="results[]" value="claims">Claims
-            <input type="checkbox" name="results[]" value="items">Items 
-            <input type="checkbox" name="results[]" value="users">Users 
-        <input type="submit" name="refine" value="Refine">
-        </form>
--->
-        
-        
-        
-
-        <?php } ?>
-    </div> 
+ <div id="chart_container"></div>
     
      <!-- <img class="temp" src="img/graph.PNG" alt="sample stats" /> -->
     <ul>
@@ -375,5 +365,5 @@ if($_SESSION['is_employee']==0){
         });
     </script>
 
-    <div id="chart_container"></div>
+    
 <?php include("inc/footer.php"); ?>
