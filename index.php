@@ -279,28 +279,19 @@ if(isset($_GET['graphs'])){
             }
 
            
-            // echo "Total number of items: ".$total_items."<br/>";    
-
-        }
-         echo "</div>";
-            // echo "<p>";
-            // echo  'CLIENT:', $client_json, '<br />', 'EMPLOYEE:',$employee_json, '<br />', 'ALL:', $all_json, '<br />', 'PROCESSING:',$processing_json, '<br />', 'PENDING:', $pending_json, '<br />', 'APPROVED:',$approved_json, '<br />', 'DENIED:',$denied_json, '<br />';
-            // echo "</p>";
-
-            
-
- ?>
-      <script>
+          ?>
+          
+           <script>
         $(function () {
             $('#chart_container').highcharts({
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: 'Types of Items Being Claimed'
+                    text: 'Claims Statistics'
                 },
                 xAxis: {
-                    categories: ['Living Room', 'Kitchen', 'Bathroom', 'Bed Room', 'Other']
+                    categories: ['Approved', 'Denied', 'Unprocessed', 'Pending Client Changes', 'Drafts']
                 },
                 yAxis: {
                     min: 0,
@@ -364,6 +355,19 @@ if(isset($_GET['graphs'])){
             });
         });
     </script>
+    
+    <?php
+
+        }
+         echo "</div>";
+            // echo "<p>";
+            // echo  'CLIENT:', $client_json, '<br />', 'EMPLOYEE:',$employee_json, '<br />', 'ALL:', $all_json, '<br />', 'PROCESSING:',$processing_json, '<br />', 'PENDING:', $pending_json, '<br />', 'APPROVED:',$approved_json, '<br />', 'DENIED:',$denied_json, '<br />';
+            // echo "</p>";
+
+            
+
+ ?>
+     
 
     
 <?php include("inc/footer.php"); ?>

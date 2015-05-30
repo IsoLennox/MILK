@@ -66,11 +66,11 @@
         $draft_result = mysqli_query($connection, $get_draft); 
         $draft_rows=mysqli_num_rows($draft_result);
         if($draft_rows >=1){
-            echo "<h2>Finish This Draft</h2>";
+            echo "<h2>Finish This Draft</h2><div id=\"draft_container\">";
              $draft_details=mysqli_fetch_assoc($draft_result);
             echo "<h3>".$draft_details['title']."</h3>";
             echo "<p>".$draft_details['notes']."</p><br>";
-            echo "<p><a href=\"claim_details.php?id=".$draft_details['id']."\"><i class=\"fa fa-pencil\"></i> Edit Claim</a></p>";
+            echo "<p><a href=\"claim_details.php?id=".$draft_details['id']."\"><i class=\"fa fa-pencil\"></i> Edit Claim</a></p></div>";
         }else{
     //    IF NO DRAFTS, SHOW LAST CLAIM SUBMITTED, AND ITS STATUS
             echo "<h2>Most Recent Claim</h2>";
@@ -97,6 +97,102 @@
                     
                     
 
+
+
+
+
+                    //*****************
+                    //    ITEMS
+                    //*****************
+
+
+
+
+
+          echo "<div class=\"stats\">";
+
+//TOTAL ITEMS  
+            $total_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";   
+            $total_item_result = mysqli_query($connection, $total_item_query);
+            $total_items=0; 
+            $categories= '';
+            foreach($total_item_result as $item){
+                    $total_items++;
+                
+                //TOTAL ITEMS IN EACH CATEGORY
+                $category_query  = "SELECT * from item_category WHERE id={$item['category']}";   
+                $category_result = mysqli_query($connection, $category_query);
+                foreach($category_result as $cat){
+//                    array_push($categories,$cat['name']);
+                    $categories=$categories.",".$cat['name'];
+                }
+                
+                
+            }
+            
+            
+            if($total_items==0){
+                echo "<a href=\"add_item.php\">Add your first item!</a>";
+               
+            }
+
+
+//            GET 10 ITEMS ORDER BY LAST ADDED
+           
+                
+
+ echo "<div class=\"half_dashboard\">"; 
+    echo "<h1>Items</h1>";
+echo "<p><strong>You have ".$total_items." items</strong></p>";
+    //            SHOW ITEM TYPES
+
+                if(!empty($categories)){
+                $words = explode(",", $categories);
+                $result = array_combine($words, array_fill(0, count($words), 0));
+
+                foreach($words as $word) {
+                $result[$word]++;
+                }
+                        echo "<ul>";
+                foreach($result as $word => $count) {
+                    if($word!==""){
+                        echo "<li><strong> $count</strong> items in $word.</li>";
+                    }
+                }
+                    echo "</ul>";
+                }
+
+            echo "</div>"; //end half
+if(!empty($total_items)){
+            echo "<div class=\"half_dashboard\">"; 
+                //SHOW RECENTLY ADDED ITEMS
+                $recent_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY id DESC LIMIT 10";   
+                $recent_item_result = mysqli_query($connection, $recent_item_query);
+                if($recent_item_result){
+                    echo "<p><strong>Recently Added Items</strong></p>";
+                    echo "<ul>";
+                foreach($recent_item_result as $item){ echo "<li><a href=\"item_details.php?id=".$item['id']."\">".$item['name']."</a></li>"; }
+                    echo "</ul>";
+                    
+                    }//end get recent items
+
+            echo "</div>"; //end half
+}           echo "<div class=\"clearfix\"></div>";
+            echo "<br/><p><a class=\"right\" href=\"inventory.php\">View all items <i class=\"fa fa-angle-double-right\"></i></a></p>";
+       
+       echo "</div>";
+
+
+
+
+
+
+
+
+
+
+
+
                     //*****************
                     //    ROOMS
                     //*****************
@@ -118,7 +214,10 @@ function item_array($array, $key, $value){
 
  echo "<div class=\"stats\"> ";
 //echo "<h3>You have ".$num_rooms." rooms <h3>";
-echo "<h3>You have ".$num_rooms." rooms </h3> <p>Showing 4 of ".$num_rooms." Rooms</p><br/>";
+ 
+
+    echo "<h1>Rooms</h1>";
+echo "<p><strong>You have ".$num_rooms." rooms</strong> </p> <p>Showing 4 of ".$num_rooms." Rooms</p><br/>";
 if($num_rooms==0){
 ?>
         
@@ -182,87 +281,6 @@ if($num_rooms==0){
         }
                    
             echo "</div>";
-
-
-
-
-                    //*****************
-                    //    ITEMS
-                    //*****************
-
-
-
-
-
-          echo "<div class=\"stats\">";
-
-//TOTAL ITEMS  
-            $total_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0";   
-            $total_item_result = mysqli_query($connection, $total_item_query);
-            $total_items=0; 
-            $categories= '';
-            foreach($total_item_result as $item){
-                    $total_items++;
-                
-                //TOTAL ITEMS IN EACH CATEGORY
-                $category_query  = "SELECT * from item_category WHERE id={$item['category']}";   
-                $category_result = mysqli_query($connection, $category_query);
-                foreach($category_result as $cat){
-//                    array_push($categories,$cat['name']);
-                    $categories=$categories.",".$cat['name'];
-                }
-                
-                
-            }
-            
-            
-            if($total_items==0){
-                echo "<a href=\"add_item.php\">Add your first item!</a>";
-               
-            }
-
-
-//            GET 10 ITEMS ORDER BY LAST ADDED
-            echo "<div class=\"half_div\">";
-                echo "<h3>You have ".$total_items." items</h3>";
-
-    //            SHOW ITEM TYPES
-
-                if(!empty($categories)){
-                $words = explode(",", $categories);
-                $result = array_combine($words, array_fill(0, count($words), 0));
-
-                foreach($words as $word) {
-                $result[$word]++;
-                }
-                        echo "<ul>";
-                foreach($result as $word => $count) {
-                    if($word!==""){
-                        echo "<li>$count items in $word.</li>";
-                    }
-                }
-                    echo "</ul>";
-                }
-
-            echo "</div>"; //end half
-if(!empty($total_items)){
-            echo "<div class=\"half_div\">"; 
-                //SHOW RECENTLY ADDED ITEMS
-                $recent_item_query  =  "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY id DESC LIMIT 10";   
-                $recent_item_result = mysqli_query($connection, $recent_item_query);
-                if($recent_item_result){
-                    echo "<h3>Recently Added Items</h3>";
-                    echo "<ul>";
-                foreach($recent_item_result as $item){ echo "<li><a href=\"item_details.php?id=".$item['id']."\">".$item['name']."</a></li>"; }
-                    echo "</ul>";
-                    
-                    }//end get recent items
-
-            echo "</div>"; //end half
-}           echo "<div class=\"clearfix\"></div>";
-            echo "<br/><p><a class=\"right\" href=\"inventory.php\">View all items <i class=\"fa fa-angle-double-right\"></i></a></p>";
-       
-       echo "</div>";
 
 
 ?>
