@@ -85,7 +85,7 @@ include("inc/header.php");
     $role_result = mysqli_query($connection, $role_query);
     if($role_result){
         //show each result value
-        echo "<ul>";
+        echo "<div class='left'><ul>";
         foreach($role_result as $role){
             $role_id=$role['id'];
             echo "<li><strong>".$role['name']."</strong></li>"; 

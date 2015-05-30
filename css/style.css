@@ -133,7 +133,7 @@ a:hover{
 }
 
 p {
-	/*padding:5px 0;*/
+	padding:2.5px 0;
 	line-height: 1.3em;
 }
 
@@ -893,7 +893,12 @@ header {
 	.profile_content {
 		float:right;
 		width:50%;
+		word-wrap:break-word;
 	}
+
+	/*.profile_content a, .avatar a {
+		margin-top: 15px;
+	}*/
 
 
 
@@ -997,9 +1002,7 @@ footer{
 .center{
     margin: 0 auto;
     text-align: center;
-}/*
-.left{float: left;}
-.right{float: right;}*/
+}
   
 
 .clearfix:after {
