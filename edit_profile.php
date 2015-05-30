@@ -49,6 +49,12 @@ if (isset($_POST['submit'])) {
     $update_profile .= "address = '{$address}', ";
     $update_profile .= "city = '{$city}', ";
     $update_profile .= "state = '{$state}', ";
+        if(isset($_POST['walkthrough'])){
+        $update_profile .= "walkthrough_complete = 1, ";
+    }else{
+        $update_profile .= "";
+    }
+
     $update_profile .= "zip = '{$zip}' ";
 
     $update_profile .= "WHERE id = {$_SESSION['user_id']} ";
@@ -56,8 +62,17 @@ if (isset($_POST['submit'])) {
 
     if ($result && mysqli_affected_rows($connection) == 1) {
       // Success
-        $_SESSION["message"] = "profile updated.";
-        redirect_to("profile.php?");
+        
+    if(isset($_POST['walkthrough'])){
+         $_SESSION["walkthrough"] = "Profile updated! Next let's add a room!";
+        redirect_to("rooms.php?walkthrough");
+    }else{
+         $_SESSION["message"] = "profile updated.";
+        redirect_to("profile.php");
+    }
+        
+        
+       
 
     } else {
       // Failure
@@ -87,9 +102,12 @@ if (isset($_POST['submit'])) {
  
     <input type="submit" value="Upload File" name="submit">
 </form>
-   <?php if($avatar!="http://lorempixel.com/250/250/abstract"){ ?>
+   <?php 
+    if(!isset($_GET['walkthrough'])){
+        if($avatar!="http://lorempixel.com/250/250/abstract"){ ?>
     <a href="delete.php?avatar=<?php echo $_SESSION['user_id']; ?>"> <i class="fa fa-trash-o"> Delete Profile Image</i></a>
- <?php } ?>
+ <?php } 
+    } ?>
   </section>
   <div class="clearfix"></div> 
   <hr/>
@@ -107,13 +125,17 @@ if (isset($_POST['submit'])) {
         <label for="city">City: </label><input type="text" id='city' name='city'value='<?php echo htmlentities($city); ?>'/>
         <label for="state">State: </label><input type="text" id='state' name='state'value='<?php echo htmlentities($state); ?>'/>
         <label for="zip">Zip: </label><input type="text" id='zip' name='zip'value='<?php echo htmlentities($zip); ?>'/>
-      <input type="submit" name="submit" value="Save" />  <a href="profile.php">Cancel</a>
+       <?php if(isset($_GET['walkthrough'])){ ?> <input type="hidden" name='walkthrough' value='1'/> <?php }  ?>
+      <input type="submit" name="submit" value="Save" /> 
+       <?php if(!isset($_GET['walkthrough'])){ ?> <a href="profile.php">Cancel</a> <?php }  ?>
     </form>
   <hr/>
 
-
-  
+<?php
+  if(!isset($_GET['walkthrough'])){ ?>
    
     <p>Not what you're looking for?<br> <a href="settings.php">Edit Account Settings</a></p>
+    
+    <?php } ?>
  
 <?php include("inc/footer.php"); ?> 
