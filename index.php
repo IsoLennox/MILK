@@ -138,7 +138,7 @@ if($_SESSION['is_employee']==0){
             //count total # claims that are NOT DRAFTS
             $all_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id!=1";   
             $all_result = mysqli_query($connection, $all_query);
-            $data=mysqli_fetch_assoc($all_result);
+            $datax=mysqli_fetch_assoc($all_result);
 
             // json all_query
             $all_query1  = "SELECT * FROM claims WHERE status_id !=1";   
@@ -153,7 +153,7 @@ if($_SESSION['is_employee']==0){
             // total submitted but unprocessed
             $processing_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=0";   
             $processing_result = mysqli_query($connection, $processing_query);
-            $pdata=mysqli_fetch_assoc($processing_result); 
+            $pdatax=mysqli_fetch_assoc($processing_result); 
 
             // json processing query
              $processing_query1  = "SELECT * FROM claims WHERE status_id = 0";   
@@ -169,7 +169,7 @@ if($_SESSION['is_employee']==0){
             // total awaiting client changes
             $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id = 4";   
             $pending_result = mysqli_query($connection, $pending_query);
-            $cdata=mysqli_fetch_assoc($pending_result);
+            $cdatax=mysqli_fetch_assoc($pending_result);
 
             // json pending query
             $pending_query1  = "SELECT * FROM claims WHERE status_id=4";   
@@ -184,10 +184,10 @@ if($_SESSION['is_employee']==0){
             // total approved claims
             $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=2";   
             $approved_result = mysqli_query($connection, $approved_query);
-            $adata=mysqli_fetch_assoc($approved_result); 
+            $adatax=mysqli_fetch_assoc($approved_result); 
 
             // json approved query
-            $approved_query1  = "SELECT * FROM claims WHERE status_id=4";   
+            $approved_query1  = "SELECT * FROM claims WHERE status_id=2";   
             $approved_result1 = mysqli_query($connection, $approved_query1);
             $approved_rows1 = array();
             while($adata=mysqli_fetch_assoc($approved_result1)) {
@@ -199,10 +199,10 @@ if($_SESSION['is_employee']==0){
             // total Denied claims
             $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=3";   
             $denied_result = mysqli_query($connection, $denied_query);
-            $ddata=mysqli_fetch_assoc($denied_result); 
+            $ddatax=mysqli_fetch_assoc($denied_result); 
 
             // json denied query
-            $denied_query1  = "SELECT * FROM claims WHERE status_id=4";   
+            $denied_query1  = "SELECT * FROM claims WHERE status_id=3";   
             $denied_result1 = mysqli_query($connection, $denied_query1);
             $denied_rows1 = array();
             while($ddata=mysqli_fetch_assoc($denied_result1)) {
@@ -211,11 +211,11 @@ if($_SESSION['is_employee']==0){
             $denied_json = json_encode($denied_rows1); 
         ?>
         <ul>
-            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
-            <li><a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
-            <li><a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
-            <li><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
-            <li><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $datax['total']; ?>)</li>
+            <li><a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adatax['total']; ?>)</li>
+            <li><a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddatax['total']; ?>)</li>
+            <li><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdatax['total']; ?>)</li>
+            <li><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdatax['total']; ?>)</li>
         </ul>
 
         <?php     
