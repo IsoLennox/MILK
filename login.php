@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
                 //if user has not taken walkthrough, start walkthrough
                 if($user['walkthrough_complete']==0){
                 $_SESSION["walkthrough"] = "Welcome To Under My Roof! First, Please complete your profile!";
-                redirect_to("profile.php?walkthrough");
+                redirect_to("edit_profile.php?walkthrough");
                 }else{
                 redirect_to("index.php");
                 }
