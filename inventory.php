@@ -182,7 +182,7 @@ include("inc/header.php"); ?>
                 echo "<br/>".$total." Image/File Uploads</p></div>";
  
             
-                $item_img = "SELECT * FROM item_img WHERE item_id={$id} ORDER BY id DESC LIMIT 1 ";
+                $item_img = "SELECT * FROM item_img WHERE item_id={$id} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
                 $item_img_result = mysqli_query($connection, $item_img);
                 $total_img_array=mysqli_fetch_assoc($item_img_result);
                 $thumbnail=$total_img_array['thumb_path'];
