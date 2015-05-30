@@ -26,8 +26,14 @@ if($_SESSION['is_employee']==0){
      ?>
     
     <div class="chart_link">
-        <a href="index.php"><i class="fa fa-bars"></i></a>
-        <a href="index.php?graphs"><i class="fa fa-bar-chart"></i></a>
+        
+       <?php if(isset($_GET['graphs'])){ ?>
+            <a href="index.php"><i class="fa fa-bars"></i></a>
+<!--             <i class="fa fa-bar-chart"></i>     -->
+        <?php }else{ ?>
+<!--             <i class="fa fa-bars"></i>-->
+             <a href="index.php?graphs"><i class="fa fa-bar-chart"></i></a>
+       <?php } ?>
     </div>
        
        <?php

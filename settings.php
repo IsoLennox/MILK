@@ -276,7 +276,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         <input type="text" name="last" id="last" value="<?php echo $last; ?>" />           
       </p>
       <div id="availability"></div> 
-      <br/><br/>  <input type="submit" name="submit" value="Save">
+      <br/><br/>  <input type="submit" name="submit" value="Save Name">
     </form>
     </span> 
     
@@ -289,7 +289,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         <p id="e-error">New Email:
         <input type="text" name="email" id="email" value="<?php echo $email; ?>" />  <i title="Check availability" class="fa fa-search"></i></p>
         <div id="eavailability"></div> 
-       <br/><br/> <input type="submit" name="submit" value="Save">
+       <br/><br/> <input type="submit" name="submit" value="Save Email">
     </form>
     </span> 
    
@@ -310,7 +310,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
       </p>
      <span id="confirmMessage" class="confirmMessage"></span>
         
-         <br/><input type="submit" name="submit" value="Save">
+         <br/><input type="submit" name="submit" value="Save Password">
     </form>
     </span> 
   </div>
