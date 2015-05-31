@@ -20,4 +20,5 @@ header a, nav a {
     background: #222;
     color: #eee;
 }
+.notes_container a, .item_content a, .notes_container .small_link { color: #90C32E;}
 .notes_container ul li a { color: #ddd;}
