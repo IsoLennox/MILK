@@ -39,22 +39,21 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
             $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=3";   
             $denied_result = mysqli_query($connection, $denied_query);
             $ddata=mysqli_fetch_assoc($denied_result); 
-        ?>
-
        
-       <?php
-//get type of claim queried
+            
+       
+	//get type of claim queried
     if(isset($_GET['pending'])){
         
         echo "<h1>Unprocessed Claims</h1>";
         ?>
         <div class="claim_filters">
-           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
+           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims (<?php echo $data['total']; ?>) </a>|
                     
-           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
-           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
-           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
-           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>) 
+           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved (<?php echo $adata['total']; ?>) </a>|
+           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied (<?php echo $ddata['total']; ?>) </a>|
+           <a href="claims.php?pending" class='current_link'><i class="fa fa-clock-o black"></i> Processing (<?php echo $pdata['total']; ?>) </a>|
+           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes (<?php echo $wdata['total']; ?>)</a> 
         </div>
         <?php 
         $query  = "SELECT * FROM claims WHERE status_id=0 ORDER BY id DESC";  
@@ -63,12 +62,12 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
         echo "<h1>Awaiting Client Changes</h1>";
          ?>
         <div class="claim_filters">
-           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
+           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims (<?php echo $data['total']; ?>) </a>|
                     
-           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
-           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
-           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
-           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>) 
+           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved (<?php echo $adata['total']; ?>) </a>|
+           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied (<?php echo $ddata['total']; ?>) </a>|
+           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing (<?php echo $pdata['total']; ?>) </a>|
+           <a href="claims.php?changes" class='current_link'><i class="fa fa-pencil"></i> Pending Changes (<?php echo $wdata['total']; ?>)</a> 
         </div>
         <?php  
         $query  = "SELECT * FROM claims WHERE status_id=4 ORDER BY id DESC";  
@@ -77,12 +76,12 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
         echo "<h1>Approved Claims</h1>";
          ?>
         <div class="claim_filters">
-           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
+           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims (<?php echo $data['total']; ?>) </a>|
                     
-           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
-           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
-           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
-           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>) 
+           <a href="claims.php?approved" class='current_link'><i class="fa fa-check green"></i> Approved (<?php echo $adata['total']; ?>) </a>|
+           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied (<?php echo $ddata['total']; ?>) </a>|
+           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing (<?php echo $pdata['total']; ?>) </a>|
+           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes (<?php echo $wdata['total']; ?>)</a> 
         </div>
         <?php  
        $query  = "SELECT * FROM claims WHERE status_id=2 ORDER BY id DESC";  
@@ -91,12 +90,12 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
         echo "<h1>Denied Claims</h1>";
          ?>
         <div class="claim_filters">
-           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
+           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims (<?php echo $data['total']; ?>) </a>|
                     
-           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
-           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
-           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
-           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>) 
+           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved (<?php echo $adata['total']; ?>) </a>|
+           <a href="claims.php?denied" class='current_link'><i class="fa fa-times red"></i> Denied (<?php echo $ddata['total']; ?>) </a>|
+           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing (<?php echo $pdata['total']; ?>) </a>|
+           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes (<?php echo $wdata['total']; ?>)</a> 
         </div>
         <?php  
         $query  = "SELECT * FROM claims WHERE status_id=3 ORDER BY id DESC";  
@@ -106,12 +105,12 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
   echo "<h1>All Claims</h1>";
    ?>
         <div class="claim_filters">
-           <a href="claims.php"><i class="fa fa-folder-open black"></i> All Claims</a> (<?php echo $data['total']; ?>) |
+           <a href="claims.php" class='current_link'><i class="fa fa-folder-open black"></i> All Claims (<?php echo $data['total']; ?>) </a>|
                     
-           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved</a> (<?php echo $adata['total']; ?>) |
-           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied</a> (<?php echo $ddata['total']; ?>) |
-           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing</a> (<?php echo $pdata['total']; ?>) |
-           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes</a> (<?php echo $wdata['total']; ?>) 
+           <a href="claims.php?approved"><i class="fa fa-check green"></i> Approved (<?php echo $adata['total']; ?>) </a>|
+           <a href="claims.php?denied"><i class="fa fa-times red"></i> Denied (<?php echo $ddata['total']; ?>) </a>|
+           <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing (<?php echo $pdata['total']; ?>) </a>|
+           <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes (<?php echo $wdata['total']; ?>)</a> 
         </div>
         <?php
     $query  = "SELECT * FROM claims WHERE status_id != 1 ORDER BY id DESC";  
@@ -121,10 +120,10 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
     //DEPENDING ON LINK PARAMETER - ?PENDING etc 
     //$SHOW displays
     if($result){ 
-        echo "<div class=\"claims_list\">";
+        // echo "<div class=\"claims_list\">";
         //show each result value
         foreach($result as $show){
-            echo "<div class=\"claims\">";
+            echo "<div class=\"notes_container\">";
     //GET CLAIM TYPE NAME IE(FIRE FLOOD EARTHQUAKE)
     $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
     $type_result = mysqli_query($connection, $type_query);
@@ -149,7 +148,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
                echo "<a href=\"claim_details.php?id=".$show['id']."\"><i class=\"fa fa-eye\"></i> View this Claim</a>";  
             echo "</div>";
             }  
-        echo "</div>";
+        // echo "</div>";
         }
 ?>
 

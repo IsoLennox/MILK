@@ -631,6 +631,8 @@ header {
 	color: #333;
 }
 
+
+
 .half_dashboard {
 	 border: 2px solid rgba(245,245,245,0.5);
 	 background: rgba(245,245,245,0.3);
@@ -882,6 +884,10 @@ header {
 		color:#333;
 	}
 
+.claim_filters .current_link {
+	color:#90C32E;
+}
+/*used for claims filter links*/
 
 
 
