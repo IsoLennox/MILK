@@ -15,3 +15,9 @@ header a, nav a {
 .claim_alert , .claim_alert_client {     
     color: #eee;
 }
+
+.notes_container{
+    background: #222;
+    color: #eee;
+}
+.notes_container ul li a { color: #ddd;}
