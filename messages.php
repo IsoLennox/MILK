@@ -104,6 +104,8 @@ include("inc/header.php"); ?>
                 $new_result = mysqli_query($connection, $new_query);
                 if($new_result){
                     $new_messages=array();
+                    //messages that have not been viewed and match current user
+                    //push to end of new message array, with the new thread id
                     foreach($new_result as $new){
                         array_push($new_messages, $new['thread_id']);
                     }
