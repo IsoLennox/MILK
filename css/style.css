@@ -350,8 +350,21 @@ input[type="submit"] ~ a {
 .notes_container .small_link {
 	font-size: 1em;
 	color:#333;
-	font-weight: 300;
+	font-weight: 400;
+	position: relative;
 }
+
+.new_alert {
+	width:12px;
+	height:12px;
+	border-radius: 6px;
+	background-color: #90C32E;
+	position: absolute;
+	top:0px;
+	right:-30px;
+
+}
+
 
 /*add hover state for small link*/
 

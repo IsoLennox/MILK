@@ -138,13 +138,13 @@ include("inc/header.php"); ?>
                         
                         //NOTIFY WHICH THREAD HAS NEW MESSAGES
                             if(in_array($show['id'], $new_messages)){
-                                $new_alert="NEW! ";
+                                $new_alert="<div class='new_alert'></div> ";
                             }else{
                                 $new_alert="";
                             }//end new message indicator
                         
-                            echo "<div class='notes_container'><div class='item_content'>".$new_alert."<a href=\"read_message.php?thread=".$show['id']."&with=".$with_name."&with_user=".$with_id."\" class='small_link'>Conversation with ".$with_name."</a></div>";
-                            echo "<div class='item_img_content'><img src=\"{$with_img}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$with_name}'s avatar\"></div>";
+                            echo "<div class='notes_container'><div class='item_content'><a href=\"read_message.php?thread=".$show['id']."&with=".$with_name."&with_user=".$with_id."\" class='small_link'>Conversation with ". $with_name. " " . $new_alert . "</a>";
+                           
                         
                         
                         
@@ -156,11 +156,13 @@ include("inc/header.php"); ?>
                 if($msg_result){
                     $this_msg=mysqli_fetch_assoc($msg_result);
                     $last_message=$this_msg['content'];
+                    $last_time=$this_msg['datetime'];
                         //LIMIT CHARACTER PREVIEW
                         $position=50; // Define how many character you want to display. 
-                        $last_message = substr($last_message, 0, $position)."..."; 
-                    echo $last_message;
-                     
+                        $last_message = substr($last_message, 0, $position)."...."; 
+                    echo "<p>" . $last_message . "<br>".$last_time."</p></div>";
+                    echo "<div class='item_img_content'><img src=\"{$with_img}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$with_name}'s avatar\"></div>"; 
+                    
                 }
                         
                         
