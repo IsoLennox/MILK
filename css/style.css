@@ -996,6 +996,20 @@ header {
 	}
 
 
+.message_container {
+	border-bottom:1px solid #aaa;
+	word-wrap:break-word;
+	margin-bottom: 10px;
+	padding-right:25px;
+	padding-bottom: 5px;
+}
+	.message_container:nth-last-child(1) {
+		border-bottom: 0;
+	}
+
+	.message_container p:first-child {
+		font-weight: 400;
+	}
 
 .message { 
     background: #222; 
@@ -1005,6 +1019,16 @@ header {
     padding: 10px;
     margin-bottom: 10px;
 }
+
+.sticky {
+	background-color: #fff;
+	max-width: 900px;
+	width:100%;
+	position: fixed;
+	bottom: 0;
+}
+
+
 
 
 .fa-2x {
@@ -1019,11 +1043,7 @@ header {
 
   
 
-#scrollbox{
-/* USED IN read_message.php */
-    height: 400px;
-    overflow: scroll;
-}
+
 
 
 

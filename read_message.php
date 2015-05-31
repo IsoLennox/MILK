@@ -2,9 +2,9 @@
 
 <a href="messages.php">&laquo; All Messages</a>
  
- <h1>Conversation with <a href="profile.php?user=<?php echo $_GET['with_user']; ?>"><?php echo $_GET['with']; ?></a></h1>
+ <h1>Conversation with<br> <a href="profile.php?user=<?php echo $_GET['with_user']; ?>"><?php echo $_GET['with']; ?></a></h1>
           
-<div id="scrollbox">
+<!-- <div id="scrollbox"> -->
            <?php
 
 //MARK ALL IN THREAD WHERE YOU ARE SENT_TO as VIEWED=1
@@ -20,16 +20,17 @@
         //show each result value
         foreach($result as $show){
             $name=find_user_by_id($show['sent_from']);
-            echo "From: <a href=\"profile.php?user=".$show['sent_from']."\">".$name['first_name']."</a><br/>";
-            echo "Sent: ".$show['datetime']."<br/>";
-            echo htmlspecialchars_decode($show['content'])."<br/>";
-            echo "<hr/><br/>";
+            echo "<div class='message_container'>";
+            echo "<p>From: <a href=\"profile.php?user=".$show['sent_from']."\">".$name['first_name']."</a>";
+            echo "<br>Sent: ".$show['datetime']."</p>";
+            echo "<p>" .htmlspecialchars_decode($show['content'])."</p>";
+            echo "</div>";
              
                       
             }
         }
  ?>
-      </div>
+        <div class="sticky">
           <form method="POST" action="messages.php?send">
               
               <textarea name="msg" id="" cols="30" rows="10"></textarea>
@@ -37,7 +38,7 @@
               <input type="hidden" name="thread" value="<?php echo $_GET['thread']; ?>">
               <input type="submit" name="sumbit" id="submit" value="Reply">
           </form>
-        
+        </div>
       
         
 <?php include("inc/footer.php"); ?>
