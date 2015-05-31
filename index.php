@@ -1,19 +1,49 @@
 <?php 
 $current_page="dashboard";
 include("inc/header.php"); 
-
+if(isset($_GET['no-walkthrough'])){
+        $no_walkthrough  = "UPDATE users SET walkthrough_complete=3 WHERE id={$_SESSION['user_id']} ";  
+        $walkthrough_skipped = mysqli_query($connection, $no_walkthrough);
+}
+if(isset($_GET['walkthrough'])){ 
+     echo "<div class=\"message\"><h4>Walkthrough Complete!</h4><br/>You can take the walkthrough again by going to your Settings!<br/></div>";
+     $update_walkthrough  = "UPDATE users SET walkthrough_complete=4 WHERE id={$_SESSION['user_id']} ";  
+    $walkthrough_updated = mysqli_query($connection, $update_walkthrough);
+       
+      
+ }
  
 if($_SESSION['is_employee']==0){
     //CLIENT
- 
         echo "<h1>Welcome Back, ".$_SESSION['username']."</h1>";
         //INCLUDE ALERTS
         include_once('alerts.php');
-        //INCLUDE STATS
+     ?>
+    
+    <div class="chart_link">
+        
+       <?php if(isset($_GET['graphs'])){ ?>
+            <a href="index.php"><i class="fa right fa-bars"></i></a>
+<!--             <i class="fa fa-bar-chart"></i>     -->
+        <?php }else{ ?>
+<!--             <i class="fa fa-bars"></i>-->
+             <a href="index.php?graphs"><i class="fa right fa-bar-chart"></i></a>
+       <?php } ?>
+    </div>
+       
+       <?php
+if(isset($_GET['graphs'])){
+    //INCLUDE CHARTS 
+    echo "<div class=\"stats\"><h1>Statistics</h1>";
+    include_once('dashboard_charts.php'); 
+    echo "</div>";
+}else{
+    //INCLUDE STATS
         include_once('client_dashboard.php'); 
-    //INCLUDE CHARTS
-    echo "<div class=\"clear\"></div>";
-        include_once('dashboard_charts.php'); 
+}
+        
+     
+       
     
     
     //MARK ALERTS AS READ
@@ -42,42 +72,16 @@ if($_SESSION['is_employee']==0){
 //                    echo "Marked as Unread!"; 
                 redirect_to('index.php');
             }
-
         }
    
-
     
 }else{  
     
     //IS EMPLOYEE
-
 ?>
     <div class="stats">
     <h1>Statistics</h1>
-    
-    <div id="refine">
-        <?php
-        // TO DO:
-        // Refine Results FOR EMPLOYEES ONLY:
-        if($_SESSION['is_employee']==1){
-        ?>
-        
-        
-<!--        //REFINE FORM-->
-<!--
-        <form action="#" method="POST">
-            <input type="checkbox" name="results[]" value="claims">Claims
-            <input type="checkbox" name="results[]" value="items">Items 
-            <input type="checkbox" name="results[]" value="users">Users 
-        <input type="submit" name="refine" value="Refine">
-        </form>
--->
-        
-        
-        
-
-        <?php } ?>
-    </div> 
+ <div id="chart_container"></div>
     
      <!-- <img class="temp" src="img/graph.PNG" alt="sample stats" /> -->
     <ul>
@@ -132,8 +136,7 @@ if($_SESSION['is_employee']==0){
             //count total # claims that are NOT DRAFTS
             $all_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id!=1";   
             $all_result = mysqli_query($connection, $all_query);
-            $data=mysqli_fetch_assoc($all_result);
-
+            $datax=mysqli_fetch_assoc($all_result);
             // json all_query
             $all_query1  = "SELECT * FROM claims WHERE status_id !=1";   
             $all_result1 = mysqli_query($connection, $all_query1);
@@ -142,13 +145,10 @@ if($_SESSION['is_employee']==0){
                 $all_rows1[] = $data;
             }
              $all_json = json_encode($all_rows1);
-
-
             // total submitted but unprocessed
             $processing_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=0";   
             $processing_result = mysqli_query($connection, $processing_query);
-            $pdata=mysqli_fetch_assoc($processing_result); 
-
+            $pdatax=mysqli_fetch_assoc($processing_result); 
             // json processing query
              $processing_query1  = "SELECT * FROM claims WHERE status_id = 0";   
             $processing_result1 = mysqli_query($connection, $processing_query1);
@@ -157,14 +157,11 @@ if($_SESSION['is_employee']==0){
                 $processing_rows1[] = $pdata;
             }
             $processing_json = json_encode($processing_rows1);
-
-
     
             // total awaiting client changes
             $pending_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id = 4";   
             $pending_result = mysqli_query($connection, $pending_query);
-            $cdata=mysqli_fetch_assoc($pending_result);
-
+            $cdatax=mysqli_fetch_assoc($pending_result);
             // json pending query
             $pending_query1  = "SELECT * FROM claims WHERE status_id=4";   
             $pending_result1 = mysqli_query($connection, $pending_query1);
@@ -173,30 +170,26 @@ if($_SESSION['is_employee']==0){
                 $pending_rows1[] = $cdata;
             }
             $pending_json = json_encode($pending_rows1); 
-
     
             // total approved claims
             $approved_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=2";   
             $approved_result = mysqli_query($connection, $approved_query);
-            $adata=mysqli_fetch_assoc($approved_result); 
-
+            $adatax=mysqli_fetch_assoc($approved_result); 
             // json approved query
-            $approved_query1  = "SELECT * FROM claims WHERE status_id=4";   
+            $approved_query1  = "SELECT * FROM claims WHERE status_id=2";   
             $approved_result1 = mysqli_query($connection, $approved_query1);
             $approved_rows1 = array();
             while($adata=mysqli_fetch_assoc($approved_result1)) {
                 $approved_rows1[] = $adata;
             }
             $approved_json = json_encode($pending_rows1); 
-
     
             // total Denied claims
             $denied_query  = "SELECT COUNT(*) as total FROM claims WHERE status_id=3";   
             $denied_result = mysqli_query($connection, $denied_query);
-            $ddata=mysqli_fetch_assoc($denied_result); 
-
+            $ddatax=mysqli_fetch_assoc($denied_result); 
             // json denied query
-            $denied_query1  = "SELECT * FROM claims WHERE status_id=4";   
+            $denied_query1  = "SELECT * FROM claims WHERE status_id=3";   
             $denied_result1 = mysqli_query($connection, $denied_query1);
             $denied_rows1 = array();
             while($ddata=mysqli_fetch_assoc($denied_result1)) {
@@ -205,17 +198,15 @@ if($_SESSION['is_employee']==0){
             $denied_json = json_encode($denied_rows1); 
         ?>
         <ul>
-            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $data['total']; ?>)</li>
-            <li><a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adata['total']; ?>)</li>
-            <li><a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddata['total']; ?>)</li>
-            <li><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdata['total']; ?>)</li>
-            <li><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdata['total']; ?>)</li>
+            <li><a href="claim_history.php"><i class="fa fa-folder-open"></i> All Claims</a> (<?php echo $datax['total']; ?>)</li>
+            <li><a href="claim_history.php?approved"><i class="fa fa-check green"></i> Approved </a> (<?php echo $adatax['total']; ?>)</li>
+            <li><a href="claim_history.php?denied"><i class="fa fa-times red"></i> Denied </a> (<?php echo $ddatax['total']; ?>)</li>
+            <li><a href="claim_history.php?pending"><i class="fa fa-clock-o "></i> Processing </a> (<?php echo $pdatax['total']; ?>)</li>
+            <li><a href="claim_history.php?changes"><i class="fa fa-pencil"></i> Pending Changes </a> (<?php echo $cdatax['total']; ?>)</li>
         </ul>
 
         <?php     
-
  
-
 //TOTAL VALUE OF ALL CLAIMS
             $claim_value_query  = "SELECT * from claim_items";   
             $claim_value_result = mysqli_query($connection, $claim_value_query);
@@ -238,7 +229,6 @@ if($_SESSION['is_employee']==0){
     
     echo "<div class=\"half_dashboard\">"; 
     echo "<h1>Items</h1>";
-
 //TOTAL ITEMS  
             $total_item_query  = "SELECT * from items";   
             $total_item_result = mysqli_query($connection, $total_item_query);
@@ -263,40 +253,28 @@ if($_SESSION['is_employee']==0){
             $result = array_combine($words, array_fill(0, count($words), 0));
             
             echo "<p><strong>Total number of items: ".$total_items."</strong></p><br>";
-
             foreach($words as $word) {
             $result[$word]++;
             }
-
             foreach($result as $word => $count) {
                 if($word!==""){
                     echo "<p><strong> $count</strong> items in $word</p>";
                 }
             }
-
            
-            // echo "Total number of items: ".$total_items."<br/>";    
-
-        }
-         echo "</div>";
-            // echo "<p>";
-            // echo  'CLIENT:', $client_json, '<br />', 'EMPLOYEE:',$employee_json, '<br />', 'ALL:', $all_json, '<br />', 'PROCESSING:',$processing_json, '<br />', 'PENDING:', $pending_json, '<br />', 'APPROVED:',$approved_json, '<br />', 'DENIED:',$denied_json, '<br />';
-            // echo "</p>";
-
-            
-
- ?>
-      <script>
+          ?>
+          
+           <script>
         $(function () {
             $('#chart_container').highcharts({
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: 'Types of Items Being Claimed'
+                    text: 'Claims Statistics'
                 },
                 xAxis: {
-                    categories: ['Living Room', 'Kitchen', 'Bathroom', 'Bed Room', 'Other']
+                    categories: ['Approved', 'Denied', 'Unprocessed', 'Pending Client Changes', 'Drafts']
                 },
                 yAxis: {
                     min: 0,
@@ -360,6 +338,16 @@ if($_SESSION['is_employee']==0){
             });
         });
     </script>
+    
+    <?php
+        }
+         echo "</div>";
+            // echo "<p>";
+            // echo  'CLIENT:', $client_json, '<br />', 'EMPLOYEE:',$employee_json, '<br />', 'ALL:', $all_json, '<br />', 'PROCESSING:',$processing_json, '<br />', 'PENDING:', $pending_json, '<br />', 'APPROVED:',$approved_json, '<br />', 'DENIED:',$denied_json, '<br />';
+            // echo "</p>";
+            
+ ?>
+     
 
-    <div id="chart_container"></div>
+    
 <?php include("inc/footer.php"); ?>

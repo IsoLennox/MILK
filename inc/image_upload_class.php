@@ -65,21 +65,35 @@ class ImageUpload {
 
 		// makes sure a file was uploaded prior to checking exif_imagetype (which cannot be empty)
 		if($upload['tmp_name']) {
-			// NOTE: exif_imagetype validates file as image, returns type of image
-			$this->img_type = exif_imagetype($upload['tmp_name']);
+			$pdfPath = 'pdf/';
+			$finfo = finfo_open(FILEINFO_MIME_TYPE);
+			$mime = finfo_file($finfo, $upload['tmp_name']);
+			$ok = false;
+			$date = date_create();
+			$s_path = $pdfPath . "pdf_" . date_timestamp_get($date) . ".pdf";
+			if ($mime === 'application/pdf') {
+			  	$uploadResult = move_uploaded_file($upload['tmp_name'], $s_path);
+			  	if ($uploadResult == true) {
+			   		$_SESSION['message'] .= "PDF Successfully uploaded!";
+					header("Location: ".$_SERVER['HTTP_REFERER']);
+		  		} 
+			} else  {
+			  	// NOTE: exif_imagetype validates file as image, returns type of image
+				$this->img_type = exif_imagetype($upload['tmp_name']);
 
-			if($this->img_type ==  IMAGETYPE_GIF || $this->img_type == IMAGETYPE_PNG || $this->img_type == IMAGETYPE_JPEG ) {
-				// assign file upload info to properties			
-				$this->file_upload = $upload;
-				$this->upload_err = $upload['error'];
-				$this->filename = $upload['name'];
-				$this->tmp_file = $upload['tmp_name'];
+				if($this->img_type ==  IMAGETYPE_GIF || $this->img_type == IMAGETYPE_PNG || $this->img_type == IMAGETYPE_JPEG ) {
+					// assign file upload info to properties			
+					$this->file_upload = $upload;
+					$this->upload_err = $upload['error'];
+					$this->filename = $upload['name'];
+					$this->tmp_file = $upload['tmp_name'];
 
-				$this->item_id = $_POST['item_id'];
-				$this->img_title = $_POST['title'];
-			} else {
-				$_SESSION['message'] .= "Please only JPG, PNG, GIF or PDF files!";
-				header("Location: ".$_SERVER['HTTP_REFERER']);
+					$this->item_id = $_POST['item_id'];
+					$this->img_title = $_POST['title'];
+				} else {
+					$_SESSION['message'] .= "Please only JPG, PNG, GIF or PDF files!";
+					header("Location: ".$_SERVER['HTTP_REFERER']);
+				}
 			}
 
 		} else {

@@ -4,14 +4,17 @@
   
   
   
-   <section class="circle_charts">
+<section class="circle_charts">
     <div class="pie-chart" id="circle1"></div>
 
     <div class="pie-chart" id="circle2"></div>
     <div class="pie-chart" id="circle3"></div>
 
 </section>
-   
+   <br>
+   <br>
+   <br>
+   <br><div class="clearfix"></div>
    
 <!--  BAR GRAPH-->
    <div id="chart_container" height="400px" width="100%"></div>
@@ -28,7 +31,7 @@
                     text: 'Stacked column chart'
                 },
                 xAxis: {
-                    categories: ['Living Room', 'Kitchen', 'Bathroom', 'Bed Room', 'Other']
+                    categories: ['Living Room', 'Kitchen', 'Bathroom', 'Bed Room', 'Attic']
                 },
                 yAxis: {
                     min: 0,
@@ -84,7 +87,6 @@
             //             echo $room_array.", ";
             //             }else{ echo $room_array; }
                     ?>
-
                     {
                     // colors: ['#157AA3','#575611','#E3E22C'],
                     name: 'Jewelry',
@@ -107,8 +109,6 @@
             });
         });
    // -------> End of Vertical Bar chart <--------------
-
-
    // -------> Begin Circle Charts for Views <--------------
         
     // begin chart 1
@@ -135,17 +135,16 @@
                 series: [{
                     name: 'Claim Types',
                     data: [
-                        ['Acts of God (515)', 515],
+                        ['Natural Disaster (515)', 515],
                         ['Floods (600)', 600],
-                        ['Fires (300)', 300],
-                        ['Earthquakes (200)', 200],
-                        ['Hail (80)', 80],
-                        ['Snow/Ice (151)', 151]
+                        ['Fire/Arson (300)', 300],
+                        ['Theft (200)', 200],
+                        ['Vandalism (80)', 80],
+                        ['Other (151)', 151]
                     ]
                 }]
             });
         });
-
     //---------- begin half-circle chart ----------------//
         $(function () {
             $('#circle2').highcharts({
@@ -155,7 +154,7 @@
                     plotShadow: false
                 },
                 title: {
-                    text: 'Browser<br>shares',
+                    text: 'Claim<br>status',
                     align: 'center',
                     verticalAlign: 'middle',
                     y: 50
