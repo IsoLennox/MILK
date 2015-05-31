@@ -143,6 +143,25 @@ include("inc/header.php"); ?>
                         
                             echo "<div class='notes_container'><div class='item_content'>".$new_alert."<a href=\"read_message.php?thread=".$show['id']."&with=".$with_name."&with_user=".$with_id."\" class='small_link'>Conversation with ".$with_name."</a></div>";
                             echo "<div class='item_img_content'><img src=\"{$with_img}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$with_name}'s avatar\"></div>";
+                        
+                        
+                        
+                        //GET LAST MESSAGE FROM THIS THREAD
+                        
+                        //Find which threads have new messages
+                $last_message_query  = "SELECT * FROM messages WHERE thread_id={$show['id']} ORDER BY id DESC LIMIT 1";  
+                $msg_result = mysqli_query($connection, $last_message_query);
+                if($msg_result){
+                    $this_msg=mysqli_fetch_assoc($msg_result);
+                    $last_message=$this_msg['content'];
+                        //LIMIT CHARACTER PREVIEW
+                        $position=50; // Define how many character you want to display. 
+                        $last_message = substr($last_message, 0, $position)."..."; 
+                    echo $last_message;
+                     
+                }
+                        
+                        
                             echo "<div class=\"clearfix\"></div></div>";
                         }
                         echo "<div class=\"clearfix\"></div>";
