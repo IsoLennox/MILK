@@ -34,16 +34,12 @@ include("inc/header.php"); ?>
                 }
      
     }elseif(isset($_GET['send'])){
-        
-        
-        
+        //SUBMITTED NEW MESSAGE TO USER 
         $send_to=$_POST['send_to'];
         $message=$_POST['msg'];
         $message=addslashes($message);
         $message=htmlentities($message);
         $message=htmlspecialchars($message);
-      
-        
         $date=date('d/m/Y H:i');
         
         //SEE IF YOU HAVE A THREAD WITH THIS USER:  1=GET THREAD ID / 0= CREATE THREAD && GET THREAD ID
@@ -53,12 +49,11 @@ include("inc/header.php"); ?>
             $threadquery  = "SELECT * FROM thread WHERE (user1={$_SESSION['user_id']} AND user2={$send_to}) OR (user2={$_SESSION['user_id']} AND user1={$send_to})";  
             $threadresult = mysqli_query($connection, $threadquery);
             $rows = mysqli_num_rows($threadresult);
-                if($rows >=1){
-//            if($threadresult){
+                if($rows >=1){ 
                    //get this thread ID
                     $thread=mysqli_fetch_assoc($threadresult);
                     $thread_id=$thread['id'];
-                echo "Found thread";
+                    echo "Found thread";
                 }else{
                     //insert a new thread, get ID
                     $new_thread="INSERT INTO thread (user1, user2) VALUES ({$_SESSION['user_id']}, {$send_to})";
@@ -85,6 +80,7 @@ include("inc/header.php"); ?>
         if($message_result){
             $name=find_user_by_id($send_to);
             $with_user=$name['first_name']."%20".$name['last_name'];
+            //REDIRECT TO THIS MESSAGE THREAD
             redirect_to('read_message.php?thread='.$thread_id.'&with_user='.$send_to.'&with='.$with_user);
         }else{
             echo "Error sending this message: ".$message." to user: ".$send_to." on thread: ".$thread_id;
