@@ -40,7 +40,7 @@ include("inc/header.php"); ?>
         $message=addslashes($message);
         $message=htmlentities($message);
         $message=htmlspecialchars($message);
-        $date=date('d/m/Y H:i');
+        $date=date('m/d/Y H:i');
         
         //SEE IF YOU HAVE A THREAD WITH THIS USER:  1=GET THREAD ID / 0= CREATE THREAD && GET THREAD ID
         if(isset($_POST['thread'])){
