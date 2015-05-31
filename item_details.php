@@ -218,6 +218,7 @@ if(isset($_GET['remove'])){
                         }
                     }
                     echo "</div>"; //end container
+                    echo "<div class=\"clearfix\"></div>";
     //            GET GALLERY  
                     $image_query  = "SELECT * FROM item_img WHERE item_id={$id}"; 
                     $image_result = mysqli_query($connection, $image_query);

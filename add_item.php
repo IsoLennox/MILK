@@ -61,8 +61,18 @@ if (isset($_POST['submit'])) {
             $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
             $insert_history = mysqli_query($connection, $history); 
         
-            $_SESSION["message"] = "Item Saved!";
-            redirect_to("item_details.php?id=".$item_id);        
+        
+        if(isset($_GET['walkthrough'])){
+                      $update_profile  = "UPDATE users SET walkthrough_complete=3 WHERE id={$_SESSION['user_id']}";
+                        $updated = mysqli_query($connection, $update_profile);
+                        $_SESSION["walkthrough"] = "Saved your item! Walkthrough Complete!<br/>Welcome to your dashboard! You can take the walkthrough again by going to 'help'."; 
+                        redirect_to('dashboard.php?walkthrough');
+                    }else{
+                        $_SESSION["message"] = "Item Saved!";
+            redirect_to("item_details.php?id=".$item_id); 
+                    }
+        
+                   
         }else{
             $_SESSION["message"] = "Item could not be saved";
             redirect_to("inventory.php");
@@ -133,7 +143,11 @@ if (isset($_POST['submit'])) {
         <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950" value="">
         <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950" value="">
     </fieldset>
-    <input type="submit" name="submit" value="Next"><a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');"><i class="fa fa-times"></i> Cancel</a> 
+    <input type="submit" name="submit" value="Next">
+   <? if(!isset($_GET['walkthrough'])){ ?>
+                     <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');"><i class="fa fa-times"></i> Cancel</a> 
+                  <?php  } ?>
+    
  </form>
  
   

@@ -150,7 +150,7 @@ include("inc/header.php"); ?>
         }
         
         foreach($result as $show){
-            echo "<div class=\"{$class}\">";
+            echo "<div class=\"{$class}\"><div class='item_content'>";
                          //Check to see if involved in claim
                         $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$show['id']}"; 
                         $item_claim_result = mysqli_query($connection, $item_claim_query);
@@ -171,7 +171,7 @@ include("inc/header.php"); ?>
             if(empty($room_name)){
                 $room_name="Room not selected";
             }
-                echo "Room: ".$room_name . "";
+                echo "Room: ".$room_name . " ";
             
             //get number of items in rooms ]
             
@@ -179,9 +179,16 @@ include("inc/header.php"); ?>
                 $item_count_result = mysqli_query($connection, $item_count);
                 $total_array=mysqli_fetch_assoc($item_count_result);
                 $total=$total_array['total'];
-                echo "<br/>".$total." uploads</p>";
+                echo "<br/>".$total." Image/File Uploads</p></div>";
  
-            echo "</div>";
+            
+                $item_img = "SELECT * FROM item_img WHERE item_id={$id} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
+                $item_img_result = mysqli_query($connection, $item_img);
+                $total_img_array=mysqli_fetch_assoc($item_img_result);
+                $thumbnail=$total_img_array['thumb_path'];
+                $title=$total_img_array['title'];
+                echo "<div class='item_img_content'><img src=\"{$thumbnail}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$title}\"></div>";
+                echo "<div class=\"clearfix\"></div></div>";
             }
             echo "<div class=\"clearfix\"></div>";
         }

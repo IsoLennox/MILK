@@ -16,8 +16,16 @@ include("inc/header.php"); ?>
 //if($permission!==1){
 //    redirect_to('index.php');
 //}else{ 
-?>
 
+ if(isset($_GET['walkthrough'])){
+  $update_walkthrough  = "UPDATE users SET walkthrough_complete=2 WHERE id={$_SESSION['user_id']} ";  
+    $walkthrough_updated = mysqli_query($connection, $update_walkthrough);
+     
+     echo "<div class=\"walkthrough\"><h4>Walkthrough</h4><br/><strong>Step 3 of 4: Creating a New Role</strong><br/>Here you can give a role a title, and choose which permissions it will have. <br/><a class=\"right\" href=\"new_employee.php?walkthrough\">NEXT</a></div>";
+      
+ }
+                 
+?>
 <h1>New Role</h1> 
  
 <?php
@@ -44,8 +52,14 @@ if (isset($_POST['submit'])) {
                             $insert_permission_query_result = mysqli_query($connection, $insert_permission_query);
                                 }//end insert roles/permissions int ojoint table 
                 
+                
+                if(isset($_POST['walkthrough'])){  
+                
+                        redirect_to("roles.php?walkthrough&success");
+                }else{
                           $_SESSION["message"] = "New Role Created!";
                           redirect_to("roles.php");
+                    }
 
                     }else{
                 
@@ -81,6 +95,10 @@ if (isset($_POST['submit'])) {
                      
            }//end loop through permissions
        }//end call all site permissions
+
+if(isset($_GET['walkthrough'])){ ?>
+        <input type="hidden" name="walkthrough">
+<?php }
  ?>
         <input type="submit" name="submit" id="submit" value="Save Role">
 </form>

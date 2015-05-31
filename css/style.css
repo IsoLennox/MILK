@@ -98,7 +98,7 @@ h1 {
 	font-size: 3em;
 	font-weight: 700;
 	color:#004800;
-	text-align: center;
+/*	text-align: center;*/
 	margin-bottom: 50px;
 }
 
@@ -133,7 +133,7 @@ a:hover{
 }
 
 p {
-	/*padding:5px 0;*/
+	padding:2.5px 0;
 	line-height: 1.3em;
 }
 
@@ -655,9 +655,9 @@ header {
 	margin-right: 5px;
     padding: 20px;
     border-radius: 10px;
-    border: 2px solid rgba(245,245,245,0.5);
-    background: rgba(245,245,245,0.3);
-	text-align: center;
+    border: 2px solid rgba(245,245,245,0.99);
+    background: rgba(245,245,245,0.7);
+/*	text-align: center;*/
     /*min-height: 275px;*/
 }
 	.stats:nth-of-type(3){
@@ -668,6 +668,7 @@ header {
     width: 25%;
 	float: left;
 	margin-bottom: 15px;
+    text-align: left;
 }
 
 
@@ -778,6 +779,18 @@ header {
 	}
 
 
+	.item_content {
+		width:70%;
+		float:left;
+	}
+	.item_img_content {
+		width:30%;
+		float:right;
+		text-align: right;
+	}
+
+
+
 
 
 
@@ -875,6 +888,35 @@ header {
 
 
 
+/*---------------------------------------------*\
+		PROFILE PAGE AND COMPANY DETAILS
+\*---------------------------------------------*/
+
+.profile {
+	max-width: 900px;
+	width:100%;
+	margin:0 auto 25px;
+}
+
+	.avatar {
+		float: left;
+		width:50%;
+	}
+
+	.profile_content {
+		float:right;
+		width:50%;
+		word-wrap:break-word;
+	}
+
+	/*.profile_content a, .avatar a {
+		margin-top: 15px;
+	}*/
+
+
+
+
+
 
 
 
@@ -886,6 +928,7 @@ header {
 .half_div {
 	float:left;
 	width:48%;
+    text-align: left;
 }
 	.half_div:first-child{
 		margin-right: 4%;
@@ -902,7 +945,7 @@ header {
 		text-align: left;
 	}
 
-.half_link {
+.half_link, .chart_link {
 	float:left;
 	width:50%;
 	margin:10px 0;
@@ -912,12 +955,14 @@ header {
 	text-align:left;
 }
 
-.half_link:nth-of-type(2){
+.chart_link {float: right;}
+
+.half_link:nth-of-type(2), .chart_link:nth-of-type(2){
 	text-align: right;
 	font-size: 1.5em;
 }
 
-	.half_link a {
+	.half_link a, .chart_link a {
 		margin-right: 25px;
 	}
 
@@ -973,9 +1018,7 @@ footer{
 .center{
     margin: 0 auto;
     text-align: center;
-}/*
-.left{float: left;}
-.right{float: right;}*/
+}
   
 
 .clearfix:after {
@@ -1088,6 +1131,21 @@ display: block;
     margin: 10px;
 }
  
+
+.walkthrough{
+    border: 1px solid red;
+    padding: 10px;
+    width: 500px;
+    margin: 0 auto;
+    font-size: 20px;
+    overflow: hidden;
+}
+
+#draft_container{
+    margin: 20px;
+    background: white;
+    padding: 10px;
+}
 
 
 /******************************

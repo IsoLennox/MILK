@@ -52,8 +52,8 @@ if(isset($_GET['create'])){
                 $content= $show['content'];
             }
         
-        echo $logo;
-        echo "<a href=\"company_details.php?edit_logo\">Edit Logo</a>";
+        echo "<div class='center'>" . $logo;
+        echo "<a href=\"company_details.php?edit_logo\"><i class=\"fa fa-pencil\"></i> Edit Logo</a></div>";
                 ?>
  
    <form action="new_company_profile.php" method="post" enctype="multipart/form-data">
@@ -85,39 +85,41 @@ if(isset($_GET['create'])){
     if($rows >=1){
         
         
-            //GET PERMISSIONS FOR THIS PAGE
-            foreach($_SESSION['permissions'] as $key => $val){  
-                //EDIT COMPANY DETAILS
-                if($key===1){ 
-                    echo "<a href=\"company_details.php?edit\"><i class=\"fa fa-pencil\"></i> Edit Company Details</a>";
-                } 
-            }  
+            
  
             //show each result value
             foreach($result as $show){
                 echo "<h1>".$show['name']."</h1>"; 
-                echo "<img src=\"".$show['logo']."\" alt=\"Company Logo\"><br/>"; 
                 
+                echo "<div class='profile'> <div class=\"avatar\"><img src=\"".$show['logo']."\" alt=\"Company Logo\"><br>"; 
+                echo "<a href=\"company_details.php?edit_logo\"><i class=\"fa fa-pencil\"></i> Edit Logo</a></div>";
                 if(isset($_GET['edit_logo'])){ ?>
                 
-                <form action="new_company_profile.php?update_logo" method="post" enctype="multipart/form-data">
-                    Select New Image:<br/>
+                <form action="new_company_profile.php?update_logo" method="post" class='profile_content' enctype="multipart/form-data">
+                    <p>Select New Image:</p>
                     <input type="file" name="image" id="fileToUpload"><br/>
                     <input type="hidden" name="logo" value="<?php echo $show['logo']; ?>">
                     <input type="submit" value="Upload File" name="submit">
                 </form>
-                <br>
+                <div class='clearfix'></div>
                 <hr/>
                 <br>
               <?php  
                 }
                 
-                echo $show['address']."<br/>"; 
-                echo $show['city']."<br/>"; 
-                echo $show['state']."<br/>"; 
-                echo $show['zip']."<br/>"; 
-                echo $show['phone']."<br/>"; 
-                echo $show['content']."<br/>"; 
+                echo "<div class=\"profile_content\"><p>Address: " . $show['address']." "; 
+                echo $show['city'].", <br>"; 
+                echo $show['state']." "; 
+                echo $show['zip']."</p> "; 
+                echo "<p>Phone: " . $show['phone']." </p>"; 
+                echo "<p>Content: " . $show['content']." </p>";
+                 //GET PERMISSIONS FOR THIS PAGE
+                foreach($_SESSION['permissions'] as $key => $val){  
+                    //EDIT COMPANY DETAILS
+                    if($key===1){ 
+                        echo "<a href=\"company_details.php?edit\"><i class=\"fa fa-pencil\"></i> Edit Company Details</a></div></div>";
+                    } 
+                }  
             }
         }else{
            

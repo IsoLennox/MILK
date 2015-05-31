@@ -10,6 +10,17 @@ include("inc/header.php");
         } 
     }
     if($roles!==1){ redirect_to('index.php'); }
+
+ if(isset($_GET['walkthrough'])){
+      if(isset($_GET['success'])){
+       echo "<div class=\"walkthrough\"><h4>Walkthrough</h4><br/><strong>New Role Created!</strong><br/>Great Job! As you can see you can edit this role at any time. Last Step: Creating Empoyee Accounts... <br/><a class=\"right\" href=\"new_employee.php?walkthrough\">NEXT</a></div>";
+      }else{
+     
+  $update_walkthrough  = "UPDATE users SET walkthrough_complete=1 WHERE id={$_SESSION['user_id']} ";  
+    $walkthrough_updated = mysqli_query($connection, $update_walkthrough); 
+      }
+      
+ }
 ?>
 
 <h1>Employee Roles</h1> 
@@ -85,7 +96,7 @@ include("inc/header.php");
     $role_result = mysqli_query($connection, $role_query);
     if($role_result){
         //show each result value
-        echo "<ul>";
+        echo "<div class='left'><ul>";
         foreach($role_result as $role){
             $role_id=$role['id'];
             echo "<li><strong>".$role['name']."</strong></li>"; 

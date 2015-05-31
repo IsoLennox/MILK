@@ -53,43 +53,44 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
     <h2> <?php echo $username; ?>'s Profile </h2>
     <h3><?php echo $role['name']; ?></h3>
     
-    <div id="profile">
-        <section id="avatar" class="left"> <img src="<?php echo $avatar; ?>" alt="profile image">
+    <div class="profile">
+        <section class="avatar"> <img src="<?php echo $avatar; ?>" alt="profile image">
          </section>
          
          <a href="messages.php?new&name=<?php echo $username; ?>&route=<?php echo $profile_array['id']; ?>"> <i class="fa fa-envelope"></i> Send Message</a><br/>
-        <section id="profile-content"> <?php echo $content; ?> 
+        
+        <section class="profile_content"> <?php echo $content; ?> 
         
 <!--        ACCOUNT DETAILS  -->
        <?php
+        echo "<p>Name: ".$_SESSION['username']."</p>";
         echo "<p>Phone: ".$profile_array['phone']."</p>";
         echo "<p>Email: ".$profile_array['email']."</p>";
         echo "<p>Address: ".$profile_array['address']."</p>";
         echo "<p>City: ".$profile_array['city']."</p>";
         echo "<p>State: ".$profile_array['state']."</p>";
         echo "<p>Zip: ".$profile_array['zip']."</p>";
-        echo "<p>Policy Number: ".$profile_array['policy_number']."</p>"; 
-        ?>
+        if($_SESSION['is_employee']!=="1") {
+            echo "<p>Policy Number: ".$profile_array['policy_number']."</p>"; 
+        }
         
-        </section>
- 
-    </div>
-
-        <?php
-
         if($user_id==$_SESSION['user_id']){
-            echo "<br/> <a href=\"edit_profile.php\"><i class=\"fa fa-pencil\"></i> Edit Profile</a> <br/>";
+            echo "<br/> <a class='large_link' href=\"edit_profile.php\"><i class=\"fa fa-pencil\"></i> Edit Profile</a> <br/>";
         }
         ?>
  
-  <?php
-    }else{
-        echo "This user does not exist";
-    }
-
-}else{
-    echo "You do not have permission to view this profile.";
-}?>
  
+        </section>
+        <div class="clearfix"></div>
+    </div>
+
+  <?php
+        }else{
+            echo "<p>This user does not exist</p>";
+        }
+
+    }else{
+        echo "<p>You do not have permission to view this profile.</p>";
+    }?>
         
 <?php include("inc/footer.php"); ?>
