@@ -96,8 +96,8 @@ include("inc/header.php"); ?>
 
 ?>
    <h1>Messages</h1>
-    <h4> <a href="messages.php?new"><i class="fa fa-envelope"> </i> New Message</a></h4> 
-          <ul>
+    <a href="messages.php?new" class='large_link'><i class="fa fa-envelope"> </i> New Message</a>
+          <!-- <ul> -->
           <?php
                 //Find which threads have new messages
                 $new_query  = "SELECT * FROM messages WHERE sent_to = {$_SESSION['user_id']} AND viewed=0";  
@@ -114,7 +114,7 @@ include("inc/header.php"); ?>
                 $result = mysqli_query($connection, $query);
                 $rows = mysqli_num_rows($result);
                 if($rows >=1){
-                    echo "<hr/>";
+                    // echo "<hr/>";
                     //show each result value
                     foreach($result as $show){
                         
@@ -131,6 +131,7 @@ include("inc/header.php"); ?>
                                 $user=mysqli_fetch_assoc($withresult);
                             }
                             $with_name=$user['first_name']." ".$user['last_name'];
+                            $with_img=$user['avatar'];
                         
                         
                         //NOTIFY WHICH THREAD HAS NEW MESSAGES
@@ -140,13 +141,16 @@ include("inc/header.php"); ?>
                                 $new_alert="";
                             }//end new message indicator
                         
-                            echo "<li>".$new_alert."<a href=\"read_message.php?thread=".$show['id']."&with=".$with_name."&with_user=".$with_id."\">Conversation with ".$with_name."</a></li>";
+                            echo "<div class='notes_container'><div class='item_content'>".$new_alert."<a href=\"read_message.php?thread=".$show['id']."&with=".$with_name."&with_user=".$with_id."\" class='small_link'>Conversation with ".$with_name."</a></div>";
+                            echo "<div class='item_img_content'><img src=\"{$with_img}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$with_name}'s avatar\"></div>";
+                            echo "<div class=\"clearfix\"></div></div>";
                         }
+                        echo "<div class=\"clearfix\"></div>";
                     }else{
                     echo "You have no messages!";
                 }
 ?> 
-          </ul>
+          <!-- </ul> -->
            <?php
         
     } 

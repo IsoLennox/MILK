@@ -347,6 +347,15 @@ input[type="submit"] ~ a {
 	font-size:1.2em;
 }
 
+.notes_container .small_link {
+	font-size: 1em;
+	color:#333;
+	font-weight: 300;
+}
+
+/*add hover state for small link*/
+
+
 .text_left {
 	text-align: left;
 	width:50%;
@@ -884,10 +893,11 @@ header {
 		color:#333;
 	}
 
+/*used for claims filter links*/
 .claim_filters .current_link {
 	color:#90C32E;
 }
-/*used for claims filter links*/
+
 
 
 
