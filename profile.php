@@ -63,7 +63,7 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         
 <!--        ACCOUNT DETAILS  -->
        <?php
-        echo "<p>Name: ".$_SESSION['username']."</p>";
+        echo "<p>Name: ".$username."</p>";
         echo "<p>Phone: ".$profile_array['phone']."</p>";
         echo "<p>Email: ".$profile_array['email']."</p>";
         echo "<p>Address: ".$profile_array['address']."</p>";
