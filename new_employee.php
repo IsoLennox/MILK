@@ -38,8 +38,8 @@ if (isset($_POST['submit'])) {
 
       
     $email = mysql_prep($_POST["email"]); 
-        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-
+      // MAKE SURE EMAIL IS CORRECTLY FORMATTED
+        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) { 
             $_SESSION["message"] = "Invalid email";
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         }else{
@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
             $last = mysql_prep($_POST["last"]);
 
 
-            // $hashed_password = password_encrypt($_POST["password"]);
+            // ENCRYPT PASSWORD
             $hashed_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
             $first_password = $_POST["password"];
             $confirmed_password = $_POST["confirm_password"];
