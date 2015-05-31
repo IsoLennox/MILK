@@ -232,7 +232,7 @@ if($_SESSION['is_employee']==0){
 
 
                 <?php  if(isset($current_page) &&  $current_page=="messages"){ ?>   
-                        <li class="current_page"><a href="messages.php" class='alert_container'><i class="fa fa-envelope"></i> Messages <div class="claim_alert"><?php echo $num_messg; ?></div></a></li>
+                        <li class="current_page"><a href="messages.php" class='alert_container'><i class="fa fa-envelope"></i> Messages <?php if(!empty($num_messg)){ ?> <div class="claim_alert"><?php echo $num_messg; ?></div><?php } ?></a></li>
                 <?php  }else{ ?>   
                         <li><a href="messages.php" class='alert_container'><i class="fa fa-envelope"></i> Messages <div class="claim_alert"><?php echo $num_messg; ?></div></a></li>
                 <?php   } ?>
