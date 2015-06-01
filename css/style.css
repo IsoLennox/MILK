@@ -319,7 +319,7 @@ input[type="submit"] ~ a {
 .content_wrapper {
 	max-width:900px;
 	width:70%;
-	margin:0 auto 70px;
+	margin:10px auto;
 	position: relative;
 }
 

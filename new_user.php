@@ -89,6 +89,8 @@ if (isset($_POST['submit'])) {
      <meta charset="UTF-8">
      <title>UnderMyRoof - New User</title> 
      <link rel="stylesheet" href="css/style.css">
+     <!--link to font awesome-->
+     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      
      
@@ -204,13 +206,13 @@ if (isset($_POST['submit'])) {
  
  
 <body>    
-<div><!--LOGIN CONTAINER--> 
+<div class='content_wrapper'><!--LOGIN CONTAINER--> 
 
 
     <?php echo message(); ?>
     <?php echo form_errors($errors); ?>
 
-    <h2>Create New Account</h2> 
+    <h1>Create New Account</h1> 
     <form action="new_user.php" method="post">
         <p id="e-error">Email (Used to Log In):
         <input type="text" name="email" id="email" value="" /> </p>
@@ -221,11 +223,11 @@ if (isset($_POST['submit'])) {
         <p id="p1-error">Password:<input type="password" name="password" id="pass" value="" /></p>
         <p id="p2-error">Confirm Password: <input type="password" name="confirm_password" id="pass2" value="" onkeyup="checkPass(); return false;" /></p>
         <span id="confirmMessage" class="confirmMessage"></span><br/>
-        <input type="submit" name="submit" value="Continue" />
+        <input type="submit" name="submit" value="Continue" /> <a href="login.php"><i class="fa fa-times"></i> Cancel</a>
 
     </form>
     <br />
-    <a href="login.php">Cancel</a>
+    
 
 </div><!--   END LOGIN CONTAINER  -->
         
