@@ -9,7 +9,7 @@ include("inc/header.php"); ?>
          foreach($_SESSION['permissions'] as $key => $val){  
              //EDIT EMPLOYEES
             if($val==2){ 
-                echo " <a href=\"new_employee.php\"><i class=\"fa fa-user-plus\"></i> New Employee</a> <br/>"; 
+                echo " <a class='large_link' href=\"new_employee.php\"><i class=\"fa fa-user-plus\"></i> New Employee</a> <br/>"; 
                 //can remove this upon styling
                 echo "<hr/>";
             } 
@@ -216,15 +216,15 @@ include("inc/header.php"); ?>
              foreach($_SESSION['permissions'] as $key => $val){  
                  //EDIT EMPLOYEES
                 if($val==2){ 
-                    echo "<a href=\"employees.php?edit_role=".$show['id']."\"><i class=\"fa fa-user-secret\"></i> Edit Role </a>";
-                    echo "<a href=\"employees.php?edit_pass=".$show['id']."\"><i class=\"fa fa-unlock-alt\"></i> Change Password </a>"; 
+                    echo "<a class='dark_link' href=\"employees.php?edit_role=".$show['id']."\"><i class=\"fa fa-user-secret\"></i> Edit Role </a>";
+                    echo "<a class='dark_link' href=\"employees.php?edit_pass=".$show['id']."\"><i class=\"fa fa-unlock-alt\"></i> Change Password </a>"; 
                     
                     //See if user account is active
                     if($show['account_disabled']=="0"){
-                        echo "<a class=\"right \" href=\"employees.php?disable=1&user=".$show['id']."\"><i class=\"fa fa-times red\"></i>Disable Account</a>";
+                        echo "<a class=\"right \" href=\"employees.php?disable=1&user=".$show['id']."\"><i class=\"fa fa-times red\"></i> Disable Account</a>";
                     }else{
                         //endable account
-                         echo "<a class=\"right \" href=\"employees.php?disable=0&user=".$show['id']."\"><i class=\"fa fa-check green\"></i>Reactivate Account</a>";
+                         echo "<a class=\"right \" href=\"employees.php?disable=0&user=".$show['id']."\"><i class=\"fa fa-check green\"></i> Reactivate Account</a>";
                     }
                     
                 } 

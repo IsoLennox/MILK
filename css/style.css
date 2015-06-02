@@ -348,6 +348,15 @@ input[type="submit"] ~ a {
 	font-size:1.2em;
 }
 
+.dark_link {
+	/*color:#333;*/
+	padding-right: 20px;
+}
+
+.dark_link .fa{
+	color: #90C32E;
+}
+
 .notes_container .small_link {
 	font-size: 1em;
 	color:#333;
