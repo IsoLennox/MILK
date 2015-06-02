@@ -569,21 +569,21 @@ header {
     }
 
 .account_links {
-    width:11%;
-    margin-left: .85em;
+    width:140px;
+    /*margin-left: .85em;*/
 }
     .account_links >div {
-    	min-width: 60px;
-        width:50%;
+    	width: 50%;
+    	height:60px;
         color:#333;
-        padding:5px;
-        height:60px;
+        padding:5px;        
         float:left;
         text-align: center;
     }
 
 .search_container {
     width:85%;
+    width:calc(100% - 140px);
 }
 
 .search input[type="submit"]{
@@ -1054,7 +1054,7 @@ header {
 }
 
 .fa-trash-o { color:firebrick;}
-.fa-trash-o:hover { color:grey;}
+/*.fa-trash-o:hover { color:grey;}*/
 
   
 
