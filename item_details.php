@@ -2,6 +2,7 @@
 include("inc/header.php"); 
 $_SESSION['upload_type'] = 'item';
 ?>
+ <span class="stats">
 <a href="inventory.php">&laquo; All Items</a>
 <?php
 
@@ -301,7 +302,7 @@ echo "<div class=\"clearfix\"></div>";
  
  
 
-           
+</span>       
  
         
       

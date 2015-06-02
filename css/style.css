@@ -698,6 +698,14 @@ header {
 /*		margin-right: 0;*/
 	}
 
+.stats a { 
+/*    color: #90C32E;*/
+}
+
+.activity a { 
+    color: #90C32E;
+}
+
 .one-third {
     width: 25%;
 	float: left;
@@ -949,6 +957,9 @@ header {
 		float:right;
 		width:50%;
 		word-wrap:break-word;
+        padding: 20px;
+    background: white;
+        border-radius: 5px;
 	}
 
 	/*.profile_content a, .avatar a {

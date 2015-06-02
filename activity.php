@@ -1,6 +1,7 @@
 <?php 
 $current_page="activity";
 include("inc/header.php"); ?> 
+    <span class="stats activity">
     
          <?php  if(isset($_GET['all'])){ ?>
                 <h1>All Activity</h1>
@@ -22,7 +23,7 @@ include("inc/header.php"); ?>
     
 
   }else{ ?>
-                  <span class="stats">
+                 
                   <h1>Your Activity</h1>
                   <?php  if($_SESSION['is_employee']==1){ ?>
                   <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> All employee history</a></span> 

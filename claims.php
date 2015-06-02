@@ -1,7 +1,7 @@
 <?php 
 $current_page="claims";
 include("inc/header.php"); ?>
-
+<span class="stats">
 <!--FOR EMPLOYEES-->
  
 <!--
@@ -153,5 +153,5 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
 ?>
 
       
-        
+</span>       
 <?php include("inc/footer.php"); ?>
