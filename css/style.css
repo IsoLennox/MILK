@@ -321,6 +321,7 @@ input[type="submit"] ~ a {
 	width:100%;
 	margin:10px auto;
 	position: relative;
+    left: 30px;
 }
 
 
@@ -762,6 +763,7 @@ header {
     border-radius: 10px;
     padding: 30px;
     margin: 10px 0;
+    background: #fff;
 }
 
 /*inventory page, item title styling*/
@@ -894,6 +896,8 @@ header {
 	padding: 0 20px 10px 0px;
 	overflow-y:scroll;
 	margin-bottom: 25px;
+    padding: 20px;
+    background: #fff;
 }
 
 .claim_filters {

@@ -22,6 +22,7 @@ include("inc/header.php"); ?>
     
 
   }else{ ?>
+                  <span class="stats">
                   <h1>Your Activity</h1>
                   <?php  if($_SESSION['is_employee']==1){ ?>
                   <span class="left"><a href="activity.php?all"><i class="fa fa-eye"></i> All employee history</a></span> 
@@ -82,5 +83,6 @@ include("inc/header.php"); ?>
         }
  
     } ?>
+</span>
      
 <?php include("inc/footer.php"); ?>

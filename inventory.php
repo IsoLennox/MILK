@@ -6,6 +6,7 @@ include("inc/header.php"); ?>
 
  
   <?php if(!isset($_GET['trash'])){ ?>
+  <span class="stats">
   <h1>Your Inventory</h1>
 
   
@@ -194,7 +195,7 @@ include("inc/header.php"); ?>
         }
  ?>
      
-        
+       </span> 
       
         
 <?php include("inc/footer.php"); ?>

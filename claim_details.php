@@ -6,7 +6,7 @@ $_SESSION['upload_type'] = 'claim';
 
 <!-- if employee, back to claims, else back to claims history -->
 
- 
+   <span class="stats">
 
 <?php
 if(isset($_GET['id'])){
@@ -398,6 +398,6 @@ if(isset($_GET['id'])){
 }
  ?> 
         
-      
+     </span>
         
 <?php include("inc/footer.php"); ?>

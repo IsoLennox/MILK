@@ -1,6 +1,7 @@
 <?php
 $current_page="claims";
 include("inc/header.php"); ?>
+   <span class="stats">
   <?php
    
     if(isset($_GET['draft'])){
@@ -242,7 +243,7 @@ include("inc/header.php"); ?>
   }//end show claims dependant on uery
 ?>
 
-     
+</span>
         
       
         

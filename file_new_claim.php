@@ -64,7 +64,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
 
 
 ?>
-
+  <span class="stats">
 <!-- NEW CLAIM FORM   -->
 <h1>File New Claim</h1> 
  
@@ -102,12 +102,13 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                     
                     //item SELECT BOX
                     echo "<p>Items: </p><br/>"; 
-                    ?><div class='select_container'> <ul id="form_id">
+                    ?> <ul id="form_id">
                         <li class='block'>
                           
                             <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all
                           </label>
-                        </li> <?php
+                        </li> 
+                         <div class='select_container'><?php
                           $next=0;
                     foreach($itemresult as $item){
                         
@@ -140,7 +141,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
         
         
  
-
+   </span>
 
 <!--         JAVASCRIPT FOR SELECT ALL BUTTON      -->
 
