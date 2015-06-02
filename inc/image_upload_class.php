@@ -45,10 +45,11 @@ class ImageUpload {
 
 	// image output properties
 	public $image_dir;
-	public $image_path;
+	public $file_path;
 	public $thumb_dir;
 	public $thumb_path;
 	public $img_type;
+	public $is_img;
 
 	public function __construct($upload){
 		// runs when imgage objected is created
@@ -64,37 +65,59 @@ class ImageUpload {
 		// echo '</pre>';
 
 		// makes sure a file was uploaded prior to checking exif_imagetype (which cannot be empty)
+
 		if($upload['tmp_name']) {
-			$pdfPath = 'pdf/';
-			$finfo = finfo_open(FILEINFO_MIME_TYPE);
-			$mime = finfo_file($finfo, $upload['tmp_name']);
-			$ok = false;
-			$date = date_create();
-			$s_path = $pdfPath . "pdf_" . date_timestamp_get($date) . ".pdf";
-			if ($mime === 'application/pdf') {
-			  	$uploadResult = move_uploaded_file($upload['tmp_name'], $s_path);
-			  	if ($uploadResult == true) {
-			   		$_SESSION['message'] .= "PDF Successfully uploaded!";
-					header("Location: ".$_SERVER['HTTP_REFERER']);
-		  		} 
-			} else  {
-			  	// NOTE: exif_imagetype validates file as image, returns type of image
-				$this->img_type = exif_imagetype($upload['tmp_name']);
+			
+				$pdfPath = 'pdf/';
+				$finfo = finfo_open(FILEINFO_MIME_TYPE);
+				$mime = finfo_file($finfo, $upload['tmp_name']);
+				$ok = false;
+				$date = date_create();
+				$savePath = $pdfPath . "pdf_" . date_timestamp_get($date) . ".pdf";
+				if ($mime === 'application/pdf') {
+				  	$uploadResult = move_uploaded_file($upload['tmp_name'], $savePath);
+				  	if ($uploadResult == true) {
+				  		$this->is_img=0;		
+						$this->file_upload = $upload;
+						$this->upload_err = $upload['error'];
+						$this->filename = $upload['name'];
+						$this->tmp_file = $upload['tmp_name'];
 
-				if($this->img_type ==  IMAGETYPE_GIF || $this->img_type == IMAGETYPE_PNG || $this->img_type == IMAGETYPE_JPEG ) {
-					// assign file upload info to properties			
-					$this->file_upload = $upload;
-					$this->upload_err = $upload['error'];
-					$this->filename = $upload['name'];
-					$this->tmp_file = $upload['tmp_name'];
+						$this->img_title = $_POST['title'];
+						if($_SESSION['upload_type'] == 'item'){
+							$this->item_id = $_POST['item_id'];
+						} elseif ($_SESSION['upload_type'] == 'claim') {
+							$this->item_id = $_POST['claim_id'];
+						}
+						$this->file_path = $savePath;
+				   		$_SESSION['message'] .= "PDF Successfully uploaded!";
+						header("Location: ".$_SERVER['HTTP_REFERER']);
+			  		} 
+				} else  {
+				  	// NOTE: exif_imagetype validates file as image, returns type of image
+					$this->img_type = exif_imagetype($upload['tmp_name']);
 
-					$this->item_id = $_POST['item_id'];
-					$this->img_title = $_POST['title'];
-				} else {
-					$_SESSION['message'] .= "Please only JPG, PNG, GIF or PDF files!";
-					header("Location: ".$_SERVER['HTTP_REFERER']);
+					if($this->img_type ==  IMAGETYPE_GIF || $this->img_type == IMAGETYPE_PNG || $this->img_type == IMAGETYPE_JPEG ) {
+						// assign file upload info to properties	
+						$this->is_img=1;		
+						$this->file_upload = $upload;
+						$this->upload_err = $upload['error'];
+						$this->filename = $upload['name'];
+						$this->tmp_file = $upload['tmp_name'];
+
+						$this->img_title = $_POST['title'];
+						if($_SESSION['upload_type'] == 'item'){
+							$this->item_id = $_POST['item_id'];
+						} elseif ($_SESSION['upload_type'] == 'claim') {
+							$this->item_id = $_POST['claim_id'];
+						}
+						
+					} else {
+						$_SESSION['message'] .= "Please only JPG, PNG, GIF or PDF files!";
+						header("Location: ".$_SERVER['HTTP_REFERER']);
+					}
 				}
-			}
+
 
 		} else {
 			$this->upload_err = $upload['error'];
@@ -181,11 +204,11 @@ class ImageUpload {
 				} // end if      (image type check)
 
 				// image upload sucessful, display size of image after compression
-				// assing $savePath to $this->image_path (makeThumb requires this information)
+				// assing $savePath to $this->file_path (makeThumb requires this information)
 				if($this->upload_err == 0) {
-					$newSize = round(filesize($savePath) / 1024) . ' kbs';
-					echo "Image successfully uploaded: " . $newSize;
-					$this->image_path = $savePath;
+					// $newSize = round(filesize($savePath) / 1024) . ' kbs';
+					// echo "Image successfully uploaded: " . $newSize;
+					$this->file_path = $savePath;
 				} // end if
 			} // end if
 		} // end if
@@ -201,9 +224,9 @@ class ImageUpload {
 
 		$this->thumb_dir = $pathToThumbs;
 		//check to make sure optimizeImage has been run
-	  	if(!empty($this->image_path)) {
+	  	if(!empty($this->file_path)) {
 	  		// disect path to optimized image so parts can be used to check file type, load image, and buid thumbnail filename
-		    $info = pathinfo($this->image_path);
+		    $info = pathinfo($this->file_path);
 		    $dir = $info['dirname'] . '/';
 		    $fname = $info['basename'];
 		    $tn_fname = "tn_" . $info['basename'];

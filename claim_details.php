@@ -1,6 +1,8 @@
 <?php
 $current_page="claims";
-include("inc/header.php"); ?>
+include("inc/header.php"); 
+$_SESSION['upload_type'] = 'claim';
+?>
 
 <!-- if employee, back to claims, else back to claims history -->
 
@@ -112,16 +114,34 @@ if(isset($_GET['id'])){
                   
                   
                 if($draft==1){
-//                        echo "<a href=\"claim_details.php?edit={$show['id']}\">Edit Claim Details</a><br/>";
-                        echo "<a class=\"green_submit\" href=\"claim_details.php?edit={$show['id']}\"><i class=\"fa fa-pencil\"></i> Edit Details</a><br/>";
-                    
-                        echo "<br/><a onclick=\"return confirm('Permanently DELETE this claim?');\" href=\"claim_details.php?delete=".$show['id']."&title=".$show['title']."\"><i class=\"fa fa-trash-o\"></i> Delete Claim </a><br/>";
-                    
-                        echo "<br/><br/>";
-                        echo "Add Attachments<br/>";
-                        echo "<p> Attach Images or PDFs of Reports, Damages, Reciepts, or any other details that may help our progress in Approving your claim.</p>"; 
-                        echo "<br/><br/>";
-                        echo "<a class=\"red_submit\" onclick=\"return confirm('Submit this claim? You cannot edit this claim after submitting');\" href=\"claim_details.php?submit=".$show['id']."&title=".$show['title']."\">Submit Claim </a><br/>";
+                  $upload="<a href=\"claim_details.php?add_image&id=".$show['id']."\"><input type=\"submit\" value=\"Add Photos &amp; Files\"></a>";
+
+                  $upload_form="<form action=\"image_handling1.php\" method=\"post\" enctype=\"multipart/form-data\">
+                  Upload an Image or PDF:<br/>
+                  <input type=\"file\" name=\"image\" id=\"fileToUpload\"><br/>
+                  <input type=\"hidden\" value=\"".$_GET['id']."\" name=\"claim_id\">
+                  <p> Title: <input type=\"text\" value=\"\" name=\"title\" placeholder=\"i.e. Image of item..\" ></p><br/>
+                  <input type=\"submit\" value=\"Upload File\" name=\"submit\">
+                  </form>";
+
+                  // echo "<a href=\"claim_details.php?edit={$show['id']}\">Edit Claim Details</a><br/>";
+                  echo "<a class=\"green_submit\" href=\"claim_details.php?edit={$show['id']}\"><i class=\"fa fa-pencil\"></i> Edit Details</a><br/>";
+              
+                  echo "<br/><a onclick=\"return confirm('Permanently DELETE this claim?');\" href=\"claim_details.php?delete=".$show['id']."&title=".$show['title']."\"><i class=\"fa fa-trash-o\"></i> Delete Claim </a><br/>";
+              
+                  echo "<br/><br/>";
+                  echo "<h3>File Attachments</h3>";
+                  echo "<p> Attach Images or PDFs of Reports, Damages, Reciepts, or any other details that may help our progress in Approving your claim.</p>"; 
+                  echo "<br/><br/>";
+                  if(isset($_GET['add_image'])){ 
+                    $claim_id=$_GET['add_image'];
+                    echo $upload_form;
+                  } else {
+                     echo $upload;
+                  }
+                  echo "";
+                  echo "<br/><br/>";
+                  echo "<a class=\"red_submit\" onclick=\"return confirm('Submit this claim? You cannot edit this claim after submitting');\" href=\"claim_details.php?submit=".$show['id']."&title=".$show['title']."\">Submit Claim </a><br/>";
                     
                         
                   }

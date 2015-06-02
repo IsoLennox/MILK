@@ -1,5 +1,7 @@
 <?php $current_page="inventory";
-include("inc/header.php"); ?>
+include("inc/header.php"); 
+$_SESSION['upload_type'] = 'item';
+?>
 <a href="inventory.php">&laquo; All Items</a>
 <?php
 
