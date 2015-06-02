@@ -47,7 +47,9 @@ include("inc/header.php");  ?>
             }
     }  ?>
 <!-- SHOW ALL ROOMS BELOGING TO LOGGED IN USER   -->
+  <span class="stats">
 <div id="rooms" class="left half_div">
+
  <h2>Your Rooms</h2> 
 <?php  
 
@@ -100,7 +102,7 @@ include("inc/header.php");  ?>
           
           
 
-
+</span>
 <div class="clearfix"></div>
         
 <?php include("inc/footer.php"); ?>

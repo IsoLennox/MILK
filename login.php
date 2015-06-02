@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION["walkthrough"] = "Welcome To Under My Roof!  <br/><strong>Step 1 of 4:</strong><br/> First, Please complete your profile!";
                 redirect_to("edit_profile.php?walkthrough");
                 }elseif($user['walkthrough_complete']==1 && $_SESSION['is_employee']==1){
-                $_SESSION["walkthrough"] = "Welcome Back! <br/><strong> Step 2 of 4: Employee Roles</strong><br/>Each Employee or group of employees can be given specific permissions based on their role. The Super User has full permissions.<br/><a class=\"right\" href=\"add_role.php?walkthrough\">NEXT</a></div>";
+                $_SESSION["walkthrough"] = "Welcome Back! <br/><strong> Step 2 of 4: Employee Roles</strong><br/>Each Employee or group of employees can be given specific permissions based on their role. The Super User has full permissions.<br/><a class=\"right\" href=\"add_role.php?walkthrough\">NEXT</a>";
                 redirect_to("roles.php?walkthrough");
                 }elseif($user['walkthrough_complete']==2 && $_SESSION['is_employee']==1){
 //                $_SESSION["walkthrough"] = "Welcome Back! <br/><strong> Step 3 of 4: Creating a New Role</strong><br/>Here you can give a role a title, and choose which permissions it will have. <br/><a class=\"right\" href=\"new_employee.php?walkthrough\">NEXT</a></div>";

@@ -13,7 +13,7 @@ include("inc/header.php");
 
  if(isset($_GET['walkthrough'])){
       if(isset($_GET['success'])){
-       echo "<div class=\"walkthrough\"><h4>Walkthrough</h4><br/><strong>New Role Created!</strong><br/>Great Job! As you can see you can edit this role at any time. Last Step: Creating Empoyee Accounts... <br/><a class=\"right\" href=\"new_employee.php?walkthrough\">NEXT</a></div>";
+       echo "<span class=\"walkthrough\"><h4>Walkthrough</h4><br/><strong>New Role Created!</strong><br/>Great Job! As you can see you can edit this role at any time. Last Step: Creating Empoyee Accounts... <br/><a class=\"right\" href=\"new_employee.php?walkthrough\">NEXT</a></span>";
       }else{
      
   $update_walkthrough  = "UPDATE users SET walkthrough_complete=1 WHERE id={$_SESSION['user_id']} ";  
@@ -22,7 +22,7 @@ include("inc/header.php");
       
  }
 ?>
-
+ <span class="stats">
 <h1>Employee Roles</h1> 
  
  
@@ -197,7 +197,7 @@ if(isset($_GET['save_role'])){
     
 
  ?>
-     
+</span>
         
       
         
