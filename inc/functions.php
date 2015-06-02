@@ -34,7 +34,7 @@ function check_password($user_id, $password) {
 		if ($user) {
 			// found user, now check password 
             
-            //SHA1
+            //bcrypt
 //            if (password_verify($password, $user["password"])){
             
             
