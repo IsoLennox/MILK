@@ -3,7 +3,7 @@ include("inc/header.php"); ?>
 
 
  
-
+<span class="stats">
 
 <?php
  
@@ -154,6 +154,6 @@ if(isset($_GET['create'])){
      
 -->
         
-      
+</span>
         
 <?php include("inc/footer.php"); ?>
