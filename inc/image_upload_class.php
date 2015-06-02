@@ -83,7 +83,7 @@ class ImageUpload {
 						$this->filename = $upload['name'];
 						$this->tmp_file = $upload['tmp_name'];
 
-						$this->img_title = $_POST['title'];
+						$this->img_title = addslashes(htmlentities($_POST['title']));
 						if($_SESSION['upload_type'] == 'item'){
 							$this->item_id = $_POST['item_id'];
 						} elseif ($_SESSION['upload_type'] == 'claim') {
@@ -105,7 +105,7 @@ class ImageUpload {
 						$this->filename = $upload['name'];
 						$this->tmp_file = $upload['tmp_name'];
 
-						$this->img_title = $_POST['title'];
+						$this->img_title = addslashes(htmlentities($_POST['title']));
 						if($_SESSION['upload_type'] == 'item'){
 							$this->item_id = $_POST['item_id'];
 						} elseif ($_SESSION['upload_type'] == 'claim') {

@@ -20,7 +20,7 @@
 		
 
 	
-	
+	 
 			// check for successful upload of image
 			if($img->upload_err === 0){
 				switch ($_SESSION['upload_type']) {
@@ -44,7 +44,7 @@
 							break;
 
 						case 'claim':
-							$insert = "INSERT INTO claims_img (claim_id, filepath, thumb_path, is_img, title ) VALUES ({$img->item_id}, '{$img->file_path}', '{$img->thumb_path}', '{$img->is_img}', '{$img->img_title}')";
+							$insert = "INSERT INTO claims_img (claim_id, filepath, thumb_path, is_img, title ) VALUES ({$img->item_id}, '{$img->file_path}', '{$img->thumb_path}', {$img->is_img}, '{$img->img_title}')";
 							$insert_result = mysqli_query($connection, $insert);
 
 						    if ($insert_result && mysqli_affected_rows($connection) == 1) {
