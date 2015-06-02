@@ -40,7 +40,7 @@ function check_password($user_id, $password) {
             
             //BLOWFISH
             $hashed_password=$user["password"];
-            if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
+            if (hash_equals($hashed_password, CRYPT_BLOWFISH($password, $hashed_password))) {
    
  
 				// password matches
