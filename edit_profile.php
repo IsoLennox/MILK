@@ -29,14 +29,14 @@ if (isset($_POST['submit'])) {
   // Process the form
   
    
-  $content = mysql_prep($_POST["content"]); 
-  $first = ($_POST["first"]);
-  $last = ($_POST["last"]);
-  $phone = ($_POST["phone"]);
-  $address = ($_POST["address"]);
-  $city = ($_POST["city"]);
-  $state = ($_POST["state"]);
-  $zip = ($_POST["zip"]);
+  $content = addslashes(htmlentities($_POST["content"])); 
+  $first = addslashes(htmlentities($_POST["first"]));
+  $last = addslashes(htmlentities($_POST["last"]));
+  $phone = addslashes(htmlentities($_POST["phone"]));
+  $address = addslashes(htmlentities($_POST["address"]));
+  $city = addslashes(htmlentities($_POST["city"]));
+  $state = addslashes(htmlentities($_POST["state"]));
+  $zip = addslashes(htmlentities($_POST["zip"]));
 
     
    // Perform Update BOOK
@@ -126,11 +126,11 @@ if (isset($_POST['submit'])) {
       
         <label for="first">First Name: </label><input type="text" name="first" id="first" value="<?php echo htmlentities($first); ?>" />
         <label for="last">Last Name:</label><input type="text" name="last" id="last" value="<?php echo htmlentities($last); ?>" />
-        <label for="phone">Phone: </label><input type="text" placeholder='(360)800-1234' id='phone' name='phone'value='<?php echo htmlentities($phone); ?>'/>
-        <label for="address">Address: </label><input type="text" id='address' name='address'value='<?php echo htmlentities($address); ?>'/>
-        <label for="city">City: </label><input type="text" id='city' name='city'value='<?php echo htmlentities($city); ?>'/>
-        <label for="state">State: </label><input type="text" id='state' name='state'value='<?php echo htmlentities($state); ?>'/>
-        <label for="zip">Zip: </label><input type="text" id='zip' name='zip'value='<?php echo htmlentities($zip); ?>'/>
+        <label for="phone">Phone: </label><input type="text" placeholder='(360)800-1234' id='phone' name='phone' value='<?php echo htmlentities($phone); ?>'/>
+        <label for="address">Address: </label><input type="text" id='address' name='address' placeholder="1234 Drury Lane" value='<?php echo htmlentities($address); ?>'/>
+        <label for="city">City: </label><input type="text" id='city' name='city' placeholder="Vancouver" value='<?php echo htmlentities($city); ?>'/>
+        <label for="state">State: </label><input type="text" id='state' name='state' placeholder="WA" value='<?php echo htmlentities($state); ?>'/>
+        <label for="zip">Zip: </label><input type="text" id='zip' name='zip' placeholder="55555" value='<?php echo htmlentities($zip); ?>'/>
        <?php if(isset($_GET['walkthrough'])){ ?> <input type="hidden" name='walkthrough' value='1'/> <?php }  ?>
       <input type="submit" name="submit" value="Save" /> 
        <?php if(!isset($_GET['walkthrough'])){ ?> <a href="profile.php">Cancel</a> <?php }  ?>
