@@ -111,7 +111,7 @@ if (isset($_POST['submit'])) {
    <?php 
     if(!isset($_GET['walkthrough'])){
         if($avatar!="http://lorempixel.com/250/250/abstract"){ ?>
-    <a href="delete.php?avatar=<?php echo $_SESSION['user_id']; ?>"> <i class="fa fa-trash-o"> Delete Profile Image</i></a>
+    <a href="delete.php?avatar=<?php echo $_SESSION['user_id']; ?>"> <i class="fa fa-trash-o"></i> Delete Profile Image</a>
  <?php } 
     } ?>
   </section>

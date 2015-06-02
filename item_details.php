@@ -152,9 +152,12 @@ if(isset($_GET['remove'])){
                 if($claim_num >=1){
                     $claim_array=mysqli_fetch_assoc($claim_result);
                     $in_trash=" <p class='disabled text_right'> <i class=\"fa fa-trash-o\"></i> Cannot Remove Item</p>";
-                    $edit="<p class='disabled text_left' href=\"edit_item.php?id=".$show['id']."\"><i class=\"fa fa-pencil\"></i> Cannot Edit</p>";
+                    $edit="<p class='disabled text_left'><i class=\"fa fa-pencil\"></i> Cannot Edit</p>";
                     $upload="<button type=\"button\" disabled>Add Photos &amp; Files</button>";
                     $upload_form="";
+                    $img_delete=" <p class='disabled text_right'> <i class=\"fa fa-trash-o\"></i></p>";
+                    $img_edit="<p class='disabled text_left'><i class=\"fa fa-pencil\"></i></p>";
+                    
                     echo "<h1>".$show['name']."</h1>"; 
                     echo $edit;
                     echo $in_trash;
@@ -168,6 +171,9 @@ if(isset($_GET['remove'])){
                     $edit="<a class='large_link text_left' href=\"edit_item.php?id=".$show['id']."\"><i class=\"fa fa-pencil\"></i> Edit Item</a>";
                     $upload="<a href=\"item_details.php?add_image&id=".$show['id']."\"><input type=\"submit\" value=\"Add Photos &amp; Files\"></a>";
 
+                    $img_delete="<a class='img_edit' href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>";
+                    $img_edit="<a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
+                        
                     echo "<h1>".$show['name']."</h1>"; 
                     if($show['in_trash']==0){
                         echo $edit;
@@ -261,8 +267,8 @@ if(isset($_GET['remove'])){
                             <?php
                         
                         }else{
-                            echo "<a class='img_edit' href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>
-                             <a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
+                            echo $img_edit;
+                            echo $img_delete;
                         }
                         echo "</div>"; //end each container
                     }
