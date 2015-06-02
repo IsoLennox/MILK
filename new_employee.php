@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
 
 
             // ENCRYPT PASSWORD
-            //SHA1
+            //bcrypt
 //            $hashed_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
             //BLOWFISH
              $hashed_password = crypt($_POST["password"]);

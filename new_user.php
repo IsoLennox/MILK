@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
             $first = mysql_prep($_POST["first"]);
             $last = mysql_prep($_POST["last"]);
 
-            // SHA1
+            //bcrypt
 //            $hashed_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
           
           //BLOWFISH:
