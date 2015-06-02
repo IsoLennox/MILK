@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
 		$password = $_POST["password"];
         //call database to see if email and passowrd combo is in DB
 		$found_user = attempt_login($email, $password);
-
+ 
     if ($found_user) {
         //check that account is not disabled
         if($found_user['account_disabled']==1){

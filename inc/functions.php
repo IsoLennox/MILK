@@ -32,9 +32,17 @@ function attempt_login($email, $password) {
 function check_password($user_id, $password) {
 		$user = find_user_by_id($user_id);
 		if ($user) {
-			// found user, now check password
-			//if (password_check($password, $user["hashed_password"])) {
-            if (password_verify($password, $user["password"])){
+			// found user, now check password 
+            
+            //SHA1
+//            if (password_verify($password, $user["password"])){
+            
+            
+            //BLOWFISH
+            $hashed_password=$user["password"];
+            if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
+   
+ 
 				// password matches
 				return $user;
 			} else {
