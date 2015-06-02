@@ -317,8 +317,8 @@ input[type="submit"] ~ a {
 
 
 .content_wrapper {
-	max-width:900px;
-	width:70%;
+	max-width:1300px;
+	width:100%;
 	margin:10px auto;
 	position: relative;
 }
@@ -677,7 +677,7 @@ header {
     float: left;
 	margin-bottom: 25px;
 	margin-right: 5px;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
     border: 2px solid rgba(245,245,245,0.99);
     background: rgba(245,245,245,0.7);
