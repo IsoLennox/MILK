@@ -10,7 +10,7 @@ if($alertresult){
     $rows = mysqli_num_rows($alertresult);
     if($rows>=1){
         echo "<div id=\"alerts\">";
-        echo "<h1>ALERTS</h1>";
+        echo "<h1><i class=\"fa fa-bell\"></i> ALERTS</h1>";
         //show each result value
         foreach($alertresult as $show_alert){
                                      //GET CLAIM STATUS NAME
