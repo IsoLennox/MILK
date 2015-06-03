@@ -206,7 +206,7 @@ if(isset($_GET['remove'])){
                     echo "<p>Purchase Date: ".$show['purchase_date']."</p>"; 
                     echo "<p>Purchase Price: $".$show['purchase_price']."</p>"; 
                     echo "<p>Declared Value: $".$show['declared_value']."</p>"; 
-                    echo "<p>Description/Notes:<br/>".$show['notes']."</p>";
+                    echo "<p>Description/Notes:<br/><div class=\"notes_container\">".$show['notes']."</div></p>";
 
                 
 
