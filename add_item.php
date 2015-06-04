@@ -39,43 +39,43 @@ if (isset($_POST['submit'])) {
     }else{
     
     
-        //INSERT ALL DATA EXCEPT PERMISSIONS
-    $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date, updated, in_trash ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat}, '{$pdate}', '{$date}', 0 ) ";
-    $insert_result = mysqli_query($connection, $insert);
-    if($insert_result){ 
-             
-        //INSERT INTO HISTORY
-        
-            //get item id for link in history content
-            $get_item = "SELECT * FROM items WHERE name='{$name}' AND user_id={$_SESSION['user_id']} ORDER BY id DESC "; 
-            $itemresult = mysqli_query($connection, $get_item);
-            if($itemresult){
-                $item_found=mysqli_fetch_assoc($itemresult);
-                $item_id=$item_found['id'];
+            //INSERT ALL DATA EXCEPT PERMISSIONS
+        $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date, updated, in_trash ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat}, '{$pdate}', '{$date}', 0 ) ";
+        $insert_result = mysqli_query($connection, $insert);
+        if($insert_result){ 
+                 
+            //INSERT INTO HISTORY
+            
+                //get item id for link in history content
+                $get_item = "SELECT * FROM items WHERE name='{$name}' AND user_id={$_SESSION['user_id']} ORDER BY id DESC "; 
+                $itemresult = mysqli_query($connection, $get_item);
+                if($itemresult){
+                    $item_found=mysqli_fetch_assoc($itemresult);
+                    $item_id=$item_found['id'];
+                }else{
+                    $item_id="";
+                }
+            
+                $content = "Added item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
+                $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
+                $insert_history = mysqli_query($connection, $history); 
+            
+            
+            if(isset($_GET['walkthrough'])){
+                          $update_profile  = "UPDATE users SET walkthrough_complete=3 WHERE id={$_SESSION['user_id']}";
+                            $updated = mysqli_query($connection, $update_profile);
+                            $_SESSION["walkthrough"] = "Saved your item! Walkthrough Complete!<br/>Welcome to your dashboard! You can take the walkthrough again by going to 'help'."; 
+                            redirect_to('dashboard.php?walkthrough');
+                        }else{
+                            $_SESSION["message"] = "Item Saved!";
+                redirect_to("item_details.php?id=".$item_id); 
+                        }
+            
+                       
             }else{
-                $item_id="";
-            }
-        
-            $content = "Added item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
-            $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
-            $insert_history = mysqli_query($connection, $history); 
-        
-        
-        if(isset($_GET['walkthrough'])){
-                      $update_profile  = "UPDATE users SET walkthrough_complete=3 WHERE id={$_SESSION['user_id']}";
-                        $updated = mysqli_query($connection, $update_profile);
-                        $_SESSION["walkthrough"] = "Saved your item! Walkthrough Complete!<br/>Welcome to your dashboard! You can take the walkthrough again by going to 'help'."; 
-                        redirect_to('dashboard.php?walkthrough');
-                    }else{
-                        $_SESSION["message"] = "Item Saved!";
-            redirect_to("item_details.php?id=".$item_id); 
-                    }
-        
-                   
-        }else{
-            $_SESSION["message"] = "Item could not be saved";
-            redirect_to("inventory.php");
-        }//end insert uery    
+                $_SESSION["message"] = "Item could not be saved";
+                redirect_to("inventory.php");
+            }//end insert uery    
         
         }//end make sure no required fields are empty
     }else{
@@ -143,9 +143,11 @@ if (isset($_POST['submit'])) {
         <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950" value="">
     </fieldset>
     <input type="submit" name="submit" value="Next">
-   <? if(!isset($_GET['walkthrough'])){ ?>
-     <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');"><i class="fa fa-times"></i> Cancel</a> 
-  <?php }  ?>
+   <?php 
+       if(!isset($_GET['walkthrough'])){
+         echo "<a href=\"inventory.php\" onclick=\"return confirm('Leave the page? This will not save your item!');\"><i class=\"fa fa-times\"></i> Cancel</a> ";
+      }
+    ?>
     
  </form>
  
