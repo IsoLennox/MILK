@@ -27,7 +27,8 @@ confirm_logged_in();
         }else{ ?>
             <link rel="stylesheet" href="css/style.css">
         <?php } ?>
-
+        
+       
         <!--        link to font awesome-->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <!--         STYLE GUIDE FONT  -->
