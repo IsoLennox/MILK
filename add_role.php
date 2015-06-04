@@ -27,7 +27,7 @@ include("inc/header.php"); ?>
  }
                  
 ?>
-<span class="stats">
+
 <h1>New Role</h1> 
  
 <?php
@@ -106,7 +106,7 @@ if(isset($_GET['walkthrough'])){ ?>
 </form>
  <a href="roles.php">cancel</a>
 
-</span>
+
         
 <?php
 //    }

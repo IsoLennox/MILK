@@ -1,7 +1,7 @@
 <?php 
 $current_page="activity";
 include("inc/header.php"); ?> 
-    <span class="stats activity">
+    <span class="activity">
     
          <?php  if(isset($_GET['all'])){ ?>
                 <h1>All Activity</h1>

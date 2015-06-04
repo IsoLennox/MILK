@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
     <form action="edit_profile.php" method="post">
    
         <label for="content">Profile Content:</label><br/>
-        <textarea cols="100" rows="5" name="content" id='content' value="<?php echo htmlentities($content); ?>" ><?php echo htmlentities($old_content); ?></textarea>
+        <textarea cols="100" rows="5" name="content" id='content' value="<?php echo htmlentities($content); ?>" ><?php echo htmlentities($old_content); ?></textarea><br>
       
         <label for="first">First Name: </label><input type="text" name="first" id="first" value="<?php echo htmlentities($first); ?>" />
         <label for="last">Last Name:</label><input type="text" name="last" id="last" value="<?php echo htmlentities($last); ?>" />

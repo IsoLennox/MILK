@@ -1,7 +1,7 @@
 <?php 
 $current_page="claims";
 include("inc/header.php"); ?>
-<span class="stats">
+
 <!--FOR EMPLOYEES-->
  
 <!--
@@ -112,6 +112,7 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
            <a href="claims.php?pending"><i class="fa fa-clock-o black"></i> Processing (<?php echo $pdata['total']; ?>) </a>|
            <a href="claims.php?changes"><i class="fa fa-pencil"></i> Pending Changes (<?php echo $wdata['total']; ?>)</a> 
         </div>
+        
         <?php
     $query  = "SELECT * FROM claims WHERE status_id != 1 ORDER BY id DESC";  
         
@@ -153,5 +154,5 @@ ADD IF NOT EMPLOYEE, REDIRECT TO CLAIMS HISTORY
 ?>
 
       
-</span>       
+      
 <?php include("inc/footer.php"); ?>

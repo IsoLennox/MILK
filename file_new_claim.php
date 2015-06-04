@@ -64,7 +64,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
 
 
 ?>
-  <span class="stats">
+
 <!-- NEW CLAIM FORM   -->
 <h1>File New Claim</h1> 
  
@@ -124,24 +124,20 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                         
                         
                     }
-                    echo "</ul><div class=\"clearfix\"></div></div>";
-                }//end get items  
+                    echo "</ul><div class=\"clearfix\"></div>";
+                    if($next==1){ ?>
+                    <input type="submit" name="submit" value="Next">
+                    <a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');"><i class="fa fa-times"> </i> Cancel</a> 
+                 
+                    <?php }else{
+                            echo "You do not have any items to submit in this claim";
+                         } ?>
+                 </form> 
+                 </div>
+                <?php }//end get items  
          ?>
    
-    
-    <?php if($next==1){ ?>
-    <input type="submit" name="submit" value="Next">
-    <a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');"><i class="fa fa-times"> </i> Cancel</a> 
- 
-    <?php }else{
-            echo "You do not have any items to submit in this claim";
-         } ?>
- </form> 
-       
-        
-        
- 
-   </span>
+
 
 <!--         JAVASCRIPT FOR SELECT ALL BUTTON      -->
 
