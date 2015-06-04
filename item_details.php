@@ -240,7 +240,7 @@ if(isset($_GET['remove'])){
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
                         echo "<div>";
                         if($image['is_img']==1){
-                            $file= "<div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div>";
+                            $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div></a>";
 
                         }else{
                             // doesnt work, i think logic is missing in the image optimizer////////////////////////////////////////////////////////////
@@ -249,9 +249,8 @@ if(isset($_GET['remove'])){
 
                         if(empty($image['title'])){ $image['title']="Untitled";}
 
-                        echo "
-                        <a href=\"#\" alt=\"View full size image\" >".$file."
-                        <h5>".$image['title']."</h5></a>"; 
+                        // <a href=\"#\" alt=\"View full size image\" >".$file."
+                        echo $file ."<h5>".$image['title']."</h5>"; 
                         // <span class=\"right\">"; 
 
                         if(isset($_GET['edit_img']) && $_GET['edit_img']==$image['id']){
@@ -303,6 +302,26 @@ echo "<div class=\"clearfix\"></div>";
      
  
         
-      
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".fancybox").fancybox({
+                //for alt text
+              afterShow: function(){
+                $('.fancybox-title').wrapInner('<div />').show();
+
+                $('.fancybox-wrap').hover(function(){
+                  $('.fancybox-title').show(); //when hover on show title
+                }, function(){
+                  $('.fancybox-title').hide(); //when hover off hide title
+                }); //end hover
+              }, //end after show
+              helpers: {
+                title: {
+                  type: 'over'
+                } //title
+              } //helper
+            });
+        });
+    </script>     
         
 <?php include("inc/footer.php"); ?>

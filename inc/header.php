@@ -32,9 +32,13 @@ confirm_logged_in();
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <!--         STYLE GUIDE FONT  -->
         <link href="http://fonts.googleapis.com/css?family=Nunito:300,300italic,400,700" rel="stylesheet" type="text/css">
+       
+        
         <!--   JS VERSIONS-->
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+
+
         <!-- For High Charts: Vertical Bar Charts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -42,6 +46,11 @@ confirm_logged_in();
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/highcharts-3d.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+        <!-- Add fancyBox -->
+        <link rel="stylesheet" href="js/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+        <script type="text/javascript" src="js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+        
     </head>
        
 <body>
