@@ -6,7 +6,6 @@ $_SESSION['upload_type'] = 'claim';
 
 <!-- if employee, back to claims, else back to claims history -->
 
-   <span class="stats">
 
 <?php
 if(isset($_GET['id'])){
@@ -20,6 +19,7 @@ if(isset($_GET['id'])){
               if($_SESSION['is_employee']==1 || $show['user_id']===$_SESSION['user_id'] ){
             
                         //GET CLAIM TYPE NAME
+                    $draft=0;
                     $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
                     $type_result = mysqli_query($connection, $type_query);
                     if($type_result){
@@ -41,7 +41,7 @@ if(isset($_GET['id'])){
                     //GET PERMISSIONS 
                     if($_SESSION['is_employee']==1){  
                         //show status of claim
-                        echo "<h2>".$status."</h2>";
+                        echo "<h3>Claim Status: ".$status."</h3>";
 
                         //SEE IF HAS PERMISSIONS TO UPDATE CLAIMS
                      foreach($_SESSION['permissions'] as $key => $val){ 
@@ -398,6 +398,6 @@ if(isset($_GET['id'])){
 }
  ?> 
         
-     </span>
+
         
 <?php include("inc/footer.php"); ?>

@@ -915,19 +915,15 @@ header {
 /*FILE CLAIM SELECTING ITEMS*/
 .select_container {
 	max-height:400px;
-	/*border:2px solid #aaa;
-	border-radius: 15px;*/
-	padding: 0 20px 10px 0px;
 	overflow-y:scroll;
 	margin-bottom: 25px;
-    padding: 20px;
+    padding-top: 20px;
     background: #fff;
 }
 
 .claim_filters {
 	font-weight: 400;
 	margin:25px 0;
-	text-align: center;
 	color:#333;
 }
 	.claim_filters a {
