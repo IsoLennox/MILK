@@ -2,7 +2,7 @@
 include("inc/header.php"); 
 $_SESSION['upload_type'] = 'item';
 ?>
- <span class="stats">
+
 <a href="inventory.php">&laquo; All Items</a>
 <?php
 
@@ -300,10 +300,7 @@ if(isset($_GET['remove'])){
 }
 echo "<div class=\"clearfix\"></div>";
 ?>
- 
- 
-
-</span>       
+     
  
         
       

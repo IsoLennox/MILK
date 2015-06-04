@@ -3,7 +3,6 @@ $current_page="inventory";
 $sub_page="add_item";
 include("inc/header.php"); ?>
 
-  <span class="stats">
 <h1>New Item</h1> 
 
 <?php
@@ -145,12 +144,12 @@ if (isset($_POST['submit'])) {
     </fieldset>
     <input type="submit" name="submit" value="Next">
    <? if(!isset($_GET['walkthrough'])){ ?>
-                     <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');"><i class="fa fa-times"></i> Cancel</a> 
-                  <?php } ?>
+     <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');"><i class="fa fa-times"></i> Cancel</a> 
+  <?php } ?>
     
  </form>
  
-</span>
+
         
               
     <script>
