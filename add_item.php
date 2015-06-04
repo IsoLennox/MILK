@@ -145,7 +145,7 @@ if (isset($_POST['submit'])) {
     <input type="submit" name="submit" value="Next">
    <? if(!isset($_GET['walkthrough'])){ ?>
      <a href="inventory.php" onclick="return confirm('Leave the page? This will not save your item!');"><i class="fa fa-times"></i> Cancel</a> 
-  <?php  ?>
+  <?php }  ?>
     
  </form>
  
