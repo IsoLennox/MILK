@@ -1,4 +1,5 @@
-<?php include("inc/header.php");  
+<?php include("inc/header.php");
+    ?> <script src="js/profile_pic.js"></script> <?php
 
     $query  = "SELECT * FROM users WHERE id={$_SESSION['user_id']}";  
     $result = mysqli_query($connection, $query);
@@ -99,7 +100,7 @@ if (isset($_POST['submit'])) {
  
     <h2>Edit Profile Image</h2>
     <section class="left">
-    <img src="<?php echo $avatar; ?>" alt="Current Profile Image" />
+    <img class="resize-image" src="<?php echo $avatar; ?>" alt="Current Profile Image" />
     </section>
    <section class="right"> 
 <form action="upload_profile_img.php" method="post" enctype="multipart/form-data">
@@ -143,5 +144,5 @@ if (isset($_POST['submit'])) {
     <p>Not what you're looking for?<br> <a href="settings.php">Edit Account Settings</a></p>
     
     <?php } ?>
- 
+    
 <?php include("inc/footer.php"); ?> 

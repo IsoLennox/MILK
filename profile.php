@@ -54,7 +54,7 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
     <h3><?php echo $role['name']; ?></h3>
     
     <div class="profile">
-        <section class="avatar"> <img src="<?php echo $avatar; ?>" alt="profile image">
+        <section class="avatar"> <img class="resize-image" src="<?php echo $avatar; ?>" alt="profile image">
          </section>
          
          <a href="messages.php?new&name=<?php echo $username; ?>&route=<?php echo $profile_array['id']; ?>"> <i class="fa fa-envelope"></i> Send Message</a><br/>

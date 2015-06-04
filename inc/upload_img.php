@@ -1,3 +1,4 @@
+<script src="js/profile_pic.js"></script>
 <?php  
 $target_file = $target_dir . basename($_FILES["image"]["name"]);
 
@@ -63,7 +64,7 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
   
-    
+    // ALLLOW USER TO CROP SCALE IMAGE
     
     
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
