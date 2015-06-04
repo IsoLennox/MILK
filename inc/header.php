@@ -88,7 +88,7 @@ confirm_logged_in();
 if(isset($sub_page) && $sub_page=="profile"){
     echo "<p class=\"sub_page\"><i class=\"fa fa-user\"> </i><a href=\"profile.php\"> " . $_SESSION['username'] ."</a></p>";
 }else{
-   echo " <p><i class=\"fa fa-user\"> </i><a href=\"profile.php\">". $_SESSION['username'] . "</a></p>";
+   echo " <p><i class=\"fa fa-user\"> </i>" . "    ". "<a href=\"profile.php\">" . $_SESSION['username'] . "</a></p>";
 }
 echo "</div>";
 
