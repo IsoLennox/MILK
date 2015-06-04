@@ -49,7 +49,7 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         $avatar="http://lorempixel.com/250/250/abstract";
         }
 ?>
-  <span class="stats">
+
     <h2> <?php echo $username; ?>'s Profile </h2>
     <h3><?php echo $role['name']; ?></h3>
     
@@ -66,10 +66,10 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         echo "<p>Name: ".$username."</p>";
         echo "<p>Phone: ".$profile_array['phone']."</p>";
         echo "<p>Email: ".$profile_array['email']."</p>";
-        echo "<p>Address: ".$profile_array['address']."</p>";
-        echo "<p>City: ".$profile_array['city']."</p>";
-        echo "<p>State: ".$profile_array['state']."</p>";
-        echo "<p>Zip: ".$profile_array['zip']."</p>";
+        echo "<p>Address: ".$profile_array['address'];
+        echo "<br> ".$profile_array['city'].", ";
+        echo " ".$profile_array['state']." ";
+        echo " ".$profile_array['zip']."</p>";
         if($_SESSION['is_employee']!=="1") {
             echo "<p>Policy Number: ".$profile_array['policy_number']."</p>"; 
         }
@@ -92,5 +92,5 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
     }else{
         echo "<p>You do not have permission to view this profile.</p>";
     }?>
-</span>
+
 <?php include("inc/footer.php"); ?>

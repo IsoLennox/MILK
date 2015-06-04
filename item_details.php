@@ -2,7 +2,7 @@
 include("inc/header.php"); 
 $_SESSION['upload_type'] = 'item';
 ?>
- <span class="stats">
+
 <a href="inventory.php">&laquo; All Items</a>
 <?php
 
@@ -171,10 +171,7 @@ if(isset($_GET['remove'])){
                 }else{
                     $edit="<a class='large_link text_left' href=\"edit_item.php?id=".$show['id']."\"><i class=\"fa fa-pencil\"></i> Edit Item</a>";
                     $upload="<a href=\"item_details.php?add_image&id=".$show['id']."\"><input type=\"submit\" value=\"Add Photos &amp; Files\"></a>";
-
-                    $img_delete="<a class='img_edit' href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>";
-                    $img_edit="<a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
-                        
+                      
                     echo "<h1>".$show['name']."</h1>"; 
                     if($show['in_trash']==0){
                         echo $edit;
@@ -235,11 +232,15 @@ if(isset($_GET['remove'])){
                 if($image_num >=1){
                     echo "<div class=\"gallery\">";
 
-                        foreach($image_result as $image){ 
+                        foreach($image_result as $image){
+                        if($claim_num == 0){
+                            $img_delete="<a class='img_edit' href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>";
+                            $img_edit="<a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
+                        }   
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
                         echo "<div>";
                         if($image['is_img']==1){
-                            $file= "<div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div>";
+                            $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div></a>";
 
                         }else{
                             // doesnt work, i think logic is missing in the image optimizer////////////////////////////////////////////////////////////
@@ -248,9 +249,8 @@ if(isset($_GET['remove'])){
 
                         if(empty($image['title'])){ $image['title']="Untitled";}
 
-                        echo "
-                        <a href=\"#\" alt=\"View full size image\" >".$file."
-                        <h5>".$image['title']."</h5></a>"; 
+                        // <a href=\"#\" alt=\"View full size image\" >".$file."
+                        echo $file ."<h5>".$image['title']."</h5>"; 
                         // <span class=\"right\">"; 
 
                         if(isset($_GET['edit_img']) && $_GET['edit_img']==$image['id']){
@@ -299,12 +299,29 @@ if(isset($_GET['remove'])){
 }
 echo "<div class=\"clearfix\"></div>";
 ?>
- 
- 
-
-</span>       
+     
  
         
-      
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".fancybox").fancybox({
+                //for alt text
+              afterShow: function(){
+                $('.fancybox-title').wrapInner('<div />').show();
+
+                $('.fancybox-wrap').hover(function(){
+                  $('.fancybox-title').show(); //when hover on show title
+                }, function(){
+                  $('.fancybox-title').hide(); //when hover off hide title
+                }); //end hover
+              }, //end after show
+              helpers: {
+                title: {
+                  type: 'over'
+                } //title
+              } //helper
+            });
+        });
+    </script>     
         
 <?php include("inc/footer.php"); ?>
