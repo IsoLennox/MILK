@@ -208,7 +208,7 @@ include("inc/header.php"); ?>
                         $role['name']="No Role Set";
                     }
                 }
-            echo "<div class='message_container'> ";        
+            echo "<div class='message_content'> ";        
             echo "<div class='item_content employee_content'><p class='employee_info'><a href=\"profile.php?user=".$show['id']."\"><i class=\"fa fa-user\"></i> ".$show['first_name']." ".$show['last_name']."</a> - ".$role['name']."</p>"; 
             
                     //GET PERMISSIONS FOR THIS PAGE
