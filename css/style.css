@@ -1048,14 +1048,17 @@ header {
 		margin-right: 25px;
 	}
 
-
 .message_container {
-	border-bottom:1px solid #aaa;
+	max-width: 900px;
+}
+.message_content{
+	border-bottom:1px solid #ddd;
+	/*background-color: #fdfdfd;*/
+	/*border-radius: 10px;*/
 	word-wrap:break-word;
 	margin-bottom: 10px;
 	padding-right:25px;
-	padding-bottom: 15px;
-	max-width: 900px;
+	padding-bottom: 15px;		
     clear: both;
 }
 	.message_container:nth-last-child(1) {
@@ -1075,8 +1078,16 @@ header {
     margin-bottom: 10px;
 }
 
-.msg_left{ float: left; text-align: left;}
-.msg_right{ float: right; text-align: right;}
+.msg_left{ 
+	float: left; 
+	text-align: left;
+	padding-right: 20px;
+}
+.msg_right{ 
+	float: right;
+ 	text-align: right;
+ 	padding-left: 20px;
+}
 
 .sticky {
 	background-color: #fafafa;
