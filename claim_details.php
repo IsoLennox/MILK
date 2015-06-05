@@ -136,6 +136,17 @@ if(isset($_GET['id'])){
                         
                   }
                   
+                  //SHOW GALLERY
+            $image_query  = "SELECT * FROM claims_img WHERE claim_id={$show['id']}";  
+            $image_result = mysqli_query($connection, $image_query);
+            if($image_result){
+                foreach($image_result as $image){ 
+                    echo $image['filepath']."<br/>";
+                }
+            }
+                  
+                  
+                  
     
     }else{
         echo "Oops! It looks like you do not have permission to be here";
