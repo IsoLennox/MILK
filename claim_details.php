@@ -26,10 +26,7 @@ if(isset($_GET['id'])){
                         $type_array=mysqli_fetch_assoc($type_result);
                         $claim_type=$type_array['name'];
                     }
-
-
                    echo "<h1>".$show['title']."</h1>";
-
                                   //GET CLAIM STATUS NAME
                     $status_query  = "SELECT * FROM status_types WHERE id={$show['status_id']}";  
                     $status_result = mysqli_query($connection, $status_query);
@@ -42,10 +39,17 @@ if(isset($_GET['id'])){
                     if($_SESSION['is_employee']==1){  
                         //show status of claim
                         echo "<h3>Claim Status: ".$status."</h3>";
-
-                       
-
-
+                        //SEE IF HAS PERMISSIONS TO UPDATE CLAIMS
+                     foreach($_SESSION['permissions'] as $key => $val){ 
+                        if($val==4){  
+                           $permission=1;
+                            }//end show link if has claims permissions 
+                        }//end check permissions 
+                        if($permission==1){
+                        //has permissions to update claim, show link 
+                             echo "<a class=\"green_submit right\" href=\"update_claim.php?id=".$_GET['id']."\"><i class=\"fa fa-pencil\"></i> Update This Claim</a><br/>";
+                        }
+                    } //end check if employee
                   
                     //    STATUS BAR
                          if($show['user_id']===$_SESSION['user_id'] ){
@@ -63,10 +67,7 @@ if(isset($_GET['id'])){
                                  //can edit if a draft, or pending changes
                                  $draft=1; 
                              }else{ $draft=0; }
-
                          }//end check if draft/pending client changes
-
-
                   
 //              SHOW CLAIM DETAILS     
             
@@ -91,7 +92,6 @@ if(isset($_GET['id'])){
                         $dollar= strtok($itemname['declared_value'], '.');
                         $value=preg_replace("/[^0-9]/","",$dollar);
                       if(empty($value)){ $value="0"; }
-
                         echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a> - $".$value."</li>";
                         $total_value=$total_value+$value;
                     } 
@@ -105,7 +105,6 @@ if(isset($_GET['id'])){
                   
                 if($draft==1){
                   $upload="<a href=\"claim_details.php?add_image&id=".$show['id']."\"><input type=\"submit\" value=\"Add Photos &amp; Files\"></a>";
-
                   $upload_form="<form action=\"image_handling1.php\" method=\"post\" enctype=\"multipart/form-data\">
                   Upload an Image or PDF:<br/>
                   <input type=\"file\" name=\"image\" id=\"fileToUpload\"><br/>
@@ -113,7 +112,6 @@ if(isset($_GET['id'])){
                   <p> Title: <input type=\"text\" value=\"\" name=\"title\" placeholder=\"i.e. Image of item..\" ></p><br/>
                   <input type=\"submit\" value=\"Upload File\" name=\"submit\">
                   </form>";
-
                   // echo "<a href=\"claim_details.php?edit={$show['id']}\">Edit Claim Details</a><br/>";
                   echo "<a class=\"green_submit\" href=\"claim_details.php?edit={$show['id']}\"><i class=\"fa fa-pencil\"></i> Edit Details</a><br/>";
               
@@ -158,7 +156,6 @@ if(isset($_GET['id'])){
     
     $claim_id=$_GET['edit'];
     
-
     
     
     
@@ -242,7 +239,6 @@ if(isset($_GET['id'])){
     echo "<br/><br/>";
     
      
-
                     $claim_type_query  = "SELECT * FROM claim_types ORDER BY name"; 
                         $claim_typeresult = mysqli_query($connection, $claim_type_query);
                         if($claim_typeresult){ 
@@ -282,8 +278,6 @@ if(isset($_GET['id'])){
 <a href="claim_details.php?id=<?php echo $claim_id; ?>" onclick="return confirm('Leave the page? This will not save your changes!');">Cancel</a>
 
 <?php
-
-
 }elseif(isset($_GET['remove_item'])){
     $item_id=$_GET['remove_item'];
     //DELETE ITEMS FROM CLAIMS_ITEMS TABLE    
@@ -297,8 +291,6 @@ if(isset($_GET['id'])){
             header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
     
-
-
 }elseif(isset($_GET['save_changes'])){
     
     $id= $_GET['save_changes'];  
@@ -337,7 +329,6 @@ if(isset($_GET['id'])){
          
          $_SESSION['message']="Changes Saved!";
          redirect_to('claim_details.php?id='.$id);
-
          }else{
          $_SESSION['message']="Could Not Save Changes!";
          redirect_to('claim_details.php?id='.$id);
@@ -379,14 +370,12 @@ if(isset($_GET['id'])){
             $delete_claims  = "DELETE FROM claims WHERE id={$claim_id} ";
             $delete_claims_result = mysqli_query($connection, $delete_claims);
             if($delete_claims_result){ 
-
                 $_SESSION["message"] = "Claim Draft Removed!";
                 redirect_to("claim_history.php"); 
             }else{
                 $_SESSION["message"] = "Claim could not be removed"; 
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
             }//end delete_claims uery 
-
         }else{
             $_SESSION["message"] = "Claim items could not be removed"; 
             header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -394,7 +383,6 @@ if(isset($_GET['id'])){
     
     
 }else{
-
     echo "This claim does not exist!";
 }
  ?> 
