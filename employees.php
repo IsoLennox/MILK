@@ -190,7 +190,7 @@ include("inc/header.php"); ?>
 
          
           
-          <ul> <?php
+          <?php
 
 //GET ALL EMPLOYEES
 
@@ -208,8 +208,8 @@ include("inc/header.php"); ?>
                         $role['name']="No Role Set";
                     }
                 }
-                    
-            echo "<li><a href=\"profile.php?user=".$show['id']."\"><i class=\"fa fa-user\"></i> ".$show['first_name']." ".$show['last_name']."</a> ".$role['name']."</li>"; 
+            echo "<div class='message_container'> ";        
+            echo "<div class='item_content employee_content'><p class='employee_info'><a href=\"profile.php?user=".$show['id']."\"><i class=\"fa fa-user\"></i> ".$show['first_name']." ".$show['last_name']."</a> - ".$role['name']."</p>"; 
             
                     //GET PERMISSIONS FOR THIS PAGE
              foreach($_SESSION['permissions'] as $key => $val){  
@@ -220,21 +220,21 @@ include("inc/header.php"); ?>
                     
                     //See if user account is active
                     if($show['account_disabled']=="0"){
-                        echo "<a class=\"right \" href=\"employees.php?disable=1&user=".$show['id']."\"><i class=\"fa fa-times red\"></i> Disable Account</a>";
+                        echo "<a class=\"dark_link \" href=\"employees.php?disable=1&user=".$show['id']."\"><i class=\"fa fa-times red\"></i> Disable Account</a>";
                     }else{
                         //endable account
-                         echo "<a class=\"right \" href=\"employees.php?disable=0&user=".$show['id']."\"><i class=\"fa fa-check green\"></i> Reactivate Account</a>";
+                         echo "<a class=\"dark_link \" href=\"employees.php?disable=0&user=".$show['id']."\"><i class=\"fa fa-check green\"></i> Reactivate Account</a>";
                     }
-                    
+                    echo "</div>";
+                    echo "<div class='item_img_content'><img class='thumb_avatar' src=\"".$show['avatar']."\" onerror=\"this.src='img/Tulips.jpg'\"></div>";
+                    echo "<div class=\"clearfix\"></div> </div>";
                 } 
             }  
-            
-            //can remove this upon styling
-             echo "<hr/>";
+          
         }
         
     }
- ?>    </ul>
+ ?>  
 
       
         

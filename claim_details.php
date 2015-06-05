@@ -19,7 +19,7 @@ if(isset($_GET['id'])){
               if($_SESSION['is_employee']==1 || $show['user_id']===$_SESSION['user_id'] ){
             
                         //GET CLAIM TYPE NAME
-                    // $draft=0;
+                    $draft=0;
                     $type_query  = "SELECT * FROM claim_types WHERE id={$show['claim_type']}";  
                     $type_result = mysqli_query($connection, $type_query);
                     if($type_result){
