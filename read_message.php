@@ -16,7 +16,7 @@
     $query  = "SELECT * FROM messages WHERE thread_id={$_GET['thread']} ORDER BY id ASC";  
     $result = mysqli_query($connection, $query);
     if($result){
-       
+        echo "<div class='message_container'>";
         //show each result value
         foreach($result as $show){
             
@@ -27,15 +27,16 @@
             }
             
             $name=find_user_by_id($show['sent_from']);
-            echo "<div class='message_container $display'>";
-            echo "<p>From: <a href=\"profile.php?user=".$show['sent_from']."\">".$name['first_name']."</a>";
+            echo "<div class='message_content'>";
+            echo "<div class='$display'><img src='" . $name['avatar'] . "' class='thumb_avatar' onerror=\"this.src='img/Tulips.jpg'\"></div>";
+            echo "<div class=\"$display\"><p>From: <a href=\"profile.php?user=".$show['sent_from']."\">".$name['first_name']."</a>";
             echo "<br>Sent: ".$show['datetime']."</p>";
-            echo "<p>" .htmlspecialchars_decode($show['content'])."</p>";
-            echo "</div>";
+            echo "<p>" .htmlspecialchars_decode($show['content'])."</p></div>";
+            echo "<div class=\"clearfix\"></div></div>";
              
                       
             }
-            // echo "<a id='current' href='#current'></a>";
+            echo "</div>";
         }
  ?>
         <div class="sticky">
