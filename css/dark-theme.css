@@ -5,7 +5,7 @@ body {
 
 header, nav{
 /*  background: rgba(144,195,46,.4);*/
-    background: #111;
+    background: #332F2E;
     color: rgba(154,179,35,1);
 }
 
@@ -20,7 +20,7 @@ h1, h2 { color: #eee;}
 
 .search input[type="search"]{
 	color:#eee;
-    background:#111;
+    background:#332F2E;
 }
 
 .current_page a{ color: #90C32E;}

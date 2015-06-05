@@ -95,6 +95,7 @@ body{
     color: #333;
     margin: 0;
     margin-right: 100px;
+    background-color: #f6f6f6;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -500,7 +501,7 @@ img {
 
 /*NAV IS SIDEBAR AREA*/
 nav { 
-    background: #eee;
+    background: #e5e5e5;
     width: 250px;
     position:fixed;
     top:0px;
@@ -546,7 +547,7 @@ nav {
 
 	.current_page {
 		padding:15px 20px 15px 17px;
-		background:#fff;
+		background:#f6f6f6;
 		border-bottom: 1px solid #ddd;
 		border-top: 1px solid #ddd;
 		border-left:5px solid #90C32E;
@@ -572,7 +573,7 @@ nav {
 
 /*HEADER IS SEARCH BAR AND TOP NAV LINKS*/
 header { 
-    background: #eee;
+    background: #e5e5e5;
     height: 60px;
     position: fixed;
     top: 0;
@@ -598,9 +599,14 @@ header {
         text-align: center;
     }
 
+	/*.account_links >div:first-child {
+		border-right: 3px solid #90C32E;
+	}*/
+
 .search_container {
     width:85%;
     width:calc(100% - 140px);
+
 }
 
 .search input[type="submit"]{
@@ -622,8 +628,10 @@ header {
 	width:95%;
     width:calc(100% - 70px); 
     height:60px;
+    font-size: 1.3em;
     border-right:1px solid #90C32E;
-    background-color: #eee;
+    background-color: #e5e5e5;
+    border-radius: 0;
     border:none;
     margin:0;
 }
