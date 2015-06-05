@@ -1,7 +1,6 @@
 <?php $current_page="employees";
 include("inc/header.php"); ?>
 
-<span class="stats">
 <h1>Employees</h1>
 
 <?php
@@ -237,7 +236,6 @@ include("inc/header.php"); ?>
     }
  ?>    </ul>
 
-</span>
       
         
 <?php include("inc/footer.php"); ?>

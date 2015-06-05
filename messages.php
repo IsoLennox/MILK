@@ -1,7 +1,7 @@
 <?php
 $current_page="messages";
 include("inc/header.php"); ?>
- <span class="stats">
+
    <?php
     if(isset($_GET['new'])){
         
@@ -174,8 +174,7 @@ include("inc/header.php"); ?>
         
     } 
  ?>
-     
-</span>    
+    
       
         
 <?php include("inc/footer.php"); ?>

@@ -90,7 +90,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
             echo "<textarea name=\"notes\" id=\"notes\" cols=\"30\" rows=\"10\" maxlength=\"250\" placeholder=\"Describe the nature of the claim...\"></textarea>";
      
 
-            $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
+                $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
                 $itemresult = mysqli_query($connection, $item_query);
                 if($itemresult){ 
                     
@@ -100,10 +100,10 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                     ?> <ul id="form_id">
                         <li class='block'>
                           
-                            <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all
-                          </label>
+                            <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all</label>
                         </li> 
-                         <div class='select_container'><?php
+                         <div class='select_container'>
+                         <?php
                           $next=0;
                     foreach($itemresult as $item){
                         

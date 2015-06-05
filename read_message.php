@@ -28,18 +28,24 @@
              
                       
             }
-            // echo "<a href='#current'></a>";
+            // echo "<a id='current' href='#current'></a>";
         }
  ?>
         <div class="sticky">
           <form method="POST" action="messages.php?send">
               
-              <textarea name="msg" id="" cols="30" rows="10"></textarea>
+              <textarea name="msg" id="" cols="30" rows="10"></textarea><br>
               <input type="hidden" name="send_to" value="<?php echo $_GET['with_user']; ?>">
               <input type="hidden" name="thread" value="<?php echo $_GET['thread']; ?>">
               <input type="submit" name="sumbit" id="submit" value="Reply">
           </form>
         </div>
       
-        
+<script>
+  $(document).ready(function() {
+    $('html, body').animate({
+      scrollTop: $('.message_container').last().offset().top
+    }, 'slow');
+  });
+</script>        
 <?php include("inc/footer.php"); ?>

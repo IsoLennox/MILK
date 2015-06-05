@@ -77,11 +77,10 @@ include("inc/header.php"); ?>
         echo "<ul>";
         //show each result value
         foreach($result as $show){
-            echo "<li>".$show['content']." ".$show['datetime']."</li>";
-                      
-            }
-        echo "</ul>";
+          echo "<li>".$show['content']." ".$show['datetime']."</li>";
         }
+         echo "</ul>";
+    }
  
     } ?>
 </span>
