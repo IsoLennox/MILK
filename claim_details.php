@@ -71,16 +71,16 @@ if(isset($_GET['id'])){
                   
 //              SHOW CLAIM DETAILS     
             
-            echo "Claim Type: ".$claim_type."<br/>";
+            echo "<p>Claim Type: ".$claim_type."<br/>";
                   
             $user=find_user_by_id($show['user_id']);
             $username=$user['first_name']." ".$user['last_name'];     
             echo "Filed By: <a href=\"profile.php?user=".$user['id']."\">".$username."</a><br/>";
-            echo "Date Filed: ".$show['datetime']."<br/><br/>";
+            echo "Date Filed: ".$show['datetime']."</p><br/>";
             
             
                   
-            echo "Items: <ul>";
+            echo "<p>Items:</p> <ul>";
             $item_query  = "SELECT * FROM claim_items WHERE claim_id={$show['id']}";  
             $item_result = mysqli_query($connection, $item_query);
                   $total_value=0;

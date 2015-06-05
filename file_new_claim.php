@@ -92,15 +92,17 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
 
                 $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
                 $itemresult = mysqli_query($connection, $item_query);
-                if($itemresult){ 
-                    
-                    
+
+                if($itemresult){
+                          
+                  
                     //item SELECT BOX
                     echo "<p>Items: </p><br/>"; 
                     ?> <ul id="form_id">
                         <li class='block'>
-                          
+                         
                             <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all</label>
+                            
                         </li> 
                          <div class='select_container'>
                          <?php
@@ -120,6 +122,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                         
                     }
                     echo "</ul><div class=\"clearfix\"></div>";
+                  
                     if($next==1){ ?>
                     <input type="submit" name="submit" value="Next">
                     <a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');"><i class="fa fa-times"> </i> Cancel</a> 
