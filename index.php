@@ -244,8 +244,6 @@ if(isset($_GET['graphs'])){
 //                    array_push($categories,$cat['name']);
                     $categories=$categories.",".$cat['name'];
                 }
-                
-                
             }
     
             //    echo "category:".$categories."<br/>";
@@ -253,9 +251,11 @@ if(isset($_GET['graphs'])){
             $result = array_combine($words, array_fill(0, count($words), 0));
             
             echo "<p><strong>Total number of items: ".$total_items."</strong></p><br>";
+    
             foreach($words as $word) {
-            $result[$word]++;
+                $result[$word]++;
             }
+    
             foreach($result as $word => $count) {
                 if($word!==""){
                     echo "<p><strong> $count</strong> items in $word</p>";
@@ -264,7 +264,7 @@ if(isset($_GET['graphs'])){
            
           ?>
           
-           <script>
+    <script>
         $(function () {
             $('#chart_container').highcharts({
                 chart: {

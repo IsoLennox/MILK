@@ -44,7 +44,6 @@ confirm_logged_in();
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <!-- For High Charts: Circular View Charts -->
-        <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/highcharts-3d.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
 

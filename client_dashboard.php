@@ -169,7 +169,8 @@ function item_array($array, $key, $value){
 //echo "<h3>You have ".$num_rooms." rooms <h3>";
  
     echo "<h1>Rooms</h1>";
-echo "<p><strong>You have ".$num_rooms." rooms</strong> </p> <p>Showing 4 of ".$num_rooms." Rooms</p><br/>";
+if($num_rooms>=4){ $showing=4; }else{ $showing=$num_rooms;}
+echo "<p><strong>You have ".$num_rooms." rooms</strong> </p> <p>Showing ".$showing." of ".$num_rooms." Rooms</p><br/>";
 if($num_rooms==0){
 ?>
         
