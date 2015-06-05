@@ -244,7 +244,7 @@ if(isset($_GET['remove'])){
 
                         }else{
                             // doesnt work, i think logic is missing in the image optimizer////////////////////////////////////////////////////////////
-                            $file= "<p><i class=\"fa fa-file-o\"></i></p>";
+                            $file= "<p><i class=\"fa fa-5x fa-file-pdf-o\"></i></p>";
                         }
 
                         if(empty($image['title'])){ $image['title']="Untitled";}

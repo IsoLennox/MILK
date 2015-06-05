@@ -1266,7 +1266,9 @@ display: block;
     padding: 10px;
 }
 
-
+.fa-5x {
+	font-size: 70px;
+}
 /******************************
         /MEDIA QUERIES
 *******************************/
