@@ -7,7 +7,7 @@ include("inc/header.php");
 if(isset($_POST['submit'])){
 
     //INSERT INTO CLAIMS TABLE
-    //ADD TO HISTORY TABLE
+    //DOW NOT ADD TO HISTORY TABLE BECAUSE ITS A DRAFT
     
     //items could be an array after "add item" feature 
     $items_array= $_POST['items'];  
@@ -22,9 +22,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
     $insert_result = mysqli_query($connection, $insert);
     if($insert_result){
         
-
-            
-        //INSERT INTO HISTORY
+ 
         
             //get item id for link in history content
             $get_claim = "SELECT * FROM claims WHERE title='{$title}' AND user_id={$_SESSION['user_id']} ORDER BY id DESC "; 
@@ -43,10 +41,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
         $insert_item  = "INSERT INTO claim_items ( item_id, claim_id) VALUES ( {$item}, {$claim_id} ) ";
             $claimresult = mysqli_query($connection, $insert_item);
         }
-//       INSERT INTO HISTORY TABLE (NOT FOR DRAFTS) 
-//            $content = "Filed Claim: <a href=\"claim_details.php?id=".$claim_id."\">".$title."</a>";
-//            $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
-//            $insert_history = mysqli_query($connection, $history); 
+ 
         
         //INSERT INTO EMPLOYEE NOTIFICATION TABLE???
         
