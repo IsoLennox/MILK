@@ -1055,6 +1055,7 @@ header {
 	margin-bottom: 10px;
 	padding-right:25px;
 	padding-bottom: 15px;
+    clear: both;
 }
 	.message_container:nth-last-child(1) {
 		border-bottom: 0;
@@ -1072,6 +1073,9 @@ header {
     padding: 10px;
     margin-bottom: 10px;
 }
+
+.msg_left{ float: left; text-align: left;}
+.msg_right{ float: right; text-align: right;}
 
 .sticky {
 	background-color: #fafafa;

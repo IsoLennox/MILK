@@ -19,8 +19,15 @@
        
         //show each result value
         foreach($result as $show){
+            
+            if($show['sent_from']==$_SESSION['user_id']){
+                $display="msg_right";
+            }else{
+                $display="msg_left";
+            }
+            
             $name=find_user_by_id($show['sent_from']);
-            echo "<div class='message_container'>";
+            echo "<div class='message_container $display'>";
             echo "<p>From: <a href=\"profile.php?user=".$show['sent_from']."\">".$name['first_name']."</a>";
             echo "<br>Sent: ".$show['datetime']."</p>";
             echo "<p>" .htmlspecialchars_decode($show['content'])."</p>";
