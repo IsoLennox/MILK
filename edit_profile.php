@@ -103,7 +103,7 @@ if (isset($_POST['submit'])) {
     <img class="resize-image" src="<?php echo $avatar; ?>" alt="Current Profile Image" />
     </section>
    <section class="right"> 
-<form action="upload_profile_img.php" method="post" enctype="multipart/form-data">
+<form action="upload_profile_img.php" method="post" enctype="multipart/form-data" id="image_upload">
     <h3>Select New Image:</h3>
     <input type="file" name="image" id="fileToUpload"><br/>
  

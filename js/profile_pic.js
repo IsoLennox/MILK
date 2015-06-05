@@ -1,5 +1,6 @@
 
-// define some of the variables and initialize the Canvas and the target image.
+// define some of the variables and initialize the Canvas and the 
+// target image.
 var resizeableImage = function(image_target) {
     var $container,
     orig_src = new Image(),
@@ -35,7 +36,7 @@ var resizeableImage = function(image_target) {
     };
 
     init();
-});
+}
     
 // The startResize and endResize functions do very little other than tell the browser 
 // to start paying attention to where the mouse is moving and when to stop paying attention.
@@ -111,6 +112,30 @@ resizeImage = function(width, height){
     $(image_target).attr('src', resize_canvas.toDataURL("image/png"));  
 };
 
-$('.resize-image').change(Function(){
-    resizeableImage($('.resize-image'));
+$(document).ready(function() {
+    $('#image_upload').submit(function(evt){    
+           
+        $(':file').change(function(){
+            var file = this.files[0];
+            name = file.name;
+            size = file.size;
+            type = file.type;
+
+
+            if(file.name.length < 1) {
+                alert('no file selected');
+            }
+            else if(file.size > 5000000) {
+                alert("File is to big");
+            }
+            else if(file.type != 'image/png' && file.type != 'image/jpg' && !file.type != 'image/gif' && file.type != 'image/jpeg' ) {
+                alert("File doesnt match png, jpg or gif");
+            }
+            else {
+
+                resizeableImage(file);
+            }
+        });
+        evt.preventDefault(); 
+    });
 });

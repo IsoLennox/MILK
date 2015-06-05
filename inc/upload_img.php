@@ -1,4 +1,4 @@
-<script src="js/profile_pic.js"></script>
+
 <?php  
 $target_file = $target_dir . basename($_FILES["image"]["name"]);
 
