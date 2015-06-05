@@ -43,17 +43,7 @@ if(isset($_GET['id'])){
                         //show status of claim
                         echo "<h3>Claim Status: ".$status."</h3>";
 
-                        //SEE IF HAS PERMISSIONS TO UPDATE CLAIMS
-                     foreach($_SESSION['permissions'] as $key => $val){ 
-                        if($val==4){  
-                           $permission=1;
-                            }//end show link if has claims permissions 
-                        }//end check permissions 
-                        if($permission==1){
-                        //has permissions to update claim, show link 
-                             echo "<a class=\"green_submit right\" href=\"update_claim.php?id=".$_GET['id']."\"><i class=\"fa fa-pencil\"></i> Update This Claim</a><br/>";
-                        }
-                    } //end check if employee
+                       
 
 
                   

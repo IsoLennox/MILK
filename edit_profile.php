@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
 
     if ($result && mysqli_affected_rows($connection) == 1) {
       // Success
-        
+    $_SESSION['username']=$first . " " . $last;    
     if(isset($_POST['walkthrough']) && $_SESSION['is_employee']==0){
          $_SESSION["walkthrough"] = "Profile updated! Step 2 of 3: Next let's add a room!";
         redirect_to("rooms.php?walkthrough");

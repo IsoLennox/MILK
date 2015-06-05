@@ -13,7 +13,7 @@
   
 
 //READ ALL MESSAGES
-    $query  = "SELECT * FROM messages WHERE thread_id={$_GET['thread']} ORDER BY id DESC";  
+    $query  = "SELECT * FROM messages WHERE thread_id={$_GET['thread']} ORDER BY id ASC";  
     $result = mysqli_query($connection, $query);
     if($result){
        
@@ -28,6 +28,7 @@
              
                       
             }
+            // echo "<a href='#current'></a>";
         }
  ?>
         <div class="sticky">
