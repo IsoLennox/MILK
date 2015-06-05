@@ -157,7 +157,11 @@ include("inc/header.php"); ?>
                         $position=50; // Define how many character you want to display. 
                         $last_message = substr($last_message, 0, $position)."...."; 
                     echo "<p>" . $last_message . "<br>".$last_time."</p></div>";
-                    echo "<div class='item_img_content'><img src=\"{$with_img}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$with_name}'s avatar\"></div>"; 
+                    if(empty($with_img)){
+                        echo "<div class='thumb_avatar item_img_content'><img src=\"http://lorempixel.com/50/50/abstract\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$with_name}'s avatar\"></div>"; 
+                    }else{
+                        echo "<div class='thumb_avatar item_img_content'><img src=\"{$with_img}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$with_name}'s avatar\"></div>"; 
+                    }
                     
                 }
                         
