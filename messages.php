@@ -19,9 +19,9 @@ include("inc/header.php"); ?>
                     if(isset($_GET['route'])){
                                  echo "<option value=\"".$_GET['route']."\">".$_GET['name']."</option>";
                             }else{
-                    foreach($result as $show){ 
+                        foreach($result as $show){ 
                                 echo "<option value=\"".$show['id']."\">".$show['first_name']." ".$show['last_name']."</option>"; 
-                        }
+                            }
                     }//end check if user pre-selected
                     
                         echo "</select>";
