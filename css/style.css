@@ -839,6 +839,7 @@ header {
     margin: 10px 0;
     float:left;
     width:48%;
+    min-height: 200px;
 }
 
 	.grid_container:nth-of-type(even) {
@@ -930,7 +931,7 @@ header {
 	overflow-y:scroll;
 	margin-bottom: 25px;
     padding-top: 20px;
-    background: #fff;
+    /*background: #fff;*/
 }
 
 .claim_filters {
