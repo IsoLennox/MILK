@@ -108,14 +108,29 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                          <?php
                           $next=0;
                     foreach($itemresult as $item){
-                        
+
                         //Check to see that item is not already involved in claim
                         $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$item['id']}"; 
                         $item_claim_result = mysqli_query($connection, $item_claim_query);
                         $claim_item_rows=mysqli_num_rows($item_claim_result);
                         if($claim_item_rows < 1){ 
                             //OPTIONS
-                            echo "<li><input type=\"checkbox\" name=\"items[]\" id=\"" . $item['id'] . "\" value=\"".$item['id']."\" ><label for='". $item['id'] . "'>" .$item['name']."</label></li>"; 
+                            $item_img_query = "SELECT * FROM item_img WHERE item_id={$item['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
+                            $item_img_result = mysqli_query($connection, $item_img_query);
+                            $img_item_rows=mysqli_num_rows($item_img_result);
+
+                            echo "<li>";
+
+                              if($img_item_rows==0){
+                                echo "<i class=\"fa fa-cube fa-4x\"></i><br>";
+                              }else{
+
+                                foreach($item_img_result as $img){
+                                  echo "<img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></br>";
+                                }
+                              }
+
+                            echo "<input type=\"checkbox\" name=\"items[]\" id=\"" . $item['id'] . "\" value=\"".$item['id']."\" ><label for='". $item['id'] . "'>" .$item['name']."</label></li>"; 
                             $next=1;
                         }
                         
