@@ -246,7 +246,7 @@ if(isset($_GET['remove_img'])){
     
     
     
-    $query  = "SELECT * FROM claims WHERE id={$claim_id}";  
+    $query  = "SELECT * FROM claims WHERE id={$claim_id} AND user_id={$_SESSION['user_id']}";  
     $result = mysqli_query($connection, $query);
     if($result){ 
         $claim=mysqli_fetch_assoc($result);
@@ -288,7 +288,7 @@ if(isset($_GET['remove_img'])){
     
     
         
-            $item_query  = "SELECT * FROM items WHERE in_trash=0 ORDER BY name"; 
+            $item_query  = "SELECT * FROM items WHERE in_trash=0 AND user_id={$_SESSION['user_id']} ORDER BY name"; 
                 $itemresult = mysqli_query($connection, $item_query);
                 if($itemresult){ 
                     //item SELECT BOX
