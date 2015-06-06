@@ -327,7 +327,8 @@ if($_SESSION['is_employee']==0){
 
     <div class="account_links">
         <div>
-          <a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i id="spinCog" class="fa fa-cog fa-2x"></i></a>
+<!--          <a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i id="spinCog" class="fa fa-cog fa-2x"></i></a>-->
+          <a title="Manage Account Settings" href="edit_profile.php#settings"><i id="spinCog" class="fa fa-cog fa-2x"></i></a>
         </div>
         <div>
           <a title="Log Out" href="logout.php"><i class="fa fa-sign-out fa-2x"></i></a>
