@@ -12,14 +12,14 @@ if(isset($_GET['id'])){ ?>
     $result = mysqli_query($connection, $query);
     if($result){
         foreach($result as $show){
-            echo "<h1>".$show['name']."</h1>";
-            echo "<p class=\"center\">".$show['notes']."</p>";
-            echo "<a class=\"right\" href=\"room_details.php?room=".$_GET['id']."\">Edit</a> <br/><br/>";
+            echo "<h2>".$show['name']."</h2>";
+            echo "<p >".$show['notes']."</p>";
+            echo "<a href=\"room_details.php?room=".$_GET['id']."\"><i class=\"fa fa-pencil\"></i> Edit Room Details</a> <br/><br/>";
             
-                $item_query  = "SELECT * FROM items WHERE room_id={$_GET['id']}"; 
+                $item_query  = "SELECT * FROM items WHERE room_id={$_GET['id']} AND in_trash=0"; 
                 $itemresult = mysqli_query($connection, $item_query);
                 if($itemresult){
-                    echo "Items in this room: ";
+                    echo "<strong>Items in this room: </strong>";
                     echo "<ul>";
                     foreach($itemresult as $item){
                         echo "<li><a href=\"item_details.php?id=".$item['id']."\">".$item['name']."</li>"; 
@@ -31,7 +31,7 @@ if(isset($_GET['id'])){ ?>
         }
   }elseif(isset($_GET['room'])){ 
     //EDIT ROOM
-    $query  = "SELECT * FROM rooms WHERE id={$_GET['room']}"; 
+    $query  = "SELECT * FROM rooms WHERE id={$_GET['room']} "; 
     $result = mysqli_query($connection, $query);
     if($result){
         $room_details=mysqli_fetch_assoc($result);
