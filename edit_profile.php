@@ -129,7 +129,9 @@ if (isset($_POST['submit'])) {
     
     
     <form action="edit_profile.php" method="post">
-  
+   <br>
+   <br> 
+        
 
      <section class="left half">
       
