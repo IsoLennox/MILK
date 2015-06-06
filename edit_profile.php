@@ -104,9 +104,9 @@ if (isset($_POST['submit'])) {
    <section class="right"> 
 <form action="upload_profile_img.php" method="post" enctype="multipart/form-data">
     <h3>Select New Image:</h3>
-    <input type="file" name="image" id="fileToUpload"><br/>
+    <input type="file" name="image" id="fileToUpload"> 
  
-    <input type="submit" value="Upload File" name="submit">
+    <input type="submit" value="Save New Image" name="submit">
 </form>
    <?php 
     if(!isset($_GET['walkthrough'])){
@@ -152,7 +152,7 @@ if (isset($_POST['submit'])) {
       
     </section>
         <?php if(isset($_GET['walkthrough'])){ ?> <input type="hidden" name='walkthrough' value='1'/> <?php }  ?>
-        <input type="submit" name="submit" value="Save" /> 
+        <input type="submit" name="submit" value="Save Profile Content" /> 
         <?php if(!isset($_GET['walkthrough'])){ ?> <a href="profile.php">Cancel</a> <?php }  ?>
     </form>
   <hr/>
