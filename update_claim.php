@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
      if ($insert_result && mysqli_affected_rows($connection) == 1) {
     
         //ADD TO HISTORY        
-            $content = "Updated <a href=\"claim_details.php?id=".$claim_id."\">Claim #".$claim_id."</a>";
+            $content = "<span class=\"updated_claim_history\">Updated <a href=\"claim_details.php?id=".$claim_id."\">Claim #".$claim_id."</a></span>";
             $history  = "INSERT INTO history ( user_id, content, datetime, is_employee ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}', 1 ) ";
             $insert_history = mysqli_query($connection, $history); 
          //REDIRECT

@@ -1272,8 +1272,8 @@ display: block;
 }
 
 
-.add_history{ border-left: 3px solid limegreen; padding-left: 20px; }
-.remove_history{ border-left: 3px solid firebrick; padding-left: 20px; }
+.add_history, .reactivated_history, .updated_claim_history{ border-left: 3px solid limegreen; padding-left: 20px; }
+.remove_history, .password_history, .disabled_history{ border-left: 3px solid firebrick; padding-left: 20px; }
 .edited_history{ border-left: 3px solid darkkhaki; padding-left: 20px; }
 .filed_claim_history{ border-left: 3px solid grey; padding-left: 20px; }
 /******************************

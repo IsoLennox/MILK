@@ -48,7 +48,7 @@ include("inc/header.php"); ?>
 
                                         //ADD TO HISTORY
                                 $date = date('m/d/Y H:i'); 
-                                $content = "Changed <a href=\"profile.php?user=".$ID."\">".$username['first_name']." ".$username['last_name']."</a>'s Password";
+                                $content = "<span class=\"password_history\">Changed <a href=\"profile.php?user=".$ID."\">".$username['first_name']." ".$username['last_name']."</a>'s Password</span>";
                                 $content= addslashes($content);
 
                                 $history  = "INSERT INTO history ( user_id, content, datetime, is_employee ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}', 1 ) ";
@@ -170,8 +170,8 @@ include("inc/header.php"); ?>
                         
                             //ADD TO HISTORY
                         $date = date('m/d/Y H:i');
-                        if($_GET['disable']==1){ $action="Disabled"; }else{ $action="Reactivated";}
-                        $content = $action." <a href=\"profile.php?user=".$user_id."\">".$username['first_name']." ".$username['last_name']."</a>'s Account";
+                        if($_GET['disable']==1){ $action="<span class=\"disabled_history\">Disabled"; }else{ $action="<span class=\"reactivated_history\">Reactivated";}
+                        $content = $action." <a href=\"profile.php?user=".$user_id."\">".$username['first_name']." ".$username['last_name']."</a>'s Account</span>";
                         $content= addslashes($content);
                         
                         $history  = "INSERT INTO history ( user_id, content, datetime, is_employee ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}', 1 ) ";
