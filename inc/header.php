@@ -120,9 +120,9 @@ if($_SESSION['is_employee']==0){
                       echo "<li><a href=\"add_item.php\"><i class=\"fa fa-plus\"></i> Add Item</a></li>";
                     }
                     if(isset($sub_page)&&($sub_page == "view_rooms")) {
-                      echo "<li class=\"sub_page\"><a href='rooms.php'><i class=\"fa fa-eye\"></i> Edit Rooms</a></li>";
+                      echo "<li class=\"sub_page\"><a href='rooms.php'><i class=\"fa fa-eye\"></i> Manage Rooms</a></li>";
                     } else {
-                      echo "<li><a href='rooms.php'><i class=\"fa fa-eye\"></i> Edit Rooms</a></li>";
+                      echo "<li><a href='rooms.php'><i class=\"fa fa-eye\"></i> Manage Rooms</a></li>";
                     }
                     echo "</ul></li>";
                 ?>
