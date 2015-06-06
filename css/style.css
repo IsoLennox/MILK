@@ -95,6 +95,7 @@ body{
     color: #333;
     margin: 0;
     margin-right: 100px;
+    background-color: #fafafa;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -121,6 +122,7 @@ h3 {
 
 h4 {
     font-size: 1.3em;
+    padding:10px 0;
 }
 
 h5 {
@@ -355,13 +357,21 @@ input[type="submit"] ~ a {
 	font-size:1.2em;
 }
 
+
+
 .dark_link {
-	/*color:#333;*/
-	padding-right: 20px;
+	color:#333;
+	padding-right: 15px;
+	margin-bottom: 20px;
+	/*font-weight: 400;*/
 }
 
 .dark_link .fa{
 	color: #90C32E;
+}
+
+.dark_link .fa-times {
+	color:red;
 }
 
 .notes_container .small_link {
@@ -499,7 +509,7 @@ img {
 
 /*NAV IS SIDEBAR AREA*/
 nav { 
-    background: #eee;
+    background: #e5e5e5;
     width: 250px;
     position:fixed;
     top:0px;
@@ -545,7 +555,7 @@ nav {
 
 	.current_page {
 		padding:15px 20px 15px 17px;
-		background:#fff;
+		background:#fafafa;
 		border-bottom: 1px solid #ddd;
 		border-top: 1px solid #ddd;
 		border-left:5px solid #90C32E;
@@ -571,7 +581,7 @@ nav {
 
 /*HEADER IS SEARCH BAR AND TOP NAV LINKS*/
 header { 
-    background: #eee;
+    background: #e5e5e5;
     height: 60px;
     position: fixed;
     top: 0;
@@ -597,9 +607,14 @@ header {
         text-align: center;
     }
 
+	/*.account_links >div:first-child {
+		border-right: 3px solid #90C32E;
+	}*/
+
 .search_container {
     width:85%;
     width:calc(100% - 140px);
+
 }
 
 .search input[type="submit"]{
@@ -621,8 +636,10 @@ header {
 	width:95%;
     width:calc(100% - 70px); 
     height:60px;
+    font-size: 1.3em;
     border-right:1px solid #90C32E;
-    background-color: #eee;
+    background-color: #e5e5e5;
+    border-radius: 0;
     border:none;
     margin:0;
 }
@@ -742,9 +759,9 @@ header {
 
 /*ITEM DETAILS IMAGE GALLERY*/
 .gallery{
-    margin: 5px;
-    padding: 20px;
-    max-width: 900px;
+    /*margin: 5px;*/
+    padding: 20px 0;
+    max-width: 1300px;
     width:100%;
     text-align: center;
     /*overflow: hidden;*/
@@ -752,9 +769,9 @@ header {
 
 	.gallery > div {
 		float:left;
-		width:32%;
-		padding:20px;
-		height:250px;
+		width:200px;
+		min-height:200px;
+		height:auto;
 		
 	}
 
@@ -822,6 +839,7 @@ header {
     margin: 10px 0;
     float:left;
     width:48%;
+    min-height: 200px;
 }
 
 	.grid_container:nth-of-type(even) {
@@ -892,14 +910,9 @@ header {
     border-radius: 25px;
     padding:15px 0;
     margin-bottom: 25px;
-    /*background-image: url('../img/umr_icons.png');
-    height:50px;
-    width:900px;
-    background-position: -30px 0px;*/
 }
 
 #current_status { 
-    /*background: red; */
     color: white; 
     font-weight: 900; 
     padding: 5px;  
@@ -918,7 +931,7 @@ header {
 	overflow-y:scroll;
 	margin-bottom: 25px;
     padding-top: 20px;
-    background: #fff;
+    /*background: #fff;*/
 }
 
 .claim_filters {
@@ -1104,8 +1117,22 @@ header {
 }
 
 
+/*--------------------------------------------------*\
+		EMPLOYEE PAGE STYLING
+\*--------------------------------------------------*/
+/*Employee styling*/
+.employee_info a {
+	color:#333;
+	font-weight: 400;
+}
+.employee_content p {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 
-
+.thumb_avatar {
+	height:65px;
+}
 
 
 
@@ -1126,8 +1153,7 @@ header {
 
 .half {
 	float:left; 
-	width: 50%;
-	text-align: right;
+	width: 50%; 
 	padding: 0 20px 10px 20px;
 }
 
@@ -1156,13 +1182,18 @@ header {
 		margin-right: 25px;
 	}
 
-
 .message_container {
-	border-bottom:1px solid #aaa;
+	max-width: 900px;
+}
+.message_content{
+	border-bottom:1px solid #ddd;
+	/*background-color: #fdfdfd;*/
+	/*border-radius: 10px;*/
 	word-wrap:break-word;
 	margin-bottom: 10px;
 	padding-right:25px;
-	padding-bottom: 5px;
+	padding-bottom: 15px;		
+    clear: both;
 }
 	.message_container:nth-last-child(1) {
 		border-bottom: 0;
@@ -1181,9 +1212,20 @@ header {
     margin-bottom: 10px;
 }
 
+.msg_left{ 
+	float: left; 
+	text-align: left;
+	padding-right: 20px;
+}
+.msg_right{ 
+	float: right;
+ 	text-align: right;
+ 	padding-left: 20px;
+}
+
 .sticky {
-	background-color: #fff;
-	max-width: 900px;
+	background-color: #fafafa;
+	max-width: 1300px;
 	width:100%;
 	position: fixed;
 	bottom: 0;
@@ -1358,7 +1400,15 @@ display: block;
     padding: 10px;
 }
 
+.fa-file-pdf-o {
+	font-size: 155px;
+}
 
+
+.add_history, .reactivated_history, .updated_claim_history{ border-left: 3px solid limegreen; padding-left: 20px; }
+.remove_history, .password_history, .disabled_history{ border-left: 3px solid firebrick; padding-left: 20px; }
+.edited_history{ border-left: 3px solid darkkhaki; padding-left: 20px; }
+.filed_claim_history{ border-left: 3px solid grey; padding-left: 20px; }
 /******************************
         /MEDIA QUERIES
 *******************************/

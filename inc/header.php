@@ -14,6 +14,8 @@ confirm_logged_in();
         <meta name="description" content="An interactive PDF library">
         <link rel="shortcut icon" href="http://isobellennox.com/team_milk/public/favicon.ico" type="image/x-icon">
         <link rel="icon" href="http://isobellennox.com/team_milk/public/favicon.ico" type="image/x-icon">
+         <!--        link to font awesome-->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <!--        Main stylesheet-->
         <?php if(isset($_SESSION['theme'])){
         if($_SESSION['theme']==1){
@@ -29,8 +31,7 @@ confirm_logged_in();
         <?php } ?>
         
        
-        <!--        link to font awesome-->
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+       
         <!--         STYLE GUIDE FONT  -->
         <link href="http://fonts.googleapis.com/css?family=Nunito:300,300italic,400,700" rel="stylesheet" type="text/css">
        
@@ -43,8 +44,9 @@ confirm_logged_in();
         <!-- For High Charts: Vertical Bar Charts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
-        <!-- For High Charts: Circular View Charts -->        
-        <script src="http://code.highcharts.com/highcharts-3d.js"></script> -->
+
+        <!-- For High Charts: Circular View Charts -->
+        <script src="http://code.highcharts.com/highcharts-3d.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
         <?php } ?>
 
@@ -120,9 +122,9 @@ if($_SESSION['is_employee']==0){
                       echo "<li><a href=\"add_item.php\"><i class=\"fa fa-plus\"></i> Add Item</a></li>";
                     }
                     if(isset($sub_page)&&($sub_page == "view_rooms")) {
-                      echo "<li class=\"sub_page\"><a href='rooms.php'><i class=\"fa fa-eye\"></i> Edit Rooms</a></li>";
+                      echo "<li class=\"sub_page\"><a href='rooms.php'><i class=\"fa fa-eye\"></i> Manage Rooms</a></li>";
                     } else {
-                      echo "<li><a href='rooms.php'><i class=\"fa fa-eye\"></i> Edit Rooms</a></li>";
+                      echo "<li><a href='rooms.php'><i class=\"fa fa-eye\"></i> Manage Rooms</a></li>";
                     }
                     echo "</ul></li>";
                 ?>
@@ -134,7 +136,7 @@ if($_SESSION['is_employee']==0){
               <ul>
                 <li><a href="add_item.php"><i class="fa fa-plus"></i> Add Item</a></li>
                 <!-- <li><a href="inventory.php">View Items</a></li> -->
-                <li><a href="rooms.php"><i class="fa fa-eye"></i> Edit Rooms</a></li> 
+                <li><a href="rooms.php"><i class="fa fa-eye"></i> Manage Rooms</a></li> 
 
               </ul> </li>
                <?php
@@ -252,9 +254,9 @@ if($_SESSION['is_employee']==0){
                 <?php  
                       //?pending removed from link, not sure if we want it to go to all or just the new claims first
                       if(isset($current_page) && $current_page=="claims"){ ?>  
-                <li class="current_page"><a class='alert_container' href="claims.php?pending"><i class="fa fa-file-text"></i> Claims <div class="claim_alert"><?php echo $total; ?></div></a></li> 
+                <li class="current_page"><a class='alert_container' href="claims.php?pending"><i class="fa fa-file-text"></i> Claims <?php if(!empty($total)){ ?><div class="claim_alert"><?php echo $total; ?></div><?php } ?></a></li> 
               <?php  }else{ ?>  
-                <li><a class='alert_container' href="claims.php?pending"><i class="fa fa-file-text"></i> Claims <div class="claim_alert"><?php echo $total; ?></div></a></li> 
+                <li><a class='alert_container' href="claims.php?pending"><i class="fa fa-file-text"></i> Claims <?php if(!empty($total)){ ?><div class="claim_alert"><?php echo $total; ?></div><?php } ?></a></li> 
              <?php   } ?>
                
                
@@ -327,7 +329,8 @@ if($_SESSION['is_employee']==0){
 
     <div class="account_links">
         <div>
-          <a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i id="spinCog" class="fa fa-cog fa-2x"></i></a>
+<!--          <a title="Manage Account Settings" href="settings.php?user=<?php echo $_SESSION['user_id'] ?>"><i id="spinCog" class="fa fa-cog fa-2x"></i></a>-->
+          <a title="Manage Account Settings" href="edit_profile.php#settings"><i id="spinCog" class="fa fa-cog fa-2x"></i></a>
         </div>
         <div>
           <a title="Log Out" href="logout.php"><i class="fa fa-sign-out fa-2x"></i></a>

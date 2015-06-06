@@ -7,7 +7,7 @@ include("inc/header.php");
 if(isset($_POST['submit'])){
 
     //INSERT INTO CLAIMS TABLE
-    //ADD TO HISTORY TABLE
+    //DOW NOT ADD TO HISTORY TABLE BECAUSE ITS A DRAFT
     
     //items could be an array after "add item" feature 
     $items_array= $_POST['items'];  
@@ -22,9 +22,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
     $insert_result = mysqli_query($connection, $insert);
     if($insert_result){
         
-
-            
-        //INSERT INTO HISTORY
+ 
         
             //get item id for link in history content
             $get_claim = "SELECT * FROM claims WHERE title='{$title}' AND user_id={$_SESSION['user_id']} ORDER BY id DESC "; 
@@ -43,10 +41,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
         $insert_item  = "INSERT INTO claim_items ( item_id, claim_id) VALUES ( {$item}, {$claim_id} ) ";
             $claimresult = mysqli_query($connection, $insert_item);
         }
-//       INSERT INTO HISTORY TABLE (NOT FOR DRAFTS) 
-//            $content = "Filed Claim: <a href=\"claim_details.php?id=".$claim_id."\">".$title."</a>";
-//            $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
-//            $insert_history = mysqli_query($connection, $history); 
+ 
         
         //INSERT INTO EMPLOYEE NOTIFICATION TABLE???
         
@@ -95,36 +90,54 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
             echo "<textarea name=\"notes\" id=\"notes\" cols=\"30\" rows=\"10\" maxlength=\"250\" placeholder=\"Describe the nature of the claim...\"></textarea>";
      
 
-            $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
+                $item_query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
                 $itemresult = mysqli_query($connection, $item_query);
-                if($itemresult){ 
-                    
-                    
+
+                if($itemresult){
+                          
+                  
                     //item SELECT BOX
                     echo "<p>Items: </p><br/>"; 
                     ?> <ul id="form_id">
                         <li class='block'>
-                          
-                            <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all
-                          </label>
+                         
+                            <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all</label>
+                            
                         </li> 
-                         <div class='select_container'><?php
+                         <div class='select_container'>
+                         <?php
                           $next=0;
                     foreach($itemresult as $item){
-                        
+
                         //Check to see that item is not already involved in claim
                         $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$item['id']}"; 
                         $item_claim_result = mysqli_query($connection, $item_claim_query);
                         $claim_item_rows=mysqli_num_rows($item_claim_result);
                         if($claim_item_rows < 1){ 
                             //OPTIONS
-                            echo "<li><input type=\"checkbox\" name=\"items[]\" id=\"" . $item['id'] . "\" value=\"".$item['id']."\" ><label for='". $item['id'] . "'>" .$item['name']."</label></li>"; 
+                            $item_img_query = "SELECT * FROM item_img WHERE item_id={$item['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
+                            $item_img_result = mysqli_query($connection, $item_img_query);
+                            $img_item_rows=mysqli_num_rows($item_img_result);
+
+                            echo "<li>";
+
+                              if($img_item_rows==0){
+                                echo "<i class=\"fa fa-cube fa-4x\"></i><br>";
+                              }else{
+
+                                foreach($item_img_result as $img){
+                                  echo "<img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></br>";
+                                }
+                              }
+
+                            echo "<input type=\"checkbox\" name=\"items[]\" id=\"" . $item['id'] . "\" value=\"".$item['id']."\" ><label for='". $item['id'] . "'>" .$item['name']."</label></li>"; 
                             $next=1;
                         }
                         
                         
                     }
                     echo "</ul><div class=\"clearfix\"></div>";
+                  
                     if($next==1){ ?>
                     <input type="submit" name="submit" value="Next">
                     <a href="claim_history.php" onclick="return confirm('Leave the page? This will not save your claim!');"><i class="fa fa-times"> </i> Cancel</a> 

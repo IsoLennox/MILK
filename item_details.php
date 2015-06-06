@@ -22,7 +22,7 @@ if(isset($_GET['remove'])){
             
              //INSERT into history table
             $date = date('m/d/Y H:i');
-            $content = "Removed item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
+            $content = "<span class=\"remove_history\">Removed item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a></span>";
             $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
             $insert_history = mysqli_query($connection, $history); 
             
@@ -101,7 +101,7 @@ if(isset($_GET['remove'])){
     
     $item_id=$_GET['id'];
     $image_id=$_GET['edit_img'];
-    $new_title=$_POST['new_title'];
+    $new_title=addslashes($_POST['new_title']);
     
         $item_img  = "UPDATE item_img SET title = '{$new_title}' WHERE id={$image_id} ";
         $insert_item_img = mysqli_query($connection, $item_img); 
@@ -234,25 +234,21 @@ if(isset($_GET['remove'])){
 
                         foreach($image_result as $image){
                         if($claim_num == 0){
-                            $img_delete="<a class='img_edit' href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>";
-                            $img_edit="<a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
+                            $img_edit="<a class='img_edit' href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>";
+                            $img_delete="<a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
                         }   
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
                         echo "<div>";
                         if($image['is_img']==1){
                             $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div></a>";
 
-                        }else{
-                            // doesnt work, i think logic is missing in the image optimizer////////////////////////////////////////////////////////////
-                            $file= "<p><i class=\"fa fa-file-o\"></i></p>";
+                        }else{ 
+                            $file= "<p><i class=\"fa fa-5x fa-file-pdf-o\"></i></p>";
                         }
 
                         if(empty($image['title'])){ $image['title']="Untitled";}
-
-                        // <a href=\"#\" alt=\"View full size image\" >".$file."
-                        echo $file ."<h5>".$image['title']."</h5>"; 
-                        // <span class=\"right\">"; 
-
+ 
+                        echo $file ."<h5>".$image['title']."</h5>";  
                         if(isset($_GET['edit_img']) && $_GET['edit_img']==$image['id']){
                             //Show edit title form
                             ?>

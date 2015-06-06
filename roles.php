@@ -22,7 +22,7 @@ include("inc/header.php");
       
  }
 ?>
- <span class="stats">
+
 <h1>Employee Roles</h1> 
  
  
@@ -197,8 +197,6 @@ if(isset($_GET['save_role'])){
     
 
  ?>
-</span>
-        
-      
+    
         
 <?php include("inc/footer.php"); ?>

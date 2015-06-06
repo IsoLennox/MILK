@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
     
     
             //INSERT ALL DATA EXCEPT PERMISSIONS
-        $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date, updated, in_trash ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat}, '{$pdate}', '{$date}', 0 ) ";
+        $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date, updated, in_trash ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$pdate}','{$price}','{$value}', {$cat}, '{$date}', '{$date}', 0 ) ";
         $insert_result = mysqli_query($connection, $insert);
         if($insert_result){ 
                  
@@ -55,8 +55,8 @@ if (isset($_POST['submit'])) {
                 }else{
                     $item_id="";
                 }
-            
-                $content = "Added item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
+                
+                $content = "<span class=\"add_history\">Added item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a></span>";
                 $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
                 $insert_history = mysqli_query($connection, $history); 
             
@@ -102,7 +102,7 @@ if (isset($_POST['submit'])) {
     <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="<?php echo $name; ?>" > 
      <!--    //GET ITEM CATEGORIES -->
    <?php
-    $category_query  = "SELECT * FROM item_category"; 
+    $category_query  = "SELECT * FROM item_category ORDER BY name "; 
     $categoryresult = mysqli_query($connection, $category_query);
     if($categoryresult){ 
         //CATEGORY SELECT BOX
@@ -138,7 +138,7 @@ if (isset($_POST['submit'])) {
     </fieldset>
 
     <fieldset class='form_blocks'>
-        <label for="purchase_date">Purchase Date: </label><input type="text" id="purchase_date" name="purchase_date" placeholder="mm/dd/yyyy" value="">
+        <label for="purchase_date">Purchase Date: </label><input type="date" id="purchase_date" name="purchase_date" placeholder="mm/dd/yyyy" value="">
         <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950" value="">
         <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950" value="">
     </fieldset>
