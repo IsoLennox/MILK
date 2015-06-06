@@ -134,7 +134,7 @@ if($_SESSION['is_employee']==0){
               <ul>
                 <li><a href="add_item.php"><i class="fa fa-plus"></i> Add Item</a></li>
                 <!-- <li><a href="inventory.php">View Items</a></li> -->
-                <li><a href="rooms.php"><i class="fa fa-eye"></i> Edit Rooms</a></li> 
+                <li><a href="rooms.php"><i class="fa fa-eye"></i> Manage Rooms</a></li> 
 
               </ul> </li>
                <?php
