@@ -226,7 +226,11 @@ include("inc/header.php"); ?>
                          echo "<a class=\"dark_link \" href=\"employees.php?disable=0&user=".$show['id']."\"><i class=\"fa fa-check green\"></i> Reactivate Account</a>";
                     }
                     echo "</div>";
+                    if(empty($show['avatar'])){
+                        echo "<div class='item_img_content'><img class='thumb_avatar' src=\"http://lorempixel.com/50/50/abstract\" onerror=\"this.src='img/Tulips.jpg'\"></div>";
+                    }else{
                     echo "<div class='item_img_content'><img class='thumb_avatar' src=\"".$show['avatar']."\" onerror=\"this.src='img/Tulips.jpg'\"></div>";
+                    }
                     echo "<div class=\"clearfix\"></div> </div>";
                 } 
             }  

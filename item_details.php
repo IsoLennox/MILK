@@ -101,7 +101,7 @@ if(isset($_GET['remove'])){
     
     $item_id=$_GET['id'];
     $image_id=$_GET['edit_img'];
-    $new_title=$_POST['new_title'];
+    $new_title=addslashes($_POST['new_title']);
     
         $item_img  = "UPDATE item_img SET title = '{$new_title}' WHERE id={$image_id} ";
         $insert_item_img = mysqli_query($connection, $item_img); 
@@ -242,17 +242,13 @@ if(isset($_GET['remove'])){
                         if($image['is_img']==1){
                             $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div></a>";
 
-                        }else{
-                            // doesnt work, i think logic is missing in the image optimizer////////////////////////////////////////////////////////////
+                        }else{ 
                             $file= "<p><i class=\"fa fa-5x fa-file-pdf-o\"></i></p>";
                         }
 
                         if(empty($image['title'])){ $image['title']="Untitled";}
-
-                        // <a href=\"#\" alt=\"View full size image\" >".$file."
-                        echo $file ."<h5>".$image['title']."</h5>"; 
-                        // <span class=\"right\">"; 
-
+ 
+                        echo $file ."<h5>".$image['title']."</h5>";  
                         if(isset($_GET['edit_img']) && $_GET['edit_img']==$image['id']){
                             //Show edit title form
                             ?>
