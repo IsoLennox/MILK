@@ -759,9 +759,9 @@ header {
 
 /*ITEM DETAILS IMAGE GALLERY*/
 .gallery{
-    margin: 5px;
-    padding: 20px;
-    max-width: 900px;
+    /*margin: 5px;*/
+    padding: 20px 0;
+    max-width: 1300px;
     width:100%;
     text-align: center;
     /*overflow: hidden;*/
@@ -769,9 +769,9 @@ header {
 
 	.gallery > div {
 		float:left;
-		width:32%;
-		padding:20px;
-		height:250px;
+		width:200px;
+		min-height:200px;
+		height:auto;
 		
 	}
 

@@ -115,8 +115,14 @@ if(isset($_GET['remove_img'])){
                              }else{ $draft=0; }
                          }//end check if draft/pending client changes
                   
-//              SHOW CLAIM DETAILS     
-            
+//              SHOW CLAIM DETAILS
+			if($draft==1){     
+	           	echo "<a class='large_link text_left' href=\"claim_details.php?edit={$show['id']}\"><i class=\"fa fa-pencil\"></i> Edit Details</a>";
+	        	echo "<a class='large_link text_right' onclick=\"return confirm('Permanently DELETE this claim?');\" href=\"claim_details.php?delete=".$show['id']."&title=".$show['title']."\"><i class=\"fa fa-trash-o\"></i> Delete Claim </a>";
+	        	echo "<hr>";
+	        	echo "<div class=\"item_display\">";
+	        }
+
             echo "<p>Claim Type: ".$claim_type."<br/>";
                   
             $user=find_user_by_id($show['user_id']);
@@ -157,6 +163,8 @@ if(isset($_GET['remove_img'])){
                   
                   
                 if($draft==1){
+                	echo "</div>";
+                	echo "<div class=\"item_display\">";
                   $upload="<a href=\"claim_details.php?add_image&id=".$show['id']."\"><input type=\"submit\" value=\"Add Photos &amp; Files\"></a>";
                   $upload_form="<form action=\"image_handling1.php\" method=\"post\" enctype=\"multipart/form-data\">
                   Upload an Image or PDF:<br/>
@@ -165,11 +173,10 @@ if(isset($_GET['remove_img'])){
                   <p> Title: <input type=\"text\" value=\"\" name=\"title\" placeholder=\"i.e. Image of item..\" ></p><br/>
                   <input type=\"submit\" value=\"Upload File\" name=\"submit\">
                   </form>"; 
-                  echo "<a class=\"green_submit\" href=\"claim_details.php?edit={$show['id']}\"><i class=\"fa fa-pencil\"></i> Edit Details</a><br/>";
+                  
               
-                  echo "<br/><a onclick=\"return confirm('Permanently DELETE this claim?');\" href=\"claim_details.php?delete=".$show['id']."&title=".$show['title']."\"><i class=\"fa fa-trash-o\"></i> Delete Claim </a><br/>";
               
-                  echo "<br/><br/>";
+                  // echo "<br/><br/>";
                   echo "<h3>File Attachments</h3>";
                   echo "<p> Attach Images or PDFs of Reports, Damages, Reciepts, or any other details that may help our progress in Approving your claim.</p>"; 
                   echo "<br/><br/>";
@@ -179,18 +186,20 @@ if(isset($_GET['remove_img'])){
                   } else {
                      echo $upload;
                   }
-                  echo "";
-                  echo "<br/><br/>";
-                  echo "<a class=\"red_submit\" onclick=\"return confirm('Submit this claim? You cannot edit this claim after submitting');\" href=\"claim_details.php?submit=".$show['id']."&title=".$show['title']."\">Submit Claim </a><br/>";
+                  // echo "";
+                  // echo "<br/><br/>";
+                  echo "</div>";
+                  echo "<div class=\"clearfix\"></div>";
                     
                         
-                  }
+                  } //end if its a draft
                   
                   //SHOW GALLERY
             $image_query  = "SELECT * FROM claims_img WHERE claim_id={$show['id']}";  
             $image_result = mysqli_query($connection, $image_query);
             if($image_result){
-               
+               	echo "<h3>Claim Images</h3>";
+               	echo "<hr>";
                   echo "<div class=\"gallery\">";
 
                         foreach($image_result as $image){
@@ -233,10 +242,13 @@ if(isset($_GET['remove_img'])){
                         echo "</div>"; //end each container
                     }
                     echo "</div>";//end gallery
-               
+                    echo "<div class=\"clearfix\"></div>";
+
             }
-                  
-                  
+            
+            if($draft==1){
+               echo "<a class=\"red_submit left\" onclick=\"return confirm('Submit this claim? You cannot edit this claim after submitting');\" href=\"claim_details.php?submit=".$show['id']."&title=".$show['title']."\">Submit Claim </a><br/>";
+            }                 
                   
     
     }else{
