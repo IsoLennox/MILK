@@ -14,6 +14,8 @@ confirm_logged_in();
         <meta name="description" content="An interactive PDF library">
         <link rel="shortcut icon" href="http://isobellennox.com/team_milk/public/favicon.ico" type="image/x-icon">
         <link rel="icon" href="http://isobellennox.com/team_milk/public/favicon.ico" type="image/x-icon">
+         <!--        link to font awesome-->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <!--        Main stylesheet-->
         <?php if(isset($_SESSION['theme'])){
         if($_SESSION['theme']==1){
@@ -29,8 +31,7 @@ confirm_logged_in();
         <?php } ?>
         
        
-        <!--        link to font awesome-->
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+       
         <!--         STYLE GUIDE FONT  -->
         <link href="http://fonts.googleapis.com/css?family=Nunito:300,300italic,400,700" rel="stylesheet" type="text/css">
        
