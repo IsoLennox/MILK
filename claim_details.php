@@ -122,17 +122,19 @@ if(isset($_GET['remove_img'])){
 	        	echo "<hr>";
 	        	echo "<div class=\"item_display\">";
 	        }
-
-            echo "<p>Claim Type: ".$claim_type."<br/>";
+	        // echo "<h2 class='dark_link'>Claim Title: " . $show['title'] . "</h2>";
+            echo "<p><strong>Claim Type:</strong> ".$claim_type."<br/>";
                   
             $user=find_user_by_id($show['user_id']);
             $username=$user['first_name']." ".$user['last_name'];     
-            echo "Filed By: <a href=\"profile.php?user=".$user['id']."\">".$username."</a><br/>";
-            echo "Date Filed: ".$show['datetime']."</p><br/>";
+            echo "<strong>Filed By:</strong> <a href=\"profile.php?user=".$user['id']."\">".$username."</a><br/>";
+            echo "<strong>Date Filed:</strong> ".$show['datetime']."</p><br/>";
             
-            
+            // echo "<br/><br/>";
+                  if(empty($show['notes'])){$show['notes']="<em>No Description</em>";}
+            echo "<p><strong>Notes/Description:</strong> </p><div class=\"notes_container\">".$show['notes']."</div><br/>"; 
                   
-            echo "<p>Items:</p> <ul>";
+            echo "<h3>Item Images:</h3> <ul>";
             $item_query  = "SELECT * FROM claim_items WHERE claim_id={$show['id']}";  
             $item_result = mysqli_query($connection, $item_query);
                   $total_value=0;
@@ -157,9 +159,7 @@ if(isset($_GET['remove_img'])){
             }
                   echo "<strong>Total Claim Value: $".$total_value."</strong>";
             echo "</ul>";
-            echo "<br/><br/>";
-                  if(empty($show['notes'])){$show['notes']="<em>No Description</em>";}
-            echo "Notes/Description: <div class=\"notes_container\">".$show['notes']."</div><br/>"; 
+          
                   
                   
                 if($draft==1){
@@ -197,9 +197,12 @@ if(isset($_GET['remove_img'])){
                   //SHOW GALLERY
             $image_query  = "SELECT * FROM claims_img WHERE claim_id={$show['id']}";  
             $image_result = mysqli_query($connection, $image_query);
+            $image_num_rows = mysqli_num_rows($image_result);
             if($image_result){
-               	echo "<h3>Claim Images</h3>";
-               	echo "<hr>";
+            	if($image_num_rows!=0){
+	               	echo "<h3>Claim Images</h3>";
+	               	echo "<hr>";
+	               }
                   echo "<div class=\"gallery\">";
 
                         foreach($image_result as $image){
