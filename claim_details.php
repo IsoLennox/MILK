@@ -138,11 +138,18 @@ if(isset($_GET['remove_img'])){
                         $dollar= strtok($itemname['declared_value'], '.');
                         $value=preg_replace("/[^0-9]/","",$dollar);
                       if(empty($value)){ $value="0"; }
-                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a> - $".$value."</li>";
+                      
+                      $item_img = "SELECT * FROM item_img WHERE item_id={$itemname['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
+                $item_img_result = mysqli_query($connection, $item_img);
+                $total_img_array=mysqli_fetch_assoc($item_img_result);
+                $thumbnail=$total_img_array['thumb_path'];
+                $title=$total_img_array['title'];
+                     
+                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\"><img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/40/40/abstract'\"  alt=\"{$title}\"><br/>  ".$itemname['name']."</a> - $".$value."</li>";
                         $total_value=$total_value+$value;
                     } 
             }
-                  echo "Total Claim Value: $".$total_value;
+                  echo "<strong>Total Claim Value: $".$total_value."</strong>";
             echo "</ul>";
             echo "<br/><br/>";
                   if(empty($show['notes'])){$show['notes']="<em>No Description</em>";}
@@ -280,7 +287,15 @@ if(isset($_GET['remove_img'])){
                   $itemname_query  = "SELECT * FROM items WHERE id={$item['item_id']}";  
                   $itemname_result = mysqli_query($connection, $itemname_query);
                   foreach($itemname_result as $itemname){
-                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">".$itemname['name']."</a> - $".$itemname['declared_value']." - <a href=\"claim_details.php?remove_item=".$itemname['id']."\"><i class=\"fa fa-trash-o\"></i></a></li>";
+                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">";
+                      
+                $item_img = "SELECT * FROM item_img WHERE item_id={$itemname['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
+                $item_img_result = mysqli_query($connection, $item_img);
+                $total_img_array=mysqli_fetch_assoc($item_img_result);
+                $thumbnail=$total_img_array['thumb_path'];
+                $title=$total_img_array['title'];
+                      
+                echo "<img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/40/40/abstract'\"  alt=\"{$title}\"> ".$itemname['name']."</a> - $".$itemname['declared_value']." - <a href=\"claim_details.php?remove_item=".$itemname['id']."\"><i class=\"fa fa-trash-o\"></i></a></li>";
                     } 
             }
                   echo "</ul><br>";
