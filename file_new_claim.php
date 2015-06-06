@@ -117,11 +117,19 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                             //OPTIONS
                             $item_img_query = "SELECT * FROM item_img WHERE item_id={$item['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
                             $item_img_result = mysqli_query($connection, $item_img_query);
-                            // $img_item_rows=mysqli_num_rows($item_img_result);
+                            $img_item_rows=mysqli_num_rows($item_img_result);
+
                             echo "<li>";
-                            foreach($item_img_result as $img){
-                              echo "<img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></br>";
-                            }
+
+                              if($img_item_rows==0){
+                                echo "<i class=\"fa fa-cube fa-4x\"></i><br>";
+                              }else{
+
+                                foreach($item_img_result as $img){
+                                  echo "<img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></br>";
+                                }
+                              }
+
                             echo "<input type=\"checkbox\" name=\"items[]\" id=\"" . $item['id'] . "\" value=\"".$item['id']."\" ><label for='". $item['id'] . "'>" .$item['name']."</label></li>"; 
                             $next=1;
                         }
