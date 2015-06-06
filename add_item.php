@@ -102,7 +102,7 @@ if (isset($_POST['submit'])) {
     <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="<?php echo $name; ?>" > 
      <!--    //GET ITEM CATEGORIES -->
    <?php
-    $category_query  = "SELECT * FROM item_category"; 
+    $category_query  = "SELECT * FROM item_category ORDER BY name "; 
     $categoryresult = mysqli_query($connection, $category_query);
     if($categoryresult){ 
         //CATEGORY SELECT BOX
@@ -138,7 +138,7 @@ if (isset($_POST['submit'])) {
     </fieldset>
 
     <fieldset class='form_blocks'>
-        <label for="purchase_date">Purchase Date: </label><input type="text" id="purchase_date" name="purchase_date" placeholder="mm/dd/yyyy" value="">
+        <label for="purchase_date">Purchase Date: </label><input type="date" id="purchase_date" name="purchase_date" placeholder="mm/dd/yyyy" value="">
         <label for="purchase_price">Purchase Price: $</label><input type="text" id="purchase_price" name="purchase_price" placeholder="950" value="">
         <label for="declared_value">Declared Value: $</label><input type="text" id="declared_value" name="declared_value" placeholder="950" value="">
     </fieldset>
