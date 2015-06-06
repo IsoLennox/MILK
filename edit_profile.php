@@ -100,14 +100,19 @@ if (isset($_POST['submit'])) {
  
     <h2>Edit Profile Image</h2>
     <section class="left">
-    <img class="resize-image" src="<?php echo $avatar; ?>" alt="Current Profile Image" />
+      <div class="overlay">
+          <div class="overlay-inner">
+          </div>
+      </div>
+      <button class="btn-crop js-crop">Crop</button>
+      <img class="resize-image" src="<?php echo $avatar; ?>" alt="Current Profile Image" />
     </section>
    <section class="right"> 
 <form action="upload_profile_img.php" method="post" enctype="multipart/form-data" id="image_upload">
     <h3>Select New Image:</h3>
     <input type="file" name="image" id="fileToUpload"><br/>
  
-    <input type="submit" value="Upload File" name="submit">
+    <input type="submit" value="Upload File" name="submit" id="submit">
 </form>
    <?php 
     if(!isset($_GET['walkthrough'])){

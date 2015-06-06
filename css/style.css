@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+﻿/* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -1027,6 +1027,81 @@ header {
 	/*.profile_content a, .avatar a {
 		margin-top: 15px;
 	}*/
+/******* Overlay box for cropping *******/
+
+
+.overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -409px;
+    margin-top: -800px;
+    z-index: 999;
+    width: 250px;
+    height: 250px;
+    border: solid 2px rgba(222,60,80,.9);
+    box-sizing: content-box;
+    pointer-events: none;
+}
+
+.overlay:after,
+.overlay:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 204px;
+    height: 40px;
+    border-left: dashed 2px rgba(222,60,80,.9);
+    border-right: dashed 2px rgba(222,60,80,.9);
+}
+
+.overlay:before {
+    top: 0;
+    margin-left: -2px;
+    margin-top: -40px;
+}
+
+.overlay:after {
+    bottom: 0;
+    margin-left: -2px;
+    margin-bottom: -40px;
+}
+
+.overlay-inner:after,
+.overlay-inner:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 204px;
+    border-top: dashed 2px rgba(222,60,80,.9);
+    border-bottom: dashed 2px rgba(222,60,80,.9);
+}
+
+.overlay-inner:before {
+    left: 0;
+    margin-left: -40px;
+    margin-top: -2px;
+}
+
+.overlay-inner:after {
+    right: 0;
+    margin-right: -40px;
+    margin-top: -2px;
+}
+
+.btn-crop {
+    position: absolute;
+    vertical-align: bottom;
+    left: 265px;
+    top: 330px;
+    padding: 6px 10px;
+    z-index: 999;
+    background-color: rgb(222,60,80);
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+}
 
 
 
