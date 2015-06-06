@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
     
     
             //INSERT ALL DATA EXCEPT PERMISSIONS
-        $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date, updated, in_trash ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$date}','{$price}','{$value}', {$cat}, '{$pdate}', '{$date}', 0 ) ";
+        $insert  = "INSERT INTO items ( user_id, name, room_id, notes, purchase_date, purchase_price, declared_value, category, upload_date, updated, in_trash ) VALUES ( {$_SESSION['user_id']}, '{$name}','{$room}','{$notes}','{$pdate}','{$price}','{$value}', {$cat}, '{$date}', '{$date}', 0 ) ";
         $insert_result = mysqli_query($connection, $insert);
         if($insert_result){ 
                  
