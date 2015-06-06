@@ -472,7 +472,7 @@ if(isset($_GET['remove_img'])){
     $insert_result = mysqli_query($connection, $insert);
     if($insert_result){ 
         //INSERT INTO HISTORY
-            $content = "Filed Claim: <a href=\"claim_details.php?id=".$claim_id."\">".$title."</a>";
+            $content = "<span class=\"filed_claim_history\">Filed Claim: <a href=\"claim_details.php?id=".$claim_id."\">".$title."</a></span>";
             $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
             $insert_history = mysqli_query($connection, $history); 
         

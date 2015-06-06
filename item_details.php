@@ -22,7 +22,7 @@ if(isset($_GET['remove'])){
             
              //INSERT into history table
             $date = date('m/d/Y H:i');
-            $content = "Removed item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
+            $content = "<span class=\"remove_history\">Removed item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a></span>";
             $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
             $insert_history = mysqli_query($connection, $history); 
             

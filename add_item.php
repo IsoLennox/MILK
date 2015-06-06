@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
                     $item_id="";
                 }
                 
-                $content = "Added item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a>";
+                $content = "<span class=\"add_history\">Added item: <a href=\"item_details.php?id=".$item_id."\">".$name."</a></span>";
                 $history  = "INSERT INTO history ( user_id, content, datetime ) VALUES ( {$_SESSION['user_id']}, '{$content}', '{$date}' ) ";
                 $insert_history = mysqli_query($connection, $history); 
             
