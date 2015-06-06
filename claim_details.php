@@ -187,14 +187,13 @@ if(isset($_GET['remove_img'])){
                   echo "<div class=\"gallery\">";
 
                         foreach($image_result as $image){
-                        if($claim_num == 0){
                             $img_edit="<a class='img_edit' href=\"claim_details.php?id=".$show['id']."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>";
                             $img_delete="<a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"claim_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
-                        }   
+                        
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
                         echo "<div>";
                         if($image['is_img']==1){
-                            $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div></a>";
+                            $file= "<a href=\"" .$image['filepath'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div></a>";
 
                         }else{ 
                             $file= "<p><i class=\"fa fa-5x fa-file-pdf-o\"></i></p>";
