@@ -234,8 +234,8 @@ if(isset($_GET['remove'])){
 
                         foreach($image_result as $image){
                         if($claim_num == 0){
-                            $img_delete="<a class='img_edit' href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>";
-                            $img_edit="<a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
+                            $img_edit="<a class='img_edit' href=\"item_details.php?id=".$id."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>";
+                            $img_delete="<a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"item_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
                         }   
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
                         echo "<div>";

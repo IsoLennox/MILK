@@ -184,7 +184,7 @@ if(isset($_GET['remove_img'])){
             $image_result = mysqli_query($connection, $image_query);
             if($image_result){
                
-                                        echo "<div class=\"gallery\">";
+                  echo "<div class=\"gallery\">";
 
                         foreach($image_result as $image){
                         if($claim_num == 0){
@@ -213,14 +213,16 @@ if(isset($_GET['remove_img'])){
                                 <input type="hidden" name="image_id" value="<?php echo $image['id']; ?>"> 
                                 <input type="submit" name="save_title" value="Save Title">
                             </form>
-                            <a href="claim_details.php?id=<?php echo $id; ?>">Cancel</a>
+                            <a href="claim_details.php?id=<?php echo $show['id']; ?>">Cancel</a>
                             </div>
                             <hr/>
                             <?php
                         
                         }else{
-                            echo $img_edit;
-                            echo $img_delete;
+                            if($_SESSION['user_id']==$show['user_id']){
+                                echo $img_edit;
+                                echo $img_delete;
+                            }
                         }
                         echo "</div>"; //end each container
                     }
@@ -470,7 +472,27 @@ if(isset($_GET['remove_img'])){
     echo "This claim does not exist!";
 }
  ?> 
-        
+         <script type="text/javascript">
+        $(document).ready(function() {
+            $(".fancybox").fancybox({
+                //for alt text
+              afterShow: function(){
+                $('.fancybox-title').wrapInner('<div />').show();
+
+                $('.fancybox-wrap').hover(function(){
+                  $('.fancybox-title').show(); //when hover on show title
+                }, function(){
+                  $('.fancybox-title').hide(); //when hover off hide title
+                }); //end hover
+              }, //end after show
+              helpers: {
+                title: {
+                  type: 'over'
+                } //title
+              } //helper
+            });
+        });
+    </script>     
 
         
 <?php include("inc/footer.php"); ?>

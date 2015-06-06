@@ -166,13 +166,15 @@ include("inc/header.php"); ?>
             $name=$show['name'];
             echo "<p><a href=\"item_details.php?id=".$id."\">".$name."</a><br/>";
                 echo $claim_class;
-                $room_name=get_room_name($show['room_id']);
-                $cat_name=get_category_name($show['category']);
-                echo "Category: ".$cat_name."<br/>";
-            if(empty($room_name)){
-                $room_name="Room not selected";
-            }
-                echo "Room: ".$room_name . " ";
+                if($class!=='grid_container'){
+                    $room_name=get_room_name($show['room_id']);
+                    $cat_name=get_category_name($show['category']);
+                    echo "Category: ".$cat_name."<br/>";
+               
+                if(empty($room_name)){
+                    $room_name="Room not selected";
+                }
+                    echo "Room: ".$room_name . " ";
             
             //get number of items in rooms ]
             
@@ -180,8 +182,9 @@ include("inc/header.php"); ?>
                 $item_count_result = mysqli_query($connection, $item_count);
                 $total_array=mysqli_fetch_assoc($item_count_result);
                 $total=$total_array['total'];
-                echo "<br/>".$total." Image/File Uploads</p></div>";
- 
+                echo "<br/>".$total." Image/File Uploads</p>";
+                }//end hide details if grid view
+            echo "</div>";
             
                 $item_img = "SELECT * FROM item_img WHERE item_id={$id} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
                 $item_img_result = mysqli_query($connection, $item_img);
