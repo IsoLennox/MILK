@@ -98,7 +98,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                   
                     //item SELECT BOX
                     echo "<p>Items: </p><br/>"; 
-                    ?> <ul id="form_id">
+                    ?> <ul class="form_id">
                         <li class='block'>
                          
                             <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all</label>

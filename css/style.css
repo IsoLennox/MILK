@@ -281,17 +281,15 @@ input[type="file"]{
     font-size: 1em;
 }
 
-input[type="file"]:hover{
-    
-}
 
 
 
 .red_submit{ background-color: firebrick; color: #eee; }
-.green_submit:hover{ color:#eee;}
 
-input[type="submit"]:hover{
+
+input[type="submit"]:hover, .green_submit:hover{
     box-shadow: inset 0 0 15px #62851F;
+    color:#333;
 }
 
 
@@ -760,7 +758,7 @@ header {
 /*ITEM DETAILS IMAGE GALLERY*/
 .gallery{
     /*margin: 5px;*/
-    padding: 20px 0;
+    /*padding: 20px 0;*/
     max-width: 1300px;
     width:100%;
     text-align: center;
@@ -773,6 +771,11 @@ header {
 		min-height:200px;
 		height:auto;
 		
+	}
+
+	.gallery h3 {
+		text-align: left;
+		padding:0  0 25px 10px;
 	}
 
 .img_edit {
@@ -792,7 +795,14 @@ header {
 	width:150px;
 }
 
-
+.thumb_container {
+	width:75px;
+	height:75px;
+	overflow: hidden;
+}
+.thumb_avatar {
+	height:65px;
+}
 
 /*---------------------------------------------*\
 	ITEM DETAILS, INVENTORY, CLAIMS CONTAINERS
@@ -828,31 +838,45 @@ header {
 
 /*inventory page, room & category detail styling*/
 .notes_container img, .grid_container img {
-	max-width: 75px;
+	max-width: 150px;
 }
 
 
 .grid_container {
 	border: 2px solid #ddd;
     border-radius: 10px;
-    padding: 30px;
+    padding: 10px 30px;
     margin: 10px 0;
+    margin-right: 25px;
     float:left;
-    width:48%;
-    min-height: 200px;
+    width:18%;
+    min-height: 230px;
+    position: relative;
 }
 
-	.grid_container:nth-of-type(even) {
-		margin-right: 4%;
+	.grid_container:nth-of-type(0) {
+		margin-right: 0;
 	}
 
+	.grid_container .item_content {
+		width:100%;
+		
+	}
+
+	.grid_container .item_img_content {
+		float:none;
+		position: absolute;
+		bottom:10px;
+	}
 
 	.item_content {
 		width:70%;
 		float:left;
 	}
 	.item_img_content {
-		width:30%;
+		width:100px;
+		height:100px;
+		overflow: hidden;
 		float:right;
 		text-align: right;
 	}
@@ -909,7 +933,8 @@ header {
     background-color: #90C32E;
     border-radius: 25px;
     padding:15px 0;
-    margin-bottom: 25px;
+    margin: 0 auto 25px;
+    max-width: 750px;
 }
 
 #current_status { 
@@ -919,10 +944,10 @@ header {
 }
 
 
-#form_id li:not(.block){
+.form_id li:not(.block){
  float:left;
  margin-right: 15px;
- width:175px;
+ width:100px;
 }
 
 /*FILE CLAIM SELECTING ITEMS*/
@@ -959,7 +984,7 @@ header {
 \*---------------------------------------------*/
 
 .profile {
-	max-width: 900px;
+	max-width: 1300px;
 	width:100%;
 	margin:0 auto 25px;
 }
@@ -969,12 +994,16 @@ header {
 		width:50%;
 	}
 
+	.avatar img {
+		max-width: 85%;
+		max-height: 400px;
+	}
+
 	.profile_content {
 		float:right;
 		width:50%;
 		word-wrap:break-word;
         padding: 20px;
-    background: white;
         border-radius: 5px;
 	}
 
@@ -996,9 +1025,7 @@ header {
 	padding-bottom: 10px;
 }
 
-.thumb_avatar {
-	height:65px;
-}
+
 
 
 

@@ -98,8 +98,14 @@ if (isset($_POST['submit'])) {
  
  
     <h2>Edit Profile Image</h2>
-    <section class="left">
-    <img src="<?php echo $avatar; ?>" alt="Current Profile Image" />
+    <section class="avatar">
+    <img src="<?php echo $avatar; ?>" alt="Current Profile Image" /><br>
+    <?php 
+    if(!isset($_GET['walkthrough'])){
+        if($avatar!="http://lorempixel.com/250/250/abstract"){ ?>
+          <a class='large_link' href="delete.php?avatar=<?php echo $_SESSION['user_id']; ?>"> <i class="fa fa-trash-o"></i> Delete Profile Image</a>
+ <?php } 
+    } ?>
     </section>
    <section class="right"> 
 <form action="upload_profile_img.php" method="post" enctype="multipart/form-data">
@@ -108,12 +114,7 @@ if (isset($_POST['submit'])) {
  
     <input type="submit" value="Save New Image" name="submit">
 </form>
-   <?php 
-    if(!isset($_GET['walkthrough'])){
-        if($avatar!="http://lorempixel.com/250/250/abstract"){ ?>
-    <a href="delete.php?avatar=<?php echo $_SESSION['user_id']; ?>"> <i class="fa fa-trash-o"></i> Delete Profile Image</a>
- <?php } 
-    } ?>
+   
   </section>
   <div class="clearfix"></div> 
   <hr/>
