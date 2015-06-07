@@ -838,31 +838,42 @@ header {
 
 /*inventory page, room & category detail styling*/
 .notes_container img, .grid_container img {
-	max-width: 75px;
+	max-width: 150px;
 }
 
 
 .grid_container {
 	border: 2px solid #ddd;
     border-radius: 10px;
-    padding: 30px;
+    padding: 10px 30px;
     margin: 10px 0;
     float:left;
-    width:48%;
-    min-height: 200px;
+    width:20%;
+    min-height: 220px;
 }
 
-	.grid_container:nth-of-type(even) {
+	/*.grid_container:nth-of-type(even) {
 		margin-right: 4%;
+	}*/
+
+	.grid_container .item_content {
+		width:100%;
+		position: relative;
+		bottom:0;
 	}
 
+	.grid_container .item_img_content {
+		float:none;
+	}
 
 	.item_content {
 		width:70%;
 		float:left;
 	}
 	.item_img_content {
-		width:30%;
+		width:100px;
+		height:100px;
+		overflow: hidden;
 		float:right;
 		text-align: right;
 	}
