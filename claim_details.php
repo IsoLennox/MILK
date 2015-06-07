@@ -8,7 +8,8 @@ $_SESSION['upload_type'] = 'claim';
 
 
 <?php
-if(isset($_GET['remove_img'])){ 
+if(isset($_GET['remove_img'])){
+    //IF USER CLICKED "DELETE" on a file upload
     $item_id=$_GET['remove_img'];  
     
         $update_item  = "DELETE FROM claims_img WHERE id = {$item_id} LIMIT 1";
@@ -29,32 +30,33 @@ if(isset($_GET['remove_img'])){
     
     
    
-    
+ //END IF USER CLICKED DELETE ON FILE UPLOAD   
 }elseif(isset($_POST['save_title'])){ 
-     
+     //IF USER SUBMITTED NEW TITLE ON FILE UPLOAD
     
     $item_id=$_GET['id'];
     $image_id=$_POST['image_id'];
     $new_title=addslashes($_POST['new_title']);
     
-        $item_img  = "UPDATE claims_img SET title = '{$new_title}' WHERE id={$image_id} ";
-        $insert_item_img = mysqli_query($connection, $item_img); 
+    $item_img  = "UPDATE claims_img SET title = '{$new_title}' WHERE id={$image_id} ";
+    $insert_item_img = mysqli_query($connection, $item_img); 
     if($insert_item_img){
-
+        //success
         $_SESSION["message"] = "Document Renamed!";
         redirect_to('claim_details.php?id='.$item_id); 
 
-        } else {
+    } else {
         // Failure
         $_SESSION["message"] = "Could not rename document";
        redirect_to('claim_details.php?id='.$item_id); 
 
-        }//END REMOVE ITEM
+    }//END REMOVE ITEM
     
 
 
-    
+  //IF USER SUBMITTED NEW TITLE ON FILE UPLOAD  
 }elseif(isset($_GET['id'])){
+    //VIEWING A CLAIM 
     
     $query  = "SELECT * FROM claims WHERE id={$_GET['id']}";  
     $result = mysqli_query($connection, $query);
@@ -163,33 +165,32 @@ if(isset($_GET['remove_img'])){
                   
                   
                 if($draft==1){
-                	echo "</div>";
-                	echo "<div class=\"item_display\">";
-                  $upload="<a href=\"claim_details.php?add_image&id=".$show['id']."\"><input type=\"submit\" value=\"Add Photos &amp; Files\"></a>";
-                  $upload_form="<form action=\"image_handling1.php\" method=\"post\" enctype=\"multipart/form-data\">
-                  Upload an Image or PDF:<br/>
-                  <input type=\"file\" name=\"image\" id=\"fileToUpload\"><br/>
-                  <input type=\"hidden\" value=\"".$_GET['id']."\" name=\"claim_id\">
-                  <p> Title: <input type=\"text\" value=\"\" name=\"title\" placeholder=\"i.e. Image of item..\" ></p><br/>
-                  <input type=\"submit\" value=\"Upload File\" name=\"submit\">
-                  </form>"; 
-                  
-              
-              
-                  // echo "<br/><br/>";
-                  echo "<h3>File Attachments</h3>";
-                  echo "<p> Attach Images or PDFs of Reports, Damages, Reciepts, or any other details that may help our progress in Approving your claim.</p>"; 
-                  echo "<br/><br/>";
-                  if(isset($_GET['add_image'])){ 
-                    $claim_id=$_GET['add_image'];
-                    echo $upload_form;
-                  } else {
-                     echo $upload;
-                  }
-                  // echo "";
-                  // echo "<br/><br/>";
-                  echo "</div>";
-                  echo "<div class=\"clearfix\"></div>";
+                    //CLAIM IS A DRAFT
+                    echo "</div>";
+                    echo "<div class=\"item_display\">";
+                      $upload="<a href=\"claim_details.php?add_image&id=".$show['id']."\"><input type=\"submit\" value=\"Add Photos &amp; Files\"></a>";
+                      $upload_form="<form action=\"image_handling1.php\" method=\"post\" enctype=\"multipart/form-data\">
+                      Upload an Image or PDF:<br/>
+                      <input type=\"file\" name=\"image\" id=\"fileToUpload\"><br/>
+                      <input type=\"hidden\" value=\"".$_GET['id']."\" name=\"claim_id\">
+                      <p> Title: <input type=\"text\" value=\"\" name=\"title\" placeholder=\"i.e. Image of item..\" ></p><br/>
+                      <input type=\"submit\" value=\"Upload File\" name=\"submit\">
+                      </form>"; 
+
+
+                      echo "<h3>File Attachments</h3>";
+                      echo "<p> Attach Images or PDFs of Reports, Damages, Reciepts, or any other details that may help our progress in Approving your claim.</p>"; 
+                      echo "<br/><br/>";
+                      if(isset($_GET['add_image'])){ 
+                        $claim_id=$_GET['add_image'];
+                        echo $upload_form;
+                      } else {
+                         echo $upload;
+                      }
+                      // echo "";
+                      // echo "<br/><br/>";
+                      echo "</div>";
+                      echo "<div class=\"clearfix\"></div>";
                     
                         
                   } //end if its a draft
@@ -198,51 +199,50 @@ if(isset($_GET['remove_img'])){
             $image_query  = "SELECT * FROM claims_img WHERE claim_id={$show['id']}";  
             $image_result = mysqli_query($connection, $image_query);
             if($image_result){
-               	echo "<h3>Claim Images</h3>";
-               	echo "<hr>";
-                  echo "<div class=\"gallery\">";
+                echo "<h3>Claim Images</h3>";
+                echo "<hr>";
+                echo "<div class=\"gallery\">";
 
-                        foreach($image_result as $image){
-                            $img_edit="<a class='img_edit' href=\"claim_details.php?id=".$show['id']."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>";
-                            $img_delete="<a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"claim_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
-                        
-                        //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
-                        echo "<div>";
-                        if($image['is_img']==1){
-                            $file= "<a href=\"" .$image['filepath'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div></a>";
+                foreach($image_result as $image){
+                    $img_edit="<a class='img_edit' href=\"claim_details.php?id=".$show['id']."&edit_img=".$image['id']."\"><i class=\"fa fa-pencil\"></i> Edit </a>";
+                    $img_delete="<a class='img_edit' onclick=\"return confirm('DELETE this document? This cannot be undone.');\" href=\"claim_details.php?remove_img=".$image['id']."\"> <i class=\"fa fa-trash-o\"></i> Delete</a>";
 
-                        }else{ 
-                            $file= "<p><i class=\"fa fa-5x fa-file-pdf-o\"></i></p>";
-                        }
+                //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
+                echo "<div>";
+                if($image['is_img']==1){
+                    $file= "<a href=\"" .$image['filepath'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div></a>";
 
-                        if(empty($image['title'])){ $image['title']="Untitled";}
- 
-                        echo $file ."<h5>".$image['title']."</h5>"; 
-                             
-                        if(isset($_GET['edit_img']) && $_GET['edit_img']==$image['id']){
-                            //Show edit title form
-                            ?>
-                            <div id="edit_img_title">
-                            <form method="POST">
-                                <input type="text" name="new_title" value="<?php echo $image['title']; ?>">
-                                <input type="hidden" name="image_id" value="<?php echo $image['id']; ?>"> 
-                                <input type="submit" name="save_title" value="Save Title">
-                            </form>
-                            <a href="claim_details.php?id=<?php echo $show['id']; ?>">Cancel</a>
-                            </div>
-                            <hr/>
-                            <?php
-                        
-                        }else{
-                            if($_SESSION['user_id']==$show['user_id']){
-                                echo $img_edit;
-                                echo $img_delete;
-                            }
-                        }
-                        echo "</div>"; //end each container
+                }else{ 
+                    $file= "<p><i class=\"fa fa-5x fa-file-pdf-o\"></i></p>";
+                }
+
+                if(empty($image['title'])){ $image['title']="Untitled";}
+                echo $file ."<h5>".$image['title']."</h5>"; 
+
+                if(isset($_GET['edit_img']) && $_GET['edit_img']==$image['id']){
+                    //Show edit title form
+                    ?>
+                    <div id="edit_img_title">
+                    <form method="POST">
+                        <input type="text" name="new_title" value="<?php echo $image['title']; ?>">
+                        <input type="hidden" name="image_id" value="<?php echo $image['id']; ?>"> 
+                        <input type="submit" name="save_title" value="Save Title">
+                    </form>
+                    <a href="claim_details.php?id=<?php echo $show['id']; ?>">Cancel</a>
+                    </div>
+                    <hr/>
+                    <?php
+
+                }else{
+                    if($_SESSION['user_id']==$show['user_id']){
+                        echo $img_edit;
+                        echo $img_delete;
                     }
-                    echo "</div>";//end gallery
-                    echo "<div class=\"clearfix\"></div>";
+                }//END ONLY SHOW EDIT FORM FOR DOCUMENT SELECTED
+                echo "</div>"; //end each container
+            }//END FOREACH ITEM
+            echo "</div>";//end gallery
+            echo "<div class=\"clearfix\"></div>";
 
             }
             
@@ -256,8 +256,9 @@ if(isset($_GET['remove_img'])){
      }  
         }
      }
-    
+   //END VIEWING A CLAIM 
 }elseif(isset($_GET['edit'])){
+    //IF USER CLICKED "EDIT CLAIM DETAILS"
     
     $claim_id=$_GET['edit'];
     
@@ -287,93 +288,69 @@ if(isset($_GET['remove_img'])){
      <form action="claim_details.php?save_changes=<?php echo $claim_id; ?>" method="POST"> 
       
           <label for="title"> Title: </label><input type="text" id='title' name="title" value="<?php echo $old_title; ?>">
-       <?php
-    
-    
+       <?php 
                echo "Items In This Claim: <ul>";
                   
-            $item_query  = "SELECT * FROM claim_items WHERE claim_id={$claim['id']}";  
-            $item_result = mysqli_query($connection, $item_query);
-            foreach($item_result as $item){ 
-                  $itemname_query  = "SELECT * FROM items WHERE id={$item['item_id']}";  
-                  $itemname_result = mysqli_query($connection, $itemname_query);
-                  foreach($itemname_result as $itemname){
-                        echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">";
-                      
-                $item_img = "SELECT * FROM item_img WHERE item_id={$itemname['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
-                $item_img_result = mysqli_query($connection, $item_img);
-                $total_img_array=mysqli_fetch_assoc($item_img_result);
-                $thumbnail=$total_img_array['thumb_path'];
-                $title=$total_img_array['title'];
-                      
-                echo "<img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/40/40/abstract'\"  alt=\"{$title}\"> ".$itemname['name']."</a> - $".$itemname['declared_value']." - <a href=\"claim_details.php?remove_item=".$itemname['id']."\"><i class=\"fa fa-trash-o\"></i></a></li>";
-                    } 
-            }
+                $item_query  = "SELECT * FROM claim_items WHERE claim_id={$claim['id']}";  
+                $item_result = mysqli_query($connection, $item_query);
+                foreach($item_result as $item){ 
+                      $itemname_query  = "SELECT * FROM items WHERE id={$item['item_id']}";  
+                      $itemname_result = mysqli_query($connection, $itemname_query);
+                      foreach($itemname_result as $itemname){
+                            echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">";
+
+                            $item_img = "SELECT * FROM item_img WHERE item_id={$itemname['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
+                            $item_img_result = mysqli_query($connection, $item_img);
+                            $total_img_array=mysqli_fetch_assoc($item_img_result);
+                            $thumbnail=$total_img_array['thumb_path'];
+                            $title=$total_img_array['title'];
+
+                            echo "<img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/40/40/abstract'\"  alt=\"{$title}\"> ".$itemname['name']."</a> - $".$itemname['declared_value']." - <a href=\"claim_details.php?remove_item=".$itemname['id']."\"><i class=\"fa fa-trash-o\"></i></a></li>";
+                        }//END GET ITEM DETAILS 
+                }//END FOREACH ITEM IN THIS CLAIM
                   echo "</ul><br>";
     
     
     
-        
+            //OPTIONS TO ADD ITEMS
             $item_query  = "SELECT * FROM items WHERE in_trash=0 AND user_id={$_SESSION['user_id']} ORDER BY name"; 
-                $itemresult = mysqli_query($connection, $item_query);
-                if($itemresult){ 
-                    //item SELECT BOX
-                    echo "<p>Add Items: <br/>"; 
-                    ?> <ul id="form_id">
-<!--
-                        <li>
-                          <label for="select_input">
--->
-                          
-<!--                          someone removed this script, cannot find it-->
-<!--                            <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> Select all-->
-<!--                          </label>-->
-<!--                        </li> -->
-                         <?php
-                          
-                    foreach($itemresult as $item){
-                        
-//                        //Check to see that item is not already involved in claim
-//                        $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$item['id']}"; 
-//                        $item_claim_result = mysqli_query($connection, $item_claim_query);
-//                        $claim_item_rows=mysqli_num_rows($item_claim_result);
-//                        if($claim_item_rows < 1){ 
-//                            //OPTIONS
-//                            echo "<li><input type=\"checkbox\" name=\"items[]\" id=\"".$item['id']."\" value=\"".$item['id']."\" ><label for='".$item['id'] . "'>". $item['name']."</label></li>"; 
-//                            
-//                        }else{
-////                            echo "<li>".$item['name']." is in a claim</li>";
-//                        } 
-                        
-                                  //Check to see that item is not already involved in claim
-                        $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$item['id']}"; 
-                        $item_claim_result = mysqli_query($connection, $item_claim_query);
-                        $claim_item_rows=mysqli_num_rows($item_claim_result);
-                        if($claim_item_rows < 1){ 
-                            //OPTIONS
-                            $item_img_query = "SELECT * FROM item_img WHERE item_id={$item['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
-                            $item_img_result = mysqli_query($connection, $item_img_query);
-                            $img_item_rows=mysqli_num_rows($item_img_result);
+            $itemresult = mysqli_query($connection, $item_query);
+            if($itemresult){ 
+                //item SELECT BOX
+                echo "<p>Add Items: <br/>"; 
+                echo "<ul id=\"form_id\"";
 
-                            echo "<li>";
+                foreach($itemresult as $item){ 
 
-                              if($img_item_rows==0){
-                                echo "<i class=\"fa fa-cube fa-4x\"></i><br>";
-                              }else{
+                              //Check to see that item is not already involved in claim
+                    $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$item['id']}"; 
+                    $item_claim_result = mysqli_query($connection, $item_claim_query);
+                    $claim_item_rows=mysqli_num_rows($item_claim_result);
+                    if($claim_item_rows < 1){ 
+                        //OPTIONS
+                        $item_img_query = "SELECT * FROM item_img WHERE item_id={$item['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
+                        $item_img_result = mysqli_query($connection, $item_img_query);
+                        $img_item_rows=mysqli_num_rows($item_img_result);
 
-                                foreach($item_img_result as $img){
-                                  echo "<img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></br>";
-                                }
-                              }
+                        echo "<li>";
 
-                            echo "<input type=\"checkbox\" name=\"items[]\" id=\"" . $item['id'] . "\" value=\"".$item['id']."\" ><label for='". $item['id'] . "'>" .$item['name']."</label></li>"; 
-                            $next=1;
-                        }
-                        
+                        if($img_item_rows==0){
+                            //SHOW DEFAULT IMAGE IF ITEM HAS NOT IMAGES
+                            echo "<i class=\"fa fa-cube fa-4x\"></i><br>";
+                        }else{
+                            foreach($item_img_result as $img){
+                              echo "<img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></br>";
+                            }
+                        }//END GET ITEM IMAGE
+
+                        echo "<input type=\"checkbox\" name=\"items[]\" id=\"" . $item['id'] . "\" value=\"".$item['id']."\" ><label for='". $item['id'] . "'>" .$item['name']."</label></li>"; 
+                        $next=1;
                     }
-                    echo "</ul></p>";
-                    echo "<div class=\"clearfix\"></div>";
-                }//end get items  
+
+                }
+                echo "</ul></p>";
+                echo "<div class=\"clearfix\"></div>";
+            }//end get items  to add
     
     echo "<br/><br/>";
     
@@ -412,12 +389,18 @@ if(isset($_GET['remove_img'])){
     
      <input type="hidden" name="id" value="<?php echo $claim_id; ?>">
     <input type="submit" name="submit" value="Save Changes"> 
+         
  </form>
      
 <a href="claim_details.php?id=<?php echo $claim_id; ?>" onclick="return confirm('Leave the page? This will not save your changes!');">Cancel</a>
 
 <?php
+    
+    //END IF USER CLICKED "EDIT CLAIM DETAILS"
 }elseif(isset($_GET['remove_item'])){
+    //IF USER CLICKED TRASH CAN ICON TO REMOVE ITEM FROM A CLAIM WITHIN EDIT CLAIM DETAILS
+    
+    
     $item_id=$_GET['remove_item'];
     //DELETE ITEMS FROM CLAIMS_ITEMS TABLE    
     $query  = "DELETE FROM claim_items WHERE item_id={$item_id} LIMIT 1";  
@@ -429,8 +412,9 @@ if(isset($_GET['remove_img'])){
      $_SESSION["message"] = "Could not remove item";
             header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
-    
+     //END IF USER CLICKED TRASH CAN ICON TO REMOVE ITEM FROM A CLAIM WITHIN EDIT CLAIM DETAILS
 }elseif(isset($_GET['save_changes'])){
+    //IF USER HIT "SUBMIT" FROM WITHIN EDIT CLAIM DETAILS
     
     $id= $_GET['save_changes'];  
     $items_array= $_POST['items'];  
@@ -449,37 +433,39 @@ if(isset($_GET['remove_img'])){
  
     
     
- if($claim['status_id']==4){
-     $newnotes=$old_notes."<br/>".$notes;
-     //status is pending changes: can only append to notes
-    $insert  = "UPDATE claims SET title='{$title}', notes='{$newnotes}', claim_type='{$claim_type}' WHERE id='{$id}'";
- }else{
-    $insert  = "UPDATE claims SET title='{$title}', notes='{$notes}', claim_type='{$claim_type}' WHERE id='{$id}'";
- }
-    $insert_result = mysqli_query($connection, $insert); 
-//     if ($insert_result && mysqli_affected_rows($connection) == 1) {
+     if($claim['status_id']==4){
+         //status is pending changes: can only append to notes
+         $newnotes=$old_notes."<br/>".$notes;
+        $insert  = "UPDATE claims SET title='{$title}', notes='{$newnotes}', claim_type='{$claim_type}' WHERE id='{$id}'";
+     }else{
+        $insert  = "UPDATE claims SET title='{$title}', notes='{$notes}', claim_type='{$claim_type}' WHERE id='{$id}'";
+     }
+        $insert_result = mysqli_query($connection, $insert); 
+    
      if ($insert_result) {
-    
-    
-            foreach($items_array as $item){
-        $insert_item  = "INSERT INTO claim_items ( item_id, claim_id) VALUES ( {$item}, {$id} ) ";
+        foreach($items_array as $item){
+            $insert_item  = "INSERT INTO claim_items ( item_id, claim_id) VALUES ( {$item}, {$id} ) ";
             $claimresult = mysqli_query($connection, $insert_item);
-            }
+        }
+
+     $_SESSION['message']="Changes Saved!";
+     redirect_to('claim_details.php?id='.$id);
          
-         $_SESSION['message']="Changes Saved!";
-         redirect_to('claim_details.php?id='.$id);
-         }else{
+    }else{
          $_SESSION['message']="Could Not Save Changes!";
          redirect_to('claim_details.php?id='.$id);
             }
+    
+    //IF USER HIT "SUBMIT" FROM WITHIN EDIT CLAIM DETAILS
 }elseif(isset($_GET['submit'])){
+    //IF USER SUBMITTED CLAIM TO BE SENT TO CLAIM ADJUSTER
+    
+    
     $claim_id=$_GET['submit'];
     $title=$_GET['title'];
-    //CHANGE FROM DRAFT TO PENDING 
-//    //ADD TO HISTORY TABLE
-  
     $date = date('d/m/Y H:i'); 
     
+    //CHANGE FROM DRAFT TO PENDING
     $insert  = "UPDATE claims SET status_id=0 WHERE id={$claim_id} ";
     $insert_result = mysqli_query($connection, $insert);
     if($insert_result){ 
@@ -495,32 +481,38 @@ if(isset($_GET['remove_img'])){
         }else{
             $_SESSION["message"] = "Claim could not be submitted";
             redirect_to("file_new_claim.php");
-        }//end insert uery    
+        }//end insert query  
+    
+     //END IF USER SUBMITTED CLAIM TO BE SENT TO CLAIM ADJUSTER
+    
 }elseif(isset($_GET['delete'])){
-        $claim_id=$_GET['delete']; 
+    //USER DELETED CLAIM DRAFT
     
-    //REMOVE ITEMS FROM CLAIM_ITEMS
+    $claim_id=$_GET['delete']; 
     
+    
+    //REMOVE ITEMS FROM CLAIM_ITEMS SO THAT THE ITEMS ATTACHED DO NOT STILL APPEAR TO BE IN A non-existent claim
     $delete_items  = "DELETE FROM claim_items WHERE claim_id={$claim_id} ";
     $delete_items_result = mysqli_query($connection, $delete_items);
     if($delete_items_result){ 
         
-            $delete_claims  = "DELETE FROM claims WHERE id={$claim_id} ";
-            $delete_claims_result = mysqli_query($connection, $delete_claims);
-            if($delete_claims_result){ 
-                $_SESSION["message"] = "Claim Draft Removed!";
-                redirect_to("claim_history.php"); 
-            }else{
-                $_SESSION["message"] = "Claim could not be removed"; 
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
-            }//end delete_claims uery 
+        $delete_claims  = "DELETE FROM claims WHERE id={$claim_id} ";
+        $delete_claims_result = mysqli_query($connection, $delete_claims);
+        if($delete_claims_result){ 
+            $_SESSION["message"] = "Claim Draft Removed!";
+            redirect_to("claim_history.php"); 
         }else{
-            $_SESSION["message"] = "Claim items could not be removed"; 
+            $_SESSION["message"] = "Claim could not be removed"; 
             header('Location: ' . $_SERVER['HTTP_REFERER']);
-        }//end delete_items uery 
-    
-    
+        }//end delete_claims uery 
+    }else{
+        $_SESSION["message"] = "Claim items could not be removed"; 
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }//end delete_items uery 
+
+    //END USER DELETED CLAIM DRAFT
 }else{
+    //CANNOT FIND CLAIM
     echo "This claim does not exist!";
 }
  ?> 
