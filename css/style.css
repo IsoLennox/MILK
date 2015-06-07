@@ -760,7 +760,7 @@ header {
 /*ITEM DETAILS IMAGE GALLERY*/
 .gallery{
     /*margin: 5px;*/
-    padding: 20px 0;
+    /*padding: 20px 0;*/
     max-width: 1300px;
     width:100%;
     text-align: center;
@@ -773,6 +773,11 @@ header {
 		min-height:200px;
 		height:auto;
 		
+	}
+
+	.gallery h3 {
+		text-align: left;
+		padding:0  0 25px 10px;
 	}
 
 .img_edit {
@@ -792,8 +797,14 @@ header {
 	width:150px;
 }
 
-
-
+.thumb_container {
+	width:75px;
+	height:75px;
+	overflow: hidden;
+}
+.thumb_avatar {
+	height:65px;
+}
 
 /*---------------------------------------------*\
 	ITEM DETAILS, INVENTORY, CLAIMS CONTAINERS
@@ -910,7 +921,8 @@ header {
     background-color: #90C32E;
     border-radius: 25px;
     padding:15px 0;
-    margin-bottom: 25px;
+    margin: 0 auto 25px;
+    max-width: 750px;
 }
 
 #current_status { 
@@ -920,7 +932,7 @@ header {
 }
 
 
-#form_id li:not(.block){
+.form_id li:not(.block){
  float:left;
  margin-right: 15px;
  width:175px;
@@ -972,6 +984,7 @@ header {
 
 	.avatar img {
 		max-width: 85%;
+		max-height: 400px;
 	}
 
 	.profile_content {
@@ -1000,9 +1013,7 @@ header {
 	padding-bottom: 10px;
 }
 
-.thumb_avatar {
-	height:65px;
-}
+
 
 
 
