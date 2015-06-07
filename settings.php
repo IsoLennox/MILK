@@ -111,28 +111,28 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     if ($result && mysqli_affected_rows($connection) == 1) {
       // Success
                 $_SESSION["message"] = "Password Updated!";
-                redirect_to("settings.php");
+                redirect_to("edit_profile.php");
     } else {
       // Failure
                 $_SESSION["message"] = "Password Update Failed!";
-                redirect_to("settings.php");
+                redirect_to("edit_profile.php");
     }//END UPDATE ACCOUNT
                 
 
 
             }else{
                 $_SESSION["message"] = "Passwords Do Not Match!";
-                redirect_to("settings.php");
+                redirect_to("edit_profile.php");
             }//end update new password
         
     }else{
        $_SESSION["message"] = "Passwords Cannot be blank!";
-                      redirect_to("settings.php");
+                      redirect_to("edit_profile.php");
  
         }  
             }else{
                 $_SESSION["message"] = "Old Password Incorrect";
-                      redirect_to("settings.php");
+                      redirect_to("edit_profile.php");
             }//end if old password is correct current password
     }//end submit new password
 

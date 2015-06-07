@@ -123,8 +123,7 @@ if(isset($_GET['remove_img'])){
 	        	echo "<a class='large_link text_right' onclick=\"return confirm('Permanently DELETE this claim?');\" href=\"claim_details.php?delete=".$show['id']."&title=".$show['title']."\"><i class=\"fa fa-trash-o\"></i> Delete Claim </a>";
 	        	echo "<hr>";
 	        	
-	        }
-	        // echo "<h2 class='dark_link'>Claim Title: " . $show['title'] . "</h2>";
+	        } 
             echo "<div class=\"item_display\">";
             echo "<p><strong>Claim Type:</strong> ".$claim_type."<br/>";
                   
@@ -224,8 +223,10 @@ if(isset($_GET['remove_img'])){
 
                 }else{
                     if($_SESSION['user_id']==$show['user_id']){
-                        echo $img_edit;
-                        echo $img_delete;
+                        if($draft==1){ 
+                            echo $img_edit;
+                            echo $img_delete;
+                        }//end only show if this is a draft
                     }//end show edit/delete options if this is YOUR claim
                 }//END ONLY SHOW EDIT IMAGE FORM ON IMAGE CHOSEN
                     
@@ -269,6 +270,10 @@ if(isset($_GET['remove_img'])){
       //END GALLERY
                   
                   
+                  
+                  
+                  
+                  
             
                 if($draft==1){
                     //ONLY SHOW SUBMIT BUTTON IF IS A DRAFT 
@@ -290,11 +295,7 @@ if(isset($_GET['remove_img'])){
    //END VIEWING A CLAIM 
 }elseif(isset($_GET['edit'])){
     //IF USER CLICKED "EDIT CLAIM DETAILS"
-    
-    $claim_id=$_GET['edit'];
-    
-    
-    
+    $claim_id=$_GET['edit']; 
     
     $query  = "SELECT * FROM claims WHERE id={$claim_id} AND user_id={$_SESSION['user_id']}";  
     $result = mysqli_query($connection, $query);

@@ -9,6 +9,7 @@
         $avatar=$profile_array['avatar'];
         $first = $profile_array["first_name"];
         $last = $profile_array["last_name"];
+        $email = $profile_array["email"];
         $phone = $profile_array["phone"];
         $address = $profile_array["address"];
         $city = $profile_array["city"];
@@ -120,15 +121,7 @@ if (isset($_POST['submit'])) {
   <hr/>
   
    <h2>Edit Profile Content</h2>
-   
-   <?php
-  if(!isset($_GET['walkthrough'])){ ?> 
-
-<!--    <a href="settings.php"><i class="fa fa-gear"></i> Edit Account Settings</a> -->
-    
-    <?php } ?>
-    
-    
+  
     <form action="edit_profile.php" method="post">
    <br>
    <br> 
@@ -170,7 +163,7 @@ if (isset($_POST['submit'])) {
      
 if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             $_SESSION["message"] = "Invalid email";
-            redirect_to("settings.php");
+            redirect_to("edit_profile.php");
         }else{
             //perform update
     
@@ -181,73 +174,16 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     if ($result && mysqli_affected_rows($connection) == 1) {
     // Success
                 $_SESSION["message"] = "Email Updated!";
-                redirect_to("settings.php");
+                redirect_to("edit_profile.php");
     } else {
       // Failure
                 $_SESSION["message"] = "Email Update Failed!";
-                redirect_to("settings.php");
+                redirect_to("edit_profile.php");
     }//END UPDATE ACCOUNT
      
         }
     }
-    
-/*********************************/ 
-//PASSWORD
-/*********************************/ 
-    
-    if (isset($_GET['password'])) {
-  $old_pass = mysql_prep($_POST["old_pass"]);
-        
-        
-    if (password_verify($old_pass, $stored_pass)){
-		
-            //old password matched current password
-            $hashed_password = password_hash($_POST["new_pass"], PASSWORD_DEFAULT);
-            $first_password = $_POST["new_pass"];
-            $confirmed_password = $_POST["confirm_pass"];
-  
-   if(!empty($first_password) && !empty($confirmed_password)){
-            if($first_password===$confirmed_password){
-                //new passwords match
-                //perform update with $hashed_pass
-                
-    $update_book  = "UPDATE users SET ";
-    $update_book .= "password = '{$hashed_password}' ";
-    $update_book .= "WHERE id = {$_SESSION['user_id']} ";
-    $result = mysqli_query($connection, $update_book);
-    if ($result && mysqli_affected_rows($connection) == 1) {
-      // Success
-                $_SESSION["message"] = "Password Updated!";
-                redirect_to("settings.php");
-    } else {
-      // Failure
-                $_SESSION["message"] = "Password Update Failed!";
-                redirect_to("settings.php");
-    }//END UPDATE ACCOUNT
-                
-
-
-            }else{
-                $_SESSION["message"] = "Passwords Do Not Match!";
-                redirect_to("settings.php");
-            }//end update new password
-        
-    }else{
-       $_SESSION["message"] = "Passwords Cannot be blank!";
-                      redirect_to("settings.php");
- 
-        }  
-            }else{
-                $_SESSION["message"] = "Old Password Incorrect";
-                      redirect_to("settings.php");
-            }//end if old password is correct current password
-    }//end submit new password
-
-
-
-
-
-?>
+ ?>
 
 
     
@@ -371,7 +307,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
    <h2>Change Email  </h2>
       <p>Used to log in and recover password</p>
        <span id="new_email">
-    <form action="settings.php?email" method="POST">
+    <form action="edit_profile.php?email" method="POST">
         <p id="e-error">New Email:
         <input type="text" name="email" id="email" value="<?php echo $email; ?>" /></p>
         <div id="eavailability"></div> 
