@@ -688,7 +688,7 @@ header {
 
 
 .half_dashboard {
-	 border: 2px solid rgba(245,245,245,0.5);
+/*	 border: 2px solid rgba(245,245,245,0.5);*/
 	 background: rgba(245,245,245,0.3);
 	 border-radius:10px;
 	 width:49%;
