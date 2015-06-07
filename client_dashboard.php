@@ -76,11 +76,13 @@
             }else{
                 //IF NO CLAIMS SUBMITTED, SHOW...
                 echo "<h2>You have made no claims!</h2>";
+                echo "</div>";
             }
+
         }
     ?> 
 
-        </div>
+        
     </div><?php
                     
                     
