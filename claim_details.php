@@ -132,7 +132,7 @@ if(isset($_GET['remove_img'])){
             echo "<strong>Date Filed:</strong> ".$show['datetime']."</p>";
             
         
-            echo "<br><h3>Item Involved In This Claim:</h3> <ul class='form_id'>";
+            echo "<br><h3>Items Involved In This Claim:</h3> <ul class='form_id'>";
             $item_query  = "SELECT * FROM claim_items WHERE claim_id={$show['id']}";  
             $item_result = mysqli_query($connection, $item_query);
                   $total_value=0;
@@ -208,7 +208,7 @@ if(isset($_GET['remove_img'])){
                                 <input type="hidden" name="image_id" value="<?php echo $image['id']; ?>"> 
                                 <input type="submit" name="save_title" value="Save Title">
                             </form>
-                            <a href="claim_details.php?id=<?php echo $show['id']; ?>">Cancel</a>
+                            <a href="claim_details.php?id=<?php echo $show['id']; ?>"><i class="fa fa-times"></i> Cancel</a>
                             </div>
                             <hr/>
                             <?php

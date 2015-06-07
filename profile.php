@@ -57,11 +57,11 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         }
 ?>
 
-    <h2> <?php echo $username; ?>'s Profile   <span class="right"><?php if($user_id!==$_SESSION['user_id']){ ?><a href="messages.php?new&name=<?php echo $username; ?>&route=<?php echo $profile_array['id']; ?>"> <i class="fa fa-envelope"></i> Send Message</a> <?php }else{
-            echo "  <a   href=\"edit_profile.php\"><i class=\"fa fa-pencil\"></i> Edit Profile</a>  ";
-        } ?></span> </h2>
+    <h2 class='left'> <?php echo $username; ?>'s Profile </h2> <span class="right"><?php if($user_id!==$_SESSION['user_id']){ ?><a href="messages.php?new&name=<?php echo $username; ?>&route=<?php echo $profile_array['id']; ?>"> <i class="fa fa-envelope"></i> Send Message</a> <?php }else{
+            echo "  <a  href=\"edit_profile.php\"><i class=\"fa fa-pencil\"></i> Edit Profile</a>  ";
+        } ?></span> 
     <h3><?php echo $role['name']; ?></h3>
-    
+    <div class="clearfix"></div>
     <div class="profile">
         <section class="avatar"> <img src="<?php echo $avatar; ?>" alt="profile image">
          </section>
