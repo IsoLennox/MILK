@@ -164,7 +164,7 @@ include("inc/header.php"); ?>
             
             $id=$show['id'];
             $name=$show['name'];
-            echo "<p><a href=\"item_details.php?id=".$id."\">".$name."</a><br/>";
+            echo "<p><a class='dark_link' href=\"item_details.php?id=".$id."\">".$name."</a><br/>";
                 echo $claim_class;
                 if($class!=='grid_container'){
                     $room_name=get_room_name($show['room_id']);
