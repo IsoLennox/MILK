@@ -122,11 +122,11 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                             echo "<li>";
 
                               if($img_item_rows==0){
-                                echo "<i class=\"fa fa-cube fa-4x\"></i><br>";
+                                echo "<div class='thumb_container'><i class=\"fa fa-cube fa-4x text_right\"></i></div><br>";
                               }else{
 
                                 foreach($item_img_result as $img){
-                                  echo "<img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></br>";
+                                  echo "<div class='thumb_container'><img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></div></br>";
                                 }
                               }
 
@@ -136,7 +136,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                         
                         
                     }
-                    echo "</ul><div class=\"clearfix\"></div>";
+                    echo "<div class=\"clearfix\"></div></ul>";
                   
                     if($next==1){ ?>
                     <input type="submit" name="submit" value="Next">

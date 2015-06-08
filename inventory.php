@@ -131,7 +131,7 @@ include("inc/header.php"); ?>
 
     }elseif(isset($_GET['trash'])){
         echo "<a href=\"inventory.php\">&laquo; Back to Inventory</a>";
-        echo "<h1 style=\"color:red;\">Trash Can</h1>";
+        echo "<h1 style=\"color:#FF4503;\">Trash Can</h1>";
         //VIEW TRASH CAN
         $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=1 ORDER BY name"; 
     }else{
@@ -158,7 +158,7 @@ include("inc/header.php"); ?>
             $claim_item_rows=mysqli_num_rows($item_claim_result);
             if($claim_item_rows >= 1){
             	$claim_box = "red_box"; 
-                $claim_class="<span style=\"color:red;\"> Involved In Claim</span><br>"; 
+                $claim_class="<span style=\"color:#FF4503; font-weight:400;\"> Involved In Claim</span><br>"; 
             }else{
             	$claim_box='';
                 $claim_class="";
