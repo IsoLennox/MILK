@@ -152,7 +152,7 @@ if(isset($_GET['remove_img'])){
 		                $thumbnail=$total_img_array['thumb_path'];
 		                $title=$total_img_array['title'];
                      
-                        echo "<li><div class=\"thumb_container\"> <a href=\"item_details.php?id=".$itemname['id']."\"><img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/40/40/abstract'\"  alt=\"{$title}\"></div><br/> <strong> ".$itemname['name']."</strong></a> <br> $".$value."</li>";
+                        echo "<li><div class=\"small_thumb_container\"> <a href=\"item_details.php?id=".$itemname['id']."\"><img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/50/50/abstract'\"  alt=\"{$title}\"></div><br/> <strong> ".$itemname['name']."</strong></a> <br> $".$value."</li>";
                         $total_value=$total_value+$value;
                     } 
             }
@@ -277,12 +277,12 @@ if(isset($_GET['remove_img'])){
             
                 if($draft==1){
                     //ONLY SHOW SUBMIT BUTTON IF IS A DRAFT 
-                   echo "<a class=\"red_submit left\" onclick=\"return confirm('Submit this claim? You cannot edit this claim after submitting');\" href=\"claim_details.php?submit=".$show['id']."&title=".$show['title']."\">Submit Claim </a><br/>";
+                   echo "<div class='content_wrapper'><a class=\"red_submit left\" onclick=\"return confirm('Submit this claim? You cannot edit this claim after submitting');\" href=\"claim_details.php?submit=".$show['id']."&title=".$show['title']."\">Submit Claim </a></div><br/>";
                 }//END ONLY SHOW SUBMIT BUTTON IF IS A DRAFT                 
 
     
             }else{
-                echo "Oops! It looks like you do not have permission to be here";
+                echo "<h3>Oops! It looks like you do not have permission to be here</h3>";
              }//end check permissions
 
             
@@ -320,16 +320,53 @@ if(isset($_GET['remove_img'])){
      <form action="claim_details.php?save_changes=<?php echo $claim_id; ?>" method="POST"> 
       
           <label for="title"> Title: </label><input type="text" id='title' name="title" value="<?php echo $old_title; ?>">
-       <?php 
-               echo "Items In This Claim: <ul>";
+       <?php
+            $claim_type_query  = "SELECT * FROM claim_types ORDER BY name"; 
+                $claim_typeresult = mysqli_query($connection, $claim_type_query);
+                if($claim_typeresult){ 
+                    //claim_type SELECT BOX
+                    echo "<p>Claim Type: <select name=\"claim_type\">"; 
+                    foreach($claim_typeresult as $claim_type){
+                        if($claim_type['id']==$claim['claim_type']){
+                            $selected="selected";
+                        }else{
+                            $selected="";
+                        }
+                        //OPTIONS
+                        echo "<option ".$selected." value=\"".$claim_type['id']."\" >".$claim_type['name']."</option>"; 
+                    }
+                    echo "</select></p>";
+                }//end get claim_types 
+         ?>
+   
+    
+        <p>Notes and Details:<br/></p>
+    
+         <?php  if($status==4){
+             //claim pending changes: can only append notes
+             echo "<div class=\"notes_container\">".$old_notes."</div><hr/>"; ?>
+            <textarea name="notes" id="notes" cols="30" rows="10" maxlength="250" placeholder="Add details..."></textarea>
+    <?php }else{ ?>
+         
+         <textarea name="notes" id="notes" cols="30" rows="10" maxlength="250" placeholder="Describe the nature of the claim..." value="<?php echo $old_notes; ?>"><?php echo $old_notes; ?></textarea>
+         
+         <?php }  
+              
                   
                 $item_query  = "SELECT * FROM claim_items WHERE claim_id={$claim['id']}";  
                 $item_result = mysqli_query($connection, $item_query);
+                $item_num_rows = mysqli_num_rows($item_result);
+                if($item_num_rows!=0){
+                    echo "<h3>Items In This Claim:<h3> ";
+                }
+                echo "<ul>";
+                echo "<div class='select_container'>";
                 foreach($item_result as $item){ 
+
                       $itemname_query  = "SELECT * FROM items WHERE id={$item['item_id']}";  
                       $itemname_result = mysqli_query($connection, $itemname_query);
                       foreach($itemname_result as $itemname){
-                            echo "<li> <a href=\"item_details.php?id=".$itemname['id']."\">";
+                            echo "<li> <a class='small_text' href=\"item_details.php?id=".$itemname['id']."\">";
 
                             $item_img = "SELECT * FROM item_img WHERE item_id={$itemname['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
                             $item_img_result = mysqli_query($connection, $item_img);
@@ -337,21 +374,30 @@ if(isset($_GET['remove_img'])){
                             $thumbnail=$total_img_array['thumb_path'];
                             $title=$total_img_array['title'];
 
-                            echo "<img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/40/40/abstract'\"  alt=\"{$title}\"> ".$itemname['name']."</a> - $".$itemname['declared_value']." - <a href=\"claim_details.php?remove_item=".$itemname['id']."\"><i class=\"fa fa-trash-o\"></i></a></li>";
+                            echo "<div class='thumb_container'><img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"  alt=\"{$title}\"></div><br> ".$itemname['name']." <br> $".$itemname['declared_value']." </a> <a class='small_text' href=\"claim_details.php?remove_item=".$itemname['id']."\"><i class=\"fa fa-trash-o\"></i></a></li>";
                         }//END GET ITEM DETAILS 
                 }//END FOREACH ITEM IN THIS CLAIM
-                  echo "</ul><br>";
-    
-    
-    
+                 echo "<div class=\"clearfix\"></div>";
+                echo "</ul>";  
+                if($item_num_rows!=0){
+                    echo "<hr> ";
+                }
             //OPTIONS TO ADD ITEMS
             $item_query  = "SELECT * FROM items WHERE in_trash=0 AND user_id={$_SESSION['user_id']} ORDER BY name"; 
             $itemresult = mysqli_query($connection, $item_query);
             if($itemresult){ 
                 //item SELECT BOX
-                echo "<p>Add Items: <br/>"; 
-                echo "<ul id=\"form_id\"";
+                echo "<h3>Add Items: </h3>"; 
+                echo "<ul>";
+                ?>        
+                    <li class='block'>
+                     
+                        <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all</label>
+                        
+                    </li> 
+                    <div class='select_container'>
 
+                <?php
                 foreach($itemresult as $item){ 
 
                               //Check to see that item is not already involved in claim
@@ -368,10 +414,10 @@ if(isset($_GET['remove_img'])){
 
                         if($img_item_rows==0){
                             //SHOW DEFAULT IMAGE IF ITEM HAS NOT IMAGES
-                            echo "<i class=\"fa fa-cube fa-4x\"></i><br>";
+                            echo "<div class='thumb_container'><i class=\"fa fa-cube fa-4x text_right\"></i></div><br>";
                         }else{
                             foreach($item_img_result as $img){
-                              echo "<img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></br>";
+                                echo "<div class='thumb_container'><img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></div></br>";
                             }
                         }//END GET ITEM IMAGE
 
@@ -380,51 +426,23 @@ if(isset($_GET['remove_img'])){
                     }
 
                 }
-                echo "</ul></p>";
+                
                 echo "<div class=\"clearfix\"></div>";
+                echo "</ul>";
             }//end get items  to add
     
     echo "<br/><br/>";
     
-     
-                    $claim_type_query  = "SELECT * FROM claim_types ORDER BY name"; 
-                        $claim_typeresult = mysqli_query($connection, $claim_type_query);
-                        if($claim_typeresult){ 
-                            //claim_type SELECT BOX
-                            echo "<p>Claim Type: <select name=\"claim_type\">"; 
-                            foreach($claim_typeresult as $claim_type){
-                                if($claim_type['id']==$claim['claim_type']){
-                                    $selected="selected";
-                                }else{
-                                    $selected="";
-                                }
-                                //OPTIONS
-                                echo "<option ".$selected." value=\"".$claim_type['id']."\" >".$claim_type['name']."</option>"; 
-                            }
-                            echo "</select></p>";
-                        }//end get claim_types 
-         ?>
-   
-    
-    <p>Notes and Details:<br/></p>
-    
-         <?php  if($status==4){
-             //claim pending changes: can only append notes
-             echo "<div class=\"notes_container\">".$old_notes."</div><hr/>"; ?>
-            <textarea name="notes" id="notes" cols="30" rows="10" maxlength="250" placeholder="Add details..."></textarea>
-    <?php }else{ ?>
-         
-         <textarea name="notes" id="notes" cols="30" rows="10" maxlength="250" placeholder="Describe the nature of the claim..." value="<?php echo $old_notes; ?>"><?php echo $old_notes; ?></textarea>
-         
-         <?php } ?>
+?>
     
     
      <input type="hidden" name="id" value="<?php echo $claim_id; ?>">
-    <input type="submit" name="submit" value="Save Changes"> 
+    <input type="submit" name="submit" value="Save Changes">
+    <a href="claim_details.php?id=<?php echo $claim_id; ?>" onclick="return confirm('Leave the page? This will not save your changes!');"><i class='fa fa-times'></i> Cancel</a>
+ 
          
  </form>
      
-<a href="claim_details.php?id=<?php echo $claim_id; ?>" onclick="return confirm('Leave the page? This will not save your changes!');">Cancel</a>
 
 <?php
     

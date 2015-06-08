@@ -16,7 +16,7 @@
 			$img->optimizeImage($path);
 			echo "<br>";
 			// create copy of image and resize for thumbnail
-			$img->makeThumb($tpath, 150);
+			$img->makeThumb($tpath, 200);
 		
 
 	

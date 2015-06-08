@@ -31,7 +31,10 @@ if(isset($_GET['id'])){ ?>
 		                $total_img_array=mysqli_fetch_assoc($item_img_result);
 		                $thumbnail=$total_img_array['file_path'];
 		                $title=$total_img_array['title'];
-		                echo "<div class='img_full_thumb'><img src=\"{$thumbnail}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$title}\">";
+                        $img_item_rows=mysqli_num_rows($item_img_result);
+
+
+		                echo "<div class='img_full_thumb'><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/300/300/abstract'\" alt=\"{$title}\">";
 		                
 
 
