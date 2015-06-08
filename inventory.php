@@ -215,7 +215,7 @@ include("inc/header.php"); ?>
                 // $total_img_array=mysqli_fetch_assoc($item_img_result);
                 // $thumbnail=$total_img_array['thumb_path'];
                 // $title=$total_img_array['title'];
-                echo "<div class='item_img_content'><img src=\"{$thumbnail}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$title}\"></div>";
+                echo "<div class='item_img_content'><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"  alt=\"{$title}\"></div>";
                 echo "<div class=\"clearfix\"></div></div>";
 
                 }//end hide details if grid view

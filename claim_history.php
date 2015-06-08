@@ -58,7 +58,7 @@ include("inc/header.php");
             
             echo "<p>Title: ".$show['title']."<br/>"; 
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status: <span style=\"color:red;\">Draft</span><br/>";
+            echo "Status: <span style=\"color:#FF4503;\">Draft</span><br/>";
             echo "Claim Type: ".$claim_type."<br/>";
             echo "Notes/Description: ".$show['notes']."</p><br/>"; 
              echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>"; 
@@ -102,7 +102,7 @@ include("inc/header.php");
             
             echo "<p>Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status:<span style=\"color:red;\">Processing</span><br/>";
+            echo "Status:<span style=\"color:#FF4503;\">Processing</span><br/>";
             echo "Claim Type: ".$claim_type."<br/>";
             echo "Notes/Description: ".$show['notes']."</p><br/>"; 
             echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>"; 
@@ -145,7 +145,7 @@ include("inc/header.php");
             
             echo "<p>Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status: <span style=\"color:red;\">Approved</span><br/>";
+            echo "Status: <span style=\"color:#FF4503;\">Approved</span><br/>";
             echo "Claim Type: ".$claim_type."</p><br/>";
                echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";
             echo "</div>";
@@ -186,7 +186,7 @@ include("inc/header.php");
             
             echo "<p>Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status: <span style=\"color:red;\">Denied</span><br/>";
+            echo "Status: <span style=\"color:#FF4503;\">Denied</span><br/>";
             echo "Claim Type: ".$claim_type."</p><br/>";
                echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";  
             
@@ -229,7 +229,7 @@ include("inc/header.php");
             
             echo "<p>Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status:<span style=\"color:red;\">Pending Changes</span><br/>";
+            echo "Status:<span style=\"color:#FF4503;\">Pending Changes</span><br/>";
             echo "Claim Type: ".$claim_type."</p><br/>";
                echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";  
             
@@ -308,7 +308,7 @@ include("inc/header.php");
     } 
             echo "<p>Title: ".$show['title']."<br/>";
             echo "Date Filed: ".$show['datetime']."<br/>";
-            echo "Status: <span style=\"color:red;\">".$status."</span><br/>";
+            echo "Status: <span style=\"color:#FF4503;\">".$status."</span><br/>";
             echo "Claim Type: ".$claim_type."</p><br/>";
                echo "<a href=\"claim_details.php?id=".$show['id']."\">View this Claim</a>";  
             

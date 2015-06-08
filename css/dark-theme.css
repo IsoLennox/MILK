@@ -22,7 +22,7 @@ h1, h2 { color: #eee;}
 
 #draft_container {
 	background-color: #332F2E;
-  	border: 2px solid #ffffff;
+  	border: 2px solid #eee;
 	border-radius: 10px;
 	margin-left: -10px;
 }
@@ -39,7 +39,7 @@ h1, h2 { color: #eee;}
 .current_page a{ color: #90C32E;}
 .current_page a:hover{ color: #eee;}
 .current_page{
-	background-color: #222;
+	background-color: #332F2E;
 	border-top: 1px solid #333;
 	border-bottom: 1px solid #333;
 }

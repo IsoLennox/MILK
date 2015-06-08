@@ -358,7 +358,7 @@ if(isset($_GET['remove_img'])){
                 $item_num_rows = mysqli_num_rows($item_result);
                 if($item_num_rows!=0){
                     echo "<h3>Items In This Claim:<h3> ";
-                }
+                // }
                 echo "<ul>";
                 echo "<div class='select_container'>";
                 foreach($item_result as $item){ 
@@ -379,7 +379,7 @@ if(isset($_GET['remove_img'])){
                 }//END FOREACH ITEM IN THIS CLAIM
                  echo "<div class=\"clearfix\"></div>";
                 echo "</ul>";  
-                if($item_num_rows!=0){
+                // if($item_num_rows!=0){
                     echo "<hr> ";
                 }
             //OPTIONS TO ADD ITEMS
