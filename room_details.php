@@ -4,7 +4,7 @@ include("inc/header.php"); ?>
 
 if(isset($_GET['id'])){ ?>
 <!--VIEW ROOM-->
-<a href="rooms.php">&laquo; All Rooms</a>
+<p><a href="rooms.php">&laquo; All Rooms</a></p>
  
  <?php
  				
@@ -13,9 +13,9 @@ if(isset($_GET['id'])){ ?>
     $result = mysqli_query($connection, $query);
     if($result){
         foreach($result as $show){
-            echo "<h1>".$show['name']."</h1>";
+            echo "<h2>".$show['name']."</h2>";
             echo "<p >".$show['notes']."</p>";
-            echo "<a class='large_link' href=\"room_details.php?room=".$_GET['id']."\"><i class=\"fa fa-pencil\"></i> Edit Room Details</a> <br/><br/>";
+            echo "<a href=\"room_details.php?room=".$_GET['id']."\"><i class=\"fa fa-pencil\"></i> Edit Room Details</a> <br/><br/>";
             
                 $item_query  = "SELECT * FROM items WHERE room_id={$_GET['id']} AND in_trash=0"; 
                 $itemresult = mysqli_query($connection, $item_query);

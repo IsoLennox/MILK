@@ -107,7 +107,7 @@ h1 {
 	font-weight: 700;
 	color:#004800;
 /*	text-align: center;*/
-	margin-bottom: 50px;
+	margin-bottom: 20px;
 }
 
 h2 {font-size: 2em;
@@ -823,18 +823,23 @@ header {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	word-wrap:break-word;
-	transition: all .5s ease;
 	border-radius: 0 0 10px 10px;
+	transition: all .3s ease;
+	
 
 }
 .img_title a {
 	color:#eee;
 	font-weight: 400;
-	font-size: .5em;
+	font-size: 1em;
 }
 .img_full_thumb:hover .img_title {
 	/*display: block;*/
 	opacity: 100;
+}
+
+.red_box {
+	border-left:5px solid rgba(255,20,20,.9);
 }
 
 
@@ -910,11 +915,12 @@ header {
 		
 	}
 
-	.grid_container .item_img_content {
+	/*.grid_container .item_img_content {
 		float:none;
 		position: absolute;
 		bottom:10px;
-	}
+
+	}*/
 
 	.item_content {
 		width:70%;
@@ -926,6 +932,7 @@ header {
 		overflow: hidden;
 		float:right;
 		text-align: right;
+		border-radius: 10px;
 	}
 
 
