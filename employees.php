@@ -227,9 +227,9 @@ include("inc/header.php"); ?>
                     }
                     echo "</div>";
                     if(empty($show['avatar'])){
-                        echo "<div class='item_img_content'><img class='thumb_avatar' src=\"http://lorempixel.com/50/50/abstract\" onerror=\"this.src='img/Tulips.jpg'\"></div>";
+                        echo "<div class='item_img_content'><img class='thumb_container' src=\"http://lorempixel.com/50/50/abstract\" onerror=\"this.src='img/Tulips.jpg'\"></div>";
                     }else{
-                    echo "<div class='item_img_content'><img class='thumb_avatar' src=\"".$show['avatar']."\" onerror=\"this.src='img/Tulips.jpg'\"></div>";
+                    echo "<div class='item_img_content'><img class='thumb_container' src=\"".$show['avatar']."\" onerror=\"this.src='http://lorempixel.com/50/50/abstract'\"></div>";
                     }
                     echo "<div class=\"clearfix\"></div> </div>";
                 } 

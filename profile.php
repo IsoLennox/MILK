@@ -57,19 +57,20 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         }
 ?>
 
-    <h2 class='left'> <?php echo $username; ?>'s Profile </h2> <span class="right"><?php if($user_id!==$_SESSION['user_id']){ ?><a href="messages.php?new&name=<?php echo $username; ?>&route=<?php echo $profile_array['id']; ?>"> <i class="fa fa-envelope"></i> Send Message</a> <?php }else{
-            echo "  <a  href=\"edit_profile.php\"><i class=\"fa fa-pencil\"></i> Edit Profile</a>  ";
-        } ?></span> 
-    <h3><?php echo $role['name']; ?></h3>
-    <div class="clearfix"></div>
+    <h2 > <?php echo $username; ?>'s Profile - <?php echo $role['name']; ?></h2> 
+        
+    <!-- <div class="clearfix"></div> -->
     <div class="profile">
-        <section class="avatar"> <img src="<?php echo $avatar; ?>" alt="profile image">
+        <section class="avatar"> <img src="<?php echo $avatar; ?>" onerror="this.src='http://lorempixel.com/400/400/abstract'" alt="profile image">
          </section>
-          
-        
-        <section class="profile_content"> <?php echo $content; ?> 
-        
-<!--        ACCOUNT DETAILS  -->
+        <section class="profile_content">
+         <?php if($user_id!==$_SESSION['user_id']){ ?>
+            <p><a href="messages.php?new&name=<?php echo $username; ?>&route=<?php echo $profile_array['id']; ?>"> <i class="fa fa-envelope"></i> Send Message</a></p> 
+        <?php }else{
+            echo "  <p><a href=\"edit_profile.php\"><i class=\"fa fa-pencil\"></i> Edit Profile</a></p>  ";
+        } ?>  
+         <?php echo $content; ?>         
+        <!-- ACCOUNT DETAILS  -->
        <?php
         echo "<p><strong>Name</strong>: ".$username."</p>";
         echo "<p><strong>Phone</strong>: ".$profile_array['phone']."</p>";
