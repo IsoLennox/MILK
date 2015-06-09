@@ -86,7 +86,7 @@ if(isset($_GET['remove_img'])){
                     //GET PERMISSIONS 
                     if($_SESSION['is_employee']==1){  
                         //show status of claim
-                        echo "<h3>Claim Status: ".$status."</h3>";
+                        // echo "<h3>Claim Status: ".$status."</h3>";
                         //SEE IF HAS PERMISSIONS TO UPDATE CLAIMS
                      foreach($_SESSION['permissions'] as $key => $val){ 
                         if($val==4){  
@@ -124,7 +124,18 @@ if(isset($_GET['remove_img'])){
 	        	echo "<hr>";
 	        	
 	        } 
+
+            if($show['status_id']==0){
+                $status="Processing"; 
+            }elseif($show['status_id']==2){
+                $status="Approved"; 
+            }elseif($show['status_id']==3){
+                $status="Denied"; 
+            }
             echo "<div class=\"item_display\">";
+            echo "<h3>Status: ".$status."</h3>"; 
+
+           
             echo "<p><strong>Claim Type:</strong> ".$claim_type."<br/>";
                   
             $user=find_user_by_id($show['user_id']);

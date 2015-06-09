@@ -79,7 +79,7 @@ if(isset($_POST['submit'])){
             echo "<h1>Updating: ".$show['title']."</h1>";
             
             if($show['status_id']==0){
-                $status="Pending"; 
+                $status="Processing"; 
             }elseif($show['status_id']==2){
                 $status="Approved"; 
             }elseif($show['status_id']==3){

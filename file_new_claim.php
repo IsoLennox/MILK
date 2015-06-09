@@ -98,7 +98,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                   
                     //item SELECT BOX
                     echo "<p>Add Items: </p><br/>"; 
-                    ?> <ul class="form_id">
+                    ?> <ul class="form_id2">
                         <li class='block'>
                          
                             <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all</label>
@@ -159,7 +159,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
 var forminputs;
 
 function prepare() {
-      formblock= document.getElementById('form_id');
+      formblock= document.getElementById('form_id2');
       forminputs = formblock.getElementsByTagName('input');
       selectinput = document.getElementById('select_input');
     }
