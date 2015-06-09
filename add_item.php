@@ -97,9 +97,9 @@ if (isset($_POST['submit'])) {
 <!-- NEW ITEM FORM   -->
 
 
-<form class='add_item' method="POST" >
+<form class='add_item' id='add_item' method="POST" >
               
-    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="<?php echo $name; ?>" > 
+    <label for="name"> Item Name: </label><input type="text"  style="border: 2px solid #90C32E;" id='name' name="name" placeholder=" i.e. Samsung Television" value="<?php echo $name; ?>"> 
      <!--    //GET ITEM CATEGORIES -->
    <?php
     $category_query  = "SELECT * FROM item_category ORDER BY name "; 
@@ -108,7 +108,7 @@ if (isset($_POST['submit'])) {
         //CATEGORY SELECT BOX
         //OPTION VALUE -- NEEDS TO BE ADDED AS CONDITIONAL fOR EMPTY//////////////////////////////////////////
         echo "<label for=\"category\">Item Category: </label><select style=\"border: 2px solid #90C32E;\" id='category' name=\"category\">";
-         echo "<option value=\"--\" >--Select Item Category--</option>";
+         echo "<option value=\"--\">--Select Item Category--</option>";
         foreach($categoryresult as $category){
             //OPTIONS
             if($cat==$category['id']){ $selected="selected"; }else{ $selected=""; }
@@ -159,27 +159,42 @@ if (isset($_POST['submit'])) {
         
         
         //CATEGORY
-           $(document).ready(function () {
-    $("#category").blur(function () {
-      var input = $(this).val();
-      if (input == '--') {
-        $("#category").css({"border": "5px solid #E43633"});
-      }else{
-        $("#category").css({"border": "1px solid grey"});
-      }
-    });
+    $(document).ready(function () {
+
+    	$('.add_item').validate({
+    		rules: {
+    			name: {
+    				required:true;
+    			},
+    			category: {
+    				required:true;
+    			}
+    		}
+
+    	}); //end validate plugin
+
+
+    // $("#category").blur(function () {
+    //   var input = $(this).val();
+    //   if (input == '--') {
+    //     $("#category").css({"border": "2px solid #E43633"});
+    //   }else{
+    //     $("#category").css({"border": "1px solid grey"});
+    //   }
+    // });
   
           
-     //TITLE
-    $("#name").blur(function () {
-      var input = $(this).val();
-      if (input == '') {
-        $("#name").css({"border": "5px solid #E43633"});
-      }else{
-        $("#name").css({"border": "1px solid grey"});
-      }
-    });
-  });
+    //  //TITLE
+    // $("#name").blur(function () {
+    //   var input = $(this).val();
+    //   if (input == '') {
+    //     $("#name").css({"border": "2px solid #E43633"});
+    //   }else{
+    //     $("#name").css({"border": "1px solid grey"});
+    //   }
+    // });
+
+  	}); //end doc ready
  
      
      </script>      

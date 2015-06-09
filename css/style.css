@@ -343,6 +343,7 @@ input[type="submit"] ~ a {
     left: -50px;
 }
 
+#page{margin-left: 350px; margin-top: 120px;}
 
 /*MILK LOGO AT BOTTOM OF EVERYPAGE - NEEDS SOME WORK*/
 .milk {
@@ -1249,7 +1250,9 @@ header {
 	bottom: 0;
 }
 
-
+.sticky textarea {
+	max-width: 900px;
+}
 
 
 .fa-2x {
@@ -1278,7 +1281,7 @@ header {
 }
 
 
-#page{margin-left: 300px; margin-top: 120px;}
+
 
 footer{
     clear: both;
@@ -1404,10 +1407,11 @@ display: block;
  
 
 .walkthrough{
-    border: 1px solid red;
-    padding: 10px;
+    border: 1px solid #FF4503;
+    border-radius: 10px;
+    padding: 20px;
     width: 500px;
-    margin: 0 auto;
+    margin: 0 auto 10px;
     font-size: 20px;
     overflow: hidden;
 }

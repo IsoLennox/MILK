@@ -128,7 +128,7 @@ if(isset($_POST['submit'])){
                         $thumbnail=$total_img_array['thumb_path'];
                         $title=$total_img_array['title'];
                      
-                        echo "<li><div class=\"thumb_container\"> <a href=\"item_details.php?id=".$itemname['id']."\"><img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/40/40/abstract'\"  alt=\"{$title}\"></div><br/> <strong> ".$itemname['name']."</strong></a> <br> $".$value."</li>";
+                        echo "<li><div class=\"small_thumb_container\"> <a href=\"item_details.php?id=".$itemname['id']."\"><img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/50/50/abstract'\"  alt=\"{$title}\"></div><br/> <strong> ".$itemname['name']."</strong></a> <br> $".$value."</li>";
                         $total_value=$total_value+$value;
                     } 
             }
@@ -194,7 +194,7 @@ if(isset($_POST['submit'])){
                 <br/>
                 <textarea name="notes" id="notes" cols="30" rows="10" placeholder="Append notes..."></textarea><br>
                 <input type="submit" id="submit" name="submit" value="Update Claim">
-                <a href="#" onlick="return confirm('Cancel this operation? Your progress will not be saved!'); "><i class="fa fa-times"></i> Cancel</a>
+                <a href=<?php echo "claim_details.php?id=".$show['id']; ?> onlick="return confirm('Cancel this operation? Your progress will not be saved!'); "><i class="fa fa-times"></i> Cancel</a>
 
             </form>
             <?php 

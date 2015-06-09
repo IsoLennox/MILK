@@ -31,7 +31,7 @@
             if(empty($name['avatar'])){
             echo "<div class='$display'><i class=\"fa fa-user fa-3x\"></i></div>"; 
             }else{
-            echo "<div class='$display'><img src='" . $name['avatar'] . "' class='thumb_avatar' onerror=\"this.src='http://lorempixel.com/50/50/'\"></div>";
+            echo "<div class='$display'><img src='" . $name['avatar'] . "' class='small_thumb_container' onerror=\"this.src='http://lorempixel.com/50/50/'\"></div>";
             }
             echo "<div class=\"$display\"><p>From: <a href=\"profile.php?user=".$show['sent_from']."\">".$name['first_name']."</a>";
             echo "<br>Sent: ".$show['datetime']."</p>";
