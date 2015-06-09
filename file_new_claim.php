@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
     $title= $_POST['title']; 
     $notes= $_POST['notes']; 
     $claim_type= $_POST['claim_type'];  
-    $date = date('d/m/Y H:i');
+    $date = date('m/d/Y H:i');
     
     
         //INSERT ALL DATA EXCEPT PERMISSIONS
