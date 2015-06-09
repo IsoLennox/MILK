@@ -93,7 +93,7 @@ include("inc/header.php");  ?>
 </div> <!-- END ROOMS -->
       
 <!--      ADD A ROOM  -->
-<form class="right half_div" method="POST">
+<form class="fixed_add_room" method="POST">
     <h2>Add A Room</h2>
     <label for="room_name">Room Name: </label><input id='room_name' type="text" name="name" placeholder="e.x. Bedroom.."><br/>
     <label for="room_notes">Room Notes:</label><textarea id='room_notes' cols="20" rows="8"  name="notes" placeholder="e.x. This room is in the guest house..."></textarea><br/> 
