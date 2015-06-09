@@ -159,13 +159,15 @@ if(isset($_GET['remove'])){
                     $img_delete=" <p class='disabled text_right'> <i class=\"fa fa-trash-o\"></i></p>";
                     $img_edit="<p class='disabled text_left'><i class=\"fa fa-pencil\"></i></p>";
                     
-                    echo "<h1>".$show['name']."</h1>"; 
-                    echo $edit;
-                    echo $in_trash;
+                    echo "<h1>".$show['name']."</h1>";
+                    if($show['user_id']===$_SESSION['user_id']){ 
+                        echo $edit;
+                        echo $in_trash;
+                    }
                     echo "<hr>";
                     echo "<div class=\"item_display\">";              
                     echo "<h3>Item Details</h3>";
-                    echo "<p><strong>This item is involved in <a href=\"claim_details.php?id=".$claim_array['claim_id']."\">CLAIM #".$claim_array['claim_id']."</a></strong></p>";
+                    echo "<p><a href=\"claim_details.php?id=".$claim_array['claim_id']."\" ><strong  style=\"color:#FF4503;\">This Item Is Involved In Claim <span class='dark_link'>#".$claim_array['claim_id']."</span></strong></a></p>";
                     
 
                 }else{
@@ -194,16 +196,16 @@ if(isset($_GET['remove'])){
 
                     $room_name=get_room_name($show['room_id']);
                     $cat_name=get_category_name($show['category']);
-                    echo "<p>Category: ".$cat_name."</p>";
+                    echo "<p><strong>Category:</strong> ".$cat_name."</p>";
                   if(empty($room_name)){
                         $room_name="Room not selected";
                     }
-                    echo "<p>Room: ".$room_name . "</p>";
+                    echo "<p><strong>Room:</strong> ".$room_name . "</p>";
                     //GET ALL OTHER DETAILS
-                    echo "<p>Purchase Date: ".$show['purchase_date']."</p>"; 
-                    echo "<p>Purchase Price: $".$show['purchase_price']."</p>"; 
-                    echo "<p>Declared Value: $".$show['declared_value']."</p>"; 
-                    echo "<p>Description/Notes:<br/><div class=\"notes_container\">".$show['notes']."</div></p>";
+                    echo "<p><strong>Purchase Date:</strong> ".$show['purchase_date']."</p>"; 
+                    echo "<p><strong>Purchase Price:</strong> $".$show['purchase_price']."</p>"; 
+                    echo "<p><strong>Declared Value:</strong> $".$show['declared_value']."</p>"; 
+                    echo "<p><strong>Description/Notes:</strong><br/><div class=\"notes_container\">".$show['notes']."</div></p>";
 
                 
 
@@ -219,7 +221,7 @@ if(isset($_GET['remove'])){
                             echo $upload_form;
                         }
                     }else{
-                        if($show['in_trash']==0){
+                        if(($show['in_trash']==0) && ($show['user_id']===$_SESSION['user_id'])){
                             echo $upload;
                         }
                     }
@@ -240,7 +242,7 @@ if(isset($_GET['remove'])){
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
                         echo "<div>";
                         if($image['is_img']==1){
-                            $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumbnail\" onerror=\"this.src='img/Tulips.jpg'\"  src=\"".$image['thumb_path']."\"></div></a>";
+                            $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumb_avatar\" onerror=\"this.src='http://lorempixel.com/200/200/abstract'\"  src=\"".$image['thumb_path']."\"></div></a>";
 
                         }else{ 
                             $file= "<p><i class=\"fa fa-5x fa-file-pdf-o\"></i></p>";
@@ -264,8 +266,10 @@ if(isset($_GET['remove'])){
                             <?php
                         
                         }else{
-                            echo $img_edit;
-                            echo $img_delete;
+                            if ($show['user_id']===$_SESSION['user_id']){
+                                echo $img_edit;
+                                echo $img_delete;
+                            }
                         }
                         echo "</div>"; //end each container
                     }

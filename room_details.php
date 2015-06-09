@@ -4,27 +4,44 @@ include("inc/header.php"); ?>
 
 if(isset($_GET['id'])){ ?>
 <!--VIEW ROOM-->
-<a href="rooms.php">&laquo; All Rooms</a>
+<p><a href="rooms.php">&laquo; All Rooms</a></p>
  
  <?php
+ 				
     //Get room selected: 
     $query  = "SELECT * FROM rooms WHERE id={$_GET['id']}"; 
     $result = mysqli_query($connection, $query);
     if($result){
         foreach($result as $show){
-            echo "<h2>".$show['name']."</h2>";
-            echo "<p >".$show['notes']."</p>";
-            echo "<a href=\"room_details.php?room=".$_GET['id']."\"><i class=\"fa fa-pencil\"></i> Edit Room Details</a> <br/><br/>";
+            echo "<a class='right green_submit' href=\"room_details.php?room=".$_GET['id']."\"><i class=\"fa fa-pencil\"></i> Edit Room Details</a> <br/><br/>";
+            echo "<h2 class='left'>".$show['name']."</h2>";
+            echo "<div class=\"clearfix\"></div>";
+            echo "<p >".$show['notes']."</p><br>";
             
                 $item_query  = "SELECT * FROM items WHERE room_id={$_GET['id']} AND in_trash=0"; 
                 $itemresult = mysqli_query($connection, $item_query);
+
+               
                 if($itemresult){
-                    echo "<strong>Items in this room: </strong>";
-                    echo "<ul>";
+                    echo "<h3>Items in this room: <h3>";
+                    // echo "<ul>";
                     foreach($itemresult as $item){
-                        echo "<li><a href=\"item_details.php?id=".$item['id']."\">".$item['name']."</li>"; 
+
+                    	$item_img = "SELECT * FROM item_img WHERE item_id={$item['id']} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
+		                $item_img_result = mysqli_query($connection, $item_img);
+		                $total_img_array=mysqli_fetch_assoc($item_img_result);
+		                $thumbnail=$total_img_array['file_path'];
+		                $title=$total_img_array['title'];
+                        $img_item_rows=mysqli_num_rows($item_img_result);
+
+
+		                echo " <a href=\"item_details.php?id=".$item['id']."\"><div class='img_full_thumb'><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/300/300/abstract'\" alt=\"{$title}\">";
+		                
+
+
+                        echo "<div class='img_title'>".$item['name']."</div></div></a>"; 
                     }
-                    echo "</ul>";
+                    // echo "</ul>";
                 }//end get items in room
 
             }

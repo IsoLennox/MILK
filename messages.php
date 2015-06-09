@@ -158,9 +158,9 @@ include("inc/header.php"); ?>
                         $last_message = substr($last_message, 0, $position)."...."; 
                     echo "<p>" . $last_message . "<br>".$last_time."</p></div>";
                     if(empty($with_img)){
-                        echo "<div class='thumb_avatar item_img_content'><img src=\"http://lorempixel.com/50/50/abstract\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$with_name}'s avatar\"></div>"; 
+                        echo "<div class='thumb_avatar item_img_content'><i class=\"fa fa-user fa-5x\"></i></div>"; 
                     }else{
-                        echo "<div class='thumb_avatar item_img_content'><img src=\"{$with_img}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$with_name}'s avatar\"></div>"; 
+                        echo "<div class='thumb_avatar item_img_content'><img src=\"{$with_img}\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"  alt=\"{$with_name}'s avatar\"></div>"; 
                     }
                     
                 }

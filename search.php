@@ -121,28 +121,35 @@ if(isset($_POST['search'])){
                         $name  =$contact_match['first_name']." ".$contact_match['last_name'];
                         $email  =$contact_match['email']; 
                         $user_id  =$contact_match['id'];
-                 //STYLE OUTPUT       
-                        echo "<a href=\"profile.php?user=$user_id\"><h3>".$name."</h3></a> ";
+                 //STYLE OUTPUT
+                        echo "<div class='message_content'> ";        
+                        echo "<div class='item_content employee_content'><a href=\"profile.php?user=$user_id\"><h3>".$name."</h3></a> ";
                         //GET PERMISSIONS FOR THIS PAGE
                          foreach($_SESSION['permissions'] as $key => $val){  
                              //EDIT EMPLOYEES
                             if($val==2){ 
-                                echo "<a href=\"employees.php?edit_role=".$user_id."\"><i class=\"fa fa-user-secret\"></i> Edit Role </a>";
-                                echo "<a href=\"employees.php?edit_pass=".$user_id."\"><i class=\"fa fa-unlock-alt\"></i> Change Password </a>"; 
+                                echo "<a class='dark_link' href=\"employees.php?edit_role=".$user_id."\"><i class=\"fa fa-user-secret\"></i> Edit Role </a>";
+                                echo "<a class='dark_link' href=\"employees.php?edit_pass=".$user_id."\"><i class=\"fa fa-unlock-alt\"></i> Change Password </a>"; 
 
                                 //See if user account is active
                                 if($contact_match['account_disabled']=="0"){
-                                    echo "<a class=\"right \" href=\"employees.php?disable=1&user=".$user_id."\"><i class=\"fa fa-times red\"></i>Disable Account</a>";
+                                    echo "<a class=\"dark_link \" href=\"employees.php?disable=1&user=".$user_id."\"><i class=\"fa fa-times red\"></i> Disable Account</a>";
                                 }else{
                                     //endable account
-                                     echo "<a class=\"right \" href=\"employees.php?disable=0&user=".$user_id."\"><i class=\"fa fa-check green\"></i>Reactivate Account</a>";
+                                     echo "<a class=\"dark_link \" href=\"employees.php?disable=0&user=".$user_id."\"><i class=\"fa fa-check green\"></i> Reactivate Account</a>";
                                         }  
                                     }//end check permission array 
                                 }//end see if has permissions to edit employees 
-                       
+                                echo "</div>";
+                           if(empty($show['avatar'])){
+                              echo "<div class='item_img_content'><i class=\"fa fa-user fa-3x\"></i></div>"; 
+
+                          }else{
+                            echo "<div class='item_img_content'><img class='small_thumb_container' src=\"".$show['avatar']."\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"></div>";
+                          }
+
                     }//end foreach user found with name match
-                
-                echo "<hr/>";
+                echo "<div class=\"clearfix\"></div> </div>";
             } 
           
        }//end user search
@@ -163,6 +170,7 @@ if(isset($_POST['search'])){
                $item_search="SELECT * FROM items WHERE ( name LIKE '%" . $query_string .  "%' OR notes LIKE '%" . $query_string .  "%') AND user_id={$_SESSION['user_id']} ";
            }else{
                $item_search="SELECT * FROM items WHERE name LIKE '%" . $query_string .  "%' OR notes LIKE '%" . $query_string .  "%' ";
+               $yours="";
            }
             
             $item_result=mysqli_query($connection, $item_search);
@@ -194,7 +202,7 @@ if(isset($_POST['search'])){
                             echo "</div>";
                     }//end foreach item found with name match
                 
-                echo "<hr/>";
+                // echo "<hr/>";
             } 
            } //end item search
             

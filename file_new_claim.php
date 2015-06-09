@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
     $title= $_POST['title']; 
     $notes= $_POST['notes']; 
     $claim_type= $_POST['claim_type'];  
-    $date = date('d/m/Y H:i');
+    $date = date('m/d/Y H:i');
     
     
         //INSERT ALL DATA EXCEPT PERMISSIONS
@@ -97,8 +97,8 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                           
                   
                     //item SELECT BOX
-                    echo "<p>Items: </p><br/>"; 
-                    ?> <ul id="form_id">
+                    echo "<p>Add Items: </p><br/>"; 
+                    ?> <ul id="form_id2">
                         <li class='block'>
                          
                             <input id="select_input" type="checkbox" onClick="select_all('items');" class="custom"> <label for="select_input">Select all</label>
@@ -122,11 +122,11 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                             echo "<li>";
 
                               if($img_item_rows==0){
-                                echo "<i class=\"fa fa-cube fa-4x\"></i><br>";
+                                echo "<div class='thumb_container'><i class=\"fa fa-cube fa-4x text_right\"></i></div><br>";
                               }else{
 
                                 foreach($item_img_result as $img){
-                                  echo "<img class='thumb_avatar' src=\"" . $img['thumb_path'] . "\" alt=\"\"></br>";
+                                  echo "<div class='thumb_container'><img class='thumb_avatar' src=\"" . $img['thumb_path'] . " \" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\" alt=\"\"></div></br>";
                                 }
                               }
 
@@ -136,7 +136,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                         
                         
                     }
-                    echo "</ul><div class=\"clearfix\"></div>";
+                    echo "<div class=\"clearfix\"></div></ul>";
                   
                     if($next==1){ ?>
                     <input type="submit" name="submit" value="Next">
@@ -159,7 +159,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
 var forminputs;
 
 function prepare() {
-      formblock= document.getElementById('form_id');
+      formblock= document.getElementById('form_id2');
       forminputs = formblock.getElementsByTagName('input');
       selectinput = document.getElementById('select_input');
     }

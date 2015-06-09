@@ -4,16 +4,15 @@
                     //*****************
  
    
-    $claims=0;
-    $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
-    $claim_result = mysqli_query($connection, $claim_count);
-    $num_claims=0;
-    if($claim_result){
-        foreach($claim_result as $claim){
-        $num_claims++;
-    }
-    }
-//    echo "<li>You have made ".$num_claims." claims</li>";
+        $claims=0;
+        $claim_count  = "SELECT * FROM claims WHERE user_id={$_SESSION['user_id']}";  
+        $claim_result = mysqli_query($connection, $claim_count);
+        $num_claims=0;
+        if($claim_result){
+            foreach($claim_result as $claim){
+            $num_claims++;
+            }
+    } 
  
         //GET COUNTS
             $all_query  = "SELECT COUNT(*) as total FROM claims WHERE user_id={$_SESSION['user_id']}";   
@@ -76,12 +75,17 @@
             }else{
                 //IF NO CLAIMS SUBMITTED, SHOW...
                 echo "<h2>You have made no claims!</h2>";
+                echo "</div>";
             }
+
         }
     ?> 
 
-        </div>
-    </div><?php
+        
+    </div>
+    </div>
+                   
+                   <?php
                     
                     
                     //*****************
@@ -231,11 +235,5 @@ if($num_rooms==0){
         //    echo $room_array; 
         }
                    
-            echo "</div>";
-?>
-            
-            
-<!--            MOST RECENTLY ADDED ITEMS -->
-
-  
-<!--    </div>-->
+         
+?> 

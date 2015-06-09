@@ -77,7 +77,7 @@ include("inc/header.php"); ?>
         <a href="inventory.php?trash"><i class="fa fa-trash-o"></i> View Trash</a>
     </div>
     <div class="half_link">
-        <a href="inventory.php"><i class="fa fa-bars"></i></a>
+        <a href="inventory.php?bars"><i class="fa fa-bars"></i></a>
         <a href="inventory.php?grid"><i class="fa fa-th"></i></a>
     </div>
     <div class="clearfix"></div>
@@ -131,7 +131,7 @@ include("inc/header.php"); ?>
 
     }elseif(isset($_GET['trash'])){
         echo "<a href=\"inventory.php\">&laquo; Back to Inventory</a>";
-        echo "<h1 style=\"color:red;\">Trash Can</h1>";
+        echo "<h1 style=\"color:#FF4503;\">Trash Can</h1>";
         //VIEW TRASH CAN
         $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=1 ORDER BY name"; 
     }else{
@@ -145,28 +145,56 @@ include("inc/header.php"); ?>
     if($result){
 
         if(isset($_GET['grid'])){
+            $_SESSION['grid']=1;
+        } elseif(isset($_GET['bars'])) {
+            $_SESSION['grid']=0;
+        }
+
+        if($_SESSION['grid']==1){
             $class='grid_container';
         } else {
             $class='notes_container';
         }
         
         foreach($result as $show){
-            echo "<div class=\"{$class}\"><div class='item_content'>";
-                         //Check to see if involved in claim
-                        $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$show['id']}"; 
-                        $item_claim_result = mysqli_query($connection, $item_claim_query);
-                        $claim_item_rows=mysqli_num_rows($item_claim_result);
-                        if($claim_item_rows >= 1){ 
-                            $claim_class="<span style=\"color:red;\"> Involved In Claim</span><br>"; 
-                        }else{
-                            $claim_class="";
-                        }
             
-            $id=$show['id'];
+             //Check to see if involved in claim
+            $item_claim_query  = "SELECT * FROM claim_items WHERE item_id={$show['id']}"; 
+            $item_claim_result = mysqli_query($connection, $item_claim_query);
+            $claim_item_rows=mysqli_num_rows($item_claim_result);
+            if($claim_item_rows >= 1){
+            	$claim_box = "red_box"; 
+                $claim_class="<span style=\"color:#FF4503; font-weight:400;\"> Involved In Claim</span><br>"; 
+            }else{
+            	$claim_box='';
+                $claim_class="";
+            }
+
+            //item name info
+       		$id=$show['id'];
             $name=$show['name'];
-            echo "<p><a href=\"item_details.php?id=".$id."\">".$name."</a><br/>";
-                echo $claim_class;
-                if($class!=='grid_container'){
+
+            //get item image info
+        	$item_img = "SELECT * FROM item_img WHERE item_id={$id} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
+            $item_img_result = mysqli_query($connection, $item_img);
+            $total_img_array=mysqli_fetch_assoc($item_img_result);
+            $thumbnail=$total_img_array['thumb_path'];
+            $title=$total_img_array['title'];
+
+           	//if it is grid container, HTML structure needs to change 
+            if($class=='grid_container'){
+            	$thumbnail=$total_img_array['file_path'];
+            	echo "<div class=\"img_full_thumb {$claim_box}\">";
+            	echo "<a href=\"item_details.php?id=".$id."\"><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/300/300/abstract'\"  alt=\"{$title}\">";
+                echo "<div class='img_title'><p>".$name."<br> {$claim_class}</p></div></a></div>";
+
+            //if not grid view display a whole bunch of other stuff
+            } else {
+	            echo "<div class=\"{$class}\"><div class='item_content'>";	            
+	            echo "<p><a class='dark_link' href=\"item_details.php?id=".$id."\">".$name."</a><br/>";
+	            echo $claim_class;
+
+                // if($class!=='grid_container'){
                     $room_name=get_room_name($show['room_id']);
                     $cat_name=get_category_name($show['category']);
                     echo "Category: ".$cat_name."<br/>";
@@ -183,16 +211,20 @@ include("inc/header.php"); ?>
                 $total_array=mysqli_fetch_assoc($item_count_result);
                 $total=$total_array['total'];
                 echo "<br/>".$total." Image/File Uploads</p>";
-                }//end hide details if grid view
-            echo "</div>";
-            
-                $item_img = "SELECT * FROM item_img WHERE item_id={$id} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
-                $item_img_result = mysqli_query($connection, $item_img);
-                $total_img_array=mysqli_fetch_assoc($item_img_result);
-                $thumbnail=$total_img_array['thumb_path'];
-                $title=$total_img_array['title'];
-                echo "<div class='item_img_content'><img src=\"{$thumbnail}\" onerror=\"this.src='img/Tulips.jpg'\"  alt=\"{$title}\"></div>";
+           
+            	echo "</div>";
+             
+
+
+                // $item_img = "SELECT * FROM item_img WHERE item_id={$id} AND is_img=1 ORDER BY id DESC LIMIT 1 ";
+                // $item_img_result = mysqli_query($connection, $item_img);
+                // $total_img_array=mysqli_fetch_assoc($item_img_result);
+                // $thumbnail=$total_img_array['thumb_path'];
+                // $title=$total_img_array['title'];
+                echo "<div class='item_img_content'><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"  alt=\"{$title}\"></div>";
                 echo "<div class=\"clearfix\"></div></div>";
+
+                }//end hide details if grid view
             }
             echo "<div class=\"clearfix\"></div>";
         }
