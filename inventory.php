@@ -184,8 +184,11 @@ include("inc/header.php"); ?>
            	//if it is grid container, HTML structure needs to change 
             if($class=='grid_container'){
             	$thumbnail=$total_img_array['file_path'];
+                if(empty($thumbnail)){
+                    $thumbnail="images/no_img.PNG";
+                }
             	echo "<div class=\"img_full_thumb {$claim_box}\">";
-            	echo "<a href=\"item_details.php?id=".$id."\"><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/300/300/abstract'\"  alt=\"{$title}\">";
+            	echo "<a href=\"item_details.php?id=".$id."\"><img src=\"{$thumbnail}\" onerror=\"this.src='images/no_img.PNG'\"  alt=\"{$title}\">";
                 echo "<div class='img_title'><p>".$name."<br> {$claim_class}</p></div></a></div>";
 
             //if not grid view display a whole bunch of other stuff
@@ -221,7 +224,7 @@ include("inc/header.php"); ?>
                 // $total_img_array=mysqli_fetch_assoc($item_img_result);
                 // $thumbnail=$total_img_array['thumb_path'];
                 // $title=$total_img_array['title'];
-                echo "<div class='item_img_content'><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"  alt=\"{$title}\"></div>";
+                echo "<div class='item_img_content'><img src=\"{$thumbnail}\" onerror=\"this.src='images/no_img.PNG'\"  alt=\"{$title}\"></div>";
                 echo "<div class=\"clearfix\"></div></div>";
 
                 }//end hide details if grid view

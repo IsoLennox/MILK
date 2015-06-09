@@ -17,11 +17,11 @@
         $state = $profile_array["state"];
         $zip = $profile_array["zip"];
         if(empty($avatar)){
-            $avatar="http://lorempixel.com/250/250/abstract";
+            $avatar="images/no_img.PNG";
         }
     }else{
         $old_content="Error retrieving Profile";
-        $avatar="http://lorempixel.com/250/250/abstract";
+        $avatar="images/no_img.PNG";
     }
  
 
@@ -110,7 +110,7 @@ if (isset($_POST['submit'])) {
     <img src="<?php echo $avatar; ?>" class="resize-image" alt="Current Profile Image" /><br>
     <?php 
     if(!isset($_GET['walkthrough'])){
-        if($avatar!="http://lorempixel.com/250/250/abstract"){ ?>
+        if($avatar!="images/no_img.PNG"){ ?>
           <a class='large_link' href="delete.php?avatar=<?php echo $_SESSION['user_id']; ?>"> <i class="fa fa-trash-o"></i> Delete Profile Image</a>
  <?php } 
     } ?>

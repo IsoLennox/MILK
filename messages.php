@@ -160,7 +160,7 @@ include("inc/header.php"); ?>
                     if(empty($with_img)){
                         echo "<div class='thumb_avatar item_img_content'><i class=\"fa fa-user fa-5x\"></i></div>"; 
                     }else{
-                        echo "<div class='thumb_avatar item_img_content'><img src=\"{$with_img}\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"  alt=\"{$with_name}'s avatar\"></div>"; 
+                        echo "<div class='thumb_avatar item_img_content'><img src=\"{$with_img}\" onerror=\"this.src='images/no_img.PNG'\"  alt=\"{$with_name}'s avatar\"></div>"; 
                     }
                     
                 }

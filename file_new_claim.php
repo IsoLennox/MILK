@@ -126,7 +126,7 @@ $insert  = "INSERT INTO claims ( user_id, title, notes, claim_type, status_id, d
                               }else{
 
                                 foreach($item_img_result as $img){
-                                  echo "<div class='thumb_container'><img class='thumb_avatar' src=\"" . $img['thumb_path'] . " \" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\" alt=\"\"></div></br>";
+                                  echo "<div class='thumb_container'><img class='thumb_avatar' src=\"" . $img['thumb_path'] . " \" onerror=\"this.src='images/no_img.PNG'\" alt=\"\"></div></br>";
                                 }
                               }
 

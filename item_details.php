@@ -242,7 +242,7 @@ if(isset($_GET['remove'])){
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
                         echo "<div>";
                         if($image['is_img']==1){
-                            $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumb_avatar\" onerror=\"this.src='http://lorempixel.com/200/200/abstract'\"  src=\"".$image['thumb_path']."\"></div></a>";
+                            $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumb_avatar\" onerror=\"this.src='images/no_img.PNG'\"  src=\"".$image['thumb_path']."\"></div></a>";
 
                         }else{ 
                             $file= "<p><i class=\"fa fa-5x fa-file-pdf-o\"></i></p>";
