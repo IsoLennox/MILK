@@ -1570,6 +1570,14 @@ display: block;
 .edited_history{ border-left: 3px solid darkkhaki; padding-left: 20px; }
 .filed_claim_history{ border-left: 3px solid grey; padding-left: 20px; }
 
+
+.fixed_add_room{
+position: fixed;
+right: 0;
+width: 40%;
+padding: 20px;
+}
+
 /******************************
         /MEDIA QUERIES
 *******************************/
