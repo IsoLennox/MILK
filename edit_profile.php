@@ -1,4 +1,5 @@
-<?php include("inc/header.php");  
+<?php include("inc/header.php");
+    ?> <script src="js/profile_pic.php"></script> <?php
 
     $query  = "SELECT * FROM users WHERE id={$_SESSION['user_id']}";  
     $result = mysqli_query($connection, $query);
@@ -99,21 +100,29 @@ if (isset($_POST['submit'])) {
  
  
     <h2>Edit Profile Image</h2>
+
     <section class="avatar">
-    <img src="<?php echo $avatar; ?>" alt="Current Profile Image" /><br>
+    <div class="overlay">
+        <div class="overlay-inner">
+        </div>
+    </div>
+    <button class="btn-crop js-crop">Crop</button>
+    <img src="<?php echo $avatar; ?>" class="resize-image" alt="Current Profile Image" /><br>
     <?php 
     if(!isset($_GET['walkthrough'])){
         if($avatar!="images/no_img.PNG"){ ?>
           <a class='large_link' href="delete.php?avatar=<?php echo $_SESSION['user_id']; ?>"> <i class="fa fa-trash-o"></i> Delete Profile Image</a>
  <?php } 
     } ?>
+
     </section>
    <section class="right"> 
-<form action="upload_profile_img.php" method="post" enctype="multipart/form-data">
-    <h3>Select New Image:</h3>
+<form action="upload_profile_img.php" method="POST" enctype="multipart/form-data" name="image_upload" id="image_upload">
+    <!-- <h3>Select New Image:</h3> -->
     <input type="file" name="image" id="fileToUpload"> 
- 
-    <input type="submit" value="Save New Image" name="submit">
+
+    <input type="submit" value="Save New Image" name="submit" id="submit">
+
 </form>
    
   </section>
@@ -187,6 +196,9 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
 
 
     
+    <!-- <?php //} ?> -->
+    
+
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      
      
@@ -339,4 +351,5 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
 
 </section>
  
+
 <?php include("inc/footer.php"); ?> 

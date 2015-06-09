@@ -1,5 +1,6 @@
 <?php include("inc/header.php"); ?>
 <?php
+
  
 
         //GET CURRENT IMG AND DELETE IT So that img name doesnt exist if user should try to upload it again in future

@@ -61,7 +61,9 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         
     <!-- <div class="clearfix"></div> -->
     <div class="profile">
-        <section class="avatar"> <img src="<?php echo $avatar; ?>" onerror="this.src='images/no_img.PNG'" alt="profile image">
+
+        <section class="avatar"> <img class="resize-image" src="<?php echo $avatar; ?>" onerror="this.src='images/no_img.PNG'" alt="profile image">
+
          </section>
         <section class="profile_content">
          <?php if($user_id!==$_SESSION['user_id']){ ?>
