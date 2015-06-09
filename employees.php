@@ -132,11 +132,11 @@ include("inc/header.php"); ?>
                 if ($result) { 
                     $user_data=mysqli_fetch_assoc($result);
                     $ID=$user_data['id'];
-                    $username=$user_data['username'];
+                    $username=$user_data['first_name']." ".$user_data['last_name'];
                     $email=$user_data['email'];
                 }else{ echo "User not found";}
              ?> 
-            <h2>Reset <?php echo $user_data['first_name']." ".$user_data['last_name']; ?>'s Password</h2>
+            <h2>Reset <?php echo $username; ?>'s Password</h2>
             <form method="post">
             <p>Password reset for login:<?php echo $username; ?></p>
             <p><?php echo $email; ?></p>
