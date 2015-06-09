@@ -987,7 +987,9 @@ header {
 /*define the styles for the resize-container and the image.*/
 
 .resize-container {
-	position: relative;
+	position: absolute;
+	top: 0%;
+	left: 0%;
 	display: inline-block;
 	cursor: move;
 	margin: 0 auto;
@@ -1051,8 +1053,8 @@ header {
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -409px;
-    margin-top: -800px;
+    margin-left: -411px;
+    margin-top: -447px;
     z-index: 999;
     width: 250px;
     height: 250px;
@@ -1110,7 +1112,7 @@ header {
 .btn-crop {
     position: absolute;
     vertical-align: bottom;
-    left: 265px;
+    left: 270px;
     top: 330px;
     padding: 6px 10px;
     z-index: 999;

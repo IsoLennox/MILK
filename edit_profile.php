@@ -1,5 +1,5 @@
 <?php include("inc/header.php");
-    ?> <script src="js/profile_pic.js"></script> <?php
+    ?> <script src="js/profile_pic.php"></script> <?php
 
     $query  = "SELECT * FROM users WHERE id={$_SESSION['user_id']}";  
     $result = mysqli_query($connection, $query);
@@ -108,8 +108,8 @@ if (isset($_POST['submit'])) {
       <img class="resize-image" src="<?php echo $avatar; ?>" alt="Current Profile Image" />
     </section>
    <section class="right"> 
-<form action="upload_profile_img.php" method="post" enctype="multipart/form-data" id="image_upload">
-    <h3>Select New Image:</h3>
+<form action="upload_profile_img.php" method="POST" enctype="multipart/form-data" name="image_upload" id="image_upload">
+    <!-- <h3>Select New Image:</h3> -->
     <input type="file" name="image" id="fileToUpload"> 
 
     <input type="submit" value="Save New Image" name="submit" id="submit">
@@ -257,7 +257,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
 
 
     
-    <!-- <?php } ?> -->
+    <!-- <?php //} ?> -->
     
 
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

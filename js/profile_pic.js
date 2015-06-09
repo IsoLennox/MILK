@@ -1,20 +1,22 @@
-if(window.location.protocol == 'file:'){
-  alert('To test this demo properly please use a local server such as XAMPP or WAMP. See README.md for more details.');
-}
+// if(window.location.protocol == 'file:'){
+//   alert('To test this demo properly please use a local server such as XAMPP or WAMP. See README.md for more details.');
+// }
 
-var resizeableImage = function(image_target) {
+var resizeableImage = function(image_target, file) {
   // Some variable and settings
   var $container,
       orig_src = new Image(),
+      form_file = file,
       image_target = $(image_target).get(0),
       event_state = {},
-      constrain = false,
+      constrain = true,
       min_width = 60, // Change as required
       min_height = 60,
       max_width = 800, // Change as required
       max_height = 900,
       resize_canvas = document.createElement('canvas');
-      console.log('canvas created')
+      console.log('canvas created');
+      console.log(form_file);
 
   init = function(){
     console.log('init() start');
@@ -36,7 +38,7 @@ var resizeableImage = function(image_target) {
     $container.on('mousedown touchstart', '.resize-handle', startResize);
     $container.on('mousedown touchstart', 'img', startMoving);
     $('.js-crop').on('click', crop);
-    console.log('init() stop');
+    
   };
 
   startResize = function(e){
@@ -182,7 +184,8 @@ var resizeableImage = function(image_target) {
 
   crop = function(){
     //Find the part of the image that is inside the crop box
-    var crop_canvas,
+    // var canvas_blob,
+        var crop_canvas,
         left = $('.overlay').offset().left - $container.offset().left,
         top =  $('.overlay').offset().top - $container.offset().top,
         width = $('.overlay').width(),
@@ -190,10 +193,57 @@ var resizeableImage = function(image_target) {
     
     crop_canvas = document.createElement('canvas');
     crop_canvas.width = width;
-    crop_canvas.height = height;
+    crop_canvas.height = height;    
+    console.log($('.resize-image'), crop_canvas.toDataURL("image/png"), 'url testing')
+    crop_canvas.getContext('2d').drawImage($('.resize-image')[0], left, top, width, height, 0, 0, width, height);
+    var blob = dataURItoBlob(crop_canvas.toDataURL("image/png"))
+    blob.name = "profile_img.png";
+    blob.tmp_name = crop_canvas.toDataURL("image/png");
     
-    crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
-    window.open(crop_canvas.toDataURL("image/png"));
+    console.log(blob);
+
+    var file_data = $('image_upload');
+    file_data.serialize();
+    console.log(blob);
+    var form_data = new FormData();
+                      
+    form_data.append('image', blob);
+    console.log(form_data);                            
+    $.ajax({
+      url: 'upload_profile_img.php', // point to server-side PHP script 
+      // dataType: 'text',  // what to expect back from the PHP script, if anything
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,                         
+      type: 'POST',
+      success: function(php_script_response){
+        window.location.assign("edit_profile.php?user_id=");
+      }
+    });  
+    // window.open(crop_canvas.toDataURL("image/png"));
+  }
+
+  function dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    console.log('in dataURI function');
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    console.log(mimeString);
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+        console
+    }
+    console.log(ia)
+    return new Blob([ia], {type:mimeString});
   }
 
   init();
@@ -220,6 +270,8 @@ function renderImage(file, event) {
 
 $(document).ready(function() {
   var file;
+  $('.overlay').hide();
+  $('.btn-crop').hide();
   
   
     // $('#image_upload').submit(function(evt){    
@@ -229,14 +281,16 @@ $(document).ready(function() {
         
         file = event.target.files[0]; // FileList object
 
-        renderImage(file, event)
+        renderImage(file, event);
         
-        console.log('File and path established')
+        console.log('File and path established');
         console.log(file, window.dataURL);
     });
     $('#submit').click(function(e){
 
-    var $f = $('#fileToUpload').val();      
+      $('.overlay').show();
+      $('.btn-crop').show();
+      var $f = $('#fileToUpload').val();      
       if($f == ''){
         e.preventDefault();
         console.log('false');
@@ -264,7 +318,7 @@ $(document).ready(function() {
 
           $('.resize-image').attr('src', window.dataURL);
           // console.log("running resizableImage()")
-          resizeableImage($('.resize-image'));
+          resizeableImage($('.resize-image'), file);
         }
       
         

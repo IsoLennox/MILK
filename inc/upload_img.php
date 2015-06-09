@@ -1,6 +1,7 @@
 
-<?php  
-$target_file = $target_dir . basename($_FILES["image"]["name"]);
+<?php
+
+$target_file = $target_dir . 'profile_img.png';
 
 
 //
@@ -22,7 +23,7 @@ $target_file = $target_dir . basename($_FILES["image"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check = getimagesize($_FILES["image"]["tmp_name"]);
     if($check !== false) {
         //echo "File is an image - " . $check["mime"] . ".";
@@ -88,7 +89,7 @@ if ($uploadOk == 0) {
 
     if ($result && mysqli_affected_rows($connection) == 1) {
       // Success
-      $_SESSION["message"] = "Image Upload SUCCESSFUL!";
+      echo "Image Upload SUCCESSFUL!";
       redirect_to("edit_profile.php?user_id={$_SESSION["user_id"]}");
     } else {
       // Failure
