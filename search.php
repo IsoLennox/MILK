@@ -163,6 +163,7 @@ if(isset($_POST['search'])){
                $item_search="SELECT * FROM items WHERE ( name LIKE '%" . $query_string .  "%' OR notes LIKE '%" . $query_string .  "%') AND user_id={$_SESSION['user_id']} ";
            }else{
                $item_search="SELECT * FROM items WHERE name LIKE '%" . $query_string .  "%' OR notes LIKE '%" . $query_string .  "%' ";
+               $yours="";
            }
             
             $item_result=mysqli_query($connection, $item_search);
