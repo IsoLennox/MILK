@@ -103,8 +103,9 @@ if(isset($_GET['walkthrough'])){ ?>
 <?php }
  ?>
         <input type="submit" name="submit" id="submit" value="Save Role">
+        <a href="roles.php"><i class='fa fa-times'></i> Cancel</a>
 </form>
- <a href="roles.php">cancel</a>
+ 
 
 
         

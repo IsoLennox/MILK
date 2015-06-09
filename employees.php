@@ -73,7 +73,7 @@ include("inc/header.php"); ?>
             $emp_id=$_GET['edit_role'];
             
             $user_data=find_user_by_id($emp_id); 
-            echo "Editing employee ".$user_data['first_name']." ".$user_data['last_name']."<br/>";
+            echo "<h4>Editing employee: ".$user_data['first_name']." ".$user_data['last_name']."</h4>";
                 $role_query  = "SELECT * FROM roles WHERE id={$user_data['role']} ";  
                 $roleresult = mysqli_query($connection, $role_query);
                 if($roleresult){
@@ -82,8 +82,8 @@ include("inc/header.php"); ?>
                         $role['name']="No Role Set";
                     }
                 }
-            echo "Current Role: ".$role['name']."<br/>"; 
-            echo "New Role: <br/>"; ?>
+            echo "<p>Current Role: ".$role['name']."</p>"; 
+            echo "<p>New Role: "; ?>
             
             <form method="POST" action="employees.php?submit_role=<?php echo $emp_id; ?>">      
                 <select name="role" id="role">
@@ -98,8 +98,8 @@ include("inc/header.php"); ?>
                 }  ?>
 
                 </select>
-                <input type="submit" name="submit_role" value="Save Role">
-            </form>
+                <input type="submit" name="submit_role" value="Update Role">
+            </form></p>
             
             <?php
             echo "<hr/>";
@@ -126,7 +126,7 @@ include("inc/header.php"); ?>
 
         if(isset($_GET['edit_pass'])){
             $user_id=$_GET['edit_pass'];  
-//            $user_data=find_user_by_id($emp_id); 
+           // $user_data=find_user_by_id($emp_id); 
                 $query  = "SELECT * FROM users WHERE id = {$user_id} ";
                 $result = mysqli_query($connection, $query); 
                 if ($result) { 
@@ -147,8 +147,10 @@ include("inc/header.php"); ?>
                 <input type="password" name="confirm_password" value="" />
               </p>
               <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
-              <input type="submit" name="submit" value="Update User" />
+              <input type="submit" name="submit" value="Update Password" />
+
             </form> 
+            <hr>
             <?php
            }
 
@@ -227,9 +229,10 @@ include("inc/header.php"); ?>
                     }
                     echo "</div>";
                     if(empty($show['avatar'])){
-                        echo "<div class='item_img_content'><img class='thumb_avatar' src=\"http://lorempixel.com/50/50/abstract\" onerror=\"this.src='img/Tulips.jpg'\"></div>";
+                        echo "<div class='item_img_content'><i class=\"fa fa-user fa-3x\"></i></div>"; 
+
                     }else{
-                    echo "<div class='item_img_content'><img class='thumb_avatar' src=\"".$show['avatar']."\" onerror=\"this.src='http://lorempixel.com/50/50/abstract'\"></div>";
+                    echo "<div class='item_img_content'><img class='small_thumb_container' src=\"".$show['avatar']."\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"></div>";
                     }
                     echo "<div class=\"clearfix\"></div> </div>";
                 } 
