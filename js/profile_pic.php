@@ -1,8 +1,11 @@
-<?php 
-session_start();
-header("Content-type: application/javascript"); ?>
 
-var resizeableImage = function(image_target, file) {
+
+<?php 
+session_start(); 
+header("Content-type: application/javascript");?>
+
+
+resizeableImage = function(image_target, file){
   // Some variable and settings
   var $container,
       orig_src = new Image(),
@@ -15,11 +18,10 @@ var resizeableImage = function(image_target, file) {
       max_width = 800, // Change as required
       max_height = 900,
       resize_canvas = document.createElement('canvas');
-      console.log('canvas created');
-      console.log(form_file);
+     
 
   init = function(){
-    console.log('init() start');
+    
     // When resizing, we will always use this copy of the original as the base
     orig_src.src=image_target.src;
 
@@ -29,17 +31,17 @@ var resizeableImage = function(image_target, file) {
     .before('<span class="resize-handle resize-handle-ne"></span>')
     .after('<span class="resize-handle resize-handle-se"></span>')
     .after('<span class="resize-handle resize-handle-sw"></span>');
-    console.log('init() post wrap');
+    
     // Assign the container to a variable
     $container =  $('.resize-image').parent('.resize-container');
-    console.log($container);
+    
 
     // Add events
     $container.on('mousedown touchstart', '.resize-handle', startResize);
     $container.on('mousedown touchstart', 'img', startMoving);
     $('.js-crop').on('click', crop);
     
-  };
+  }; // end init()
 
   startResize = function(e){
     e.preventDefault();
@@ -47,13 +49,13 @@ var resizeableImage = function(image_target, file) {
     saveEventState(e);
     $(document).on('mousemove touchmove', resizing);
     $(document).on('mouseup touchend', endResize);
-  };
+  }; // end startResize()
 
   endResize = function(e){
     e.preventDefault();
     $(document).off('mouseup touchend', endResize);
     $(document).off('mousemove touchmove', resizing);
-  };
+  }; // end endResize()
 
   saveEventState = function(e){
     // Save the initial event details and container state
@@ -75,7 +77,7 @@ var resizeableImage = function(image_target, file) {
     });
   }
     event_state.evnt = e;
-  };
+  }; // end saveEventState()
 
   resizing = function(e){
     var mouse={},width,height,left,top,offset=$container.offset();
@@ -122,14 +124,14 @@ var resizeableImage = function(image_target, file) {
       // Without this Firefox will not re-calculate the the image dimensions until drag end
       $container.offset({'left': left, 'top': top});
     }
-  }
+  };// end resizing)()
 
   resizeImage = function(width, height){
     resize_canvas.width = width;
     resize_canvas.height = height;
     resize_canvas.getContext('2d').drawImage(orig_src, 0, 0, width, height);   
     $(image_target).attr('src', resize_canvas.toDataURL("image/png"));  
-  };
+  }; // end resizeImage()
 
   startMoving = function(e){
     e.preventDefault();
@@ -137,13 +139,13 @@ var resizeableImage = function(image_target, file) {
     saveEventState(e);
     $(document).on('mousemove touchmove', moving);
     $(document).on('mouseup touchend', endMoving);
-  };
+  }; // end startMoving()
 
   endMoving = function(e){
     e.preventDefault();
     $(document).off('mouseup touchend', endMoving);
     $(document).off('mousemove touchmove', moving);
-  };
+  }; // end endMoving()
 
   moving = function(e){
     var  mouse={}, touches;
@@ -180,36 +182,36 @@ var resizeableImage = function(image_target, file) {
       // To improve performance you might limit how often resizeImage() is called
       resizeImage(width, height);
     }
-  };
+  };// end moving()
 
   crop = function(){
     //Find the part of the image that is inside the crop box
     // var canvas_blob,
-        var crop_canvas,
-        left = $('.overlay').offset().left - $container.offset().left,
-        top =  $('.overlay').offset().top - $container.offset().top,
-        width = $('.overlay').width(),
-        height = $('.overlay').height();
+    var crop_canvas,
+    left = $('.overlay').offset().left - $container.offset().left,
+    top =  $('.overlay').offset().top - $container.offset().top,
+    width = $('.overlay').width(),
+    height = $('.overlay').height();
     
     crop_canvas = document.createElement('canvas');
     crop_canvas.width = width;
     crop_canvas.height = height;    
-    console.log($('.resize-image'), crop_canvas.toDataURL("image/png"), 'url testing')
+    
     crop_canvas.getContext('2d').drawImage($('.resize-image')[0], left, top, width, height, 0, 0, width, height);
-    var blob = dataURItoBlob(crop_canvas.toDataURL("image/png"))
+    var blob = dataURItoBlob(crop_canvas.toDataURL("image/png"));
     blob.name = "profile_img.png";
     blob.tmp_name = crop_canvas.toDataURL("image/png");
     
-    console.log(blob);
+   
 
     var file_data = $('image_upload');
     file_data.serialize();
-    console.log(blob);
+    
     var form_data = new FormData();
     var user_id = "<?php echo $_SESSION['user_id'] ?>"; 
                       
     form_data.append('image', blob);
-    console.log(form_data);                            
+                                
     $.ajax({
       url: 'upload_profile_img.php', // point to server-side PHP script 
       // dataType: 'text',  // what to expect back from the PHP script, if anything
@@ -219,18 +221,18 @@ var resizeableImage = function(image_target, file) {
       data: form_data,                         
       type: 'POST',
       success: function(php_script_response){
-       //  $('.overlay').hide();
+        $('.overlay').hide();
         $('.btn-crop').hide();
-        $('resize-image').attr('')
+        $('resize-image').attr('');
         window.location.assign("profile.php?user_id=" + user_id);
       }
-    });  
+    });  // end ajax()
     // window.open(crop_canvas.toDataURL("image/png"));
-  }
+  }; // end crop()
 
-  function dataURItoBlob(dataURI) {
+  dataURItoBlob = function(dataURI) {
     // convert base64/URLEncoded data component to raw binary data held in a string
-    console.log('in dataURI function');
+    
     var byteString;
     if (dataURI.split(',')[0].indexOf('base64') >= 0)
         byteString = atob(dataURI.split(',')[1]);
@@ -239,20 +241,16 @@ var resizeableImage = function(image_target, file) {
 
     // separate out the mime component
     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    console.log(mimeString);
+    
     // write the bytes of the string to a typed array
     var ia = new Uint8Array(byteString.length);
     for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-        console
+        ia[i] = byteString.charCodeAt(i);        
     }
-    console.log(ia)
     return new Blob([ia], {type:mimeString});
-  }
-
+  }; // end dataURItoBlob
   init();
 };
-
 // render the image in our view
 function renderImage(file, event) {
 
@@ -263,14 +261,15 @@ function renderImage(file, event) {
   reader.onload = function(event) {
     the_url = dataURL;
     $('resize-container').html("<img src='" + the_url + "' />");
-  }
+  };
   reader.onload = function(e) {
     window.dataURL = reader.result;
-  }
+  };
  
   // when the file is read it triggers the onload event above.
   reader.readAsDataURL(file);
 }
+
 
 $(document).ready(function() {
   var file;
@@ -287,8 +286,7 @@ $(document).ready(function() {
 
         renderImage(file, event);
         
-        console.log('File and path established');
-        console.log(file, window.dataURL);
+       
     });
     $('#submit').click(function(e){
 
@@ -297,16 +295,15 @@ $(document).ready(function() {
       var $f = $('#fileToUpload').val();      
       if($f == ''){
         e.preventDefault();
-        console.log('false');
+        
       } else {
         e.preventDefault();
         var name = file.name;
         var size = file.size;
         var type = file.type;
-        file.src = window.dataURL;      
-      };
-      console.log(name, size, type, file.src);
-          
+        file.src = window.dataURL;     
+      }
+        
           
 
       if(name.length < 1) {
@@ -321,7 +318,7 @@ $(document).ready(function() {
         else {
 
           $('.resize-image').attr('src', window.dataURL);
-          // console.log("running resizableImage()")
+         
           resizeableImage($('.resize-image'), file);
         }
       
