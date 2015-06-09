@@ -97,7 +97,7 @@ include("inc/header.php"); ?>
             $category=$_POST['category'];
             $room_name=get_room_name($room);
             $cat_name=get_category_name($category);
-            echo "<h3>".$cat_name." items in ".$room_name."</h3>";
+            echo "<h3 class='dark_link'>".$cat_name." items in ".$room_name."</h3>";
             //show results based on refinements
             $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND category={$category} AND in_trash=0 ORDER BY name"; 
         }
@@ -107,7 +107,7 @@ include("inc/header.php"); ?>
             
             $room= $_POST['room']; 
             $room_name=get_room_name($room);
-            echo "<h3>All items in ".$room_name."</h3>";
+            echo "<h3 class='dark_link'>All items in ".$room_name."</h3>";
             //show results based on refinements
             $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND room_id={$room} AND in_trash=0 ORDER BY name"; 
         }
@@ -117,14 +117,14 @@ include("inc/header.php"); ?>
         if($room=$_POST['room']==="all" && $category=$_POST['category']!=="all"){ 
             $category=$_POST['category'];
             $cat_name=get_category_name($category);
-            echo "<h3>All ".$cat_name." items </h3>";
+            echo "<h3 class='dark_link'>All ".$cat_name." items </h3>";
             //show results based on refinements
             $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND category={$category} AND in_trash=0 ORDER BY name"; 
         }
         
         //IF both fields were "ALL"
         if($room=$_POST['room']==="all" && $category=$_POST['category']==="all"){ 
-            echo "<h3>All items </h3>";
+            echo "<h3 class='dark_link'>All items </h3>";
             $query  = "SELECT * FROM items WHERE user_id={$_SESSION['user_id']} AND in_trash=0 ORDER BY name"; 
         }
         
@@ -184,8 +184,11 @@ include("inc/header.php"); ?>
            	//if it is grid container, HTML structure needs to change 
             if($class=='grid_container'){
             	$thumbnail=$total_img_array['file_path'];
+                if(empty($thumbnail)){
+                    $thumbnail="images/no_img.PNG";
+                }
             	echo "<div class=\"img_full_thumb {$claim_box}\">";
-            	echo "<a href=\"item_details.php?id=".$id."\"><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/300/300/abstract'\"  alt=\"{$title}\">";
+            	echo "<a href=\"item_details.php?id=".$id."\"><img src=\"{$thumbnail}\" onerror=\"this.src='images/no_img.PNG'\"  alt=\"{$title}\">";
                 echo "<div class='img_title'><p>".$name."<br> {$claim_class}</p></div></a></div>";
 
             //if not grid view display a whole bunch of other stuff
@@ -221,7 +224,7 @@ include("inc/header.php"); ?>
                 // $total_img_array=mysqli_fetch_assoc($item_img_result);
                 // $thumbnail=$total_img_array['thumb_path'];
                 // $title=$total_img_array['title'];
-                echo "<div class='item_img_content'><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"  alt=\"{$title}\"></div>";
+                echo "<div class='item_img_content'><img src=\"{$thumbnail}\" onerror=\"this.src='images/no_img.PNG'\"  alt=\"{$title}\"></div>";
                 echo "<div class=\"clearfix\"></div></div>";
 
                 }//end hide details if grid view

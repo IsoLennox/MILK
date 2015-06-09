@@ -35,7 +35,7 @@ if(isset($_GET['id'])){ ?>
                         $img_item_rows=mysqli_num_rows($item_img_result);
 
 
-		                echo " <a href=\"item_details.php?id=".$item['id']."\"><div class='img_full_thumb'><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/300/300/abstract'\" alt=\"{$title}\">";
+		                echo " <a href=\"item_details.php?id=".$item['id']."\"><div class='img_full_thumb'><img src=\"{$thumbnail}\" onerror=\"this.src='images/no_img.PNG'\" alt=\"{$title}\">";
 		                
 
 

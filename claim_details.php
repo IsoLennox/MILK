@@ -163,7 +163,7 @@ if(isset($_GET['remove_img'])){
 		                $thumbnail=$total_img_array['thumb_path'];
 		                $title=$total_img_array['title'];
                      
-                        echo "<li><div class=\"small_thumb_container\"> <a href=\"item_details.php?id=".$itemname['id']."\"><img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/50/50/abstract'\"  alt=\"{$title}\"></div><br/> <strong> ".$itemname['name']."</strong></a> <br> $".$value."</li>";
+                        echo "<li><div class=\"small_thumb_container\"> <a href=\"item_details.php?id=".$itemname['id']."\"><img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='images/no_img.PNG'\"  alt=\"{$title}\"></div><br/> <strong> ".$itemname['name']."</strong></a> <br> $".$value."</li>";
                         $total_value=$total_value+$value;
                     } 
             }
@@ -385,7 +385,7 @@ if(isset($_GET['remove_img'])){
                             $thumbnail=$total_img_array['thumb_path'];
                             $title=$total_img_array['title'];
 
-                            echo "<div class='thumb_container'><img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"  alt=\"{$title}\"></div><br> ".$itemname['name']." <br> $".$itemname['declared_value']." </a> <a class='small_text' href=\"claim_details.php?remove_item=".$itemname['id']."\"><i class=\"fa fa-trash-o\"></i></a></li>";
+                            echo "<div class='thumb_container'><img class=\"thumb_avatar\" src=\"{$thumbnail}\" onerror=\"this.src='images/no_img.PNG'\"  alt=\"{$title}\"></div><br> ".$itemname['name']." <br> $".$itemname['declared_value']." </a> <a class='small_text' href=\"claim_details.php?remove_item=".$itemname['id']."\"><i class=\"fa fa-trash-o\"></i></a></li>";
                         }//END GET ITEM DETAILS 
                 }//END FOREACH ITEM IN THIS CLAIM
                  echo "<div class=\"clearfix\"></div>";

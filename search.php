@@ -145,7 +145,7 @@ if(isset($_POST['search'])){
                               echo "<div class='item_img_content'><i class=\"fa fa-user fa-3x\"></i></div>"; 
 
                           }else{
-                            echo "<div class='item_img_content'><img class='small_thumb_container' src=\"".$show['avatar']."\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"></div>";
+                            echo "<div class='item_img_content'><img class='small_thumb_container' src=\"".$show['avatar']."\" onerror=\"this.src='images/no_img.PNG'\"></div>";
                           }
 
                     }//end foreach user found with name match
