@@ -179,8 +179,8 @@ include("inc/header.php"); ?>
             if($class=='grid_container'){
             	$thumbnail=$total_img_array['file_path'];
             	echo "<div class=\"img_full_thumb {$claim_box}\">";
-            	echo "<img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/300/300/abstract'\"  alt=\"{$title}\">";
-                echo "<div class='img_title'><p><a href=\"item_details.php?id=".$id."\">".$name."</a><br> {$claim_class}</p></div></div>";
+            	echo "<a href=\"item_details.php?id=".$id."\"><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/300/300/abstract'\"  alt=\"{$title}\">";
+                echo "<div class='img_title'><p>".$name."<br> {$claim_class}</p></div></a></div>";
 
             //if not grid view display a whole bunch of other stuff
             } else {

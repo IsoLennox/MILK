@@ -160,39 +160,25 @@ if (isset($_POST['submit'])) {
         
         //CATEGORY
     $(document).ready(function () {
-
-    	$('.add_item').validate({
-    		rules: {
-    			name: {
-    				required:true;
-    			},
-    			category: {
-    				required:true;
-    			}
-    		}
-
-    	}); //end validate plugin
-
-
-    // $("#category").blur(function () {
-    //   var input = $(this).val();
-    //   if (input == '--') {
-    //     $("#category").css({"border": "2px solid #E43633"});
-    //   }else{
-    //     $("#category").css({"border": "1px solid grey"});
-    //   }
-    // });
+    $("#category").blur(function () {
+      var input = $(this).val();
+      if (input == '--') {
+        $("#category").css({"border": "2px solid #E43633"});
+      }else{
+        $("#category").css({"border": "1px solid grey"});
+      }
+    });
   
           
-    //  //TITLE
-    // $("#name").blur(function () {
-    //   var input = $(this).val();
-    //   if (input == '') {
-    //     $("#name").css({"border": "2px solid #E43633"});
-    //   }else{
-    //     $("#name").css({"border": "1px solid grey"});
-    //   }
-    // });
+     //TITLE
+    $("#name").blur(function () {
+      var input = $(this).val();
+      if (input == '') {
+        $("#name").css({"border": "2px solid #E43633"});
+      }else{
+        $("#name").css({"border": "1px solid grey"});
+      }
+    });
 
   	}); //end doc ready
  

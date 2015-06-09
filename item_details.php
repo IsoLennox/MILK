@@ -167,7 +167,7 @@ if(isset($_GET['remove'])){
                     echo "<hr>";
                     echo "<div class=\"item_display\">";              
                     echo "<h3>Item Details</h3>";
-                    echo "<p><strong>This item is involved in <a href=\"claim_details.php?id=".$claim_array['claim_id']."\">CLAIM #".$claim_array['claim_id']."</a></strong></p>";
+                    echo "<p><a href=\"claim_details.php?id=".$claim_array['claim_id']."\" ><strong  style=\"color:#FF4503;\">This Item Is Involved In Claim <span class='dark_link'>#".$claim_array['claim_id']."</span></strong></a></p>";
                     
 
                 }else{
@@ -242,7 +242,7 @@ if(isset($_GET['remove'])){
                         //IF ! ENDS IN PDF, SHOW IMAGE, ELSE SHOW ICON
                         echo "<div>";
                         if($image['is_img']==1){
-                            $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumb_avatar\" onerror=\"this.src='http://lorempixel.com/100/100/abstract'\"  src=\"".$image['thumb_path']."\"></div></a>";
+                            $file= "<a href=\"" .$image['file_path'] . "\" title='" .$image['title']. "' class='fancybox' rel=\"group\"><div class=\"img_container\"><img class=\"thumb_avatar\" onerror=\"this.src='http://lorempixel.com/200/200/abstract'\"  src=\"".$image['thumb_path']."\"></div></a>";
 
                         }else{ 
                             $file= "<p><i class=\"fa fa-5x fa-file-pdf-o\"></i></p>";

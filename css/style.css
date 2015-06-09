@@ -117,7 +117,9 @@ h2 {font-size: 2em;
 }
 
 h3 {
-	color:#FF4503;
+	color:#90C32E;
+	font-weight: 400;
+	/*color:#FF4503;*/
     font-size: 1.5em;
     margin-bottom: 5px;
 }
@@ -843,7 +845,7 @@ header {
 	
 
 }
-.img_title a {
+a .img_title {
 	color:#eee;
 	font-weight: 400;
 	font-size: 1em;
@@ -1224,7 +1226,7 @@ header {
     padding: 10px;
     /*margin-bottom: 10px;*/
     max-width: 1300px;
-    margin:0 0 10px 60px;
+    margin:0 0 10px 0px;
 }
 
 .msg_left{ 

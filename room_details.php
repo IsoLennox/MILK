@@ -13,16 +13,17 @@ if(isset($_GET['id'])){ ?>
     $result = mysqli_query($connection, $query);
     if($result){
         foreach($result as $show){
-            echo "<h2>".$show['name']."</h2>";
-            echo "<p >".$show['notes']."</p>";
-            echo "<a href=\"room_details.php?room=".$_GET['id']."\"><i class=\"fa fa-pencil\"></i> Edit Room Details</a> <br/><br/>";
+            echo "<a class='right green_submit' href=\"room_details.php?room=".$_GET['id']."\"><i class=\"fa fa-pencil\"></i> Edit Room Details</a> <br/><br/>";
+            echo "<h2 class='left'>".$show['name']."</h2>";
+            echo "<div class=\"clearfix\"></div>";
+            echo "<p >".$show['notes']."</p><br>";
             
                 $item_query  = "SELECT * FROM items WHERE room_id={$_GET['id']} AND in_trash=0"; 
                 $itemresult = mysqli_query($connection, $item_query);
 
                
                 if($itemresult){
-                    echo "<h3><strong>Items in this room: </strong><h3>";
+                    echo "<h3>Items in this room: <h3>";
                     // echo "<ul>";
                     foreach($itemresult as $item){
 
@@ -34,11 +35,11 @@ if(isset($_GET['id'])){ ?>
                         $img_item_rows=mysqli_num_rows($item_img_result);
 
 
-		                echo "<div class='img_full_thumb'><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/300/300/abstract'\" alt=\"{$title}\">";
+		                echo " <a href=\"item_details.php?id=".$item['id']."\"><div class='img_full_thumb'><img src=\"{$thumbnail}\" onerror=\"this.src='http://lorempixel.com/300/300/abstract'\" alt=\"{$title}\">";
 		                
 
 
-                        echo "<div class='img_title'> <a href=\"item_details.php?id=".$item['id']."\">".$item['name']."</div></div>"; 
+                        echo "<div class='img_title'>".$item['name']."</div></div></a>"; 
                     }
                     // echo "</ul>";
                 }//end get items in room
