@@ -77,7 +77,7 @@ include("inc/header.php"); ?>
         <a href="inventory.php?trash"><i class="fa fa-trash-o"></i> View Trash</a>
     </div>
     <div class="half_link">
-        <a href="inventory.php"><i class="fa fa-bars"></i></a>
+        <a href="inventory.php?bars"><i class="fa fa-bars"></i></a>
         <a href="inventory.php?grid"><i class="fa fa-th"></i></a>
     </div>
     <div class="clearfix"></div>
@@ -145,6 +145,12 @@ include("inc/header.php"); ?>
     if($result){
 
         if(isset($_GET['grid'])){
+            $_SESSION['grid']=1;
+        } elseif(isset($_GET['bars'])) {
+            $_SESSION['grid']=0;
+        }
+
+        if($_SESSION['grid']==1){
             $class='grid_container';
         } else {
             $class='notes_container';
