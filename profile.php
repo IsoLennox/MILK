@@ -53,7 +53,7 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         $content=$profile_array['profile_content'];
         $avatar=$profile_array['avatar'];
         if(empty($avatar)){
-        $avatar="http://lorempixel.com/250/250/abstract";
+        $avatar="images/no_img.PNG";
         }
 ?>
 
@@ -61,7 +61,7 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         
     <!-- <div class="clearfix"></div> -->
     <div class="profile">
-        <section class="avatar"> <img src="<?php echo $avatar; ?>" onerror="this.src='http://lorempixel.com/400/400/abstract'" alt="profile image">
+        <section class="avatar"> <img src="<?php echo $avatar; ?>" onerror="this.src='images/no_img.PNG'" alt="profile image">
          </section>
         <section class="profile_content">
          <?php if($user_id!==$_SESSION['user_id']){ ?>
