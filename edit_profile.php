@@ -106,8 +106,10 @@ if (isset($_POST['submit'])) {
         <div class="overlay-inner">
         </div>
     </div>
-    <button class="btn-crop js-crop">Crop</button>
+    <button class="btn-crop js-crop">Crop and Save</button>
+    <div id="holdSpace">
     <img src="<?php echo $avatar; ?>" class="resize-image" alt="Current Profile Image" /><br>
+    </div>
     <?php 
     if(!isset($_GET['walkthrough'])){
         if($avatar!="images/no_img.PNG"){ ?>
@@ -121,7 +123,7 @@ if (isset($_POST['submit'])) {
     <!-- <h3>Select New Image:</h3> -->
     <input type="file" name="image" id="fileToUpload"> 
 
-    <input type="submit" value="Save New Image" name="submit" id="submit">
+    <input type="submit" value="Select Image" name="submit" id="submit">
 
 </form>
    

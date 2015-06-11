@@ -223,7 +223,7 @@ resizeableImage = function(image_target, file){
       success: function(php_script_response){
         $('.overlay').hide();
         $('.btn-crop').hide();
-        $('resize-image').attr('');
+        $('resize-image').attr('src', 'crop_canvas.toDataURL("image/png")');
         window.location.assign("profile.php?user_id=" + user_id);
       }
     });  // end ajax()

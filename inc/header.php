@@ -55,7 +55,7 @@ confirm_logged_in();
         <script type="text/javascript" src="js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
         <!-- Add jQuery Validation -->
-        <script type='text/javascript' src='js/jquery.validate.js'></script>
+        // <!-- <script type='text/javascript' src='js/jquery.validate.js'></script> -->
         
     </head>
        
