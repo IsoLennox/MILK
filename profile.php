@@ -57,7 +57,7 @@ if($_SESSION['is_employee']==1 || $user_id == $_SESSION['user_id']){
         }
 ?>
 
-    <h2 > <?php echo $username; ?>'s Profile - <?php echo $role['name']; ?></h2> 
+    <h2 > <?php echo $username; ?>'s Profile <?php echo $role['name']; ?></h2> 
         
     <!-- <div class="clearfix"></div> -->
     <div class="profile">

@@ -1131,7 +1131,12 @@ a .img_title {
 		word-wrap:break-word;
         padding: 20px;
 	}
-
+	.profile_content p{
+		margin-top: 1%;
+	}
+	.profile_content:first-child {
+		margin-top: 0%;
+	}
 
 /****** Profile Pic scale and crop ******/
 /*define the styles for the resize-container and the image.*/
