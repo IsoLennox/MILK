@@ -1,59 +1,376 @@
 body { 
-	color: #eee;
+	/*color: #eee; original */
 	/*background-color: #222; orginal background color */
-	background-color: #332F2E;
+	background-color: #151515; /*Black*/
+	color: #B7A85C; /*Dark Yellow*/
 }
 
-header, nav{
+header, nav {
 /*  background: rgba(144,195,46,.4);*/
     /*background: #332F2E;  original background color */
-    color: rgba(154,179,35,1);
-    background-color: #222;
+    /*color: rgba(154,179,35,1); original */
+    background-color: #151515; /*Black*/
+    color: #B7A85C; /*Dark Yellow*/
 }
 
 header a, nav a {
-    color: beige; 
+    color: #B7A85C; /*Dark Yellow*/
 /*  color: rgba(154,179,35,1);*/
 }
 
-h1, h2 { color: #eee;}
+h1 { 
+	color: #B7A85C; /*Dark Yellow*/
+}
 
 /*-----------Kris attempted to work on this ------------*/
 
 #draft_container {
-	background-color: #332F2E;
-  	border: 2px solid #eee;
+	/*background-color: #332F2E; Original */
+	background-color: #4C4C4C; /*Dark Gray*/
+  	border: 4px solid #43442B; /*Dark Green*/
 	border-radius: 10px;
 	margin-left: -10px;
 }
 
+.search input[type="submit"] {
+	color: #B7A85C; /*Dark Yellow*/
+	background-color: #151515; /*Black*/
+	transition: all .7s ease;
+	border: ;
+}
+
+header a:hover, nav a:hover {
+	color: #FFFFFF;
+}
+
+.stats {
+	border: 4px solid #43442B; /*Dark Green*/
+}
+
+.half_div h2 {
+	/*color: #894542; Dark Red*/
+	color: #D17A65; /*Salmon*/
+}
+
+h3 {
+	color: #B7A85C; /*Dark Yellow*/
+}
+
+::-webkit-input-placeholder {
+   color: #FFFFFF; /*White*/
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #FFFFFF; /*White*/  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #FFFFFF; /*White*/ 
+}
+
+:-ms-input-placeholder {  
+   color: #FFFFFF; /*White*/  
+}
+
+.search_container {
+	border: 4px solid #43442B; /*Dark Green*/
+}
+
+nav p {
+	/*color: #894542; Dark Red*/
+	color: #D17A65; /*Salmon*/
+}
+
+nav p a {
+	/*color: #894542; Dark Red*/
+	color: #D17A65; /*Salmon*/
+}
+
+.content_wrapper {
+	margin-left: 40px;
+}
+
+.fa-bar-chart {
+	/*color: #894542; Dark Red*/
+	font-size: 30px;
+	color: #D17A65; /*Salmon*/
+}
+
+.fa-bar-chart:hover {
+	color: #FFFFFF;
+}
+
+.fa-bars {
+	/*color: #894542; Dark Red*/
+	color: #D17A65; /*Salmon*/
+	font-size: 30px;	
+}
+
+.fa-bars:hover {
+	color: #FFFFFF;
+}
+
+.half_dashboard {
+	margin: 0 5px 0 -2.5px;
+	padding: 30px 30px 30px 30px;
+}
+
+.half_dashboard p strong {
+	/*color: #894542; Dark Red*/
+	color: #D17A65; /*Salmon*/
+}
+
+.stats p strong {
+	/*color: #894542; Dark Red*/
+	color: #D17A65; /*Salmon*/
+}
+
+#nav_search {
+	background-color: #222; /*Black*/ 
+}
+
+#nav_search:hover {
+	color: #FFFFFF; /*White*/
+}
+
+.profile_content {
+	color: #FFFFFF; /*White*/
+}
+
+.profile_content p {
+	padding: 10px;
+}
+
+.profile_content p a {
+	/*color: #894542; Dark Red*/
+	color: #D17A65; /*Salmon*/
+}
+
+.profile_content p a:hover {
+	color: #FFFFFF; /*White*/
+}
+
+.content_wrapper h2 {
+	margin-bottom: 40px;
+}
+
+form input {
+	background-color: #4C4C4C; /*Dark Gray*/
+	padding: 20px;
+	border: 4px solid #43442B; /*Dark Green*/
+	color: #FFFFFF; /*White*/
+	font-size: 20px;
+}
+
+form [type=text] {
+	color: #FFFFFF;
+	font-size: 18px;
+}
+
+.profile_content p {
+	margin-left: -10px;
+}
+
+textarea#content {
+	background-color: #4C4C4C; /*Dark Gray*/
+	color: #FFFFFF; /*White*/
+	font-size: 18px;
+}
+
+.current_page {
+	border-left: 5px solid #43442B; /*Dark Green*/
+}
+
+.notes_container h4 a {
+	color: #B7A85C; /*Dark Yellow*/
+	text-decoration: underline;
+}
+
+select#category, select#room {
+	color: #FFFFFF;
+	background-color: #4C4C4C; /*Dark Gray*/
+	font-size: 20px;
+	border: 5px solid #43442B; /*Dark Green*/ 
+}
+
+input[type="submit"] {
+	/*background-color: #894542; Dark Red*/
+	background-color: #D17A65; /*Salmon*/
+	color: #FFFFFF;
+}
+
+.half_link a i {
+	/*color: #894542; Dark Red*/;
+	color: #D17A65; /*Salmon*/
+}
+
+.half_link a i:hover {
+	color: #FFFFFF; /*White*/
+}
+
+.item_content p a.dark_link {
+	color: #B7A85C; /*Dark Yellow*/	
+}
+
+.half_link a {
+	/*color: #894542; Dark Red*/;
+	/*color: #B25A56; Light Red*/
+	color: #D17A65; /*Salmon*/
+}
+
+.half_link a:hover {
+	color: #FFFFFF; /*White*/
+}
+
+form #name[type=text] {
+	border: 4px solid #43442B; /*Dark Green*/
+}
+
+.form_blocks #notes {
+	background-color: #4C4C4C; /*Dark Gray*/
+	border: 4px solid #43442B; /*Dark Green*/
+	color: #FFFFFF; /*White*/
+	font-size: 20px;
+}
+
+input[type="submit"] ~ a {
+	color: #B7A85C; /*Dark Yellow*/
+	text-decoration: none;
+}
+
+input[type="submit"] ~ a:hover {
+	color: #FFFFFF;
+}
+
+.add_item label {
+	/*color: #894542; Dark Red*/
+	/*color: #B25A56;Light Red*/
+	/*color: #D17A65; Salmon*/
+}
+
+textarea#room_notes {
+	background-color: #4C4C4C; /*Dark Gray*/
+	border: 4px solid #43442B; /*Dark Green*/
+	color: #FFFFFF; /*White*/
+	font-size: 20px;
+}
+
+.content_wrapper p a {
+	color: #FFFFFF; /*White*/
+}
+
+.content_wrapper p a:hover {
+	color: #FFFFFF; /*White*/
+}
+
+.content_wrapper a {
+	/*color: #894542; Dark Red*/
+	color: #D17A65; /*Salmon*/
+	margin-top: 50px;	
+}
+
+.content_wrapper a:hover {
+	color: #FFFFFF; /*White*/
+}
+
+.content_wrapper p h2 {
+	color: #B7A85C; /*Dark Yellow*/	
+}
+
+p a.right {
+	/*color: #894542; Dark Red*/
+	color: #D17A65; /*Salmon*/
+}
+
+p a.right:hover {
+	color: #FFFFFF; /*White*/
+}
+{
+	margin: 5px;
+}
+
+.notes_container a {
+	color: #D17A65; /*Salmon*/
+}
+
+.claim_filters {
+	color: #B7A85C; /*Dark Yellow*/
+}
+
+.fake_status {
+	background-color: #151515; /*Black*/
+}
+
+.add_item select {
+	background-color: #4C4C4C; /*Dark Gray*/
+	color: #FFFFFF; /*White*/
+	border: 4px solid #43442B; /*Dark Green*/	
+}
+
+textarea#notes {
+	background-color: #4C4C4C; /*Dark Gray*/
+	color: #FFFFFF; /*White*/
+	border: 4px solid #43442B; /*Dark Green*/	
+}
 /*------------End of Kris attempts----------------------*/
 
 
-.search input[type="search"]{
-	color:#eee;
+.search input[type="search"] {
+	/*color:#eee; original*/
     /*background:#332F2E; original background color */
     background-color: #222;
+    color: #B7A85C; /*Dark Yellow*/
 }
 
-.current_page a{ color: #90C32E;}
-.current_page a:hover{ color: #eee;}
-.current_page{
+
+
+.current_page a { 
+	/*color: #90C32E; original */
+	color: #FFFFFF; /* White */
+	border-top: 1px solid #43442B; /*Dark Green*/
+	border-left: 1px solid #43442B; /*Dark Green*/;
+}
+
+.current_page a:hover { 
+	/*color: #eee; original*/
+	color: #FFFFFF; /* White */
+}
+
+.current_page {
 	background-color: #332F2E;
-	border-top: 1px solid #333;
-	border-bottom: 1px solid #333;
+	border-top: 1px solid #43442B; /*Dark Green*/
+	border-bottom: 1px solid #43442B; /*Dark Green*/
 }
-.claim_alert , .claim_alert_client {     
-    color: #eee;
-}
-.alert_node { color: #222;}
 
-.notes_container, .stats, .half_dashboard{
-    background: #222;
-    color: #eee;
+.claim_alert , .claim_alert_client {     
+    /*color: #eee; original */
+    color: #B7A85C; /*Dark Yellow*/
 }
-.notes_container a, .item_content a, .notes_container .small_link, .stats a, .half_dashboard a { color: #90C32E;}
-.notes_container ul li a { color: #ddd;}
-.claim_filters a{
-	color:#eee;
+
+.alert_node { 
+	/*color: #222; original*/
+	color: #B7A85C; /*Dark Yellow*/
+}
+
+.notes_container, .stats, .half_dashboard {
+    background-color: #4C4C4C; /*Dark Gray*/
+    border: 4px solid #43442B; /*Dark Green*/
+    /*color: #eee; original */
+    color: #FFFFFF; /* White */
+}
+
+/*.notes_container a, */.item_content a, .notes_container .small_link, .stats a, .half_dashboard a { 
+	/*color: #90C32E; original */
+	color: #FFFFFF; /* White */
+}
+
+.notes_container ul li a { 
+	/*color: #ddd; original */
+	color: #FFFFFF; /* White */
+}
+
+.claim_filters a {
+	/*color:#eee; original */
+	color: #B7A85C; /*Dark Yellow*/
+	margin-right: 10px;
 }
